@@ -21,7 +21,11 @@ export const metadata: Metadata = { title: 'Dashboard — Alf Maskan' };
  */
 export default function DashboardRootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" dir="ltr" className={fontVars}>
+    // suppressHydrationWarning is load-bearing, not a paper-over: the theme
+    // script below deliberately stamps data-theme on <html> before React
+    // hydrates, so server and client HTML are *meant* to differ on that one
+    // attribute. Without this React logs a mismatch on every dashboard load.
+    <html lang="en" dir="ltr" className={fontVars} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: THEME_SCRIPT }} />
       </head>
