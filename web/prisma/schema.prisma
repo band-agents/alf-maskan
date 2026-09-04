@@ -1,0 +1,693 @@
+// Alf Maskan — data model.
+//
+// Multi-tenant by row, not by schema: every tenant-scoped table carries storeId
+// and is indexed on it. At EGP 990/month a schema-per-tenant model would cost
+// more in migration time than it saves, and Postgres row-level security gives
+// the same isolation guarantee for a fraction of the operational weight.
+//
+// Two rules the whole model follows:
+//   1. Money is Decimal, never Float. EGP 34,000,000 in piastres overflows
+//      Int32, and floats cannot represent a payment plan exactly.
+//   2. Anything a buyer reads has an Ar and an En field. The product is sold as
+//      Arabic-first; a nullable Ar column would let that quietly stop being true.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─────────────────────────────────────────────────────────── tenancy
+
+model Store {
+  id        String   @id @default(cuid())
+  // The free address: <slug>.alfmaskan.com. Immutable once traffic exists —
+  // links live in people's WhatsApp history forever.
+  slug      String   @unique
+  nameEn    String
+  nameAr    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  whatsapp String?
+  phone    String?
+  email    String?
+  address  String?
+  logoUrl  String?
+
+  // Branding chosen in onboarding step 4.
+  brandHex String @default("#0F5E4E")
+  fontPair String @default("tajawal")
+  template String @default("nile")
+
+  // Language & region, onboarding step 1 and Settings.
+  storeLangs StoreLangs @default(BOTH)
+  currency   String     @default("EGP")
+  areaUnit   String     @default("m2")
+  timezone   String     @default("Africa/Cairo")
+
+  status StoreStatus @default(ACTIVE)
+
+  domains      Domain[]
+  memberships  Membership[]
+  units        Unit[]
+  collections  Collection[]
+  leads        Lead[]
+  deals        Deal[]
+  offers       Offer[]
+  broadcasts   Broadcast[]
+  leadForms    LeadForm[]
+  pages        StorefrontPage[]
+  subscription Subscription?
+  auditEntries AuditLog[]
+
+  @@index([status])
+}
+
+model Domain {
+  id        String       @id @default(cuid())
+  storeId   String
+  store     Store        @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  hostname  String       @unique // kamalestates.com
+  status    DomainStatus @default(PENDING)
+  isPrimary Boolean      @default(false)
+  createdAt DateTime     @default(now())
+
+  @@index([storeId])
+}
+
+// ─────────────────────────────────────────────────────────── people
+
+model User {
+  id        String   @id @default(cuid())
+  // Phone is the real identifier in this market — plenty of agents have no
+  // email they check. Either may be null, but not both (enforced in code).
+  phone     String?  @unique
+  email     String?  @unique
+  name      String
+  avatarUrl String?
+  locale    String   @default("en")
+  createdAt DateTime @default(now())
+
+  memberships  Membership[]
+  ownedLeads   Lead[]       @relation("LeadOwner")
+  ownedUnits   Unit[]       @relation("UnitOwner")
+  deals        Deal[]
+  auditEntries AuditLog[]
+}
+
+model Membership {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  userId  String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role    Role   @default(AGENT)
+
+  // Scope narrows a role, it never widens it. An AGENT limited to New Cairo
+  // still cannot publish; the check is role first, then scope.
+  scopeZones String[] @default([])
+
+  invitedAt  DateTime  @default(now())
+  acceptedAt DateTime?
+  lastSeenAt DateTime?
+
+  @@unique([storeId, userId])
+  @@index([storeId, role])
+}
+
+// ─────────────────────────────────────────────────────────── inventory
+
+model Unit {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  reference String // AM-1042, unique per store
+  purpose   Purpose    @default(PRIMARY)
+  type      UnitType
+  status    UnitStatus @default(DRAFT)
+  featured  Boolean    @default(false)
+
+  titleEn String
+  titleAr String
+  descEn  String? @db.Text
+  descAr  String? @db.Text
+
+  // location
+  governorate String?
+  zone        String
+  compound    String?
+  developer   String?
+  lat         Float?
+  lng         Float?
+  hidePin     Boolean @default(false)
+
+  // specs
+  areaSqm     Int
+  landAreaSqm Int?
+  builtUpSqm  Int?
+  bedrooms    Int?
+  bathrooms   Int?
+  floor       Int?
+  totalFloors Int?
+  view        String?
+  furnished   Boolean @default(false)
+  parking     Int     @default(0)
+
+  finishing  Finishing?
+  deliveryAt DateTime? // null means ready to move
+
+  // money — all Decimal, see the note at the top
+  price          Decimal  @db.Decimal(14, 2)
+  downPaymentPct Decimal? @db.Decimal(5, 2)
+  installYears   Int?
+  maintenanceFee Decimal? @db.Decimal(14, 2)
+  negotiable     Boolean  @default(false)
+
+  amenities String[] @default([])
+
+  // SEO
+  metaTitleEn String?
+  metaTitleAr String?
+  metaDescEn  String?
+  metaDescAr  String?
+
+  ownerId    String?
+  owner      User?    @relation("UnitOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+  commission Decimal? @db.Decimal(5, 2)
+  notes      String?  @db.Text
+
+  media       Media[]
+  collections CollectionUnit[]
+  leads       Lead[]
+  deals       Deal[]
+  offers      OfferUnit[]
+
+  viewCount Int @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([storeId, reference])
+  @@index([storeId, status])
+  @@index([storeId, zone])
+  @@index([storeId, compound])
+  @@index([storeId, price])
+}
+
+model Media {
+  id       String    @id @default(cuid())
+  unitId   String
+  unit     Unit      @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  kind     MediaKind @default(PHOTO)
+  url      String
+  altEn    String?
+  altAr    String?
+  // Position 0 is the cover. Reordering is the whole interaction in the editor,
+  // so it is a stored integer rather than an implicit array index.
+  position Int       @default(0)
+
+  @@index([unitId, position])
+}
+
+model Collection {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  nameEn String
+  nameAr String
+  descEn String?
+  descAr String?
+
+  // AUTOMATIC collections store their conditions and are evaluated on read, so
+  // a unit joins or leaves on its own when it changes.
+  mode       CollectionMode @default(MANUAL)
+  matchAll   Boolean        @default(true)
+  conditions Json           @default("[]")
+
+  units CollectionUnit[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId])
+}
+
+model CollectionUnit {
+  collectionId String
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+  unitId       String
+  unit         Unit       @relation(fields: [unitId], references: [id], onDelete: Cascade)
+  position     Int        @default(0)
+
+  @@id([collectionId, unitId])
+  @@index([unitId])
+}
+
+// ─────────────────────────────────────────────────────────── demand
+
+model Lead {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  name   String
+  phone  String?
+  email  String?
+  source LeadSource @default(WHATSAPP)
+  stage  LeadStage  @default(NEW)
+
+  budgetMin Decimal? @db.Decimal(14, 2)
+  budgetMax Decimal? @db.Decimal(14, 2)
+
+  unitId String?
+  unit   Unit?   @relation(fields: [unitId], references: [id], onDelete: SetNull)
+
+  ownerId String?
+  owner   User?   @relation("LeadOwner", fields: [ownerId], references: [id], onDelete: SetNull)
+
+  notes String? @db.Text
+
+  messages Message[]
+  tasks    Task[]
+  deal     Deal?
+
+  // Set on the first outbound message. The gap against createdAt is the
+  // first-reply time the dashboard reports on, so it is stored, not derived
+  // from scanning the message list.
+  firstRepliedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId, stage])
+  @@index([storeId, ownerId])
+  @@index([storeId, createdAt])
+}
+
+model Message {
+  id        String    @id @default(cuid())
+  leadId    String
+  lead      Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  direction Direction
+  body      String    @db.Text
+  locale    String    @default("ar")
+  sentAt    DateTime  @default(now())
+
+  @@index([leadId, sentAt])
+}
+
+model Task {
+  id     String    @id @default(cuid())
+  leadId String
+  lead   Lead      @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  title  String
+  dueAt  DateTime?
+  doneAt DateTime?
+
+  @@index([leadId])
+}
+
+model Deal {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  leadId String? @unique
+  lead   Lead?   @relation(fields: [leadId], references: [id], onDelete: SetNull)
+  unitId String?
+  unit   Unit?   @relation(fields: [unitId], references: [id], onDelete: SetNull)
+
+  agentId String?
+  agent   User?   @relation(fields: [agentId], references: [id], onDelete: SetNull)
+
+  stage         DealStage @default(CONTACTED)
+  value         Decimal   @db.Decimal(14, 2)
+  commissionPct Decimal   @default(2.5) @db.Decimal(5, 2)
+
+  // Reset every time the stage changes. "Days in stage" is the number the board
+  // warns on, and deriving it from an audit scan on every render would not hold.
+  stageChangedAt DateTime  @default(now())
+  closedAt       DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([storeId, stage])
+  @@index([storeId, agentId])
+}
+
+// ─────────────────────────────────────────────────────────── marketing
+
+model Offer {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  nameEn        String
+  nameAr        String
+  kind          OfferKind @default(DOWN_PAYMENT)
+  amount        Decimal   @db.Decimal(14, 2)
+  badgeText     String
+  badgeStyle    String    @default("sand")
+  showCountdown Boolean   @default(true)
+
+  startsAt DateTime
+  endsAt   DateTime
+
+  units OfferUnit[]
+
+  createdAt DateTime @default(now())
+
+  @@index([storeId, startsAt, endsAt])
+}
+
+model OfferUnit {
+  offerId String
+  offer   Offer  @relation(fields: [offerId], references: [id], onDelete: Cascade)
+  unitId  String
+  unit    Unit   @relation(fields: [unitId], references: [id], onDelete: Cascade)
+
+  @@id([offerId, unitId])
+  @@index([unitId])
+}
+
+model Broadcast {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  channel    Channel @default(WHATSAPP)
+  segment    String
+  bodyEn     String? @db.Text
+  bodyAr     String? @db.Text
+  unitId     String?
+  recipients Int     @default(0)
+
+  sentAt    DateTime?
+  createdAt DateTime  @default(now())
+
+  @@index([storeId, sentAt])
+}
+
+model LeadForm {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  name    String
+  fields  Json   @default("[]")
+  routing String @default("unit_owner")
+  notify  String @default("whatsapp_and_app")
+
+  createdAt DateTime @default(now())
+
+  @@index([storeId])
+}
+
+// ─────────────────────────────────────────────────────────── storefront
+
+model StorefrontPage {
+  id      String @id @default(cuid())
+  storeId String
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  key       String // home, unit, search, compound, about, contact
+  titleEn   String
+  titleAr   String
+  published Boolean @default(false)
+
+  sections Section[]
+  versions PageVersion[]
+
+  updatedAt DateTime @updatedAt
+
+  @@unique([storeId, key])
+}
+
+model Section {
+  id     String         @id @default(cuid())
+  pageId String
+  page   StorefrontPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  // Matches the builder's section library: search_hero, featured_units,
+  // map_explorer, payment_calculator, team, testimonials, footer, wa_float…
+  kind     String
+  position Int     @default(0)
+  hidden   Boolean @default(false)
+
+  // Per-section settings and its blocks. JSON because the shape differs per
+  // section kind and a column per setting would be a migration per section.
+  settings Json @default("{}")
+  blocks   Json @default("[]")
+
+  @@index([pageId, position])
+}
+
+model PageVersion {
+  id     String         @id @default(cuid())
+  pageId String
+  page   StorefrontPage @relation(fields: [pageId], references: [id], onDelete: Cascade)
+
+  // A full snapshot, not a diff. Restoring must never depend on replaying a
+  // chain that a failed migration could break.
+  snapshot  Json
+  label     String?
+  createdAt DateTime @default(now())
+
+  @@index([pageId, createdAt])
+}
+
+// ─────────────────────────────────────────────────────────── money
+
+model Subscription {
+  id      String @id @default(cuid())
+  storeId String @unique
+  store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
+
+  plan   String             @default("pro")
+  cycle  BillingCycle       @default(MONTHLY)
+  status SubscriptionStatus @default(ACTIVE)
+  method PaymentMethod      @default(CARD)
+
+  priceEgp Decimal @default(990) @db.Decimal(10, 2)
+
+  currentPeriodEnd DateTime
+  // A pause is a first-class state, not a cancellation with a note. The
+  // retention offer promises it, so the model has to be able to keep it.
+  pausedUntil      DateTime?
+  cancelledAt      DateTime?
+
+  invoices Invoice[]
+}
+
+model Invoice {
+  id             String       @id @default(cuid())
+  subscriptionId String
+  subscription   Subscription @relation(fields: [subscriptionId], references: [id], onDelete: Cascade)
+
+  number      String        @unique
+  amountEgp   Decimal       @db.Decimal(10, 2)
+  method      PaymentMethod
+  status      InvoiceStatus @default(PENDING)
+  // Paymob / Fawry reference, so a support conversation can be traced to the
+  // gateway without digging through logs.
+  providerRef String?
+  issuedAt    DateTime      @default(now())
+  paidAt      DateTime?
+
+  @@index([subscriptionId, issuedAt])
+}
+
+// ─────────────────────────────────────────────────────────── trail
+
+model AuditLog {
+  id      String  @id @default(cuid())
+  storeId String
+  store   Store   @relation(fields: [storeId], references: [id], onDelete: Cascade)
+  userId  String?
+  user    User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  kind     AuditKind
+  entity   String // Unit, Membership, Section…
+  entityId String?
+  summary  String
+
+  // Prices and permissions are what people ask about after the fact, so both
+  // values are kept. A deletion keeps only `before`, which is then the last
+  // record of the thing.
+  before Json?
+  after  Json?
+
+  createdAt DateTime @default(now())
+
+  @@index([storeId, createdAt])
+  @@index([storeId, kind])
+}
+
+// ─────────────────────────────────────────────────────────── enums
+
+enum StoreStatus {
+  ACTIVE
+  PAUSED
+  CANCELLED
+}
+
+enum StoreLangs {
+  AR
+  EN
+  BOTH
+}
+
+enum DomainStatus {
+  PENDING
+  VERIFIED
+  FAILED
+}
+
+enum Role {
+  OWNER
+  ADMIN
+  SALES_MANAGER
+  AGENT
+  CONTENT_EDITOR
+  ACCOUNTANT
+  VIEWER
+}
+
+enum Purpose {
+  PRIMARY
+  RESALE
+  SALE
+  RENT
+}
+
+enum UnitType {
+  APARTMENT
+  DUPLEX
+  PENTHOUSE
+  VILLA
+  TWIN_HOUSE
+  TOWNHOUSE
+  CHALET
+  STUDIO
+  OFFICE
+  RETAIL
+  CLINIC
+  LAND
+}
+
+enum UnitStatus {
+  DRAFT
+  LIVE
+  RESERVED
+  SOLD
+  RENTED
+}
+
+enum Finishing {
+  FULLY_FINISHED
+  FINISHED_WITH_AC
+  SEMI_FINISHED
+  CORE_AND_SHELL
+}
+
+enum MediaKind {
+  PHOTO
+  FLOOR_PLAN
+  VIDEO
+  TOUR_360
+  BROCHURE
+}
+
+enum CollectionMode {
+  MANUAL
+  AUTOMATIC
+}
+
+enum LeadSource {
+  WHATSAPP
+  FORM
+  CALL
+  FACEBOOK
+  INSTAGRAM
+  PORTAL
+  WALK_IN
+}
+
+enum LeadStage {
+  NEW
+  CONTACTED
+  VIEWING_BOOKED
+  NEGOTIATING
+  WON
+  LOST
+}
+
+enum Direction {
+  IN
+  OUT
+}
+
+enum DealStage {
+  CONTACTED
+  VIEWING
+  NEGOTIATING
+  RESERVED
+  WON
+  LOST
+}
+
+enum OfferKind {
+  DOWN_PAYMENT
+  PRICE
+  EXTRA_YEARS
+  FREE_FINISHING
+}
+
+enum Channel {
+  WHATSAPP
+  SMS
+  EMAIL
+}
+
+enum BillingCycle {
+  MONTHLY
+  ANNUAL
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  PAST_DUE
+  PAUSED
+  CANCELLED
+}
+
+enum PaymentMethod {
+  CARD
+  FAWRY
+  PAYMOB_WALLET
+  INSTAPAY
+  BANK_TRANSFER
+}
+
+enum InvoiceStatus {
+  PENDING
+  PAID
+  FAILED
+  REFUNDED
+}
+
+enum AuditKind {
+  PRICE
+  PERMISSION
+  LISTING
+  STOREFRONT
+  BILLING
+  MEMBER
+}
