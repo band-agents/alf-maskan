@@ -1,0 +1,571 @@
+<!--
+title: Penthouse with roof garden — Alf Maskan
+desc: Edit a unit and watch the storefront card update as you type.
+nav: listings
+bodyClass: app
+css: dashboard, app, editor
+js: dashboard, forms, editor
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="{{base}}app/listings.html">Listings</a>
+        <svg width="5" height="8" viewBox="0 0 6 10" fill="none" aria-hidden="true"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="ref">AM-1042</span>
+      </nav>
+
+      <div class="page-head">
+        <div>
+          <h1>Penthouse with roof garden</h1>
+          <p>Mivida, New Cairo · Live since 12 August 2026 · 1,204 views, 7 leads</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="#">Duplicate</a>
+          <a class="btn btn--app" href="{{base}}app/listings.html">View on storefront ↗</a>
+        </div>
+      </div>
+
+      <form class="ed" data-editor onsubmit="return false">
+
+        <!-- ============================================ the form -->
+        <div class="ed__form">
+
+          <!-- ---------------------------------------- 1 basics -->
+          <details class="fset" open>
+            <summary>
+              <span class="fset__n" aria-hidden="true">1</span>
+              <span class="fset__title">Basics</span>
+              <span class="fset__meta">
+                <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About basics</span></button>
+                  <span class="hint__body" hidden>The title is what buyers see first on every card and in Google. Write it the way a buyer would search — unit type, the thing that makes it special, then the compound.</span>
+                </span>
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="fgrid fgrid--3">
+                <div class="f">
+                  <label class="f__label" for="e-purpose">Purpose <span class="f__req" aria-hidden="true">*</span></label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-purpose">
+                      <option>Primary</option>
+                      <option>Sale</option>
+                      <option>Resale</option>
+                      <option>Rent</option>
+                    </select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-type">Unit type <span class="f__req" aria-hidden="true">*</span></label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-type" data-live="type">
+                      <option>Penthouse</option>
+                      <option>Apartment</option>
+                      <option>Duplex</option>
+                      <option>Villa</option>
+                      <option>Twin house</option>
+                      <option>Townhouse</option>
+                      <option>Chalet</option>
+                      <option>Studio</option>
+                      <option>Office</option>
+                    </select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-ref">Reference code</label>
+                  <input class="inp" id="e-ref" value="AM-1042" readonly>
+                  <span class="f__hint">Generated when the unit was created.</span>
+                </div>
+              </div>
+
+              <!-- Title, one field in two scripts -->
+              <div class="lang-field" data-lang-field>
+                <div class="lang-field__top">
+                  <span class="f__label">Title <span class="f__req" aria-hidden="true">*</span></span>
+                  <span class="lang-tabs">
+                    <button type="button" aria-pressed="true" data-lang-tab="en">EN</button>
+                    <button type="button" aria-pressed="false" data-lang-tab="ar">ع</button>
+                  </span>
+                </div>
+                <div class="lang-pane" data-lang-pane="en">
+                  <label class="visually-hidden" for="e-title-en">Title in English</label>
+                  <input class="inp" id="e-title-en" data-live="title" value="Penthouse with roof garden" maxlength="70">
+                </div>
+                <div class="lang-pane" data-lang-pane="ar" dir="rtl" hidden>
+                  <label class="visually-hidden" for="e-title-ar">العنوان بالعربية</label>
+                  <input class="inp" id="e-title-ar" lang="ar" value="بنتهاوس بحديقة خاصة" maxlength="70">
+                </div>
+                <button class="ai-translate" type="button">
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M6 1v10M1 6h10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+                  Translate to Arabic with AI
+                </button>
+              </div>
+
+              <!-- Description, same pattern -->
+              <div class="lang-field" data-lang-field>
+                <div class="lang-field__top">
+                  <span class="f__label">Description</span>
+                  <span class="lang-tabs">
+                    <button type="button" aria-pressed="true" data-lang-tab="en">EN</button>
+                    <button type="button" aria-pressed="false" data-lang-tab="ar">ع</button>
+                  </span>
+                </div>
+                <div class="lang-pane" data-lang-pane="en">
+                  <label class="visually-hidden" for="e-desc-en">Description in English</label>
+                  <textarea class="ta" id="e-desc-en">Top-floor penthouse in Mivida with a 60 m² private roof terrace overlooking the central park. Fully finished, three bedrooms with a master en-suite, and a separate reception. Delivery Q2 2027 with a payment plan over eight years.</textarea>
+                </div>
+                <div class="lang-pane" data-lang-pane="ar" dir="rtl" hidden>
+                  <label class="visually-hidden" for="e-desc-ar">الوصف بالعربية</label>
+                  <textarea class="ta" id="e-desc-ar" lang="ar">بنتهاوس بالدور الأخير في ميفيدا، بتراس خاص 60 م² بفيو على الحديقة المركزية. متشطب بالكامل، ثلاث غرف نوم منها ماستر، وريسبشن منفصل. الاستلام الربع الثاني 2027 وخطة سداد حتى ثماني سنوات.</textarea>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- 2 location -->
+          <details class="fset">
+            <summary>
+              <span class="fset__n" aria-hidden="true">2</span>
+              <span class="fset__title">Location</span>
+              <span class="fset__meta">
+                Mivida, New Cairo
+                <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About location</span></button>
+                  <span class="hint__body" hidden>Zone and compound drive your storefront's search filters. Hiding the exact pin still shows the compound, which is what most sellers want.</span>
+                </span>
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="fgrid fgrid--4">
+                <div class="f">
+                  <label class="f__label" for="e-gov">Governorate</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-gov"><option>Cairo</option><option>Giza</option><option>Matrouh</option><option>Red Sea</option><option>Suez</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-zone">Zone</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-zone" data-live="zone"><option>New Cairo</option><option>Sheikh Zayed</option><option>6th of October</option><option>New Capital</option><option>North Coast</option><option>Ain Sokhna</option><option>Zamalek</option><option>Mostakbal City</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-compound">Compound</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-compound" data-live="compound"><option>Mivida</option><option>Hyde Park</option><option>Palm Hills</option><option>Zed East</option><option>Marassi</option><option>Il Monte Galala</option><option>Badya</option><option>Sodic East</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-dev">Developer</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-dev"><option>Emaar Misr</option><option>SODIC</option><option>Palm Hills</option><option>Talaat Moustafa Group</option><option>Ora</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="f">
+                <span class="f__label">Map pin</span>
+                <div class="ph ph--16x9" style="border-radius:var(--r-12);max-height:180px">map · Mivida, New Cairo · pin at 30.0131, 31.4967</div>
+              </div>
+
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="e-hidepin">
+                <span class="sw-row__txt">
+                  <b><label for="e-hidepin">Hide the exact location</label></b>
+                  <span>Buyers see the compound and zone but not the pin. Use it for units where the owner does not want the building identified.</span>
+                </span>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- 3 specs -->
+          <details class="fset">
+            <summary>
+              <span class="fset__n" aria-hidden="true">3</span>
+              <span class="fset__title">Specs</span>
+              <span class="fset__meta">
+                168 m² · 3 bed · 3 bath
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="fgrid fgrid--4">
+                <div class="f">
+                  <label class="f__label" for="e-area">Area <span class="f__req" aria-hidden="true">*</span></label>
+                  <span class="inp-unit"><input class="inp" id="e-area" type="number" value="168" data-live="area"><span class="inp-unit__u">m²</span></span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-built">Built-up area</label>
+                  <span class="inp-unit"><input class="inp" id="e-built" type="number" value="152"><span class="inp-unit__u">m²</span></span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-beds">Bedrooms</label>
+                  <input class="inp" id="e-beds" type="number" value="3" data-live="beds">
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-baths">Bathrooms</label>
+                  <input class="inp" id="e-baths" type="number" value="3">
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-floor">Floor</label>
+                  <input class="inp" id="e-floor" type="number" value="7">
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-floors">Total floors</label>
+                  <input class="inp" id="e-floors" type="number" value="7">
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-view">View</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-view"><option>Garden</option><option>Pool</option><option>Lagoon</option><option>Street</option><option>Sea</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-parking">Parking spots</label>
+                  <input class="inp" id="e-parking" type="number" value="2">
+                </div>
+              </div>
+
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="e-furnished">
+                <span class="sw-row__txt">
+                  <b><label for="e-furnished">Furnished</label></b>
+                  <span>Adds a "Furnished" filter chip on your storefront search.</span>
+                </span>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- 4 finishing -->
+          <details class="fset">
+            <summary>
+              <span class="fset__n" aria-hidden="true">4</span>
+              <span class="fset__title">Finishing &amp; delivery</span>
+              <span class="fset__meta">
+                Fully finished · Q2 2027
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="fgrid fgrid--3">
+                <div class="f">
+                  <label class="f__label" for="e-finish">Finishing level</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-finish"><option>Fully finished</option><option>Finished with AC</option><option>Semi-finished</option><option>Core &amp; shell</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-delivery">Delivery</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-delivery"><option>Q2 2027</option><option>Ready to move</option><option>Q4 2026</option><option>Q4 2027</option><option>Q2 2028</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-maint">Maintenance fee</label>
+                  <span class="inp-unit inp-unit--lead"><input class="inp" id="e-maint" type="number" value="380000"><span class="inp-unit__u">EGP</span></span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- 5 price -->
+          <details class="fset" open>
+            <summary>
+              <span class="fset__n" aria-hidden="true">5</span>
+              <span class="fset__title">Price &amp; payment plan</span>
+              <span class="fset__meta">
+                <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About the payment plan</span></button>
+                  <span class="hint__body" hidden>The monthly instalment is the number buyers actually compare. It is computed from price, down payment and years, so you never have to work it out by hand.</span>
+                </span>
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="fgrid">
+                <div class="f">
+                  <label class="f__label" for="e-price">Total price <span class="f__req" aria-hidden="true">*</span></label>
+                  <span class="inp-unit inp-unit--lead"><input class="inp" id="e-price" type="number" value="8450000" data-live="price" data-calc><span class="inp-unit__u">EGP</span></span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-ppm">
+                    Price per m²
+                    <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About price per m²</span></button>
+                      <span class="hint__body" hidden>Calculated automatically from price and area. Buyers compare it constantly, so it appears on every card.</span>
+                    </span>
+                  </label>
+                  <span class="inp-unit inp-unit--lead"><input class="inp inp--computed" id="e-ppm" data-ppm readonly><span class="inp-unit__u">EGP</span></span>
+                </div>
+              </div>
+
+              <div class="calc">
+                <div class="calc__controls">
+                  <div class="range-row">
+                    <span class="range-row__top">
+                      <label for="e-down">Down payment</label>
+                      <b><span data-down-pct>10</span>% · <span data-down-egp>EGP 845,000</span></b>
+                    </span>
+                    <input type="range" id="e-down" min="0" max="50" step="1" value="10" data-calc>
+                  </div>
+
+                  <div class="range-row">
+                    <span class="range-row__top">
+                      <label for="e-years">Instalment years</label>
+                      <b><span data-years>8</span> years</b>
+                    </span>
+                    <input type="range" id="e-years" min="1" max="12" step="1" value="8" data-calc>
+                  </div>
+
+                  <div class="sw-row" style="padding-bottom:0">
+                    <input class="sw" type="checkbox" id="e-negotiable" checked>
+                    <span class="sw-row__txt">
+                      <b><label for="e-negotiable">Price is negotiable</label></b>
+                      <span>Shows "Negotiable" next to the price instead of hiding it.</span>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="calc__result" role="status" aria-live="polite">
+                  <small>Monthly instalment</small>
+                  <b data-monthly>EGP 79,219</b>
+                  <span data-monthly-note>96 payments after EGP 845,000 down</span>
+                  <div class="calc__breakdown">
+                    <div><span>Down payment</span><b data-bd-down>EGP 845,000</b></div>
+                    <div><span>Financed</span><b data-bd-financed>EGP 7,605,000</b></div>
+                    <div><span>Over</span><b data-bd-years>8 years</b></div>
+                  </div>
+                </div>
+              </div>
+              <p class="f__hint">Instalments are shown without interest, which is how Egyptian developer plans are quoted. If you add a rate later, say so on the unit page.</p>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- 6 media -->
+          <details class="fset">
+            <summary>
+              <span class="fset__n" aria-hidden="true">6</span>
+              <span class="fset__title">Media</span>
+              <span class="fset__meta">
+                8 photos · 1 floor plan
+                <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About media</span></button>
+                  <span class="hint__body" hidden>The first image is the cover — it is the one buyers see in search, on your homepage and in WhatsApp shares. Drag any photo to the front to make it the cover.</span>
+                </span>
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="gal" data-gallery>
+                <div class="gal__item" draggable="true"><span class="gal__cover">Cover</span><button class="gal__del" type="button"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="visually-hidden">Remove photo 1</span></button><div class="ph">roof terrace · 4:3</div><div class="gal__bar"><span class="gal__grab" aria-hidden="true"><svg width="9" height="11" viewBox="0 0 9 11"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="5.5" r="1" fill="currentColor"/><circle cx="7" cy="5.5" r="1" fill="currentColor"/><circle cx="2" cy="9" r="1" fill="currentColor"/><circle cx="7" cy="9" r="1" fill="currentColor"/></svg></span>Roof terrace</div></div>
+                <div class="gal__item" draggable="true"><button class="gal__del" type="button"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="visually-hidden">Remove photo 2</span></button><div class="ph">reception · 4:3</div><div class="gal__bar"><span class="gal__grab" aria-hidden="true"><svg width="9" height="11" viewBox="0 0 9 11"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="5.5" r="1" fill="currentColor"/><circle cx="7" cy="5.5" r="1" fill="currentColor"/><circle cx="2" cy="9" r="1" fill="currentColor"/><circle cx="7" cy="9" r="1" fill="currentColor"/></svg></span>Reception</div></div>
+                <div class="gal__item" draggable="true"><button class="gal__del" type="button"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="visually-hidden">Remove photo 3</span></button><div class="ph">master bedroom · 4:3</div><div class="gal__bar"><span class="gal__grab" aria-hidden="true"><svg width="9" height="11" viewBox="0 0 9 11"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="5.5" r="1" fill="currentColor"/><circle cx="7" cy="5.5" r="1" fill="currentColor"/><circle cx="2" cy="9" r="1" fill="currentColor"/><circle cx="7" cy="9" r="1" fill="currentColor"/></svg></span>Master bedroom</div></div>
+                <div class="gal__item" draggable="true"><button class="gal__del" type="button"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="visually-hidden">Remove photo 4</span></button><div class="ph">kitchen · 4:3</div><div class="gal__bar"><span class="gal__grab" aria-hidden="true"><svg width="9" height="11" viewBox="0 0 9 11"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="5.5" r="1" fill="currentColor"/><circle cx="7" cy="5.5" r="1" fill="currentColor"/><circle cx="2" cy="9" r="1" fill="currentColor"/><circle cx="7" cy="9" r="1" fill="currentColor"/></svg></span>Kitchen</div></div>
+                <div class="gal__item" draggable="true"><button class="gal__del" type="button"><svg width="9" height="9" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 1l8 8M9 1L1 9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg><span class="visually-hidden">Remove floor plan</span></button><div class="ph ph--fine">floor plan · 4:3</div><div class="gal__bar"><span class="gal__grab" aria-hidden="true"><svg width="9" height="11" viewBox="0 0 9 11"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="5.5" r="1" fill="currentColor"/><circle cx="7" cy="5.5" r="1" fill="currentColor"/><circle cx="2" cy="9" r="1" fill="currentColor"/><circle cx="7" cy="9" r="1" fill="currentColor"/></svg></span>Floor plan</div></div>
+              </div>
+
+              <div class="dropzone" tabindex="0" role="button">
+                <svg width="20" height="18" viewBox="0 0 20 18" fill="none" aria-hidden="true"><path d="M10 12V1m0 0L6 5m4-4l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 12v3a2 2 0 002 2h14a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                <b>Drag photos here, or browse</b>
+                <span>JPG or PNG, at least 1600px wide. The first one becomes the cover.</span>
+              </div>
+
+              <div class="fgrid">
+                <div class="f">
+                  <label class="f__label" for="e-video">Video URL</label>
+                  <input class="inp" id="e-video" type="url" placeholder="https://youtube.com/watch?v=…" dir="ltr">
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-tour">360° tour embed</label>
+                  <input class="inp" id="e-tour" type="url" placeholder="Matterport or Kuula link" dir="ltr">
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- 7 amenities -->
+          <details class="fset">
+            <summary>
+              <span class="fset__n" aria-hidden="true">7</span>
+              <span class="fset__title">Amenities</span>
+              <span class="fset__meta">
+                <span data-amenity-count>5</span> selected
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="chipset" data-amenities>
+                <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Pool</label>
+                <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Gym</label>
+                <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Clubhouse</label>
+                <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Security 24/7</label>
+                <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Kids area</label>
+                <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Smart home</label>
+                <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Central AC</label>
+                <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Elevator</label>
+                <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Backup generator</label>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- 8 visibility -->
+          <details class="fset">
+            <summary>
+              <span class="fset__n" aria-hidden="true">8</span>
+              <span class="fset__title">Visibility &amp; SEO</span>
+              <span class="fset__meta">
+                <span class="st st--live">Live</span>
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="fgrid">
+                <div class="f">
+                  <label class="f__label" for="e-status">Status</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-status"><option>Live</option><option>Draft</option><option>Reserved</option><option>Sold</option><option>Rented</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-collections">Collections</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-collections"><option>Ready to move</option><option>Under 10M</option><option>Sahel 2027 delivery</option><option>New Cairo picks</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="sw-row">
+                <input class="sw sw--sand" type="checkbox" id="e-featured" data-live-featured>
+                <span class="sw-row__txt">
+                  <b><label for="e-featured">Featured unit</label></b>
+                  <span>Featured units appear first on your homepage and get a gold badge — use it for the three or four units you most want to sell this month.</span>
+                </span>
+              </div>
+
+              <div class="f">
+                <label class="f__label" for="e-meta-title">Meta title</label>
+                <input class="inp" id="e-meta-title" data-seo="title" value="Penthouse with roof garden in Mivida, New Cairo — 168 m²" maxlength="90">
+              </div>
+              <div class="f">
+                <label class="f__label" for="e-meta-desc">Meta description</label>
+                <textarea class="ta" id="e-meta-desc" data-seo="desc" style="min-height:64px" maxlength="200">Three-bedroom penthouse with a 60 m² private roof terrace in Mivida. Fully finished, delivery Q2 2027, EGP 8,450,000 with an eight-year plan.</textarea>
+              </div>
+
+              <div class="f">
+                <span class="f__label">How it looks in Google</span>
+                <div class="serp">
+                  <span class="serp__url" dir="ltr">kamal-estates.alfmaskan.com › units › am-1042</span>
+                  <span class="serp__title" data-serp="title">Penthouse with roof garden in Mivida, New Cairo — 168 m²</span>
+                  <span class="serp__desc" data-serp="desc">Three-bedroom penthouse with a 60 m² private roof terrace in Mivida. Fully finished, delivery Q2 2027, EGP 8,450,000 with an eight-year plan.</span>
+                  <span class="serp__count">title <b data-seo-count="title">56</b>/60 · description <b data-seo-count="desc">146</b>/160</span>
+                </div>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- 9 assignment -->
+          <details class="fset">
+            <summary>
+              <span class="fset__n" aria-hidden="true">9</span>
+              <span class="fset__title">Assignment</span>
+              <span class="fset__meta">
+                Youssef Kamal · 2.5%
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="fgrid fgrid--3">
+                <div class="f">
+                  <label class="f__label" for="e-owner">Owner agent</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-owner"><option>Youssef Kamal</option><option>Nourhan Adel</option><option>Karim ElSayed</option><option>Mai Farouk</option><option>Omar Hegazy</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-coagents">Co-agents</label>
+                  <span class="selwrap">
+                    <select class="sel" id="e-coagents"><option>Nourhan Adel</option><option>None</option><option>Mai Farouk</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="e-commission">Commission</label>
+                  <span class="inp-unit"><input class="inp" id="e-commission" type="number" step="0.1" value="2.5"><span class="inp-unit__u">%</span></span>
+                </div>
+              </div>
+              <div class="f">
+                <label class="f__label" for="e-notes">Internal notes</label>
+                <textarea class="ta" id="e-notes" style="min-height:70px" placeholder="Only your team sees this.">Owner will not go below 8.2M. Keys with the Mivida sales office, call ahead.</textarea>
+                <span class="f__hint">Never shown on the storefront.</span>
+              </div>
+            </div>
+          </details>
+
+        </div>
+
+        <!-- ============================================ live preview -->
+        <aside class="ed__side" aria-label="Storefront preview">
+          <div class="pcard">
+            <div class="pcard__chrome">
+              <span class="pcard__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span class="pcard__url" dir="ltr">kamal-estates.alfmaskan.com/units/am-1042</span>
+            </div>
+            <div class="pcard__body">
+              <div class="pcard__ph">
+                <div class="ph" data-preview-badge>roof terrace · 4:3</div>
+              </div>
+              <span class="badge badge--solid-sand" data-preview-featured hidden>FEATURED</span>
+              <span class="pcard__title" data-preview="title">Penthouse with roof garden</span>
+              <span class="pcard__where" data-preview="where">Mivida · New Cairo</span>
+              <span class="pcard__specs">
+                <span data-preview="area">168 m²</span>
+                <span data-preview="beds">3 bed</span>
+                <span data-preview="type">Penthouse</span>
+              </span>
+              <span class="pcard__price" data-preview="price">EGP 8,450,000</span>
+              <span class="pcard__plan" data-preview="plan">10% down · EGP 79,219/mo over 8 years</span>
+            </div>
+          </div>
+
+          <div class="side-note">
+            <svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 1l7 12.5H1L8 1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6v3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/></svg>
+            <span>
+              <b>This unit has no floor plan on the Arabic page</b>
+              Buyers browsing in Arabic see the gallery but not the plan. Add an Arabic caption to the floor plan image to fix it.
+            </span>
+          </div>
+        </aside>
+
+        <!-- ============================================ save bar -->
+        <div class="savebar" style="grid-column:1/-1">
+          <span class="savebar__chip" data-savechip><i aria-hidden="true"></i><span data-savetext>Saved · 2s ago</span></span>
+          <span class="savebar__end">
+            <a class="btn btn--app" href="#">Preview</a>
+            <button class="btn btn--app" type="button">Save draft</button>
+            <button class="btn btn--go" type="button" data-publish>Publish changes</button>
+          </span>
+        </div>
+
+      </form>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

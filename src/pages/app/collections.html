@@ -1,0 +1,326 @@
+<!--
+title: Collections — Alf Maskan
+desc: Group units into the rows and pages buyers browse on your storefront.
+nav: listings
+bodyClass: app
+css: dashboard, app, editor
+js: dashboard, forms, collections
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="{{base}}app/listings.html">Listings</a>
+        <svg width="5" height="8" viewBox="0 0 6 10" fill="none" aria-hidden="true"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Collections</span>
+      </nav>
+
+      <div class="page-head">
+        <div>
+          <h1>Collections</h1>
+          <p>A collection is a group of units you can drop onto your storefront as a row, a page, or a filter.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--go" href="#">
+            <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            New collection
+          </a>
+        </div>
+      </div>
+
+      <div class="cols">
+
+        <!-- ============================================ the collections -->
+        <div class="collist" role="tablist" aria-label="Collections">
+          <button class="collist__item" type="button" role="tab" aria-current="true" data-col="sahel">
+            <span class="collist__mark" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 4.5l6-3 6 3-6 3-6-3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1 9.5l6 3 6-3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="collist__txt"><b>Sahel 2027 delivery</b><span>Automatic</span></span>
+            <span class="collist__n" data-match-count>2</span>
+          </button>
+          <button class="collist__item" type="button" role="tab" aria-current="false" data-col="under10">
+            <span class="collist__mark" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 4.5l6-3 6 3-6 3-6-3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1 9.5l6 3 6-3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="collist__txt"><b>Under EGP 10M</b><span>Automatic</span></span>
+            <span class="collist__n">7</span>
+          </button>
+          <button class="collist__item" type="button" role="tab" aria-current="false" data-col="ready">
+            <span class="collist__mark" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 4.5l6-3 6 3-6 3-6-3z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/><path d="M1 9.5l6 3 6-3" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="collist__txt"><b>Ready to move</b><span>Automatic</span></span>
+            <span class="collist__n">4</span>
+          </button>
+          <button class="collist__item" type="button" role="tab" aria-current="false" data-col="picks">
+            <span class="collist__mark" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1.5" y="1.5" width="11" height="11" rx="2" stroke="currentColor" stroke-width="1.3"/><path d="M4.5 7l1.8 1.8L9.5 5.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </span>
+            <span class="collist__txt"><b>Youssef's picks</b><span>Manual</span></span>
+            <span class="collist__n">3</span>
+          </button>
+        </div>
+
+        <!-- ============================================ the editor -->
+        <form class="ed__form" data-collection onsubmit="return false">
+
+          <details class="fset" open>
+            <summary>
+              <span class="fset__n" aria-hidden="true">1</span>
+              <span class="fset__title">Collection details</span>
+              <span class="fset__meta">
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="lang-field" data-lang-field>
+                <div class="lang-field__top">
+                  <span class="f__label">Name <span class="f__req" aria-hidden="true">*</span></span>
+                  <span class="lang-tabs">
+                    <button type="button" aria-pressed="true" data-lang-tab="en">EN</button>
+                    <button type="button" aria-pressed="false" data-lang-tab="ar">ع</button>
+                  </span>
+                </div>
+                <div class="lang-pane" data-lang-pane="en">
+                  <label class="visually-hidden" for="c-name-en">Collection name in English</label>
+                  <input class="inp" id="c-name-en" value="Sahel 2027 delivery">
+                </div>
+                <div class="lang-pane" data-lang-pane="ar" dir="rtl" hidden>
+                  <label class="visually-hidden" for="c-name-ar">اسم المجموعة بالعربية</label>
+                  <input class="inp" id="c-name-ar" lang="ar" value="استلام الساحل 2027">
+                </div>
+              </div>
+
+              <div class="f">
+                <label class="f__label" for="c-desc">Description</label>
+                <textarea class="ta" id="c-desc" style="min-height:64px">Chalets and villas on the North Coast delivering in 2027 — the ones buyers ask about every spring.</textarea>
+                <span class="f__hint">Shown under the heading when this collection is used as a storefront row.</span>
+              </div>
+
+              <div class="f">
+                <span class="f__label">
+                  How units get in
+                  <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About collection types</span></button>
+                    <span class="hint__body" hidden>An automatic collection updates itself whenever a unit changes — add a Marassi chalet tomorrow and it appears here without you touching anything.</span>
+                  </span>
+                </span>
+                <span class="seg" data-coltype>
+                  <button type="button" aria-pressed="true" data-coltype-btn="auto">Automatic</button>
+                  <button type="button" aria-pressed="false" data-coltype-btn="manual">Manual</button>
+                </span>
+              </div>
+            </div>
+          </details>
+
+          <details class="fset" open data-rules-section>
+            <summary>
+              <span class="fset__n" aria-hidden="true">2</span>
+              <span class="fset__title">Conditions</span>
+              <span class="fset__meta">
+                <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About conditions</span></button>
+                  <span class="hint__body" hidden>Every unit that satisfies these is in the collection, now and in future. Change a unit's zone and it leaves or joins on its own.</span>
+                </span>
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="f">
+                <span class="f__label" id="c-match-label">Units must match</span>
+                <span class="seg" data-match role="group" aria-labelledby="c-match-label">
+                  <button type="button" aria-pressed="true" data-match-btn="all">All conditions</button>
+                  <button type="button" aria-pressed="false" data-match-btn="any">Any condition</button>
+                </span>
+              </div>
+
+              <div class="rules" data-rules>
+                <div class="rule" data-rule>
+                  <span class="selwrap">
+                    <label class="visually-hidden" for="r1-f">Condition 1 field</label>
+                    <select class="sel" id="r1-f" data-rule-field>
+                      <option value="zone" selected>Zone</option>
+                      <option value="compound">Compound</option>
+                      <option value="type">Unit type</option>
+                      <option value="price">Price</option>
+                      <option value="beds">Bedrooms</option>
+                      <option value="delivery">Delivery</option>
+                      <option value="status">Status</option>
+                    </select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                  <span class="selwrap">
+                    <label class="visually-hidden" for="r1-o">Condition 1 operator</label>
+                    <select class="sel" id="r1-o" data-rule-op><option value="is">is</option><option value="isnot">is not</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                  <span class="selwrap">
+                    <label class="visually-hidden" for="r1-v">Condition 1 value</label>
+                    <select class="sel" id="r1-v" data-rule-value><option>North Coast</option><option>New Cairo</option><option>Ain Sokhna</option><option>Sheikh Zayed</option><option>Zamalek</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                  <button class="rule__drop" type="button" data-rule-remove>
+                    <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <span class="visually-hidden">Remove condition 1</span>
+                  </button>
+                </div>
+
+                <span class="rule__join" data-join>and</span>
+
+                <div class="rule" data-rule>
+                  <span class="selwrap">
+                    <label class="visually-hidden" for="r2-f">Condition 2 field</label>
+                    <select class="sel" id="r2-f" data-rule-field>
+                      <option value="zone">Zone</option>
+                      <option value="compound">Compound</option>
+                      <option value="type">Unit type</option>
+                      <option value="price">Price</option>
+                      <option value="beds">Bedrooms</option>
+                      <option value="delivery" selected>Delivery</option>
+                      <option value="status">Status</option>
+                    </select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                  <span class="selwrap">
+                    <label class="visually-hidden" for="r2-o">Condition 2 operator</label>
+                    <select class="sel" id="r2-o" data-rule-op><option value="is">is</option><option value="isnot">is not</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                  <span class="selwrap">
+                    <label class="visually-hidden" for="r2-v">Condition 2 value</label>
+                    <select class="sel" id="r2-v" data-rule-value><option>2027</option><option>Ready</option><option>2026</option><option>2028</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                  <button class="rule__drop" type="button" data-rule-remove>
+                    <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M1 1l12 12M13 1L1 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                    <span class="visually-hidden">Remove condition 2</span>
+                  </button>
+                </div>
+              </div>
+
+              <button class="views__add" type="button" data-rule-add style="align-self:flex-start;height:34px">+ Add condition</button>
+
+              <div class="matchbar" role="status" aria-live="polite">
+                <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <span><b data-match-count>2</b> units match right now</span>
+                <span class="matchbar__end">Updates by itself as units change</span>
+              </div>
+            </div>
+          </details>
+
+          <details class="fset" open>
+            <summary>
+              <span class="fset__n" aria-hidden="true">3</span>
+              <span class="fset__title">Matched units</span>
+              <span class="fset__meta">
+                <span data-match-count>2</span> units
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="ugrid" data-matched>
+                <article class="ucard" data-zone="North Coast" data-delivery="2027" data-type="Chalet" data-price="12200000" data-status="live">
+                  <div class="ucard__media"><div class="ph">chalet · Marassi · 4:3</div>
+                    <div class="ucard__flags"><span class="st st--live">Live</span></div>
+                  </div>
+                  <div class="ucard__body">
+                    <span class="ucard__title">Sea-view chalet, first row</span>
+                    <span class="ucard__where">North Coast · Marassi</span>
+                    <span class="ucard__specs"><span>122 m²</span><span>2 bed</span><span>AM-1038</span></span>
+                    <span class="ucard__price">EGP 12,200,000</span>
+                    <span class="ucard__plan">Delivery 2027</span>
+                  </div>
+                </article>
+                <article class="ucard" data-zone="North Coast" data-delivery="Ready" data-type="Chalet" data-price="6750000" data-status="rented">
+                  <div class="ucard__media"><div class="ph">chalet · Marassi · 4:3</div>
+                    <div class="ucard__flags"><span class="st st--rented">Rented</span></div>
+                  </div>
+                  <div class="ucard__body">
+                    <span class="ucard__title">Chalet, summer let</span>
+                    <span class="ucard__where">North Coast · Marassi</span>
+                    <span class="ucard__specs"><span>88 m²</span><span>1 bed</span><span>AM-1012</span></span>
+                    <span class="ucard__price">EGP 6,750,000</span>
+                    <span class="ucard__plan">Ready to move</span>
+                  </div>
+                </article>
+                <article class="ucard" data-zone="Ain Sokhna" data-delivery="2027" data-type="Chalet" data-price="7900000" data-status="live">
+                  <div class="ucard__media"><div class="ph">chalet · Il Monte Galala · 4:3</div>
+                    <div class="ucard__flags"><span class="st st--live">Live</span></div>
+                  </div>
+                  <div class="ucard__body">
+                    <span class="ucard__title">Chalet overlooking the pool</span>
+                    <span class="ucard__where">Ain Sokhna · Il Monte Galala</span>
+                    <span class="ucard__specs"><span>95 m²</span><span>2 bed</span><span>AM-1030</span></span>
+                    <span class="ucard__price">EGP 7,900,000</span>
+                    <span class="ucard__plan">Delivery 2027</span>
+                  </div>
+                </article>
+                <article class="ucard" data-zone="New Cairo" data-delivery="2027" data-type="Penthouse" data-price="8450000" data-status="live">
+                  <div class="ucard__media"><div class="ph">penthouse · Mivida · 4:3</div>
+                    <div class="ucard__flags"><span class="st st--live">Live</span></div>
+                  </div>
+                  <div class="ucard__body">
+                    <span class="ucard__title">Penthouse with roof garden</span>
+                    <span class="ucard__where">New Cairo · Mivida</span>
+                    <span class="ucard__specs"><span>168 m²</span><span>3 bed</span><span>AM-1042</span></span>
+                    <span class="ucard__price">EGP 8,450,000</span>
+                    <span class="ucard__plan">Delivery 2027</span>
+                  </div>
+                </article>
+                <article class="ucard" data-zone="New Cairo" data-delivery="2027" data-type="Twin house" data-price="15800000" data-status="draft">
+                  <div class="ucard__media"><div class="ph">twin house · Sodic East · 4:3</div>
+                    <div class="ucard__flags"><span class="st st--draft">Draft</span></div>
+                  </div>
+                  <div class="ucard__body">
+                    <span class="ucard__title">Twin house, semi-finished</span>
+                    <span class="ucard__where">New Cairo · Sodic East</span>
+                    <span class="ucard__specs"><span>240 m²</span><span>4 bed</span><span>AM-1044</span></span>
+                    <span class="ucard__price">EGP 15,800,000</span>
+                    <span class="ucard__plan">Delivery 2027</span>
+                  </div>
+                </article>
+                <article class="ucard" data-zone="North Coast" data-delivery="2027" data-type="Villa" data-price="21500000" data-status="live">
+                  <div class="ucard__media"><div class="ph">villa · Marassi · 4:3</div>
+                    <div class="ucard__flags"><span class="st st--live">Live</span></div>
+                  </div>
+                  <div class="ucard__body">
+                    <span class="ucard__title">Beachfront villa, Marassi Bay</span>
+                    <span class="ucard__where">North Coast · Marassi</span>
+                    <span class="ucard__specs"><span>310 m²</span><span>4 bed</span><span>AM-1051</span></span>
+                    <span class="ucard__price">EGP 21,500,000</span>
+                    <span class="ucard__plan">Delivery 2027</span>
+                  </div>
+                </article>
+              </div>
+
+              <div class="empty" data-matched-empty hidden>
+                <span class="empty__mark" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="11" cy="11" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 11h7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+                </span>
+                <h3>Nothing matches yet</h3>
+                <p>No unit satisfies these conditions. Loosen one, or switch to "Any condition" so a unit only has to meet one of them.</p>
+              </div>
+            </div>
+          </details>
+
+          <div class="savebar">
+            <span class="savebar__chip" data-savechip><i aria-hidden="true"></i><span data-savetext>Saved · 2s ago</span></span>
+            <span class="savebar__end">
+              <button class="btn btn--app" type="button">Delete collection</button>
+              <button class="btn btn--go" type="button" data-publish>Save collection</button>
+            </span>
+          </div>
+
+        </form>
+      </div>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

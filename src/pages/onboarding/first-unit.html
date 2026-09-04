@@ -1,0 +1,223 @@
+<!--
+title: Add your first unit — Alf Maskan
+desc: Type one in, import a spreadsheet, or pull your listings from a portal.
+bodyClass: app
+css: dashboard, app, editor, onboard
+js: onboard
+theme: yes
+step: 7
+-->
+<div class="ob">
+  {{> onboard-rail}}
+  <div class="obody" style="max-width:880px">
+
+    <div class="ohead">
+      <span class="ohead__eyebrow">Step 7 of 8</span>
+      <h1>Add your first unit</h1>
+      <p>One is enough to go live. You can bring the rest across afterwards, and photos are added per unit after any import.</p>
+    </div>
+
+    <div class="choices" role="radiogroup" aria-label="How to add units">
+      <label class="choice">
+        <input type="radio" name="how" value="type" checked data-how>
+        <span class="choice__tick" aria-hidden="true">{{> tick}}</span>
+        <span class="choice__mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M13 2.5l4.5 4.5L7 17.5H2.5V13z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></span>
+        <b>Type it in</b>
+        <span>Around two minutes. Best if you have one unit you want live today.</span>
+      </label>
+      <label class="choice">
+        <input type="radio" name="how" value="csv" data-how>
+        <span class="choice__tick" aria-hidden="true">{{> tick}}</span>
+        <span class="choice__mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="2.5" width="15" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 7.5h15M7.5 7.5v10" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        <b>Import a spreadsheet</b>
+        <span>Excel or CSV. We match your column names and show you the first row before anything is saved.</span>
+      </label>
+      <label class="choice">
+        <input type="radio" name="how" value="portal" data-how>
+        <span class="choice__tick" aria-hidden="true">{{> tick}}</span>
+        <span class="choice__mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 10h15M10 2.5a12 12 0 010 15 12 12 0 010-15z" stroke="currentColor" stroke-width="1.5"/></svg></span>
+        <b>Pull from a portal</b>
+        <span>Property Finder or OLX. Paste your agency link and we fetch what is public.</span>
+      </label>
+    </div>
+
+    <!-- ---------------------------------------- type it in -->
+    <div class="pane" data-howpane="type">
+      <div class="fgrid">
+        <div class="f">
+          <label class="f__label" for="u-title">Unit title <span class="f__req" aria-hidden="true">*</span></label>
+          <input class="inp" id="u-title" value="Penthouse with roof garden" data-u-title>
+        </div>
+        <div class="f">
+          <label class="f__label" for="u-type">Unit type</label>
+          <span class="selwrap">
+            <select class="sel" id="u-type" data-u-type><option>Penthouse</option><option>Apartment</option><option>Villa</option><option>Chalet</option><option>Twin house</option><option>Studio</option></select>
+            <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </span>
+        </div>
+      </div>
+      <div class="fgrid fgrid--4" style="margin-top:14px">
+        <div class="f">
+          <label class="f__label" for="u-compound">Compound</label>
+          <span class="selwrap">
+            <select class="sel" id="u-compound" data-u-compound><option>Mivida</option><option>Marassi</option><option>Hyde Park</option><option>Sodic East</option><option>Badya</option></select>
+            <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </span>
+        </div>
+        <div class="f">
+          <label class="f__label" for="u-area">Area</label>
+          <span class="inp-unit"><input class="inp" id="u-area" type="number" value="168" data-u-area><span class="inp-unit__u">m²</span></span>
+        </div>
+        <div class="f">
+          <label class="f__label" for="u-beds">Bedrooms</label>
+          <input class="inp" id="u-beds" type="number" value="3">
+        </div>
+        <div class="f">
+          <label class="f__label" for="u-price">Price</label>
+          <span class="inp-unit inp-unit--lead"><input class="inp" id="u-price" type="number" value="8450000" data-u-price><span class="inp-unit__u">EGP</span></span>
+        </div>
+      </div>
+      <div class="fgrid" style="margin-top:14px">
+        <div class="f">
+          <label class="f__label" for="u-finish">Finishing</label>
+          <span class="selwrap">
+            <select class="sel" id="u-finish"><option>Fully finished</option><option>Finished with AC</option><option>Semi-finished</option><option>Core and shell</option></select>
+            <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </span>
+        </div>
+        <div class="f">
+          <label class="f__label" for="u-delivery">Delivery date</label>
+          <span class="selwrap">
+            <select class="sel" id="u-delivery"><option>Q2 2027</option><option>Ready to move</option><option>Q4 2026</option><option>Q4 2027</option></select>
+            <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </span>
+        </div>
+      </div>
+      <div class="dropzone" tabindex="0" role="button" style="margin-top:14px">
+        <svg width="20" height="18" viewBox="0 0 20 18" fill="none" aria-hidden="true"><path d="M10 12V1m0 0L6 5m4-4l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 12v3a2 2 0 002 2h14a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <b>Drop photos here</b>
+        <span>You can go live without them, but units with fewer than three photos get about a fifth of the views.</span>
+      </div>
+    </div>
+
+    <!-- ---------------------------------------- CSV mapping -->
+    <div class="pane" data-howpane="csv" hidden>
+      <div style="display:flex;align-items:center;gap:12px;padding:13px 14px;border:1px solid var(--rule);border-radius:var(--r-12);background:var(--panel-2);flex-wrap:wrap">
+        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true" style="color:var(--accent)"><rect x="2.5" y="2.5" width="15" height="15" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M2.5 7.5h15M7.5 7.5v10" stroke="currentColor" stroke-width="1.5"/></svg>
+        <span style="font-size:var(--t-micro)"><b style="color:var(--text)">mivida-units-sept.xlsx</b> · 34 rows, 11 columns</span>
+        <span style="margin-inline-start:auto;display:flex;gap:8px">
+          <button class="btn btn--app" type="button">Choose another file</button>
+        </span>
+      </div>
+
+      <h2 class="panel__title" style="margin:18px 0 4px">Match your columns</h2>
+      <p class="f__hint" style="margin-bottom:8px">We guessed from your headers. Change anything that looks wrong — nothing is saved until you import.</p>
+
+      <div>
+        <div class="maprow" style="border-bottom:1px solid var(--rule);padding-bottom:6px">
+          <span class="ohead__eyebrow">Your column</span>
+          <span class="ohead__eyebrow">Sample from your file</span>
+          <span></span>
+          <span class="ohead__eyebrow">Alf Maskan field</span>
+          <span class="ohead__eyebrow" style="text-align:end">Status</span>
+        </div>
+
+        <div class="maprow">
+          <span class="maprow__from">Unit Name</span>
+          <span class="maprow__sample">"Penthouse with roof garden"</span>
+          <span class="maprow__arrow" aria-hidden="true"><svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selwrap"><label class="visually-hidden" for="m1">Unit Name maps to</label><select class="sel" id="m1"><option>Unit title</option><option>Reference code</option><option>Description</option></select><span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+          <span style="text-align:end"><span class="st st--live">Matched</span></span>
+        </div>
+        <div class="maprow">
+          <span class="maprow__from">Price EGP</span>
+          <span class="maprow__sample">"8450000"</span>
+          <span class="maprow__arrow" aria-hidden="true"><svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selwrap"><label class="visually-hidden" for="m2">Price EGP maps to</label><select class="sel" id="m2"><option>Price</option><option>Down payment</option><option>Maintenance</option></select><span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+          <span style="text-align:end"><span class="st st--live">Matched</span></span>
+        </div>
+        <div class="maprow">
+          <span class="maprow__from">Compound</span>
+          <span class="maprow__sample">"Mivida"</span>
+          <span class="maprow__arrow" aria-hidden="true"><svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selwrap"><label class="visually-hidden" for="m3">Compound maps to</label><select class="sel" id="m3"><option>Compound</option><option>Zone</option><option>Developer</option></select><span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+          <span style="text-align:end"><span class="st st--live">Matched</span></span>
+        </div>
+        <div class="maprow">
+          <span class="maprow__from">Sqm</span>
+          <span class="maprow__sample">"168"</span>
+          <span class="maprow__arrow" aria-hidden="true"><svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selwrap"><label class="visually-hidden" for="m4">Sqm maps to</label><select class="sel" id="m4"><option>Area m²</option><option>Land area</option><option>Built-up area</option></select><span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+          <span style="text-align:end"><span class="st st--live">Matched</span></span>
+        </div>
+        <div class="maprow">
+          <span class="maprow__from">Delivery</span>
+          <span class="maprow__sample">"Q4 2027" · "12/2027" · "Dec-27"</span>
+          <span class="maprow__arrow" aria-hidden="true"><svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selwrap"><label class="visually-hidden" for="m6">Delivery maps to</label><select class="sel" id="m6"><option>Delivery date</option><option>Do not import</option></select><span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+          <span style="text-align:end"><span class="st st--warn">Pick a format</span></span>
+        </div>
+        <div class="maprow">
+          <span class="maprow__from">Notes</span>
+          <span class="maprow__sample">"Owner travels — call after 6pm"</span>
+          <span class="maprow__arrow" aria-hidden="true"><svg width="14" height="10" viewBox="0 0 14 10" fill="none"><path d="M9 1l4 4-4 4M13 5H1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          <span class="selwrap"><label class="visually-hidden" for="m5">Notes maps to</label><select class="sel" id="m5"><option>Do not import</option><option>Internal notes</option><option>Description</option></select><span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span>
+          <span style="text-align:end"><span class="st st--draft">Skipped</span></span>
+        </div>
+      </div>
+
+      <!-- What the import will actually do, before committing to it. -->
+      <dl class="importsum">
+        <div><dt>Units to import</dt><dd>34</dd></div>
+        <div><dt>Duplicates found</dt><dd>2 — will merge</dd></div>
+        <div><dt>Rows missing a price</dt><dd>3 — saved as drafts</dd></div>
+      </dl>
+
+      <div class="side-note" style="margin-top:16px">
+        <svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 1l7 12.5H1L8 1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6v3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/></svg>
+        <span>
+          <b>Two things to look at before you import</b>
+          Three rows have no price and will come in as drafts. Two rows look like duplicates of units already in your account — we will skip those unless you say otherwise.
+        </span>
+      </div>
+
+      <h2 class="panel__title" style="margin:18px 0 8px">How the first row will look once imported</h2>
+      <div class="askedabout">
+        <div class="ph" aria-hidden="true"></div>
+        <div class="askedabout__txt">
+          <b>Penthouse with roof garden</b>
+          <span>Mivida · 168 m² · Fully finished · Needs photos</span>
+        </div>
+        <div class="askedabout__price">
+          <b>EGP 8,450,000</b>
+          <span>row 1 of 34</span>
+        </div>
+      </div>
+      <p class="f__hint" style="margin-top:8px">Photos are added after import, one unit at a time.</p>
+      <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+        <a class="btn btn--go" href="{{base}}onboarding/live.html">Import 34 units</a>
+      </div>
+    </div>
+
+    <!-- ---------------------------------------- portal -->
+    <div class="pane" data-howpane="portal" hidden>
+      <div class="f">
+        <label class="f__label" for="p-url">Paste your agency link</label>
+        <input class="inp" id="p-url" dir="ltr" placeholder="https://www.propertyfinder.eg/en/broker/kamal-estates-1234">
+        <span class="f__hint">Property Finder or OLX. We only read what is already public on your page — no login, no password.</span>
+      </div>
+      <div style="display:flex;gap:9px;margin-top:12px;flex-wrap:wrap">
+        <button class="btn btn--app" type="button">Fetch my listings</button>
+      </div>
+      <p class="f__hint" style="margin-top:14px">Portals do not publish payment plans, so those come across empty and you fill them in per unit. Everything else — title, price, area, photos — comes over.</p>
+    </div>
+
+    <div class="ofoot">
+      <a class="ofoot__skip" href="{{base}}onboarding/domain.html">Back</a>
+      <span class="ofoot__end">
+        <a class="ofoot__skip" href="{{base}}onboarding/live.html">Skip for now</a>
+        <a class="btn btn--go" href="{{base}}onboarding/live.html" data-unit-cta>Save and publish</a>
+      </span>
+    </div>
+  </div>
+</div>

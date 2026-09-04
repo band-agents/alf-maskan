@@ -1,0 +1,104 @@
+<!--
+title: Map of units in New Cairo — Kamal Estates
+desc: Every unit we have on one map, with the price on the pin. Hover a pin to find its card.
+bodyClass: storefront
+css: store
+js: store, store-map
+fonts: family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600
+-->
+{{> store-head}}
+
+<main id="main">
+  <div class="mapx">
+
+    <!-- ============================================ the list -->
+    <div class="mapx__list">
+      <div class="mapx__list-inner">
+        <div>
+          <span class="st-eyebrow">New Cairo</span>
+          <h1 class="st-h3" style="margin-top:4px"><span data-map-n>6</span> units on this map</h1>
+          <p class="st-field__hint" style="margin-top:6px">Pins show the asking price. Hover one to find its card, or hover a card to find its pin.</p>
+        </div>
+
+        <article class="st-card" data-unit="u1">
+          <div class="st-card__media"><div class="ph">penthouse · Mivida</div></div>
+          <div class="st-card__body">
+            <a class="st-card__title" href="{{base}}store/unit.html">Penthouse with roof garden</a>
+            <span class="st-card__where">Mivida · 168 m² · 3 bed</span>
+            <span class="st-card__price">EGP 8,450,000</span>
+          </div>
+        </article>
+
+        <article class="st-card" data-unit="u2">
+          <div class="st-card__media"><div class="ph">apartment · Hyde Park</div></div>
+          <div class="st-card__body">
+            <a class="st-card__title" href="{{base}}store/unit.html">Garden apartment, ready to move</a>
+            <span class="st-card__where">Hyde Park · 144 m² · 3 bed</span>
+            <span class="st-card__price">EGP 7,100,000</span>
+          </div>
+        </article>
+
+        <article class="st-card" data-unit="u3">
+          <div class="st-card__media"><div class="ph">studio · Zed East</div></div>
+          <div class="st-card__body">
+            <a class="st-card__title" href="{{base}}store/unit.html">Studio, fully finished with AC</a>
+            <span class="st-card__where">Zed East · 62 m² · studio</span>
+            <span class="st-card__price">EGP 4,250,000</span>
+          </div>
+        </article>
+
+        <article class="st-card" data-unit="u4">
+          <div class="st-card__media"><div class="ph">twin house · Sodic East</div></div>
+          <div class="st-card__body">
+            <a class="st-card__title" href="{{base}}store/unit.html">Twin house, semi-finished</a>
+            <span class="st-card__where">Sodic East · 240 m² · 4 bed</span>
+            <span class="st-card__price">EGP 15,800,000</span>
+          </div>
+        </article>
+
+        <article class="st-card" data-unit="u5">
+          <div class="st-card__media"><div class="ph">penthouse · Mivida</div></div>
+          <div class="st-card__body">
+            <a class="st-card__title" href="{{base}}store/unit.html">Corner penthouse, phase 7</a>
+            <span class="st-card__where">Mivida · 184 m² · 3 bed</span>
+            <span class="st-card__price">EGP 9,200,000</span>
+          </div>
+        </article>
+
+        <article class="st-card" data-unit="u6">
+          <div class="st-card__media"><div class="ph">villa · Mivida</div></div>
+          <div class="st-card__body">
+            <a class="st-card__title" href="{{base}}store/unit.html">Standalone villa, phase 6</a>
+            <span class="st-card__where">Mivida · 385 m² · 5 bed</span>
+            <span class="st-card__price">EGP 26,400,000</span>
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- ============================================ the map -->
+    <div class="mapx__stage">
+      <div class="ph ph--dark">map of New Cairo · Suez Road, 90th Street, Mivida, Sodic East</div>
+
+      <div class="mapx__tools">
+        <button class="st-btn st-btn--ghost" type="button" style="height:36px;font-size:var(--t-micro);padding-inline:14px" data-draw>
+          <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M1 10.5L10 1.5l3.5 3.5-9 9H1v-3.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          Draw an area
+        </button>
+        <button class="st-btn st-btn--ghost" type="button" style="height:36px;font-size:var(--t-micro);padding-inline:14px" data-clear-draw hidden>Clear the area</button>
+      </div>
+
+      <!-- Pins are positioned as percentages of the stage, so they hold their
+           place relative to the map at any size. -->
+      <button class="mapx__pin" type="button" aria-pressed="false" data-pin="u1" style="left:38%;top:34%">EGP 8.45M</button>
+      <button class="mapx__pin" type="button" aria-pressed="false" data-pin="u2" style="left:57%;top:46%">EGP 7.1M</button>
+      <button class="mapx__pin" type="button" aria-pressed="false" data-pin="u3" style="left:24%;top:58%">EGP 4.25M</button>
+      <button class="mapx__pin" type="button" aria-pressed="false" data-pin="u4" style="left:66%;top:29%">EGP 15.8M</button>
+      <button class="mapx__pin" type="button" aria-pressed="false" data-pin="u5" style="left:43%;top:39%">EGP 9.2M</button>
+      <button class="mapx__pin" type="button" aria-pressed="false" data-pin="u6" style="left:33%;top:70%">EGP 26.4M</button>
+    </div>
+
+  </div>
+</main>
+
+{{> store-foot}}

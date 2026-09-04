@@ -1,0 +1,338 @@
+<!--
+title: Units for sale in New Cairo, Sahel and Sokhna — Kamal Estates
+desc: 42 primary and resale units with payment plans up to eight years. Filter by zone, compound, price and delivery.
+bodyClass: storefront
+css: store
+js: store, store-search
+fonts: family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600
+-->
+{{> store-head}}
+
+<main id="main">
+
+  <div class="store-wrap" style="padding-block:26px 4px">
+    <span class="st-eyebrow">42 units · 11 compounds</span>
+    <h1 class="st-h1" style="margin-top:8px">Find your unit</h1>
+  </div>
+
+  <!-- ============================================ filters -->
+  <div class="filters">
+    <form class="store-wrap filters__row" role="search" onsubmit="return false">
+      <label class="fsearch-lg">
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"/>
+          <path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <span class="visually-hidden">Search units</span>
+        <input type="search" placeholder="Compound, zone or reference…" data-q>
+      </label>
+
+      <span class="fpill">
+        <label class="visually-hidden" for="s-purpose">Purpose</label>
+        <select id="s-purpose" data-f="purpose">
+          <option value="">Any purpose</option>
+          <option>Primary</option>
+          <option>Resale</option>
+          <option>Rent</option>
+        </select>
+        <span class="fpill__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </span>
+
+      <span class="fpill">
+        <label class="visually-hidden" for="s-zone">Zone</label>
+        <select id="s-zone" data-f="zone">
+          <option value="">Any zone</option>
+          <option>New Cairo</option>
+          <option>Sheikh Zayed</option>
+          <option>North Coast</option>
+          <option>Ain Sokhna</option>
+          <option>Mostakbal City</option>
+          <option>Zamalek</option>
+        </select>
+        <span class="fpill__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </span>
+
+      <span class="fpill">
+        <label class="visually-hidden" for="s-type">Unit type</label>
+        <select id="s-type" data-f="type">
+          <option value="">Any type</option>
+          <option>Apartment</option>
+          <option>Penthouse</option>
+          <option>Duplex</option>
+          <option>Villa</option>
+          <option>Twin house</option>
+          <option>Chalet</option>
+          <option>Studio</option>
+        </select>
+        <span class="fpill__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </span>
+
+      <span class="fpill">
+        <label class="visually-hidden" for="s-price">Price</label>
+        <select id="s-price" data-f="price">
+          <option value="">Any price</option>
+          <option value="0-6000000">Under EGP 6M</option>
+          <option value="6000000-10000000">EGP 6M – 10M</option>
+          <option value="10000000-20000000">EGP 10M – 20M</option>
+          <option value="20000000-999000000">Over EGP 20M</option>
+        </select>
+        <span class="fpill__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </span>
+
+      <span class="fpill">
+        <label class="visually-hidden" for="s-beds">Bedrooms</label>
+        <select id="s-beds" data-f="beds">
+          <option value="">Any beds</option>
+          <option value="1">1+</option>
+          <option value="2">2+</option>
+          <option value="3">3+</option>
+          <option value="4">4+</option>
+        </select>
+        <span class="fpill__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </span>
+
+      <span class="fpill">
+        <label class="visually-hidden" for="s-delivery">Delivery</label>
+        <select id="s-delivery" data-f="delivery">
+          <option value="">Any delivery</option>
+          <option>Ready</option>
+          <option>2026</option>
+          <option>2027</option>
+          <option>2028</option>
+        </select>
+        <span class="fpill__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </span>
+
+      <span class="fpill">
+        <label class="visually-hidden" for="s-finish">Finishing</label>
+        <select id="s-finish" data-f="finish">
+          <option value="">Any finishing</option>
+          <option>Fully finished</option>
+          <option>Semi-finished</option>
+          <option>Core &amp; shell</option>
+        </select>
+        <span class="fpill__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </span>
+
+      <label class="fpill" style="gap:8px;padding-inline:14px;height:38px;border:1px solid var(--nile-line);border-radius:var(--r-pill);background:#fff;font-size:var(--t-micro);cursor:pointer">
+        <input type="checkbox" data-f="plan" style="accent-color:var(--palm-600)">
+        Has a payment plan
+      </label>
+
+      <button class="st-btn st-btn--ghost" type="button" style="height:38px;padding-inline:16px;font-size:var(--t-micro)" data-clear hidden>Clear</button>
+    </form>
+  </div>
+
+  <!-- ============================================ results -->
+  <div class="store-wrap">
+    <div class="results results--split" data-results>
+
+      <div>
+        <div class="results__head">
+          <span style="font-size:var(--t-micro);color:var(--nile-ink-2)"><b data-count>9</b> units</span>
+          <span class="fpill">
+            <label class="visually-hidden" for="s-sort">Sort by</label>
+            <select id="s-sort" data-sort>
+              <option value="newest">Newest first</option>
+              <option value="price-asc">Price, low to high</option>
+              <option value="price-desc">Price, high to low</option>
+              <option value="area-desc">Largest first</option>
+            </select>
+            <span class="fpill__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </span>
+          <a href="{{base}}store/map.html" style="font-size:var(--t-micro);font-weight:600;color:var(--palm-600);display:inline-flex;align-items:center;gap:6px"><svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M1 3.5l4-2 4 2 4-2v9l-4 2-4-2-4 2v-9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M5 1.5v9M9 3.5v9" stroke="currentColor" stroke-width="1.4"/></svg>Map view</a>
+          <span class="st-eyebrow" data-compare-note hidden>0 selected to compare</span>
+        </div>
+
+        <div class="st-grid" data-grid>
+
+          <article class="st-card" data-zone="New Cairo" data-compound="Mivida" data-type="Penthouse" data-purpose="Primary" data-price="8450000" data-beds="3" data-area="168" data-delivery="2027" data-finish="Fully finished" data-plan="yes" data-added="9">
+            <div class="st-card__media"><div class="ph">penthouse · Mivida · 4:3</div>
+              <div class="st-card__flags"><span class="badge badge--solid-sand">FEATURED</span></div>
+              <button class="st-card__save" type="button" aria-pressed="false"><svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 13.5S1 9.5 1 5.2A3.7 3.7 0 018 3.1a3.7 3.7 0 017 2.1c0 4.3-7 8.3-7 8.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Save this unit</span></button>
+            </div>
+            <div class="st-card__body">
+              <a class="st-card__title" href="{{base}}store/unit.html">Penthouse with roof garden</a>
+              <span class="st-card__where">New Cairo · Mivida</span>
+              <span class="st-card__specs"><span>168 m²</span><span>3 bed</span><span>Q2 2027</span></span>
+              <span class="st-card__price">EGP 8,450,000</span>
+              <span class="st-card__plan">10% down · EGP 79,219/mo</span>
+              <span class="st-card__foot">
+                <span class="avatar avatar--sm" aria-hidden="true"></span> Youssef Kamal
+                <label class="st-card__compare"><input type="checkbox" data-compare style="accent-color:var(--palm-600)"> Compare</label>
+              </span>
+            </div>
+          </article>
+
+          <article class="st-card" data-zone="North Coast" data-compound="Marassi" data-type="Chalet" data-purpose="Primary" data-price="12200000" data-beds="2" data-area="122" data-delivery="2027" data-finish="Semi-finished" data-plan="yes" data-added="8">
+            <div class="st-card__media"><div class="ph">chalet · Marassi · 4:3</div>
+              <div class="st-card__flags"><span class="badge badge--palm">Sea view</span></div>
+              <button class="st-card__save" type="button" aria-pressed="false"><svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 13.5S1 9.5 1 5.2A3.7 3.7 0 018 3.1a3.7 3.7 0 017 2.1c0 4.3-7 8.3-7 8.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Save this unit</span></button>
+            </div>
+            <div class="st-card__body">
+              <a class="st-card__title" href="{{base}}store/unit.html">Sea-view chalet, first row</a>
+              <span class="st-card__where">North Coast · Marassi</span>
+              <span class="st-card__specs"><span>122 m²</span><span>2 bed</span><span>Q3 2027</span></span>
+              <span class="st-card__price">EGP 12,200,000</span>
+              <span class="st-card__plan">15% down · EGP 144,028/mo</span>
+              <span class="st-card__foot">
+                <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span> Mai Farouk
+                <label class="st-card__compare"><input type="checkbox" data-compare style="accent-color:var(--palm-600)"> Compare</label>
+              </span>
+            </div>
+          </article>
+
+          <article class="st-card" data-zone="New Cairo" data-compound="Zed East" data-type="Studio" data-purpose="Resale" data-price="4250000" data-beds="0" data-area="62" data-delivery="Ready" data-finish="Fully finished" data-plan="yes" data-added="7">
+            <div class="st-card__media"><div class="ph">studio · Zed East · 4:3</div>
+              <div class="st-card__flags"><span class="badge badge--neutral">Ready to move</span></div>
+              <button class="st-card__save" type="button" aria-pressed="false"><svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 13.5S1 9.5 1 5.2A3.7 3.7 0 018 3.1a3.7 3.7 0 017 2.1c0 4.3-7 8.3-7 8.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Save this unit</span></button>
+            </div>
+            <div class="st-card__body">
+              <a class="st-card__title" href="{{base}}store/unit.html">Studio, fully finished with AC</a>
+              <span class="st-card__where">New Cairo · Zed East</span>
+              <span class="st-card__specs"><span>62 m²</span><span>Studio</span><span>Ready</span></span>
+              <span class="st-card__price">EGP 4,250,000</span>
+              <span class="st-card__plan">Cash or 5 years</span>
+              <span class="st-card__foot">
+                <span class="avatar avatar--sm" aria-hidden="true"></span> Karim ElSayed
+                <label class="st-card__compare"><input type="checkbox" data-compare style="accent-color:var(--palm-600)"> Compare</label>
+              </span>
+            </div>
+          </article>
+
+          <article class="st-card" data-zone="Sheikh Zayed" data-compound="Palm Hills" data-type="Villa" data-purpose="Primary" data-price="34000000" data-beds="5" data-area="420" data-delivery="2028" data-finish="Core &amp; shell" data-plan="no" data-added="6">
+            <div class="st-card__media"><div class="ph">villa · Palm Hills · 4:3</div>
+              <button class="st-card__save" type="button" aria-pressed="false"><svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 13.5S1 9.5 1 5.2A3.7 3.7 0 018 3.1a3.7 3.7 0 017 2.1c0 4.3-7 8.3-7 8.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Save this unit</span></button>
+            </div>
+            <div class="st-card__body">
+              <a class="st-card__title" href="{{base}}store/unit.html">Standalone villa with garden</a>
+              <span class="st-card__where">Sheikh Zayed · Palm Hills</span>
+              <span class="st-card__specs"><span>420 m²</span><span>5 bed</span><span>2028</span></span>
+              <span class="st-card__price">EGP 34,000,000</span>
+              <span class="st-card__plan">Core &amp; shell · cash</span>
+              <span class="st-card__foot">
+                <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span> Nourhan Adel
+                <label class="st-card__compare"><input type="checkbox" data-compare style="accent-color:var(--palm-600)"> Compare</label>
+              </span>
+            </div>
+          </article>
+
+          <article class="st-card" data-zone="Ain Sokhna" data-compound="Il Monte Galala" data-type="Chalet" data-purpose="Primary" data-price="7900000" data-beds="2" data-area="95" data-delivery="2027" data-finish="Fully finished" data-plan="yes" data-added="5">
+            <div class="st-card__media"><div class="ph">chalet · Il Monte Galala · 4:3</div>
+              <button class="st-card__save" type="button" aria-pressed="false"><svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 13.5S1 9.5 1 5.2A3.7 3.7 0 018 3.1a3.7 3.7 0 017 2.1c0 4.3-7 8.3-7 8.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Save this unit</span></button>
+            </div>
+            <div class="st-card__body">
+              <a class="st-card__title" href="{{base}}store/unit.html">Chalet overlooking the pool</a>
+              <span class="st-card__where">Ain Sokhna · Il Monte Galala</span>
+              <span class="st-card__specs"><span>95 m²</span><span>2 bed</span><span>2027</span></span>
+              <span class="st-card__price">EGP 7,900,000</span>
+              <span class="st-card__plan">10% down · EGP 84,643/mo</span>
+              <span class="st-card__foot">
+                <span class="avatar avatar--sm" aria-hidden="true"></span> Omar Hegazy
+                <label class="st-card__compare"><input type="checkbox" data-compare style="accent-color:var(--palm-600)"> Compare</label>
+              </span>
+            </div>
+          </article>
+
+          <article class="st-card" data-zone="New Cairo" data-compound="Hyde Park" data-type="Apartment" data-purpose="Resale" data-price="7100000" data-beds="3" data-area="144" data-delivery="Ready" data-finish="Fully finished" data-plan="no" data-added="4">
+            <div class="st-card__media"><div class="ph">apartment · Hyde Park · 4:3</div>
+              <div class="st-card__flags"><span class="badge badge--neutral">Ready to move</span></div>
+              <button class="st-card__save" type="button" aria-pressed="false"><svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 13.5S1 9.5 1 5.2A3.7 3.7 0 018 3.1a3.7 3.7 0 017 2.1c0 4.3-7 8.3-7 8.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Save this unit</span></button>
+            </div>
+            <div class="st-card__body">
+              <a class="st-card__title" href="{{base}}store/unit.html">Garden apartment, ready to move</a>
+              <span class="st-card__where">New Cairo · Hyde Park</span>
+              <span class="st-card__specs"><span>144 m²</span><span>3 bed</span><span>Ready</span></span>
+              <span class="st-card__price">EGP 7,100,000</span>
+              <span class="st-card__plan">Cash</span>
+              <span class="st-card__foot">
+                <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span> Nourhan Adel
+                <label class="st-card__compare"><input type="checkbox" data-compare style="accent-color:var(--palm-600)"> Compare</label>
+              </span>
+            </div>
+          </article>
+
+          <article class="st-card" data-zone="New Cairo" data-compound="Sodic East" data-type="Twin house" data-purpose="Primary" data-price="15800000" data-beds="4" data-area="240" data-delivery="2027" data-finish="Semi-finished" data-plan="yes" data-added="3">
+            <div class="st-card__media"><div class="ph">twin house · Sodic East · 4:3</div>
+              <button class="st-card__save" type="button" aria-pressed="false"><svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 13.5S1 9.5 1 5.2A3.7 3.7 0 018 3.1a3.7 3.7 0 017 2.1c0 4.3-7 8.3-7 8.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Save this unit</span></button>
+            </div>
+            <div class="st-card__body">
+              <a class="st-card__title" href="{{base}}store/unit.html">Twin house, semi-finished</a>
+              <span class="st-card__where">New Cairo · Sodic East</span>
+              <span class="st-card__specs"><span>240 m²</span><span>4 bed</span><span>2027</span></span>
+              <span class="st-card__price">EGP 15,800,000</span>
+              <span class="st-card__plan">12% down · EGP 144,833/mo</span>
+              <span class="st-card__foot">
+                <span class="avatar avatar--sm" aria-hidden="true"></span> Youssef Kamal
+                <label class="st-card__compare"><input type="checkbox" data-compare style="accent-color:var(--palm-600)"> Compare</label>
+              </span>
+            </div>
+          </article>
+
+          <article class="st-card" data-zone="Zamalek" data-compound="—" data-type="Apartment" data-purpose="Resale" data-price="18500000" data-beds="3" data-area="185" data-delivery="Ready" data-finish="Fully finished" data-plan="no" data-added="2">
+            <div class="st-card__media"><div class="ph">apartment · Zamalek · 4:3</div>
+              <button class="st-card__save" type="button" aria-pressed="false"><svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 13.5S1 9.5 1 5.2A3.7 3.7 0 018 3.1a3.7 3.7 0 017 2.1c0 4.3-7 8.3-7 8.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Save this unit</span></button>
+            </div>
+            <div class="st-card__body">
+              <a class="st-card__title" href="{{base}}store/unit.html">Nile-view apartment</a>
+              <span class="st-card__where">Zamalek</span>
+              <span class="st-card__specs"><span>185 m²</span><span>3 bed</span><span>Ready</span></span>
+              <span class="st-card__price">EGP 18,500,000</span>
+              <span class="st-card__plan">Cash</span>
+              <span class="st-card__foot">
+                <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span> Mai Farouk
+                <label class="st-card__compare"><input type="checkbox" data-compare style="accent-color:var(--palm-600)"> Compare</label>
+              </span>
+            </div>
+          </article>
+
+          <article class="st-card" data-zone="Mostakbal City" data-compound="—" data-type="Duplex" data-purpose="Primary" data-price="8900000" data-beds="3" data-area="195" data-delivery="2026" data-finish="Semi-finished" data-plan="yes" data-added="1">
+            <div class="st-card__media"><div class="ph">duplex · Mostakbal City · 4:3</div>
+              <button class="st-card__save" type="button" aria-pressed="false"><svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 13.5S1 9.5 1 5.2A3.7 3.7 0 018 3.1a3.7 3.7 0 017 2.1c0 4.3-7 8.3-7 8.3z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Save this unit</span></button>
+            </div>
+            <div class="st-card__body">
+              <a class="st-card__title" href="{{base}}store/unit.html">Duplex with private entrance</a>
+              <span class="st-card__where">Mostakbal City</span>
+              <span class="st-card__specs"><span>195 m²</span><span>3 bed</span><span>2026</span></span>
+              <span class="st-card__price">EGP 8,900,000</span>
+              <span class="st-card__plan">10% down · EGP 83,438/mo</span>
+              <span class="st-card__foot">
+                <span class="avatar avatar--sm" aria-hidden="true"></span> Karim ElSayed
+                <label class="st-card__compare"><input type="checkbox" data-compare style="accent-color:var(--palm-600)"> Compare</label>
+              </span>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Shown when the filters exclude everything. -->
+        <div data-empty hidden style="text-align:center;padding:60px 20px;border:1px solid var(--nile-line);border-radius:var(--r-16);background:#fff">
+          <h2 class="st-h3">Nothing matches that yet</h2>
+          <p class="st-prose" style="margin:8px auto 18px;max-width:44ch">We list 42 units and add more every week. Widen the price range, or tell us what you are after and we will call you when it lands.</p>
+          <span style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+            <button class="st-btn st-btn--ghost" type="button" data-clear>Clear filters</button>
+            <a class="st-btn st-btn--primary" href="https://wa.me/201002448817">Tell us what you want</a>
+          </span>
+        </div>
+      </div>
+
+      <!-- The map is decorative here; the pins are the cards beside it. -->
+      <aside class="results__map" aria-label="Map of results">
+        <div class="ph ph--dark">map of New Cairo, Sahel and Sokhna · <span data-map-count>9</span> price pins</div>
+      </aside>
+
+    </div>
+  </div>
+
+  <!-- Appears once two units are ticked — comparison needs a pair. -->
+  <div class="cta-bar" data-compare-bar hidden style="display:none">
+    <span class="cta-bar__price"><b data-compare-n>0</b> <span>selected</span></span>
+    <span class="cta-bar__acts">
+      <button class="st-btn st-btn--ghost" type="button" style="height:40px;padding-inline:16px" data-compare-clear>Clear</button>
+      <a class="st-btn st-btn--primary" style="height:40px;padding-inline:16px" href="{{base}}store/compare.html">Compare</a>
+    </span>
+  </div>
+
+</main>
+
+{{> store-foot}}

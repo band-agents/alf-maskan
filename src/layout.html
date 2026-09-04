@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{lang}}" dir="{{dir}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{{title}}</title>
+<meta name="description" content="{{desc}}">
+<meta name="theme-color" content="#0F5E4E">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Alf Maskan">
+<meta property="og:title" content="{{title}}">
+<meta property="og:description" content="{{desc}}">
+<meta property="og:locale" content="{{lang}}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+{{fonts}}
+<link rel="stylesheet" href="{{base}}assets/css/tokens.css">
+<link rel="stylesheet" href="{{base}}assets/css/alf-maskan.css">
+{{extraCss}}
+<link rel="icon" href="{{base}}assets/favicon.svg" type="image/svg+xml">
+{{headScript}}
+</head>
+<body dir="{{dir}}" data-nav="{{nav}}" class="{{bodyClass}}">
+<a class="skip-link" href="#main">{{skip}}</a>
+{{content}}
+<script src="{{base}}assets/js/alf-maskan.js" defer></script>
+{{extraJs}}
+</body>
+</html>

@@ -1,0 +1,103 @@
+<aside class="rail" id="rail">
+  <div class="rail__head">
+    <a class="rail__brand" href="{{base}}index.html">
+      {{> mark}}
+      <span class="brand__word">Alf Maskan</span>
+    </a>
+    <button class="rail__collapse" type="button" data-rail-collapse aria-expanded="true" aria-controls="rail">
+      <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M9 2L4 7l5 5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="visually-hidden">Collapse sidebar</span>
+    </button>
+  </div>
+
+  <nav class="rail__nav" aria-label="Dashboard">
+    <a class="nav-item" href="{{base}}app/index.html" data-app-page="home">
+      <span class="nav-item__icon">
+        <svg width="18" height="17" viewBox="0 0 18 17" fill="none" aria-hidden="true"><path d="M1 7l8-6 8 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 8.5V15a1 1 0 001 1h10a1 1 0 001-1V8.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </span>
+      <span class="nav-item__label">Home</span>
+    </a>
+
+    <details class="nav-group" data-app-group="listings">
+      <summary class="nav-item" data-app-page="listings">
+        <span class="nav-item__icon">
+          <svg width="18" height="14" viewBox="0 0 18 14" fill="none" aria-hidden="true"><path d="M1 1.75h16M1 7h16M1 12.25h11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </span>
+        <span class="nav-item__label">Listings</span>
+        <span class="nav-count">42</span>
+        <svg class="nav-caret" width="8" height="8" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </summary>
+      <div class="nav-sub">
+        <a href="{{base}}app/listings.html">All units</a>
+        <a href="{{base}}app/listings.html#drafts">Drafts · 5</a>
+        <a href="{{base}}app/collections.html">Collections</a>
+      </div>
+    </details>
+
+    <a class="nav-item" href="{{base}}app/leads.html" data-app-page="leads">
+      <span class="nav-item__icon">
+        <svg width="17" height="17" viewBox="0 0 17 17" fill="none" aria-hidden="true"><path d="M1.75 1.75h13.5v9.5a1 1 0 01-1 1H5l-3.25 3.25V1.75z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="nav-item__label">Leads</span>
+      <span class="nav-badge">7<span class="visually-hidden"> unanswered</span></span>
+    </a>
+
+    <a class="nav-item" href="{{base}}app/builder.html" data-app-page="storefront">
+      <span class="nav-item__icon">
+        <svg width="18" height="15" viewBox="0 0 18 15" fill="none" aria-hidden="true"><rect x=".75" y=".75" width="16.5" height="13.5" rx="2.5" stroke="currentColor" stroke-width="1.5"/><path d="M.75 5h16.5" stroke="currentColor" stroke-width="1.5"/></svg>
+      </span>
+      <span class="nav-item__label">Storefront</span>
+      <svg class="nav-caret" width="8" height="8" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    </a>
+
+    <a class="nav-item" href="{{base}}app/marketing.html" data-app-page="marketing">
+      <span class="nav-item__icon">
+        <svg width="17" height="15" viewBox="0 0 17 15" fill="none" aria-hidden="true"><path d="M1.5 5.5h3l8-4v12l-8-4h-3a1 1 0 01-1-1v-2a1 1 0 011-1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      </span>
+      <span class="nav-item__label">Marketing</span>
+    </a>
+
+    <a class="nav-item" href="{{base}}app/analytics.html" data-app-page="analytics">
+      <span class="nav-item__icon">
+        <svg width="17" height="16" viewBox="0 0 17 16" fill="none" aria-hidden="true"><rect x="1" y="8" width="3.5" height="7" rx="1.25" fill="currentColor"/><rect x="6.75" y="2" width="3.5" height="13" rx="1.25" fill="currentColor"/><rect x="12.5" y="5" width="3.5" height="10" rx="1.25" fill="currentColor"/></svg>
+      </span>
+      <span class="nav-item__label">Analytics</span>
+    </a>
+
+    <a class="nav-item" href="{{base}}app/team.html" data-app-page="team">
+      <span class="nav-item__icon">
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="4.25" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="6" r="4.25" stroke="currentColor" stroke-width="1.5"/></svg>
+      </span>
+      <span class="nav-item__label">Team</span>
+    </a>
+
+    <a class="nav-item" href="{{base}}app/styleguide.html" data-app-page="styleguide">
+      <span class="nav-item__icon">
+        <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true"><circle cx="6" cy="6" r="3.6" stroke="currentColor" stroke-width="1.5"/><circle cx="12.5" cy="11.5" r="3.6" stroke="currentColor" stroke-width="1.5"/></svg>
+      </span>
+      <span class="nav-item__label">Design system</span>
+    </a>
+
+    <a class="nav-item" href="{{base}}app/settings.html" data-app-page="settings">
+      <span class="nav-item__icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.25" stroke="currentColor" stroke-width="1.5"/><circle cx="8" cy="8" r="2.25" fill="currentColor"/></svg>
+      </span>
+      <span class="nav-item__label">Settings</span>
+    </a>
+  </nav>
+
+  <div class="rail__foot">
+    <button class="workspace" type="button">
+      <span class="workspace__avatar">KE</span>
+      <span class="workspace__meta">
+        <b>Kamal Estates</b>
+        <span>2 stores</span>
+      </span>
+      <svg width="9" height="14" viewBox="0 0 10 16" aria-hidden="true"><path d="M2 6l3-3 3 3M2 10l3 3 3-3" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity=".55"/></svg>
+    </button>
+    <div class="rail__plan">
+      <a class="plan-pill" href="{{base}}pricing.html">Pro · EGP 990/mo</a>
+      <a class="help-dot" href="{{base}}app/help.html" aria-label="Help and support">?</a>
+    </div>
+  </div>
+</aside>

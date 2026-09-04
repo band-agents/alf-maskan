@@ -1,0 +1,239 @@
+<!--
+title: Help — Alf Maskan
+desc: Search the guides, take a tour, see what changed, or talk to a person.
+nav: settings
+bodyClass: app
+css: dashboard, app, editor, admin
+js: dashboard, help
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <h1>Help</h1>
+          <p>Most answers are here. If they are not, a real person replies on WhatsApp between 10:00 and 19:00, Saturday to Thursday.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--go" href="https://wa.me/201002448817">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 0 0-6.8 12.2L0 16l3.9-1.1A8 8 0 1 0 8 0Zm0 14.6a6.6 6.6 0 0 1-3.4-.9l-.24-.15-2.5.7.7-2.4-.16-.25A6.6 6.6 0 1 1 8 14.6Z"/></svg>
+            Ask us on WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div class="views" role="tablist" aria-label="Help sections">
+        <button class="view" type="button" role="tab" aria-selected="true" data-htab="guides">Guides <span class="view__n">12</span></button>
+        <button class="view" type="button" role="tab" aria-selected="false" data-htab="tours">Guided tours <span class="view__n">4</span></button>
+        <button class="view" type="button" role="tab" aria-selected="false" data-htab="changelog">What's new</button>
+      </div>
+
+      <!-- ============================================ guides -->
+      <div class="pane" data-hpane="guides">
+        <div class="toolbar">
+          <label class="fsearch">
+            <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="visually-hidden">Search the guides</span>
+            <input type="search" placeholder="Search — try “domain”, “Arabic” or “commission”…" data-help-q>
+          </label>
+          <span class="fselect">
+            <label class="visually-hidden" for="h-topic">Topic</label>
+            <select id="h-topic" data-help-topic>
+              <option value="">Every topic</option>
+              <option>Getting started</option>
+              <option>Listings</option>
+              <option>Leads</option>
+              <option>Storefront</option>
+              <option>Billing</option>
+            </select>
+            <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </span>
+          <span class="f__hint" style="margin-inline-start:auto"><b data-help-count>12</b> guides</span>
+        </div>
+
+        <div class="ed__form" data-help-list>
+          <details class="fset" data-topic="Getting started">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Connecting a domain you already own</span><span class="fset__meta">4 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">You keep the domain wherever you bought it. Log in there, find the DNS or "name servers" page, and add the two lines we show you in Settings → Domains. Nothing moves and nothing is transferred.</p>
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">It usually takes an hour or two to take effect, occasionally a full day. Your free <span class="ref">.alfmaskan.com</span> address keeps working the whole time and forever after, so links you have already sent on WhatsApp never break.</p>
+              <a class="panel__link" href="{{base}}app/settings.html#domains">Open Domains →</a>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Listings">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Why a unit gets views but no enquiries</span><span class="fset__meta">3 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Views mean the photos and the price caught someone. No enquiry after that usually means one of three things: the payment plan is missing, the price is above the compound's going rate, or there is no floor plan.</p>
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Analytics → Views by unit lists views against leads side by side. A unit high on views and low on leads is a pricing conversation, not a photography one.</p>
+              <a class="panel__link" href="{{base}}app/analytics.html">Open Analytics →</a>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Listings">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Importing units from a spreadsheet</span><span class="fset__meta">5 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Any Excel or CSV works — we read your column names and guess the match, then show you the first row exactly as it will appear before anything is saved. Rows with no price come in as drafts rather than being rejected.</p>
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Photos are not part of an import. Add them per unit afterwards; a unit with fewer than three photos gets roughly a fifth of the views.</p>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Storefront">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Making your storefront work in Arabic</span><span class="fset__meta">4 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Set Settings → Language &amp; region to "Arabic and English" and every unit gets two title fields and two description fields. Buyers switch with one tap and the whole page mirrors.</p>
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Prices stay in Western digits (8,450,000, not ٨٬٤٥٠٬٠٠٠) in both languages. That is deliberate — Egyptian buyers read prices that way, and Eastern Arabic numerals in a price have cost sellers deals.</p>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Leads">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Why an agent cannot see a lead</span><span class="fset__meta">2 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Agents see only their own leads by design. If someone says a lead has vanished, check two things: who it is assigned to, and whether their role is scoped to a zone the unit is not in.</p>
+              <a class="panel__link" href="{{base}}app/roles.html">Open Roles &amp; permissions →</a>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Leads">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Connecting WhatsApp Business</span><span class="fset__meta">6 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">You need a number that is not already on a personal WhatsApp account. Settings → Integrations walks the verification, which is a code by SMS.</p>
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Once connected, every enquiry lands in your Leads inbox with the whole conversation attached, and quick-reply templates work in both scripts.</p>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Storefront">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Changing template without losing anything</span><span class="fset__meta">2 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">All ten templates are built from the same sections, so switching keeps every unit, photo, price and payment plan. What changes is type, colour and layout.</p>
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">What does not carry over: per-section padding and background overrides you set by hand. The builder warns you which ones before it swaps.</p>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Billing">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Paying without a card — Fawry, InstaPay and wallets</span><span class="fset__meta">3 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Pick Fawry, Paymob or InstaPay in Billing. We send a code or a request three days before the renewal date and the storefront stays up while it is open — nothing switches off the moment a payment is late.</p>
+              <a class="panel__link" href="{{base}}app/billing.html">Open Billing →</a>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Billing">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Pausing instead of cancelling</span><span class="fset__meta">2 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">A two-month pause costs nothing and keeps your storefront live. Most agencies who pause do it over Ramadan or August. Ask for it in Billing → Cancel, or on WhatsApp.</p>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Getting started">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Inviting your team and what each role can do</span><span class="fset__meta">4 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Seven roles, from Owner down to Viewer. The one most agencies get wrong is Agent — it deliberately cannot publish a listing or see another agent's pipeline. If you want someone who can publish, they are a Sales manager.</p>
+              <a class="panel__link" href="{{base}}app/team.html">Open Team →</a>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Getting started">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">Getting found on Google</span><span class="fset__meta">5 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Fill the Arabic name and the Arabic descriptions. Most Egyptian buyers search in Arabic, and a storefront with only Latin text is close to invisible to them.</p>
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Every unit has a meta title and description with a live Google preview in the listing editor. Compound and zone names in the title do most of the work.</p>
+            </div>
+          </details>
+
+          <details class="fset" data-topic="Storefront">
+            <summary><span class="fset__n" aria-hidden="true">?</span><span class="fset__title">What a good unit photo set looks like</span><span class="fset__meta">3 min<svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></summary>
+            <div class="fset__body">
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Eight to twelve images, at least 1600px wide, shot in daylight with the lights on. Lead with the thing that sells it — the terrace, the view, the garden — not the front door.</p>
+              <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.75">Include a floor plan. Buyers who cannot picture the layout ask fewer questions and book fewer viewings.</p>
+            </div>
+          </details>
+        </div>
+
+        <div class="empty" data-help-empty hidden style="margin-top:14px">
+          <span class="empty__mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="9.5" cy="9.5" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </span>
+          <h3>No guide covers that yet</h3>
+          <p>Ask us on WhatsApp and we will answer, then write the guide.</p>
+          <div class="empty__acts"><a class="btn btn--go" href="https://wa.me/201002448817">Ask on WhatsApp</a></div>
+        </div>
+      </div>
+
+      <!-- ============================================ tours -->
+      <div class="pane" data-hpane="tours" hidden>
+        <div class="kpis">
+          <article class="panel kpi">
+            <h2 class="kpi__label">Publish your first unit</h2>
+            <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6;margin-top:6px">Six steps through the listing editor, ending with it live on your storefront.</p>
+            <a class="btn btn--app" href="{{base}}app/listing-editor.html" style="margin-top:12px;align-self:flex-start">Start tour · 4 min</a>
+          </article>
+          <article class="panel kpi">
+            <h2 class="kpi__label">Rearrange your storefront</h2>
+            <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6;margin-top:6px">Drag a section, edit it, and publish — without breaking anything.</p>
+            <a class="btn btn--app" href="{{base}}app/builder.html" style="margin-top:12px;align-self:flex-start">Start tour · 5 min</a>
+          </article>
+          <article class="panel kpi">
+            <h2 class="kpi__label">Answer a lead properly</h2>
+            <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6;margin-top:6px">From WhatsApp message to booked viewing, with the templates that work.</p>
+            <a class="btn btn--app" href="{{base}}app/leads.html" style="margin-top:12px;align-self:flex-start">Start tour · 3 min</a>
+          </article>
+          <article class="panel kpi">
+            <h2 class="kpi__label">Run your first offer</h2>
+            <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6;margin-top:6px">A limited discount with a countdown, on the units you choose.</p>
+            <a class="btn btn--app" href="{{base}}app/marketing.html" style="margin-top:12px;align-self:flex-start">Start tour · 4 min</a>
+          </article>
+        </div>
+      </div>
+
+      <!-- ============================================ changelog -->
+      <div class="pane" data-hpane="changelog" hidden>
+        <section class="panel panel--pad">
+          <div class="audit">
+            <div class="auditrow">
+              <span class="notif__mark notif__mark--lead" aria-hidden="true" style="width:28px;height:28px"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+              <div class="auditrow__body">
+                <b>Team, roles and billing</b>
+                <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6;margin-top:3px">Seven roles with a permission matrix you can edit, an audit log of every price and permission change, and billing through Fawry, Paymob and InstaPay as well as card.</p>
+              </div>
+              <span class="auditrow__when">3 Sep 2026</span>
+            </div>
+            <div class="auditrow">
+              <span class="notif__mark notif__mark--deal" aria-hidden="true" style="width:28px;height:28px"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><path d="M2 7.5l3.5 3.5L12 3.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div class="auditrow__body">
+                <b>Deals pipeline</b>
+                <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6;margin-top:3px">Drag deals between stages. Pipeline value, commission and a weighted forecast recompute as you move them, and a deal that has not moved in a fortnight says so.</p>
+              </div>
+              <span class="auditrow__when">3 Sep 2026</span>
+            </div>
+            <div class="auditrow">
+              <span class="notif__mark" aria-hidden="true" style="width:28px;height:28px"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="12" height="12" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M1 9l3.5-3 3.5 2.5 2.5-2 3 2" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+              <div class="auditrow__body">
+                <b>Buyer storefront</b>
+                <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6;margin-top:3px">Eight buyer-facing pages including a unit page with a working payment-plan calculator, a map explorer and a comparison view.</p>
+              </div>
+              <span class="auditrow__when">2 Sep 2026</span>
+            </div>
+            <div class="auditrow">
+              <span class="notif__mark notif__mark--warn" aria-hidden="true" style="width:28px;height:28px"><svg width="13" height="13" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="5.5" stroke="currentColor" stroke-width="1.4"/><path d="M7 4v3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+              <div class="auditrow__body">
+                <b>Fixed: a slot you could book twice</b>
+                <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6;margin-top:3px">Changing the day on a viewing request kept a time selected that had just become unavailable. It now clears.</p>
+              </div>
+              <span class="auditrow__when">2 Sep 2026</span>
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

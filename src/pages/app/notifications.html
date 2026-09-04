@@ -1,0 +1,217 @@
+<!--
+title: Notifications — Alf Maskan
+desc: Everything that happened, and how you want to hear about it next time.
+nav: home
+bodyClass: app
+css: dashboard, app, editor, reports
+js: dashboard, notifications
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <h1>Notifications</h1>
+          <p><b data-unread-n>4</b> unread · 18 in the last week.</p>
+        </div>
+        <div class="page-head__actions">
+          <button class="btn btn--app" type="button" data-mark-all>Mark all read</button>
+        </div>
+      </div>
+
+      <div class="views" role="tablist" aria-label="Notification views">
+        <button class="view" type="button" role="tab" aria-selected="true" data-ntab="feed">Activity</button>
+        <button class="view" type="button" role="tab" aria-selected="false" data-ntab="prefs">How you get them</button>
+      </div>
+
+      <!-- ============================================ feed -->
+      <div class="pane" data-npane="feed">
+        <div class="toolbar">
+          <span class="fselect">
+            <label class="visually-hidden" for="n-type">Type</label>
+            <select id="n-type" data-nfilter>
+              <option value="">Everything</option>
+              <option value="lead">Leads</option>
+              <option value="deal">Deals</option>
+              <option value="listing">Listings</option>
+              <option value="system">Account</option>
+            </select>
+            <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </span>
+          <button class="tool-btn tool-btn--quiet" type="button" data-only-unread aria-pressed="false">Unread only</button>
+        </div>
+
+        <section class="panel panel--pad" aria-label="Activity">
+          <div data-feed>
+
+            <div class="notif" data-unread data-ntype="lead">
+              <span class="notif__mark notif__mark--lead" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1.5 3.5h13v9h-13z" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 3.5L8 8.5l6.5-5" stroke="currentColor" stroke-width="1.4"/></svg></span>
+              <div class="notif__body">
+                <b>Mai Farouk asked about the Marassi chalet</b>
+                <p>"مساء الخير، الشاليه في مراسي لسه متاح؟" — came in on WhatsApp, assigned to you.</p>
+                <span class="notif__when">1 minute ago</span>
+              </div>
+            </div>
+
+            <div class="notif" data-unread data-ntype="lead">
+              <span class="notif__mark notif__mark--lead" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M1.5 3.5h13v9h-13z" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 3.5L8 8.5l6.5-5" stroke="currentColor" stroke-width="1.4"/></svg></span>
+              <div class="notif__body">
+                <b>Hala Mansour has been waiting 22 minutes</b>
+                <p>Your first-reply target is 30 minutes. She asked about the Mivida penthouse.</p>
+                <span class="notif__when">22 minutes ago</span>
+              </div>
+            </div>
+
+            <div class="notif" data-unread data-ntype="deal">
+              <span class="notif__mark notif__mark--deal" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M2 8.5l4 4 8-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+              <div class="notif__body">
+                <b>Omar Hegazy moved a deal to Won</b>
+                <p>Townhouse, Mostakbal City — EGP 8,900,000. Commission EGP 222,500.</p>
+                <span class="notif__when">3 hours ago</span>
+              </div>
+            </div>
+
+            <div class="notif" data-unread data-ntype="listing">
+              <span class="notif__mark notif__mark--warn" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><path d="M8 1.5l6.5 12h-13z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6.5v3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/></svg></span>
+              <div class="notif__body">
+                <b>Five units have gone a month without photos</b>
+                <p>Units with fewer than three photos get about a fifth of the views. AM-1044 and AM-1019 have none at all.</p>
+                <span class="notif__when">Today, 09:00</span>
+              </div>
+            </div>
+
+            <div class="notif" data-ntype="deal">
+              <span class="notif__mark notif__mark--warn" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 4.5v4l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+              <div class="notif__body">
+                <b>Two deals have not moved in a fortnight</b>
+                <p>Villa, Palm Hills (24 days) and Chalet, Il Monte Galala (18 days).</p>
+                <span class="notif__when">Yesterday</span>
+              </div>
+            </div>
+
+            <div class="notif" data-ntype="listing">
+              <span class="notif__mark" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="1.5" width="13" height="13" rx="2" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 10l4-3.5 4 3 3-2.5 2 2" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg></span>
+              <div class="notif__body">
+                <b>Youssef Kamal published AM-1051</b>
+                <p>Beachfront villa, Marassi Bay — EGP 21,500,000. It is live on your storefront.</p>
+                <span class="notif__when">Yesterday, 16:20</span>
+              </div>
+            </div>
+
+            <div class="notif" data-ntype="system">
+              <span class="notif__mark" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 5v3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11" r=".8" fill="currentColor"/></svg></span>
+              <div class="notif__body">
+                <b>Your storefront had its best week yet</b>
+                <p>4,102 visits, up 22% on the week before. Most of it came from the North Coast broadcast.</p>
+                <span class="notif__when">Monday</span>
+              </div>
+            </div>
+
+            <div class="notif" data-ntype="system">
+              <span class="notif__mark" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1.5" y="4" width="13" height="9" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M1.5 7h13" stroke="currentColor" stroke-width="1.4"/></svg></span>
+              <div class="notif__body">
+                <b>Your EGP 990 subscription renewed</b>
+                <p>Paid by Visa ending 4417. Next renewal 3 October 2026.</p>
+                <span class="notif__when">1 September</span>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="empty" data-feed-empty hidden style="border:0;padding:44px 20px">
+            <h3>Nothing here</h3>
+            <p>No notifications of that kind in the last week.</p>
+          </div>
+        </section>
+      </div>
+
+      <!-- ============================================ preferences -->
+      <div class="pane" data-npane="prefs" hidden>
+        <section class="panel panel--pad">
+          <div class="titlerow">
+            <h2 class="panel__title" style="margin-bottom:6px">How you get them</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About channels</span></button>
+              <span class="hint__body" hidden>WhatsApp reaches you on site where email will not. Keep it for the things you would want to be interrupted for, and nothing else.</span>
+            </span>
+          </div>
+          <p style="font-size:var(--t-nano);color:var(--text-3);margin-bottom:14px">These are yours alone — every person on the team sets their own.</p>
+
+          <div class="tablescroll">
+            <table class="prefs-table">
+              <caption class="visually-hidden">Notification channels for each kind of event.</caption>
+              <thead>
+                <tr>
+                  <th scope="col" style="text-align:start">Tell me when</th>
+                  <th scope="col">In app</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">WhatsApp</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">A new lead arrives<span>Any source, assigned to me</span></th>
+                  <td><input class="sw" type="checkbox" checked aria-label="New lead, in app"></td>
+                  <td><input class="sw" type="checkbox" aria-label="New lead, email"></td>
+                  <td><input class="sw" type="checkbox" checked aria-label="New lead, WhatsApp"></td>
+                </tr>
+                <tr>
+                  <th scope="row">A lead is waiting too long<span>Past your 30-minute first-reply target</span></th>
+                  <td><input class="sw" type="checkbox" checked aria-label="Lead waiting, in app"></td>
+                  <td><input class="sw" type="checkbox" aria-label="Lead waiting, email"></td>
+                  <td><input class="sw" type="checkbox" checked aria-label="Lead waiting, WhatsApp"></td>
+                </tr>
+                <tr>
+                  <th scope="row">A deal changes stage<span>Anyone on the team</span></th>
+                  <td><input class="sw" type="checkbox" checked aria-label="Deal stage, in app"></td>
+                  <td><input class="sw" type="checkbox" checked aria-label="Deal stage, email"></td>
+                  <td><input class="sw" type="checkbox" aria-label="Deal stage, WhatsApp"></td>
+                </tr>
+                <tr>
+                  <th scope="row">A deal goes quiet<span>No movement for 14 days</span></th>
+                  <td><input class="sw" type="checkbox" checked aria-label="Deal stalled, in app"></td>
+                  <td><input class="sw" type="checkbox" checked aria-label="Deal stalled, email"></td>
+                  <td><input class="sw" type="checkbox" aria-label="Deal stalled, WhatsApp"></td>
+                </tr>
+                <tr>
+                  <th scope="row">A listing needs attention<span>Missing photos, stale price</span></th>
+                  <td><input class="sw" type="checkbox" checked aria-label="Listing attention, in app"></td>
+                  <td><input class="sw" type="checkbox" aria-label="Listing attention, email"></td>
+                  <td><input class="sw" type="checkbox" aria-label="Listing attention, WhatsApp"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Weekly summary<span>Monday morning, your numbers</span></th>
+                  <td><input class="sw" type="checkbox" aria-label="Weekly summary, in app"></td>
+                  <td><input class="sw" type="checkbox" checked aria-label="Weekly summary, email"></td>
+                  <td><input class="sw" type="checkbox" aria-label="Weekly summary, WhatsApp"></td>
+                </tr>
+                <tr>
+                  <th scope="row">Billing and account<span>Renewals, failed payments</span></th>
+                  <td><input class="sw" type="checkbox" checked aria-label="Billing, in app"></td>
+                  <td><input class="sw" type="checkbox" checked aria-label="Billing, email"></td>
+                  <td><input class="sw" type="checkbox" aria-label="Billing, WhatsApp"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="sw-row" style="margin-top:16px;border-top:1px solid var(--rule);padding-top:14px">
+            <input class="sw" type="checkbox" id="n-quiet" checked>
+            <span class="sw-row__txt">
+              <b><label for="n-quiet">Quiet hours, 22:00 – 08:00</label></b>
+              <span>WhatsApp and email hold until morning. In-app still collects, and anything about a payment failing still goes out.</span>
+            </span>
+          </div>
+        </section>
+      </div>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

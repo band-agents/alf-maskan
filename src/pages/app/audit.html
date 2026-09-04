@@ -1,0 +1,162 @@
+<!--
+title: Audit log — Alf Maskan
+desc: Who changed what, when, and what the value was before.
+nav: team
+bodyClass: app
+css: dashboard, app, editor, admin
+js: dashboard, audit
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="{{base}}app/team.html">Team</a>
+        <svg width="5" height="8" viewBox="0 0 6 10" fill="none" aria-hidden="true"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Audit log</span>
+      </nav>
+
+      <div class="page-head">
+        <div>
+          <h1>Audit log</h1>
+          <p>Every change to a price, a permission or the storefront. Kept for two years and never editable.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="#">Export CSV</a>
+        </div>
+      </div>
+
+      <div class="toolbar">
+        <label class="fsearch">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="visually-hidden">Search the log</span>
+          <input type="search" placeholder="Person, unit or field…" data-audit-q>
+        </label>
+        <span class="fselect">
+          <label class="visually-hidden" for="a-who">Person</label>
+          <select id="a-who" data-audit-filter="who">
+            <option value="">Everyone</option>
+            <option>Youssef Kamal</option>
+            <option>Nourhan Adel</option>
+            <option>Mai Farouk</option>
+            <option>Karim ElSayed</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+        <span class="fselect">
+          <label class="visually-hidden" for="a-kind">Kind</label>
+          <select id="a-kind" data-audit-filter="kind">
+            <option value="">Everything</option>
+            <option value="price">Prices</option>
+            <option value="perm">Permissions</option>
+            <option value="store">Storefront</option>
+            <option value="listing">Listings</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+        <span class="f__hint" style="margin-inline-start:auto"><b data-audit-count>7</b> of 1,284 entries</span>
+      </div>
+
+      <section class="panel panel--pad">
+        <div class="audit" data-audit>
+
+          <div class="auditrow" data-who="Nourhan Adel" data-kind="price">
+            <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+            <div class="auditrow__body">
+              <b>Nourhan Adel</b> changed the price of <b>Penthouse with roof garden</b> (AM-1042)
+              <div class="diff">
+                <span class="diff__old">EGP 8,900,000</span>
+                <span class="diff__new">EGP 8,450,000</span>
+              </div>
+            </div>
+            <span class="auditrow__when">Today 11:04</span>
+          </div>
+
+          <div class="auditrow" data-who="Youssef Kamal" data-kind="perm">
+            <span class="avatar avatar--sm" aria-hidden="true"></span>
+            <div class="auditrow__body">
+              <b>Youssef Kamal</b> changed what <b>Agent</b> can do with analytics
+              <div class="diff">
+                <span class="diff__old">none</span>
+                <span class="diff__new">limited to their own records</span>
+              </div>
+            </div>
+            <span class="auditrow__when">Today 09:41</span>
+          </div>
+
+          <div class="auditrow" data-who="Mai Farouk" data-kind="listing">
+            <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+            <div class="auditrow__body">
+              <b>Mai Farouk</b> published <b>Sea-view chalet, first row</b> (AM-1038)
+              <div class="diff">
+                <span class="diff__old">Draft</span>
+                <span class="diff__new">Live</span>
+              </div>
+            </div>
+            <span class="auditrow__when">Yesterday 17:22</span>
+          </div>
+
+          <div class="auditrow" data-who="Youssef Kamal" data-kind="store">
+            <span class="avatar avatar--sm" aria-hidden="true"></span>
+            <div class="auditrow__body">
+              <b>Youssef Kamal</b> published storefront changes — 3 sections edited, 1 added
+              <div class="diff">
+                <span class="diff__new">Featured units · Map explorer · Payment plan calculator · + Testimonials</span>
+              </div>
+            </div>
+            <span class="auditrow__when">Yesterday 16:08</span>
+          </div>
+
+          <div class="auditrow" data-who="Karim ElSayed" data-kind="price">
+            <span class="avatar avatar--sm" aria-hidden="true"></span>
+            <div class="auditrow__body">
+              <b>Karim ElSayed</b> changed the down payment on <b>Duplex with private entrance</b> (AM-1019)
+              <div class="diff">
+                <span class="diff__old">15% · EGP 1,440,000</span>
+                <span class="diff__new">10% · EGP 960,000</span>
+              </div>
+            </div>
+            <span class="auditrow__when">2 days ago</span>
+          </div>
+
+          <div class="auditrow" data-who="Youssef Kamal" data-kind="perm">
+            <span class="avatar avatar--sm" aria-hidden="true"></span>
+            <div class="auditrow__body">
+              <b>Youssef Kamal</b> invited <b>sherif@kamalestates.com</b> as an Agent, scoped to New Cairo
+            </div>
+            <span class="auditrow__when">2 days ago</span>
+          </div>
+
+          <div class="auditrow" data-who="Nourhan Adel" data-kind="listing">
+            <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+            <div class="auditrow__body">
+              <b>Nourhan Adel</b> deleted <b>Studio, Madinaty</b> (AM-0974)
+              <div class="diff">
+                <span class="diff__old">Live · EGP 3,100,000 · 8 photos</span>
+              </div>
+            </div>
+            <span class="auditrow__when">1 week ago</span>
+          </div>
+
+        </div>
+
+        <div class="empty" data-audit-empty hidden style="border:0;padding:40px 20px">
+          <h3>Nothing matches</h3>
+          <p>No entries from that person of that kind in this period.</p>
+        </div>
+      </section>
+
+      <p class="f__hint" style="margin-top:12px">
+        Price and permission changes are the two people ask about after the fact, so both record the value they had before. A deletion keeps what it was, because that is the only record left of it.
+      </p>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

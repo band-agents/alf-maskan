@@ -1,0 +1,109 @@
+<!--
+title: You're live — Alf Maskan
+desc: Your storefront is published. Here is the link and what to do next.
+bodyClass: app
+css: dashboard, app, editor, onboard
+js: onboard
+theme: yes
+step: 8
+-->
+<div class="ob ob--preview">
+  {{> onboard-rail}}
+  <div class="obody">
+
+    <div class="ohead">
+      <span class="ohead__eyebrow">Step 8 of 8 · setup complete</span>
+      <h1>You are live.</h1>
+      <p>Kamal Estates is published with one unit on it. Anyone with the link can browse it right now.</p>
+    </div>
+
+    <div class="f">
+      <span class="f__label">Your address</span>
+      <div class="urlbar">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="color:var(--ok);flex:none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span class="urlbar__url" dir="ltr" data-live-url>kamal-estates.alfmaskan.com</span>
+        <button class="btn btn--app" type="button" data-copy-url>Copy</button>
+      </div>
+      <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:10px">
+        <a class="btn btn--go" href="https://wa.me/?text=kamal-estates.alfmaskan.com">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M8 0a8 8 0 0 0-6.8 12.2L0 16l3.9-1.1A8 8 0 1 0 8 0Zm0 14.6a6.6 6.6 0 0 1-3.4-.9l-.24-.15-2.5.7.7-2.4-.16-.25A6.6 6.6 0 1 1 8 14.6Z"/></svg>
+          Share on WhatsApp
+        </a>
+        <a class="btn btn--app" href="{{base}}store/index.html">Open in a new tab</a>
+      </div>
+    </div>
+
+    <hr style="border:0;border-top:1px solid var(--rule);margin-block:8px">
+
+    <section aria-labelledby="next-h">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:12px">
+        <span class="ring" aria-hidden="true">
+          <svg width="52" height="52" viewBox="0 0 52 52">
+            <circle cx="26" cy="26" r="22" fill="none" stroke="var(--rule)" stroke-width="5"/>
+            <circle cx="26" cy="26" r="22" fill="none" stroke="var(--accent)" stroke-width="5"
+                    stroke-linecap="round" stroke-dasharray="138.2" stroke-dashoffset="103.7"/>
+          </svg>
+          <span class="ring__label">1/4</span>
+        </span>
+        <div>
+          <h2 class="panel__title" id="next-h" style="font-size:var(--t-body-sm)">Finish strong</h2>
+          <p style="font-size:var(--t-nano);color:var(--text-3);margin-top:2px">Four things that make the difference between a live site and a selling one. About fifteen minutes.</p>
+        </div>
+      </div>
+
+      <div class="nextlist">
+        <div class="nextitem" data-done>
+          <span class="nextitem__box" aria-hidden="true">{{> tick}}</span>
+          <span>Storefront published</span>
+        </div>
+        <div class="nextitem">
+          <span class="nextitem__box" aria-hidden="true">{{> tick}}</span>
+          <span>Add photos to your first unit</span>
+          <a href="{{base}}app/listing-editor.html">Add photos</a>
+        </div>
+        <div class="nextitem">
+          <span class="nextitem__box" aria-hidden="true">{{> tick}}</span>
+          <span>Bring the rest of your units across</span>
+          <a href="{{base}}app/listings.html">Import</a>
+        </div>
+        <div class="nextitem">
+          <span class="nextitem__box" aria-hidden="true">{{> tick}}</span>
+          <span>Invite your team</span>
+          <a href="{{base}}app/index.html">Invite</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="ofoot">
+      <span class="ofoot__end" style="margin-inline-start:0">
+        <a class="btn btn--go" href="{{base}}app/index.html">Open my dashboard</a>
+        <a class="btn btn--app" href="{{base}}app/builder.html">Customise the storefront</a>
+      </span>
+    </div>
+  </div>
+
+  <aside class="opreview" aria-label="Your published storefront">
+    <span class="opreview__label">Live now</span>
+    <div class="device">
+      <div class="device__bar"><span class="device__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="device__url" dir="ltr">kamal-estates.alfmaskan.com</span></div>
+      <div class="sfhead">
+        <span class="sfhead__logo" style="background:#0F5E4E">KE</span>
+        <span class="sfhead__name">Kamal Estates</span>
+        <span class="sfhead__nav"><span>Units</span><span>About</span><span>Contact</span></span>
+      </div>
+      <div class="sfhero">
+        <div class="ph">hero · New Cairo compound · 16:9</div>
+        <span class="sfhero__title">Find your unit in New Cairo</span>
+        <span class="sfhero__btn" style="background:#0F5E4E">Browse units</span>
+      </div>
+      <div style="padding:0 14px 14px">
+        <div class="ph" style="aspect-ratio:4/3;border-radius:var(--r-8);font-size:9px">penthouse · Mivida · 4:3</div>
+        <div style="padding-top:8px;display:flex;flex-direction:column;gap:2px">
+          <span style="font-size:var(--t-nano);font-weight:600;color:var(--text)">Penthouse with roof garden</span>
+          <span style="font-family:var(--font-mono);font-size:10px;color:var(--text-3)">EGP 8,450,000 · 168 m²</span>
+        </div>
+      </div>
+    </div>
+    <p class="f__hint">One unit, no photos yet. That is enough to send to somebody today.</p>
+  </aside>
+</div>

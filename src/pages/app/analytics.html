@@ -1,0 +1,283 @@
+<!--
+title: Analytics — Alf Maskan
+desc: What buyers looked at, where they came from and which agent turned it into a deal.
+nav: analytics
+bodyClass: app
+css: dashboard, app, reports
+js: dashboard, analytics
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <h1>Analytics</h1>
+          <p>1 August – 3 September 2026 · compared with the previous 34 days.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="#">Export CSV</a>
+          <a class="btn btn--app" href="#">Email me this weekly</a>
+        </div>
+      </div>
+
+      <div class="report-head">
+        <span class="seg" data-range>
+          <button type="button" aria-pressed="false" data-range-btn="7">7 days</button>
+          <button type="button" aria-pressed="true" data-range-btn="30">30 days</button>
+          <button type="button" aria-pressed="false" data-range-btn="90">90 days</button>
+          <button type="button" aria-pressed="false" data-range-btn="365">Year</button>
+        </span>
+        <span class="report-head__end">
+          <span class="fselect">
+            <label class="visually-hidden" for="a-zone">Zone</label>
+            <select id="a-zone">
+              <option value="">All zones</option>
+              <option>New Cairo</option>
+              <option>North Coast</option>
+              <option>Sheikh Zayed</option>
+              <option>Ain Sokhna</option>
+            </select>
+            <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+          </span>
+        </span>
+      </div>
+
+      <!-- ============================================ KPIs -->
+      <section class="kpis" aria-label="Headline numbers">
+        <article class="panel kpi">
+          <div class="kpi__label">
+            <h2>Storefront visits</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About visits</span></button>
+              <span class="hint__body" hidden>One person opening your storefront, however many pages they then look at. Repeat visits from the same phone within an hour count once.</span>
+            </span>
+          </div>
+          <div class="kpi__body">
+            <div>
+              <p class="kpi__value" data-kpi="visits">18,204</p>
+              <p class="delta delta--up"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>+22%</p>
+            </div>
+            <svg class="kpi__spark" width="72" height="34" viewBox="0 0 72 34" fill="none" aria-hidden="true"><polyline points="2,28 12,25 22,22 32,18 42,19 52,12 62,9 70,5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </article>
+
+        <article class="panel kpi">
+          <div class="kpi__label">
+            <h2>Unit views</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About unit views</span></button>
+              <span class="hint__body" hidden>A view is one buyer opening a unit page. It is the number that tells you whether a listing's photos and price are working.</span>
+            </span>
+          </div>
+          <div class="kpi__body">
+            <div>
+              <p class="kpi__value" data-kpi="views">9,318</p>
+              <p class="delta delta--up"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>+18%</p>
+            </div>
+            <svg class="kpi__spark" width="72" height="34" viewBox="0 0 72 34" fill="none" aria-hidden="true"><polyline points="2,26 12,24 22,25 32,17 42,18 52,13 62,10 70,7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </article>
+
+        <article class="panel kpi">
+          <div class="kpi__label">
+            <h2>Leads</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About leads</span></button>
+              <span class="hint__body" hidden>Anyone who gave you a way to reach them — a form, a WhatsApp message or a call.</span>
+            </span>
+          </div>
+          <div class="kpi__body">
+            <div>
+              <p class="kpi__value" data-kpi="leads">125</p>
+              <p class="delta delta--up"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>+31</p>
+            </div>
+            <svg class="kpi__spark" width="72" height="34" viewBox="0 0 72 34" fill="none" aria-hidden="true"><polyline points="2,29 12,26 22,20 32,22 42,15 52,14 62,8 70,4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </article>
+
+        <article class="panel kpi">
+          <div class="kpi__label">
+            <h2>Views per lead</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About views per lead</span></button>
+              <span class="hint__body" hidden>How many unit views it takes to produce one enquiry. Lower is better — it falls when your photos and prices are doing the work.</span>
+            </span>
+          </div>
+          <div class="kpi__body">
+            <div>
+              <p class="kpi__value" data-kpi="ratio">75</p>
+              <p class="delta delta--down"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true" style="transform:rotate(180deg)"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>−11</p>
+            </div>
+            <svg class="kpi__spark kpi__spark--flat" width="72" height="34" viewBox="0 0 72 34" fill="none" aria-hidden="true"><polyline points="2,10 12,12 22,11 32,16 42,15 52,20 62,22 70,25" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============================================ views by unit -->
+      <section class="panel panel--pad chartcard" aria-labelledby="vbu-h">
+        <div class="chartcard__head">
+          <div>
+            <div class="titlerow">
+            <h2 class="panel__title" id="vbu-h">Views by unit</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About views by unit</span></button>
+                <span class="hint__body" hidden>Your eight most-viewed units this period. A unit high here with no leads usually has a price problem, not a photo problem.</span>
+              </span>
+          </div>
+            <p style="font-size:var(--t-nano);color:var(--text-3);margin-top:3px">Top 8 of 42 units · leads in brackets</p>
+          </div>
+        </div>
+        <div class="hbars">
+          <div class="hbar"><span class="hbar__label">Nile-view apartment</span><span class="hbar__track"><span class="hbar__fill" style="width:100%"></span></span><span class="hbar__val">1,420 (11)</span></div>
+          <div class="hbar"><span class="hbar__label">Penthouse, Mivida</span><span class="hbar__track"><span class="hbar__fill" style="width:85%"></span></span><span class="hbar__val">1,204 (7)</span></div>
+          <div class="hbar"><span class="hbar__label">Sea-view chalet</span><span class="hbar__track"><span class="hbar__fill" style="width:69%"></span></span><span class="hbar__val">986 (5)</span></div>
+          <div class="hbar"><span class="hbar__label">Townhouse, Mostakbal</span><span class="hbar__track"><span class="hbar__fill" style="width:58%"></span></span><span class="hbar__val">820 (14)</span></div>
+          <div class="hbar"><span class="hbar__label">Studio, Zed East</span><span class="hbar__track"><span class="hbar__fill" style="width:52%"></span></span><span class="hbar__val">742 (3)</span></div>
+          <div class="hbar"><span class="hbar__label">Villa, Palm Hills</span><span class="hbar__track"><span class="hbar__fill" style="width:46%"></span></span><span class="hbar__val">655 (9)</span></div>
+          <div class="hbar"><span class="hbar__label">Chalet, summer let</span><span class="hbar__track"><span class="hbar__fill" style="width:43%"></span></span><span class="hbar__val">611 (8)</span></div>
+          <div class="hbar"><span class="hbar__label">Chalet, Galala</span><span class="hbar__track"><span class="hbar__fill" style="width:36%"></span></span><span class="hbar__val">512 (4)</span></div>
+        </div>
+        <p style="font-size:var(--t-nano);color:var(--text-4);line-height:1.55;border-top:1px solid var(--rule);padding-top:12px">
+          <b style="color:var(--text-3)">Worth a look:</b> the Zed East studio has 742 views and 3 leads, while the Mostakbal townhouse turned 820 views into 14. Same traffic, very different outcome.
+        </p>
+      </section>
+
+      <!-- ============================================ source + zones -->
+      <div class="split">
+        <section class="panel panel--pad chartcard" aria-labelledby="src-h">
+          <div class="titlerow">
+            <h2 class="panel__title" id="src-h">Leads by source</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About sources</span></button>
+              <span class="hint__body" hidden>Where the 125 leads came in. Every slice is named beside its own number, so the chart still reads if the colours do not.</span>
+            </span>
+          </div>
+          <div class="donut-wrap">
+            <svg class="donut" width="132" height="132" viewBox="0 0 132 132" role="img" aria-label="WhatsApp 61 leads, website form 34, phone call 18, Facebook 12">
+              <g transform="rotate(-90 66 66)">
+                <circle cx="66" cy="66" r="52" stroke="var(--series-1)"  stroke-dasharray="159.4 167.3" stroke-dashoffset="0"/>
+                <circle cx="66" cy="66" r="52" stroke="var(--series-2)"    stroke-dasharray="88.9 237.8"  stroke-dashoffset="-159.4"/>
+                <circle cx="66" cy="66" r="52" stroke="var(--series-3)"    stroke-dasharray="47 279.7"    stroke-dashoffset="-248.3"/>
+                <circle cx="66" cy="66" r="52" stroke="var(--series-4)"  stroke-dasharray="31.4 295.3"  stroke-dashoffset="-295.3"/>
+              </g>
+              <text x="66" y="62" text-anchor="middle" font-size="24" font-weight="700" fill="var(--text)" font-family="var(--font-display)">125</text>
+              <text x="66" y="79" text-anchor="middle" font-size="10" fill="var(--text-4)" font-family="var(--font-mono)">LEADS</text>
+            </svg>
+            <div class="legend-list">
+              <div class="legend-row"><i style="background:var(--series-1)"></i>WhatsApp <b>61</b><span>49%</span></div>
+              <div class="legend-row"><i style="background:var(--series-2)"></i>Website form <b>34</b><span>27%</span></div>
+              <div class="legend-row"><i style="background:var(--series-3)"></i>Phone call <b>18</b><span>14%</span></div>
+              <div class="legend-row"><i style="background:var(--series-4)"></i>Facebook <b>12</b><span>10%</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="panel panel--pad chartcard" aria-labelledby="zone-h">
+          <div class="titlerow">
+            <h2 class="panel__title" id="zone-h">Where buyers searched</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About the zone chart</span></button>
+              <span class="hint__body" hidden>Which zone people picked in your storefront's search filter. It tells you what to list next, not what you sold.</span>
+            </span>
+          </div>
+          <div class="carto" role="img" aria-label="Search volume by zone: North Coast 1,840, New Cairo 4,210, Sheikh Zayed 1,120, Ain Sokhna 980, New Capital 640, 6th of October 520, Mostakbal City 410, Zamalek 260">
+            <div class="carto__cell carto__span2" data-heat="4"><b>North Coast</b><span>1,840</span></div>
+            <div class="carto__cell" data-heat="2"><b>Alexandria</b><span>310</span></div>
+            <div class="carto__cell" data-heat="0"><b>Matrouh</b><span>—</span></div>
+            <div class="carto__cell" data-heat="2"><b>6th of October</b><span>520</span></div>
+            <div class="carto__cell" data-heat="3"><b>Sheikh Zayed</b><span>1,120</span></div>
+            <div class="carto__cell" data-heat="5"><b>New Cairo</b><span>4,210</span></div>
+            <div class="carto__cell" data-heat="2"><b>New Capital</b><span>640</span></div>
+            <div class="carto__cell" data-heat="2"><b>Zamalek</b><span>260</span></div>
+            <div class="carto__cell" data-heat="2"><b>Mostakbal City</b><span>410</span></div>
+            <div class="carto__cell carto__span2" data-heat="3"><b>Ain Sokhna</b><span>980</span></div>
+          </div>
+          <div class="heat-key">
+            <span>Fewer searches</span>
+            <i style="background:var(--panel-2)"></i>
+            <i style="background:color-mix(in srgb, var(--palm-600) 16%, var(--panel))"></i>
+            <i style="background:color-mix(in srgb, var(--palm-600) 34%, var(--panel))"></i>
+            <i style="background:color-mix(in srgb, var(--palm-600) 62%, var(--panel))"></i>
+            <i style="background:var(--palm-600)"></i>
+            <span>More</span>
+          </div>
+          <p style="font-size:var(--t-nano);color:var(--text-4);line-height:1.55;border-top:1px solid var(--rule);padding-top:12px">
+            These blocks are laid out roughly the way Egypt sits, but this is <b style="color:var(--text-3)">not a map</b> — the sizes mean nothing and the shapes are not real. It is a table you can scan by position.
+          </p>
+        </section>
+      </div>
+
+      <!-- ============================================ filters used -->
+      <div class="split">
+        <section class="panel panel--pad chartcard" aria-labelledby="filt-h">
+          <div class="titlerow">
+            <h2 class="panel__title" id="filt-h">Filters buyers used</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About filters used</span></button>
+              <span class="hint__body" hidden>Every time someone narrowed your storefront search. A filter used often with few results is a gap in your stock.</span>
+            </span>
+          </div>
+          <div class="hbars">
+            <div class="hbar"><span class="hbar__label">Under EGP 6M</span><span class="hbar__track"><span class="hbar__fill" style="width:100%"></span></span><span class="hbar__val">2,140</span></div>
+            <div class="hbar"><span class="hbar__label">Ready to move</span><span class="hbar__track"><span class="hbar__fill" style="width:78%"></span></span><span class="hbar__val">1,670</span></div>
+            <div class="hbar"><span class="hbar__label">3+ bedrooms</span><span class="hbar__track"><span class="hbar__fill" style="width:61%"></span></span><span class="hbar__val">1,305</span></div>
+            <div class="hbar"><span class="hbar__label">Has a payment plan</span><span class="hbar__track"><span class="hbar__fill" style="width:54%"></span></span><span class="hbar__val">1,158</span></div>
+            <div class="hbar"><span class="hbar__label">Chalet</span><span class="hbar__track"><span class="hbar__fill" style="width:41%"></span></span><span class="hbar__val">880</span></div>
+            <div class="hbar"><span class="hbar__label">Fully finished</span><span class="hbar__track"><span class="hbar__fill" style="width:33%"></span></span><span class="hbar__val">704</span></div>
+          </div>
+          <p style="font-size:var(--t-nano);color:var(--text-4);line-height:1.55;border-top:1px solid var(--rule);padding-top:12px">
+            <b style="color:var(--text-3)">Gap:</b> "Under EGP 6M" is your most-used filter and you have four units that match it.
+          </p>
+        </section>
+
+        <section class="panel panel--pad chartcard" aria-labelledby="lead-h">
+          <h2 class="panel__title" id="lead-h">Agent leaderboard</h2>
+          <div class="tablescroll">
+            <table class="dtable" style="min-width:0">
+              <thead>
+                <tr>
+                  <th scope="col">Agent</th>
+                  <th class="col-num" scope="col">Leads</th>
+                  <th class="col-num" scope="col">Viewings</th>
+                  <th class="col-num" scope="col">Won</th>
+                  <th class="col-num" scope="col">Value</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span style="display:flex;align-items:center;gap:9px"><span class="avatar avatar--sm" aria-hidden="true"></span>Youssef Kamal</span></td>
+                  <td class="col-num">42</td><td class="col-num">18</td><td class="col-num">5</td>
+                  <td class="col-num"><span class="money">EGP 48.2M</span></td>
+                </tr>
+                <tr>
+                  <td><span style="display:flex;align-items:center;gap:9px"><span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>Mai Farouk</span></td>
+                  <td class="col-num">31</td><td class="col-num">14</td><td class="col-num">3</td>
+                  <td class="col-num"><span class="money">EGP 36.6M</span></td>
+                </tr>
+                <tr>
+                  <td><span style="display:flex;align-items:center;gap:9px"><span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>Nourhan Adel</span></td>
+                  <td class="col-num">24</td><td class="col-num">11</td><td class="col-num">2</td>
+                  <td class="col-num"><span class="money">EGP 41.1M</span></td>
+                </tr>
+                <tr>
+                  <td><span style="display:flex;align-items:center;gap:9px"><span class="avatar avatar--sm" aria-hidden="true"></span>Karim ElSayed</span></td>
+                  <td class="col-num">17</td><td class="col-num">6</td><td class="col-num">1</td>
+                  <td class="col-num"><span class="money">EGP 8.2M</span></td>
+                </tr>
+                <tr>
+                  <td><span style="display:flex;align-items:center;gap:9px"><span class="avatar avatar--sm" aria-hidden="true"></span>Omar Hegazy</span></td>
+                  <td class="col-num">11</td><td class="col-num">5</td><td class="col-num">2</td>
+                  <td class="col-num"><span class="money">EGP 16.8M</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p style="font-size:var(--t-nano);color:var(--text-4);line-height:1.55;border-top:1px solid var(--rule);padding-top:12px">
+            Ordered by leads, not by value — Nourhan closed less often but on bigger units, which the value column shows and the ranking deliberately does not.
+          </p>
+        </section>
+      </div>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

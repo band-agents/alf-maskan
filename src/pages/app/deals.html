@@ -1,0 +1,275 @@
+<!--
+title: Deals — Alf Maskan
+desc: Every live deal by stage, with the pipeline value and where it is stalling.
+nav: leads
+bodyClass: app
+css: dashboard, app, crm
+js: dashboard, deals
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="{{base}}app/leads.html">Leads</a>
+        <svg width="5" height="8" viewBox="0 0 6 10" fill="none" aria-hidden="true"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Deals</span>
+      </nav>
+
+      <div class="page-head">
+        <div>
+          <h1>Deals</h1>
+          <p><b data-total-n>8</b> live deals worth <b data-total-egp>EGP 113,950,000</b> · 2 have gone quiet.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="{{base}}app/leads.html">Leads inbox</a>
+          <a class="btn btn--go" href="#">
+            <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            New deal
+          </a>
+        </div>
+      </div>
+
+      <div class="pipe">
+
+        <!-- ============================================ the board -->
+        <div class="board" data-board>
+
+          <section class="col" data-col="contacted" aria-label="Contacted">
+            <header class="col__head">
+              <b>Contacted</b>
+              <span class="col__n" data-col-n>2</span>
+              <span class="col__sum" data-col-sum>EGP 20.4M</span>
+            </header>
+            <div class="col__body">
+              <article class="deal" draggable="true" data-value="12200000" data-agent="Mai Farouk">
+                <div class="deal__top">
+                  <span class="ph" aria-hidden="true"></span>
+                  <span class="deal__txt"><b>Sea-view chalet, first row</b><span>Mai Farouk · Marassi</span></span>
+                </div>
+                <div class="deal__money"><b>EGP 12,200,000</b><span>2.5% · 305,000</span></div>
+                <div class="deal__foot">
+                  <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+                  <span>Mai F.</span>
+                  <span class="deal__age">2 d</span>
+                </div>
+              </article>
+
+              <article class="deal" draggable="true" data-value="8200000" data-agent="Karim ElSayed">
+                <div class="deal__top">
+                  <span class="ph" aria-hidden="true"></span>
+                  <span class="deal__txt"><b>Garden apartment, Hyde Park</b><span>Rania Wagdy · Hyde Park</span></span>
+                </div>
+                <div class="deal__money"><b>EGP 8,200,000</b><span>2.5% · 205,000</span></div>
+                <div class="deal__foot">
+                  <span class="avatar avatar--sm" aria-hidden="true"></span>
+                  <span>Karim E.</span>
+                  <span class="deal__age">4 d</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="col" data-col="viewing" aria-label="Viewing booked">
+            <header class="col__head">
+              <b>Viewing booked</b>
+              <span class="col__n" data-col-n>3</span>
+              <span class="col__sum" data-col-sum>EGP 32.1M</span>
+            </header>
+            <div class="col__body">
+              <article class="deal" draggable="true" data-value="15800000" data-agent="Youssef Kamal">
+                <div class="deal__top">
+                  <span class="ph" aria-hidden="true"></span>
+                  <span class="deal__txt"><b>Twin house, Sodic East</b><span>Tarek Abdelrahman</span></span>
+                </div>
+                <div class="deal__money"><b>EGP 15,800,000</b><span>2.5% · 395,000</span></div>
+                <div class="deal__foot">
+                  <span class="avatar avatar--sm" aria-hidden="true"></span>
+                  <span>Youssef K.</span>
+                  <span class="deal__age">6 d</span>
+                </div>
+              </article>
+
+              <article class="deal" draggable="true" data-value="8450000" data-agent="Youssef Kamal">
+                <div class="deal__top">
+                  <span class="ph" aria-hidden="true"></span>
+                  <span class="deal__txt"><b>Penthouse, Mivida</b><span>Hala Mansour</span></span>
+                </div>
+                <div class="deal__money"><b>EGP 8,450,000</b><span>2.5% · 211,250</span></div>
+                <div class="deal__foot">
+                  <span class="avatar avatar--sm" aria-hidden="true"></span>
+                  <span>Youssef K.</span>
+                  <span class="deal__age">3 d</span>
+                </div>
+              </article>
+
+              <article class="deal" draggable="true" data-value="7900000" data-agent="Omar Hegazy" data-stale>
+                <div class="deal__top">
+                  <span class="ph" aria-hidden="true"></span>
+                  <span class="deal__txt"><b>Chalet, Il Monte Galala</b><span>Sherif Nabil</span></span>
+                </div>
+                <div class="deal__money"><b>EGP 7,900,000</b><span>2.5% · 197,500</span></div>
+                <div class="deal__foot">
+                  <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+                  <span>Omar H.</span>
+                  <span class="deal__age">18 d</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="col" data-col="negotiating" aria-label="Negotiating">
+            <header class="col__head">
+              <b>Negotiating</b>
+              <span class="col__n" data-col-n>2</span>
+              <span class="col__sum" data-col-sum>EGP 52.2M</span>
+            </header>
+            <div class="col__body">
+              <article class="deal" draggable="true" data-value="34000000" data-agent="Nourhan Adel" data-stale>
+                <div class="deal__top">
+                  <span class="ph" aria-hidden="true"></span>
+                  <span class="deal__txt"><b>Villa, Palm Hills</b><span>Omar Hegazy · buyer</span></span>
+                </div>
+                <div class="deal__money"><b>EGP 34,000,000</b><span>2% · 680,000</span></div>
+                <div class="deal__foot">
+                  <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+                  <span>Nourhan A.</span>
+                  <span class="deal__age">24 d</span>
+                </div>
+              </article>
+
+              <article class="deal" draggable="true" data-value="18200000" data-agent="Mai Farouk">
+                <div class="deal__top">
+                  <span class="ph" aria-hidden="true"></span>
+                  <span class="deal__txt"><b>Nile-view apartment, Zamalek</b><span>Dina Sherif</span></span>
+                </div>
+                <div class="deal__money"><b>EGP 18,200,000</b><span>2% · 364,000</span></div>
+                <div class="deal__foot">
+                  <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+                  <span>Mai F.</span>
+                  <span class="deal__age">9 d</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="col" data-col="reserved" aria-label="Reserved">
+            <header class="col__head">
+              <b>Reserved</b>
+              <span class="col__n" data-col-n>1</span>
+              <span class="col__sum" data-col-sum>EGP 9.2M</span>
+            </header>
+            <div class="col__body">
+              <article class="deal" draggable="true" data-value="9200000" data-agent="Youssef Kamal">
+                <div class="deal__top">
+                  <span class="ph" aria-hidden="true"></span>
+                  <span class="deal__txt"><b>Corner penthouse, phase 7</b><span>Amr Selim</span></span>
+                </div>
+                <div class="deal__money"><b>EGP 9,200,000</b><span>2.5% · 230,000</span></div>
+                <div class="deal__foot">
+                  <span class="avatar avatar--sm" aria-hidden="true"></span>
+                  <span>Youssef K.</span>
+                  <span class="deal__age">5 d</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="col" data-col="won" aria-label="Won">
+            <header class="col__head">
+              <b>Won</b>
+              <span class="col__n" data-col-n>1</span>
+              <span class="col__sum" data-col-sum>EGP 8.9M</span>
+            </header>
+            <div class="col__body">
+              <article class="deal" draggable="true" data-value="8900000" data-agent="Omar Hegazy">
+                <div class="deal__top">
+                  <span class="ph" aria-hidden="true"></span>
+                  <span class="deal__txt"><b>Townhouse, Mostakbal City</b><span>Karim ElSayed · buyer</span></span>
+                </div>
+                <div class="deal__money"><b>EGP 8,900,000</b><span>2.5% · 222,500</span></div>
+                <div class="deal__foot">
+                  <span class="avatar avatar--sm" aria-hidden="true"></span>
+                  <span>Omar H.</span>
+                  <span class="deal__age">Closed</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- ============================================ forecast -->
+        <aside class="forecast" aria-label="Pipeline summary">
+
+          <section class="panel panel--pad">
+            <div class="titlerow">
+            <h2 class="panel__title" style="margin-bottom:12px">Pipeline value</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About pipeline value</span></button>
+                <span class="hint__body" hidden>The full asking price of every open deal. It is not what you will earn — the commission line below is.</span>
+              </span>
+          </div>
+            <p class="kpi__value" data-pipe-value style="font-size:28px">EGP 114M</p>
+            <p class="delta delta--up" style="margin-top:6px"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>+2 deals this week</p>
+            <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--rule);display:flex;flex-direction:column;gap:7px;font-size:var(--t-nano);color:var(--text-3)">
+              <div style="display:flex;justify-content:space-between;gap:10px"><span>Commission at asking</span><b style="color:var(--text);font-variant-numeric:tabular-nums" data-pipe-comm>EGP 2,848,750</b></div>
+              <div style="display:flex;justify-content:space-between;gap:10px"><span>Weighted forecast</span><b style="color:var(--text);font-variant-numeric:tabular-nums" data-pipe-weighted>EGP 1,361,813</b></div>
+            </div>
+            <p class="f__hint" style="margin-top:10px;font-size:var(--t-nano);color:var(--text-4);line-height:1.5">
+              Weighted uses a flat close rate per stage — 20% contacted, 35% viewing, 60% negotiating, 85% reserved. Change those once you have a year of your own numbers; until then treat it as a shape, not a promise.
+            </p>
+          </section>
+
+          <section class="panel panel--pad">
+            <h2 class="panel__title" style="margin-bottom:12px">Conversion</h2>
+            <div class="funnel">
+              <div class="funnel__row">
+                <span class="funnel__top"><span>Leads</span><b>142</b></span>
+                <span class="funnel__bar" style="width:100%"></span>
+              </div>
+              <div class="funnel__row">
+                <span class="funnel__top"><span>Contacted</span><b>96</b></span>
+                <span class="funnel__bar" style="width:68%"></span>
+              </div>
+              <div class="funnel__row">
+                <span class="funnel__top"><span>Viewing booked</span><b>41</b></span>
+                <span class="funnel__bar" style="width:29%"></span>
+              </div>
+              <div class="funnel__row">
+                <span class="funnel__top"><span>Negotiating</span><b>18</b></span>
+                <span class="funnel__bar" style="width:13%"></span>
+              </div>
+              <div class="funnel__row">
+                <span class="funnel__top"><span>Won</span><b>11</b></span>
+                <span class="funnel__bar" style="width:8%"></span>
+              </div>
+            </div>
+            <p class="f__hint" style="margin-top:12px;font-size:var(--t-nano);color:var(--text-4);line-height:1.5">
+              Last 90 days. The biggest drop is contacted → viewing: 57 people stopped answering after the first reply.
+            </p>
+          </section>
+
+          <section class="panel panel--pad">
+            <h2 class="panel__title" style="margin-bottom:10px">Gone quiet</h2>
+            <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6">
+              Two deals have sat in the same stage for over a fortnight. They are marked on the board.
+            </p>
+            <ul style="margin-top:10px;display:flex;flex-direction:column;gap:8px;font-size:var(--t-micro)">
+              <li style="display:flex;justify-content:space-between;gap:10px"><span>Villa, Palm Hills</span><b style="color:var(--warn);font-family:var(--font-mono);font-size:var(--t-nano)">24 d</b></li>
+              <li style="display:flex;justify-content:space-between;gap:10px"><span>Chalet, Il Monte Galala</span><b style="color:var(--warn);font-family:var(--font-mono);font-size:var(--t-nano)">18 d</b></li>
+            </ul>
+          </section>
+
+        </aside>
+      </div>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

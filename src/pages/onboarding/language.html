@@ -1,0 +1,62 @@
+<!--
+title: Welcome to Alf Maskan
+desc: Pick the language you want to work in. You can change it any time.
+bodyClass: app
+css: dashboard, app, editor, onboard
+js: onboard
+theme: yes
+-->
+<div class="ob ob--bare">
+  <div class="obody" style="justify-content:center;min-height:100vh">
+
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:8px">
+      {{> mark}}
+      <span class="brand__word" style="font-family:var(--font-display);font-size:17px;font-weight:700;color:var(--text)"
+            data-i18n data-ar="ألف مسكن">Alf Maskan</span>
+    </div>
+
+    <div class="ohead">
+      <span class="ohead__eyebrow" data-i18n data-ar="الخطوة ١ من ٨">Step 1 of 8</span>
+      <h1 data-i18n data-ar="أهلاً بك. بأي لغة تحب تشتغل؟">Welcome. Which language do you want to work in?</h1>
+      <p data-i18n data-ar="ده بيحدد لوحة التحكم. لغة موقعك اختيار منفصل تحت — في وكالات كتير بتشتغل بالإنجليزي وتبيع بالعربي.">This sets your dashboard. Your storefront's language is a separate choice, just below — plenty of agencies run the dashboard in English and sell in Arabic.</p>
+    </div>
+
+    <!-- In Arabic the Arabic option leads, as the artboard shows. -->
+    <div class="choices choices--lang" role="radiogroup" aria-label="Dashboard language" data-lang-choices>
+      <label class="choice" data-lang-choice="en">
+        <input type="radio" name="ui-lang" value="en" checked data-ui-lang>
+        <span class="choice__tick" aria-hidden="true">{{> tick}}</span>
+        <b>English</b>
+        <span data-i18n data-ar="لوحة التحكم والرسائل والدعم بالإنجليزية.">Left to right. Numbers and EGP amounts read the same either way.</span>
+      </label>
+      <label class="choice" data-lang-choice="ar">
+        <input type="radio" name="ui-lang" value="ar" data-ui-lang>
+        <span class="choice__tick" aria-hidden="true">{{> tick}}</span>
+        <b lang="ar" dir="rtl">العربية</b>
+        <span lang="ar" dir="rtl" style="font-family:var(--font-arabic)">لوحة التحكم والرسائل والدعم بالعربية.</span>
+      </label>
+    </div>
+
+    <div class="f" style="margin-top:6px">
+      <span class="f__label">
+        <span data-i18n data-ar="موقعي هيكون">My storefront will be</span>
+        <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About storefront language</span></button>
+          <span class="hint__body" hidden data-i18n data-ar="«الاثنان» معناها إن كل وحدة يبقى لها نسخة عربي ونسخة إنجليزي، والمشتري يختار بضغطة. ده الاختيار اللي بتستقر عليه أغلب الوكالات المصرية.">Both means every unit gets an Arabic and an English version, and buyers pick with one tap. It is the option most Egyptian agencies end up on.</span>
+        </span>
+      </span>
+      <span class="seg" data-store-lang>
+        <button type="button" aria-pressed="false" data-i18n data-ar="عربي">Arabic</button>
+        <button type="button" aria-pressed="false" data-i18n data-ar="إنجليزي">English</button>
+        <button type="button" aria-pressed="true" data-i18n data-ar="الاثنان">Both</button>
+      </span>
+    </div>
+
+    <p class="f__hint" data-lang-note>You can change both later in Settings. Picking العربية flips this whole setup to right-to-left straight away, so you see what your team will see.</p>
+
+    <div class="ofoot">
+      <span class="ofoot__end">
+        <a class="btn btn--go" href="{{base}}onboarding/profile.html" data-i18n data-ar="متابعة">Continue</a>
+      </span>
+    </div>
+  </div>
+</div>

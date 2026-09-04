@@ -1,0 +1,176 @@
+<!--
+title: Roles & permissions — Alf Maskan
+desc: Seven roles against nine capability groups, and what each one can actually reach.
+nav: team
+bodyClass: app
+css: dashboard, app, editor, admin
+js: dashboard, roles
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="{{base}}app/team.html">Team</a>
+        <svg width="5" height="8" viewBox="0 0 6 10" fill="none" aria-hidden="true"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Roles &amp; permissions</span>
+      </nav>
+
+      <div class="page-head">
+        <div>
+          <h1>Roles &amp; permissions</h1>
+          <p>Click a cell to cycle it. Changes apply to everyone holding that role, immediately.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="{{base}}app/audit.html">Audit log</a>
+          <button class="btn btn--go" type="button">Create a custom role</button>
+        </div>
+      </div>
+
+      <div class="cap-key" style="margin-bottom:14px">
+        <span><i style="background:var(--accent-soft);color:var(--accent-ink)">●</i> Full — can do all of it</span>
+        <span><i style="background:var(--warn-bg);color:var(--warn)">◐</i> Limited — their own records only</span>
+        <span><i style="border:1px solid var(--rule);color:var(--text-4)">—</i> None — the screen is not in their sidebar</span>
+      </div>
+
+      <div class="panel panel--pad">
+        <div class="matrix-scroll">
+          <table class="matrix" data-matrix>
+            <caption class="visually-hidden">Capability groups down the side, roles across the top. Each cell is full, limited or none.</caption>
+            <thead>
+              <tr>
+                <th scope="col"><span class="visually-hidden">Capability</span></th>
+                <th scope="col"><span class="matrix__role matrix__role--locked"><b>Owner</b><span>1</span></span></th>
+                <th scope="col"><span class="matrix__role"><b>Admin</b><span>1</span></span></th>
+                <th scope="col"><span class="matrix__role"><b>Sales mgr</b><span>1</span></span></th>
+                <th scope="col"><span class="matrix__role"><b>Agent</b><span>2</span></span></th>
+                <th scope="col"><span class="matrix__role"><b>Content ed.</b><span>0</span></span></th>
+                <th scope="col"><span class="matrix__role"><b>Accountant</b><span>1</span></span></th>
+                <th scope="col"><span class="matrix__role"><b>Viewer</b><span>0</span></span></th>
+              </tr>
+            </thead>
+            <tbody data-caps>
+              <tr data-cap="listings-view">
+                <th scope="row">View listings <span>Every unit in the store</span></th>
+                <td data-role="owner" data-level="full"></td>
+                <td data-role="admin" data-level="full"></td>
+                <td data-role="manager" data-level="full"></td>
+                <td data-role="agent" data-level="limited"></td>
+                <td data-role="editor" data-level="full"></td>
+                <td data-role="accountant" data-level="full"></td>
+                <td data-role="viewer" data-level="full"></td>
+              </tr>
+              <tr data-cap="listings-edit">
+                <th scope="row">Create &amp; edit listings <span>Including drafts</span></th>
+                <td data-role="owner" data-level="full"></td>
+                <td data-role="admin" data-level="full"></td>
+                <td data-role="manager" data-level="full"></td>
+                <td data-role="agent" data-level="limited"></td>
+                <td data-role="editor" data-level="none"></td>
+                <td data-role="accountant" data-level="none"></td>
+                <td data-role="viewer" data-level="none"></td>
+              </tr>
+              <tr data-cap="listings-publish">
+                <th scope="row">Publish &amp; set prices <span>Makes a unit visible to buyers</span></th>
+                <td data-role="owner" data-level="full"></td>
+                <td data-role="admin" data-level="full"></td>
+                <td data-role="manager" data-level="full"></td>
+                <td data-role="agent" data-level="none"></td>
+                <td data-role="editor" data-level="none"></td>
+                <td data-role="accountant" data-level="none"></td>
+                <td data-role="viewer" data-level="none"></td>
+              </tr>
+              <tr data-cap="leads">
+                <th scope="row">Leads &amp; deals <span>Inbox, pipeline, assignment</span></th>
+                <td data-role="owner" data-level="full"></td>
+                <td data-role="admin" data-level="full"></td>
+                <td data-role="manager" data-level="full"></td>
+                <td data-role="agent" data-level="limited"></td>
+                <td data-role="editor" data-level="none"></td>
+                <td data-role="accountant" data-level="limited"></td>
+                <td data-role="viewer" data-level="limited"></td>
+              </tr>
+              <tr data-cap="storefront">
+                <th scope="row">Storefront design <span>Builder, pages, templates</span></th>
+                <td data-role="owner" data-level="full"></td>
+                <td data-role="admin" data-level="full"></td>
+                <td data-role="manager" data-level="none"></td>
+                <td data-role="agent" data-level="none"></td>
+                <td data-role="editor" data-level="full"></td>
+                <td data-role="accountant" data-level="none"></td>
+                <td data-role="viewer" data-level="none"></td>
+              </tr>
+              <tr data-cap="marketing">
+                <th scope="row">Marketing <span>Offers, broadcasts, lead forms</span></th>
+                <td data-role="owner" data-level="full"></td>
+                <td data-role="admin" data-level="full"></td>
+                <td data-role="manager" data-level="full"></td>
+                <td data-role="agent" data-level="none"></td>
+                <td data-role="editor" data-level="limited"></td>
+                <td data-role="accountant" data-level="none"></td>
+                <td data-role="viewer" data-level="none"></td>
+              </tr>
+              <tr data-cap="analytics">
+                <th scope="row">Analytics <span>Store-wide numbers</span></th>
+                <td data-role="owner" data-level="full"></td>
+                <td data-role="admin" data-level="full"></td>
+                <td data-role="manager" data-level="full"></td>
+                <td data-role="agent" data-level="limited"></td>
+                <td data-role="editor" data-level="none"></td>
+                <td data-role="accountant" data-level="full"></td>
+                <td data-role="viewer" data-level="full"></td>
+              </tr>
+              <tr data-cap="team">
+                <th scope="row">Team &amp; roles <span>Invite, remove, change permissions</span></th>
+                <td data-role="owner" data-level="full"></td>
+                <td data-role="admin" data-level="full"></td>
+                <td data-role="manager" data-level="limited"></td>
+                <td data-role="agent" data-level="none"></td>
+                <td data-role="editor" data-level="none"></td>
+                <td data-role="accountant" data-level="none"></td>
+                <td data-role="viewer" data-level="none"></td>
+              </tr>
+              <tr data-cap="billing">
+                <th scope="row">Billing &amp; the store itself <span>Payment method, invoices, deleting the store</span></th>
+                <td data-role="owner" data-level="full"></td>
+                <td data-role="admin" data-level="none"></td>
+                <td data-role="manager" data-level="none"></td>
+                <td data-role="agent" data-level="none"></td>
+                <td data-role="editor" data-level="none"></td>
+                <td data-role="accountant" data-level="full"></td>
+                <td data-role="viewer" data-level="none"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="side-note" style="margin-top:16px" data-owner-note>
+        <svg width="15" height="14" viewBox="0 0 16 15" fill="none" aria-hidden="true"><path d="M8 1l7 12.5H1L8 1z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><path d="M8 6v3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/><circle cx="8" cy="11.5" r=".8" fill="currentColor"/></svg>
+        <span>
+          <b>Owner is locked on purpose</b>
+          If the owner could be locked out of billing, a store could end up with nobody able to pay for it or close it. Transfer ownership instead — Settings, then Store profile.
+        </span>
+      </div>
+
+      <div class="panel panel--pad" style="margin-top:16px">
+        <h2 class="panel__title" style="margin-bottom:10px">What changed</h2>
+        <p style="font-size:var(--t-micro);color:var(--text-3);line-height:1.7" data-changes role="status" aria-live="polite">
+          Nothing yet. Cells you change are listed here before you save, so you can see the whole edit at once rather than trusting your memory of nine clicks.
+        </p>
+        <div style="display:flex;gap:9px;margin-top:14px">
+          <button class="btn btn--app" type="button" data-reset-caps>Reset to defaults</button>
+          <button class="btn btn--go" type="button" data-save-caps>Save permissions</button>
+        </div>
+      </div>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

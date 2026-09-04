@@ -1,0 +1,674 @@
+<!--
+title: Listings — Alf Maskan
+desc: Every unit you have, filterable by zone, compound, price and status.
+nav: listings
+bodyClass: app
+css: dashboard, app
+js: dashboard, listings
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <h1>Listings</h1>
+          <p><b data-total>42</b> units · 37 live, 5 drafts. Last import 2 days ago.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="#">Import units</a>
+          <a class="btn btn--go" href="{{base}}app/listing-editor.html">
+            <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Add listing
+          </a>
+        </div>
+      </div>
+
+      <!-- ============================================ saved views -->
+      <div class="views" role="tablist" aria-label="Saved views">
+        <button class="view" type="button" role="tab" aria-selected="true" data-view="all">
+          All <span class="view__n">42</span>
+        </button>
+        <button class="view" type="button" role="tab" aria-selected="false" data-view="live">
+          Live <span class="view__n">37</span>
+        </button>
+        <button class="view" type="button" role="tab" aria-selected="false" data-view="photos">
+          Needs photos <span class="view__n">5</span>
+        </button>
+        <button class="view" type="button" role="tab" aria-selected="false" data-view="pricedrop">
+          Price drop candidates <span class="view__n">4</span>
+        </button>
+        <button class="views__add" type="button">+ Save this view</button>
+      </div>
+
+      <!-- ============================================ filters -->
+      <form class="toolbar" role="search" onsubmit="return false">
+        <label class="fsearch">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <span class="visually-hidden">Search listings</span>
+          <input type="search" placeholder="Search by title, reference or compound…" data-q>
+        </label>
+
+        <span class="fselect">
+          <label class="visually-hidden" for="f-status">Status</label>
+          <select id="f-status" data-filter="status">
+            <option value="">Status</option>
+            <option value="live">Live</option>
+            <option value="draft">Draft</option>
+            <option value="reserved">Reserved</option>
+            <option value="sold">Sold</option>
+            <option value="rented">Rented</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+
+        <span class="fselect">
+          <label class="visually-hidden" for="f-purpose">Purpose</label>
+          <select id="f-purpose" data-filter="purpose">
+            <option value="">Purpose</option>
+            <option value="Sale">Sale</option>
+            <option value="Rent">Rent</option>
+            <option value="Resale">Resale</option>
+            <option value="Primary">Primary</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+
+        <span class="fselect">
+          <label class="visually-hidden" for="f-zone">Zone</label>
+          <select id="f-zone" data-filter="zone">
+            <option value="">Zone</option>
+            <option>New Cairo</option>
+            <option>Sheikh Zayed</option>
+            <option>6th of October</option>
+            <option>New Capital</option>
+            <option>North Coast</option>
+            <option>Ain Sokhna</option>
+            <option>Zamalek</option>
+            <option>Mostakbal City</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+
+        <span class="fselect">
+          <label class="visually-hidden" for="f-type">Unit type</label>
+          <select id="f-type" data-filter="type">
+            <option value="">Type</option>
+            <option>Apartment</option>
+            <option>Duplex</option>
+            <option>Penthouse</option>
+            <option>Villa</option>
+            <option>Twin house</option>
+            <option>Townhouse</option>
+            <option>Chalet</option>
+            <option>Studio</option>
+            <option>Office</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+
+        <span class="fselect">
+          <label class="visually-hidden" for="f-beds">Bedrooms</label>
+          <select id="f-beds" data-filter="beds">
+            <option value="">Beds</option>
+            <option value="1">1+</option>
+            <option value="2">2+</option>
+            <option value="3">3+</option>
+            <option value="4">4+</option>
+            <option value="5">5+</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+
+        <button class="tool-btn" type="button" data-more-filters aria-expanded="false" aria-controls="more-filters">
+          <svg width="13" height="12" viewBox="0 0 14 12" fill="none" aria-hidden="true"><path d="M1 2h12M3 6h8M5 10h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          More filters
+        </button>
+
+        <button class="tool-btn tool-btn--quiet" type="button" data-clear hidden>Clear all</button>
+      </form>
+
+      <!-- Compound, price and delivery live here so the main bar stays scannable. -->
+      <div class="toolbar" id="more-filters" hidden>
+        <span class="fselect">
+          <label class="visually-hidden" for="f-compound">Compound</label>
+          <select id="f-compound" data-filter="compound">
+            <option value="">Compound</option>
+            <option>Mivida</option>
+            <option>Marassi</option>
+            <option>Zed East</option>
+            <option>Palm Hills</option>
+            <option>Il Monte Galala</option>
+            <option>Sodic East</option>
+            <option>Hyde Park</option>
+            <option>Badya</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+
+        <span class="fselect">
+          <label class="visually-hidden" for="f-price">Price range</label>
+          <select id="f-price" data-filter="price">
+            <option value="">Price</option>
+            <option value="0-5000000">Under EGP 5M</option>
+            <option value="5000000-10000000">EGP 5M – 10M</option>
+            <option value="10000000-20000000">EGP 10M – 20M</option>
+            <option value="20000000-999000000">Over EGP 20M</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+
+        <span class="fselect">
+          <label class="visually-hidden" for="f-delivery">Delivery</label>
+          <select id="f-delivery" data-filter="delivery">
+            <option value="">Delivery</option>
+            <option>Ready</option>
+            <option>2026</option>
+            <option>2027</option>
+            <option>2028</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+
+        <span class="fselect">
+          <label class="visually-hidden" for="f-agent">Agent</label>
+          <select id="f-agent" data-filter="agent">
+            <option value="">Agent</option>
+            <option>Youssef Kamal</option>
+            <option>Nourhan Adel</option>
+            <option>Karim ElSayed</option>
+            <option>Mai Farouk</option>
+            <option>Omar Hegazy</option>
+          </select>
+          <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+      </div>
+
+      <!-- ============================================ result line -->
+      <div class="resultline">
+        <span><b data-count>12</b> of <b>42</b> units</span>
+        <span class="fchips" data-chips></span>
+        <span class="resultline__end">
+          <span class="seg" data-density hidden>
+            <button type="button" aria-pressed="true" data-density-btn="table">
+              <svg width="13" height="12" viewBox="0 0 14 12" fill="none" aria-hidden="true"><path d="M1 1h12M1 6h12M1 11h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Table
+            </button>
+            <button type="button" aria-pressed="false" data-density-btn="grid">
+              <svg width="13" height="13" viewBox="0 0 14 14" fill="none" aria-hidden="true"><rect x=".75" y=".75" width="5" height="5" rx="1.25" stroke="currentColor" stroke-width="1.4"/><rect x="8.25" y=".75" width="5" height="5" rx="1.25" stroke="currentColor" stroke-width="1.4"/><rect x=".75" y="8.25" width="5" height="5" rx="1.25" stroke="currentColor" stroke-width="1.4"/><rect x="8.25" y="8.25" width="5" height="5" rx="1.25" stroke="currentColor" stroke-width="1.4"/></svg>
+              Grid
+            </button>
+          </span>
+        </span>
+      </div>
+
+      <!-- ============================================ table -->
+      <div class="tablewrap" data-table-wrap>
+        <div class="tablescroll">
+          <table class="dtable" data-listings>
+            <caption class="visually-hidden">Every unit in your store, with its zone, price, status and performance.</caption>
+            <thead>
+              <tr>
+                <th class="col-check" scope="col">
+                  <input class="chk" type="checkbox" data-check-all>
+                  <span class="visually-hidden">Select all units</span>
+                </th>
+                <th class="col-pin" scope="col" aria-sort="none">
+                  <button class="sortbtn" type="button" data-sort="title">Unit
+                    <svg class="sortbtn__arrow" width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>
+                  </button>
+                </th>
+                <th scope="col">Reference</th>
+                <th scope="col">Zone / compound</th>
+                <th scope="col">Type</th>
+                <th class="col-num" scope="col" aria-sort="none">
+                  <button class="sortbtn" type="button" data-sort="area">Area m²
+                    <svg class="sortbtn__arrow" width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>
+                  </button>
+                </th>
+                <th class="col-num" scope="col">Beds</th>
+                <th class="col-num" scope="col" aria-sort="none">
+                  <button class="sortbtn" type="button" data-sort="price">Price
+                    <svg class="sortbtn__arrow" width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>
+                  </button>
+                </th>
+                <th scope="col">Status</th>
+                <th class="col-num" scope="col" aria-sort="none">
+                  <button class="sortbtn" type="button" data-sort="views">Views
+                    <svg class="sortbtn__arrow" width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>
+                  </button>
+                </th>
+                <th class="col-num" scope="col" aria-sort="none">
+                  <button class="sortbtn" type="button" data-sort="leads">Leads
+                    <svg class="sortbtn__arrow" width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>
+                  </button>
+                </th>
+                <th scope="col">Agent</th>
+                <th scope="col">Updated</th>
+                <th scope="col"><span class="visually-hidden">Row actions</span></th>
+              </tr>
+            </thead>
+            <tbody>
+
+              <tr data-title="Penthouse with roof garden" data-ar="بنتهاوس بحديقة خاصة" data-ref="AM-1042" data-zone="New Cairo" data-compound="Mivida" data-type="Penthouse" data-area="168" data-beds="3" data-price="8450000" data-plan="10% down · 8 yrs" data-status="live" data-purpose="Primary" data-views="1204" data-leads="7" data-agent="Youssef Kamal" data-updated="2 hours ago" data-delivery="2027" data-photos="8">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1042</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Penthouse with roof garden</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">بنتهاوس بحديقة خاصة</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1042</span></td>
+                <td>New Cairo<span class="cell-sub"> · Mivida</span></td>
+                <td>Penthouse</td>
+                <td class="col-num">168</td>
+                <td class="col-num">3</td>
+                <td class="col-num"><span class="money">EGP 8,450,000</span><span class="money__sub">10% down · 8 yrs</span></td>
+                <td><span class="st st--live">Live</span></td>
+                <td class="col-num">1,204</td>
+                <td class="col-num">7</td>
+                <td><span class="avatar avatar--sm" title="Youssef Kamal"></span><span class="visually-hidden">Youssef Kamal</span></td>
+                <td><span class="cell-sub">2 hours ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1042</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1042</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Sea-view chalet, first row" data-ar="شاليه بفيو بحري · الصف الأول" data-ref="AM-1038" data-zone="North Coast" data-compound="Marassi" data-type="Chalet" data-area="122" data-beds="2" data-price="12200000" data-plan="15% down · 6 yrs" data-status="live" data-purpose="Primary" data-views="986" data-leads="5" data-agent="Mai Farouk" data-updated="Yesterday" data-delivery="2027" data-photos="12">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1038</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Sea-view chalet, first row</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">شاليه بفيو بحري · الصف الأول</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1038</span></td>
+                <td>North Coast<span class="cell-sub"> · Marassi</span></td>
+                <td>Chalet</td>
+                <td class="col-num">122</td>
+                <td class="col-num">2</td>
+                <td class="col-num"><span class="money">EGP 12,200,000</span><span class="money__sub">15% down · 6 yrs</span></td>
+                <td><span class="st st--live">Live</span></td>
+                <td class="col-num">986</td>
+                <td class="col-num">5</td>
+                <td><span class="avatar avatar--sm avatar--alt" title="Mai Farouk"></span><span class="visually-hidden">Mai Farouk</span></td>
+                <td><span class="cell-sub">Yesterday</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1038</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1038</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Studio, fully finished with AC" data-ar="استوديو متشطب بالتكييف" data-ref="AM-1035" data-zone="New Cairo" data-compound="Zed East" data-type="Studio" data-area="62" data-beds="0" data-price="4250000" data-plan="Cash or 5 yrs" data-status="live" data-purpose="Resale" data-views="742" data-leads="3" data-agent="Karim ElSayed" data-updated="2 days ago" data-delivery="Ready" data-photos="6">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1035</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Studio, fully finished with AC</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">استوديو متشطب بالتكييف</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1035</span></td>
+                <td>New Cairo<span class="cell-sub"> · Zed East</span></td>
+                <td>Studio</td>
+                <td class="col-num">62</td>
+                <td class="col-num">—</td>
+                <td class="col-num"><span class="money">EGP 4,250,000</span><span class="money__sub">Cash or 5 yrs</span></td>
+                <td><span class="st st--live">Live</span></td>
+                <td class="col-num">742</td>
+                <td class="col-num">3</td>
+                <td><span class="avatar avatar--sm" title="Karim ElSayed"></span><span class="visually-hidden">Karim ElSayed</span></td>
+                <td><span class="cell-sub">2 days ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1035</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1035</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Standalone villa with garden" data-ar="فيلا مستقلة بحديقة 300 م²" data-ref="AM-1021" data-zone="Sheikh Zayed" data-compound="Palm Hills" data-type="Villa" data-area="420" data-beds="5" data-price="34000000" data-plan="Core &amp; shell" data-status="reserved" data-purpose="Primary" data-views="655" data-leads="9" data-agent="Nourhan Adel" data-updated="3 days ago" data-delivery="2028" data-photos="14">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1021</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Standalone villa with garden</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">فيلا مستقلة بحديقة 300 م²</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1021</span></td>
+                <td>Sheikh Zayed<span class="cell-sub"> · Palm Hills</span></td>
+                <td>Villa</td>
+                <td class="col-num">420</td>
+                <td class="col-num">5</td>
+                <td class="col-num"><span class="money">EGP 34,000,000</span><span class="money__sub">Core &amp; shell</span></td>
+                <td><span class="st st--reserved">Reserved</span></td>
+                <td class="col-num">655</td>
+                <td class="col-num">9</td>
+                <td><span class="avatar avatar--sm avatar--alt" title="Nourhan Adel"></span><span class="visually-hidden">Nourhan Adel</span></td>
+                <td><span class="cell-sub">3 days ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1021</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1021</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Chalet overlooking the pool" data-ar="شاليه بفيو على البيسين" data-ref="AM-1030" data-zone="Ain Sokhna" data-compound="Il Monte Galala" data-type="Chalet" data-area="95" data-beds="2" data-price="7900000" data-plan="10% down · 7 yrs" data-status="live" data-purpose="Primary" data-views="512" data-leads="4" data-agent="Omar Hegazy" data-updated="4 days ago" data-delivery="2027" data-photos="9">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1030</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Chalet overlooking the pool</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">شاليه بفيو على البيسين</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1030</span></td>
+                <td>Ain Sokhna<span class="cell-sub"> · Il Monte Galala</span></td>
+                <td>Chalet</td>
+                <td class="col-num">95</td>
+                <td class="col-num">2</td>
+                <td class="col-num"><span class="money">EGP 7,900,000</span><span class="money__sub">10% down · 7 yrs</span></td>
+                <td><span class="st st--live">Live</span></td>
+                <td class="col-num">512</td>
+                <td class="col-num">4</td>
+                <td><span class="avatar avatar--sm" title="Omar Hegazy"></span><span class="visually-hidden">Omar Hegazy</span></td>
+                <td><span class="cell-sub">4 days ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1030</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1030</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Twin house, semi-finished" data-ar="توين هاوس نصف تشطيب" data-ref="AM-1044" data-zone="New Cairo" data-compound="Sodic East" data-type="Twin house" data-area="240" data-beds="4" data-price="15800000" data-plan="12% down · 8 yrs" data-status="draft" data-purpose="Primary" data-views="0" data-leads="0" data-agent="Youssef Kamal" data-updated="1 hour ago" data-delivery="2027" data-photos="0">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1044</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Twin house, semi-finished</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">توين هاوس نصف تشطيب</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1044</span></td>
+                <td>New Cairo<span class="cell-sub"> · Sodic East</span></td>
+                <td>Twin house</td>
+                <td class="col-num">240</td>
+                <td class="col-num">4</td>
+                <td class="col-num"><span class="money">EGP 15,800,000</span><span class="money__sub">12% down · 8 yrs</span></td>
+                <td><span class="st st--draft">Draft</span></td>
+                <td class="col-num">—</td>
+                <td class="col-num">—</td>
+                <td><span class="avatar avatar--sm" title="Youssef Kamal"></span><span class="visually-hidden">Youssef Kamal</span></td>
+                <td><span class="cell-sub">1 hour ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1044</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1044</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Garden apartment, ready to move" data-ar="شقة بجاردن · استلام فوري" data-ref="AM-1027" data-zone="New Cairo" data-compound="Hyde Park" data-type="Apartment" data-area="144" data-beds="3" data-price="7100000" data-plan="Cash" data-status="live" data-purpose="Resale" data-views="498" data-leads="6" data-agent="Nourhan Adel" data-updated="5 days ago" data-delivery="Ready" data-photos="11">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1027</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Garden apartment, ready to move</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">شقة بجاردن · استلام فوري</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1027</span></td>
+                <td>New Cairo<span class="cell-sub"> · Hyde Park</span></td>
+                <td>Apartment</td>
+                <td class="col-num">144</td>
+                <td class="col-num">3</td>
+                <td class="col-num"><span class="money">EGP 7,100,000</span><span class="money__sub">Cash</span></td>
+                <td><span class="st st--live">Live</span></td>
+                <td class="col-num">498</td>
+                <td class="col-num">6</td>
+                <td><span class="avatar avatar--sm avatar--alt" title="Nourhan Adel"></span><span class="visually-hidden">Nourhan Adel</span></td>
+                <td><span class="cell-sub">5 days ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1027</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1027</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Duplex with private entrance" data-ar="دوبلكس بمدخل خاص" data-ref="AM-1019" data-zone="6th of October" data-compound="Badya" data-type="Duplex" data-area="210" data-beds="4" data-price="9600000" data-plan="10% down · 8 yrs" data-status="draft" data-purpose="Primary" data-views="0" data-leads="0" data-agent="Karim ElSayed" data-updated="6 days ago" data-delivery="2028" data-photos="2">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1019</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Duplex with private entrance</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">دوبلكس بمدخل خاص</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1019</span></td>
+                <td>6th of October<span class="cell-sub"> · Badya</span></td>
+                <td>Duplex</td>
+                <td class="col-num">210</td>
+                <td class="col-num">4</td>
+                <td class="col-num"><span class="money">EGP 9,600,000</span><span class="money__sub">10% down · 8 yrs</span></td>
+                <td><span class="st st--draft">Draft</span></td>
+                <td class="col-num">—</td>
+                <td class="col-num">—</td>
+                <td><span class="avatar avatar--sm" title="Karim ElSayed"></span><span class="visually-hidden">Karim ElSayed</span></td>
+                <td><span class="cell-sub">6 days ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1019</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1019</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Nile-view apartment" data-ar="شقة بفيو النيل" data-ref="AM-1008" data-zone="Zamalek" data-compound="—" data-type="Apartment" data-area="185" data-beds="3" data-price="18500000" data-plan="Cash" data-status="live" data-purpose="Resale" data-views="1420" data-leads="11" data-agent="Mai Farouk" data-updated="1 week ago" data-delivery="Ready" data-photos="16">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1008</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Nile-view apartment</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">شقة بفيو النيل</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1008</span></td>
+                <td>Zamalek<span class="cell-sub"> · —</span></td>
+                <td>Apartment</td>
+                <td class="col-num">185</td>
+                <td class="col-num">3</td>
+                <td class="col-num"><span class="money">EGP 18,500,000</span><span class="money__sub">Cash</span></td>
+                <td><span class="st st--live">Live</span></td>
+                <td class="col-num">1,420</td>
+                <td class="col-num">11</td>
+                <td><span class="avatar avatar--sm avatar--alt" title="Mai Farouk"></span><span class="visually-hidden">Mai Farouk</span></td>
+                <td><span class="cell-sub">1 week ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1008</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1008</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Townhouse, corner unit" data-ar="تاون هاوس كورنر" data-ref="AM-0996" data-zone="Mostakbal City" data-compound="—" data-type="Townhouse" data-area="195" data-beds="3" data-price="8900000" data-plan="Sold" data-status="sold" data-purpose="Primary" data-views="820" data-leads="14" data-agent="Omar Hegazy" data-updated="2 weeks ago" data-delivery="2026" data-photos="10">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-0996</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Townhouse, corner unit</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">تاون هاوس كورنر</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-0996</span></td>
+                <td>Mostakbal City<span class="cell-sub"> · —</span></td>
+                <td>Townhouse</td>
+                <td class="col-num">195</td>
+                <td class="col-num">3</td>
+                <td class="col-num"><span class="money">EGP 8,900,000</span><span class="money__sub">Closed Aug 2026</span></td>
+                <td><span class="st st--sold">Sold</span></td>
+                <td class="col-num">820</td>
+                <td class="col-num">14</td>
+                <td><span class="avatar avatar--sm" title="Omar Hegazy"></span><span class="visually-hidden">Omar Hegazy</span></td>
+                <td><span class="cell-sub">2 weeks ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-0996</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-0996</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Fitted office, tower B" data-ar="مكتب إداري متشطب · برج B" data-ref="AM-1041" data-zone="New Capital" data-compound="—" data-type="Office" data-area="88" data-beds="0" data-price="6400000" data-plan="20% down · 5 yrs" data-status="live" data-purpose="Rent" data-views="304" data-leads="2" data-agent="Youssef Kamal" data-updated="3 days ago" data-delivery="2027" data-photos="5">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1041</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Fitted office, tower B</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">مكتب إداري متشطب · برج B</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1041</span></td>
+                <td>New Capital<span class="cell-sub"> · —</span></td>
+                <td>Office</td>
+                <td class="col-num">88</td>
+                <td class="col-num">—</td>
+                <td class="col-num"><span class="money">EGP 6,400,000</span><span class="money__sub">20% down · 5 yrs</span></td>
+                <td><span class="st st--live">Live</span></td>
+                <td class="col-num">304</td>
+                <td class="col-num">2</td>
+                <td><span class="avatar avatar--sm" title="Youssef Kamal"></span><span class="visually-hidden">Youssef Kamal</span></td>
+                <td><span class="cell-sub">3 days ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1041</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1041</span></button>
+                  </div>
+                </td>
+              </tr>
+
+              <tr data-title="Chalet, summer let" data-ar="شاليه للإيجار الصيفي" data-ref="AM-1012" data-zone="North Coast" data-compound="Marassi" data-type="Chalet" data-area="88" data-beds="1" data-price="6750000" data-plan="Rented to Sep 2027" data-status="rented" data-purpose="Rent" data-views="611" data-leads="8" data-agent="Mai Farouk" data-updated="3 weeks ago" data-delivery="Ready" data-photos="7">
+                <td class="col-check"><input class="chk" type="checkbox" data-row-check><span class="visually-hidden">Select AM-1012</span></td>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <div class="ph cell-unit__ph" aria-hidden="true"></div>
+                    <div class="cell-unit__txt">
+                      <a class="cell-unit__title" href="{{base}}app/listing-editor.html">Chalet, summer let</a>
+                      <span class="cell-unit__ar" lang="ar" dir="rtl">شاليه للإيجار الصيفي</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="ref">AM-1012</span></td>
+                <td>North Coast<span class="cell-sub"> · Marassi</span></td>
+                <td>Chalet</td>
+                <td class="col-num">88</td>
+                <td class="col-num">1</td>
+                <td class="col-num"><span class="money">EGP 6,750,000</span><span class="money__sub">Rented to Sep 2027</span></td>
+                <td><span class="st st--rented">Rented</span></td>
+                <td class="col-num">611</td>
+                <td class="col-num">8</td>
+                <td><span class="avatar avatar--sm avatar--alt" title="Mai Farouk"></span><span class="visually-hidden">Mai Farouk</span></td>
+                <td><span class="cell-sub">3 weeks ago</span></td>
+                <td>
+                  <div class="rowacts">
+                    <button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true"><path d="M9.5 1.5l3 3L5 12H2V9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg><span class="visually-hidden">Edit AM-1012</span></button>
+                    <button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">More actions for AM-1012</span></button>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Rendered by listings.js from the table above, so the two views can
+           never disagree and the page still works with JavaScript off. -->
+      <div class="ugrid" data-grid hidden></div>
+
+      <!-- Shown when every row is filtered out. -->
+      <div class="empty" data-empty hidden>
+        <span class="empty__mark" aria-hidden="true">
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none"><circle cx="9.5" cy="9.5" r="7" stroke="currentColor" stroke-width="1.6"/><path d="M15 15l5 5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </span>
+        <h3>No units match these filters</h3>
+        <p>Try widening the price range or clearing the zone. Your other 42 units are still there.</p>
+        <div class="empty__acts">
+          <button class="btn btn--app" type="button" data-clear>Clear all filters</button>
+          <a class="btn btn--go" href="{{base}}app/listing-editor.html">Add a listing</a>
+        </div>
+      </div>
+
+      <!-- ============================================ bulk actions -->
+      <div class="bulkbar" data-bulkbar hidden>
+        <span class="bulkbar__n"><b data-bulk-n>0</b> selected</span>
+        <span class="bulkbar__rule" aria-hidden="true"></span>
+        <button type="button">Change status</button>
+        <button type="button">Assign agent</button>
+        <button type="button">Add to collection</button>
+        <button type="button">Export CSV</button>
+        <button class="is-danger" type="button">Delete</button>
+        <button class="bulkbar__close" type="button" data-bulk-clear>
+          <svg width="11" height="11" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="visually-hidden">Clear selection</span>
+        </button>
+      </div>
+
+      <nav class="pager" aria-label="Listings pages">
+        <span>Showing <b>1–12</b> of <b>42</b></span>
+        <span class="pager__pages">
+          <a href="#" aria-label="Previous page"><svg width="7" height="10" viewBox="0 0 8 12" fill="none" aria-hidden="true"><path d="M6 1L1.5 6 6 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="#" aria-current="page">1</a>
+          <a href="#">2</a>
+          <a href="#">3</a>
+          <span>4</span>
+          <a href="#" aria-label="Next page"><svg width="7" height="10" viewBox="0 0 8 12" fill="none" aria-hidden="true"><path d="M2 1l4.5 5L2 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </span>
+      </nav>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

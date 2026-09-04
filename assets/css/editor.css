@@ -1,0 +1,610 @@
+/* Alf Maskan — listing editor.
+   Form controls, the payment-plan calculator, the media gallery and the sticky
+   live preview. Shared with any other long form in the app (collections,
+   settings), so the field primitives here are generic. */
+
+/* ============================================================ two columns */
+
+.ed {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  gap: 28px;
+  align-items: start;
+}
+
+/* The preview follows you down the form — it is the whole point of having it. */
+.ed__side {
+  position: sticky;
+  top: 88px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ed__form { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+
+/* ============================================================ fieldsets */
+
+/* overflow must stay visible. A hint tooltip opens at top:100% of the summary,
+   so on a COLLAPSED section it lands entirely outside the 56px box — clipping
+   left an 11px sliver of a black rectangle and no readable text. The summary
+   carries its own radius instead, which is all the clipping was ever for. */
+.fset {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-14);
+  overflow: visible;
+}
+.fset > summary { border-radius: 13px; }
+.fset[open] > summary { border-radius: 13px 13px 0 0; }
+.fset > summary {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 18px;
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.fset > summary::-webkit-details-marker { display: none; }
+.fset > summary:hover { background: var(--panel-2); }
+.fset > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+
+.fset__n {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+  border-radius: var(--r-8);
+  background: var(--accent-soft);
+  color: var(--accent-ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 500;
+}
+.fset__title { font-size: var(--t-body-sm); font-weight: 600; color: var(--text); }
+.fset__meta {
+  margin-inline-start: auto;
+  font-size: var(--t-nano);
+  color: var(--text-4);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.fset__caret { color: var(--text-4); transition: transform var(--dur) var(--ease); }
+.fset[open] .fset__caret { transform: rotate(180deg); }
+.fset__body {
+  padding: 4px 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 1px solid var(--rule);
+  padding-top: 18px;
+}
+
+/* ============================================================ fields */
+
+.fgrid { display: grid; gap: 14px; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.fgrid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.fgrid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.f--wide { grid-column: 1 / -1; }
+
+.f { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.f__label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-nano);
+  font-weight: 500;
+  color: var(--text-2);
+}
+.f__req { color: var(--bad); }
+.f__hint { font-size: var(--t-nano); color: var(--text-4); line-height: 1.5; }
+.f__hint b { color: var(--text-3); font-weight: 600; }
+
+.inp,
+.ta,
+.sel {
+  width: 100%;
+  min-width: 0;
+  height: 38px;
+  padding-inline: 11px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-10);
+  background: var(--panel);
+  font: inherit;
+  font-size: var(--t-micro);
+  color: var(--text);
+  transition: border-color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+}
+.inp::placeholder, .ta::placeholder { color: var(--text-4); }
+.inp:focus, .ta:focus, .sel:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+.ta { height: auto; min-height: 92px; padding-block: 10px; line-height: 1.6; resize: vertical; }
+.sel { appearance: none; cursor: pointer; padding-inline-end: 30px; }
+
+.selwrap { position: relative; display: flex; }
+.selwrap__caret {
+  position: absolute;
+  inset-inline-end: 11px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-4);
+  pointer-events: none;
+  display: grid;
+}
+
+/* An input with a fixed unit or currency welded to one side. */
+.inp-unit { position: relative; display: flex; align-items: center; }
+.inp-unit .inp { padding-inline-end: 48px; }
+.inp-unit__u {
+  position: absolute;
+  inset-inline-end: 11px;
+  font-family: var(--font-mono);
+  font-size: var(--t-nano);
+  color: var(--text-4);
+  pointer-events: none;
+}
+.inp-unit--lead .inp { padding-inline: 46px 11px; }
+.inp-unit--lead .inp-unit__u { inset-inline: 11px auto; }
+
+/* Read-only computed values look different from things you can type in. */
+.inp[readonly], .inp--computed {
+  background: var(--panel-2);
+  color: var(--text-3);
+  font-family: var(--font-mono);
+  cursor: default;
+}
+
+/* ============================================================ language tabs
+   Arabic and English are the same field, not two fields — so they share one
+   label and one row, and you switch scripts rather than scrolling past a
+   duplicate form. */
+
+.lang-field { display: flex; flex-direction: column; gap: 6px; }
+.lang-field__top { display: flex; align-items: center; gap: 10px; }
+.lang-tabs {
+  margin-inline-start: auto;
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-8);
+}
+.lang-tabs button {
+  height: 22px;
+  padding-inline: 9px;
+  border: 0;
+  border-radius: 6px;
+  background: none;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-3);
+  cursor: pointer;
+}
+.lang-tabs button[aria-pressed="true"] { background: var(--panel); color: var(--text); box-shadow: var(--sh-xs); }
+.lang-pane[hidden] { display: none; }
+.lang-pane[dir="rtl"] .inp,
+.lang-pane[dir="rtl"] .ta { font-family: var(--font-arabic); line-height: 1.8; }
+
+.ai-translate {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--t-nano);
+  color: var(--accent);
+  cursor: pointer;
+  padding: 0;
+  align-self: flex-start;
+}
+.ai-translate:hover { text-decoration: underline; }
+
+/* ============================================================ switches */
+
+.sw-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 11px 0;
+}
+.sw-row + .sw-row { border-top: 1px solid var(--rule); }
+.sw-row__txt { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.sw-row__txt b { font-size: var(--t-micro); font-weight: 500; color: var(--text); }
+.sw-row__txt span { font-size: var(--t-nano); color: var(--text-4); line-height: 1.5; }
+
+.sw {
+  appearance: none;
+  position: relative;
+  flex: none;
+  width: 36px;
+  height: 21px;
+  margin: 0;
+  border-radius: var(--r-pill);
+  background: var(--rule-strong);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
+}
+.sw::after {
+  content: "";
+  position: absolute;
+  top: 3px;
+  inset-inline-start: 3px;
+  width: 15px;
+  height: 15px;
+  border-radius: var(--r-pill);
+  background: #fff;
+  box-shadow: var(--sh-xs);
+  transition: translate var(--dur) var(--ease);
+}
+.sw:checked { background: var(--accent); }
+.sw:checked::after { translate: 15px 0; }
+[dir="rtl"] .sw:checked::after { translate: -15px 0; }
+.sw:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* Featured is the one control that earns the sand accent. */
+.sw--sand:checked { background: var(--accent-2); }
+
+/* ============================================================ chip picker */
+
+.chipset { display: flex; flex-wrap: wrap; gap: 7px; }
+.chipset label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding-inline: 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  background: var(--panel);
+  font-size: var(--t-nano);
+  color: var(--text-2);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease), background var(--dur-fast) var(--ease);
+}
+.chipset label:hover { border-color: var(--rule-strong); }
+.chipset input { position: absolute; opacity: 0; width: 0; height: 0; }
+.chipset input:checked + span,
+.chipset label:has(input:checked) {
+  background: var(--accent-soft);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+  font-weight: 500;
+}
+.chipset label:has(input:focus-visible) { outline: 2px solid var(--accent); outline-offset: 2px; }
+.chipset__tick { display: none; }
+.chipset label:has(input:checked) .chipset__tick { display: block; }
+
+/* ============================================================ calculator */
+
+.calc {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 224px;
+  gap: 18px;
+  align-items: start;
+  padding: 16px;
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-12);
+}
+.calc__controls { display: flex; flex-direction: column; gap: 16px; }
+
+.range-row { display: flex; flex-direction: column; gap: 8px; }
+.range-row__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: var(--t-nano);
+}
+.range-row__top b {
+  font-family: var(--font-mono);
+  font-size: var(--t-micro);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+input[type="range"] {
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: var(--r-pill);
+  background: var(--rule-strong);
+  cursor: pointer;
+  margin: 6px 0;
+}
+input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 17px;
+  height: 17px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  border: 2.5px solid var(--panel);
+  box-shadow: var(--sh-xs);
+  cursor: grab;
+}
+input[type="range"]::-moz-range-thumb {
+  width: 17px;
+  height: 17px;
+  border: 2.5px solid var(--panel);
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  cursor: grab;
+}
+input[type="range"]:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+/* The result of the sliders — the number a buyer actually asks about. */
+.calc__result {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 16px;
+  border-radius: var(--r-12);
+  background: var(--accent);
+  color: #fff;
+}
+.calc__result small {
+  font-size: var(--t-pico);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  opacity: .8;
+  font-family: var(--font-mono);
+}
+.calc__result b {
+  font-size: 24px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+.calc__result span { font-size: var(--t-nano); opacity: .85; line-height: 1.5; margin-top: 4px; }
+.calc__breakdown {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, .22);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: var(--t-nano);
+}
+.calc__breakdown div { display: flex; justify-content: space-between; gap: 10px; }
+.calc__breakdown b { font-size: var(--t-nano); font-weight: 600; }
+
+/* ============================================================ media */
+
+.gal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(124px, 1fr));
+  gap: 10px;
+}
+/* Same trap as .fset. The drop indicator below sits at -6px, in the gutter
+   between two tiles, so overflow:hidden clipped it away entirely and the drag
+   had no insertion line at all. Only the photo needs clipping; it rounds its
+   own top corners. */
+.gal__item {
+  position: relative;
+  border-radius: var(--r-10);
+  overflow: visible;
+  border: 1px solid var(--rule);
+  background: var(--panel-2);
+  cursor: grab;
+}
+.gal__item .ph { aspect-ratio: 4 / 3; font-size: 10px; border-radius: 9px 9px 0 0; }
+.gal__item[data-dragging] { opacity: .45; cursor: grabbing; }
+.gal__item[data-over]::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: -6px;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 2px;
+  background: var(--accent);
+  z-index: 2;
+}
+.gal__bar {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 6px 8px;
+  border-top: 1px solid var(--rule);
+  font-size: 10px;
+  color: var(--text-4);
+}
+.gal__grab { cursor: grab; color: var(--text-4); display: grid; }
+.gal__cover {
+  position: absolute;
+  top: 7px;
+  inset-inline-start: 7px;
+  height: 19px;
+  padding-inline: 7px;
+  display: grid;
+  place-items: center;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  color: #fff;
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: .03em;
+}
+.gal__del {
+  position: absolute;
+  top: 6px;
+  inset-inline-end: 6px;
+  width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: var(--r-pill);
+  background: rgba(12, 16, 23, .6);
+  color: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease);
+}
+.gal__item:hover .gal__del,
+.gal__del:focus-visible { opacity: 1; }
+
+.dropzone {
+  display: grid;
+  place-items: center;
+  gap: 6px;
+  padding: 22px;
+  text-align: center;
+  border: 1.5px dashed var(--rule-strong);
+  border-radius: var(--r-12);
+  color: var(--text-3);
+  font-size: var(--t-nano);
+  background: var(--panel-2);
+  cursor: pointer;
+}
+.dropzone:hover { border-color: var(--accent); color: var(--accent); }
+.dropzone b { font-size: var(--t-micro); color: var(--text); font-weight: 600; }
+
+/* ============================================================ SEO preview */
+
+.serp {
+  padding: 13px 15px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-12);
+  background: var(--panel-2);
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.serp__url { font-size: var(--t-nano); color: var(--text-3); }
+.serp__title { font-size: 17px; color: #1a56c4; line-height: 1.3; }
+:root[data-theme="dark"] .serp__title { color: #8ab4f8; }
+.serp__desc { font-size: var(--t-nano); color: var(--text-3); line-height: 1.6; }
+.serp__count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-4);
+  margin-top: 4px;
+}
+.serp__count b { color: var(--text-3); }
+.serp__count b.is-over { color: var(--bad); }
+
+/* ============================================================ live preview */
+
+.pcard {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-14);
+  overflow: hidden;
+}
+.pcard__chrome {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--rule);
+  background: var(--panel-2);
+}
+.pcard__dots { display: flex; gap: 4px; }
+.pcard__dots i { width: 7px; height: 7px; border-radius: var(--r-pill); background: var(--rule-strong); }
+.pcard__url {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-4);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.pcard__body { padding: 14px; display: flex; flex-direction: column; gap: 9px; }
+.pcard__ph { border-radius: var(--r-10); overflow: hidden; }
+.pcard__ph .ph { aspect-ratio: 4 / 3; }
+.pcard__title { font-size: var(--t-body-sm); font-weight: 600; color: var(--text); line-height: 1.35; }
+.pcard__where { font-size: var(--t-nano); color: var(--text-3); }
+.pcard__specs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--text-3);
+}
+.pcard__price { font-size: 17px; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.pcard__plan {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  color: var(--accent-ink);
+  background: var(--accent-soft);
+  border-radius: var(--r-6);
+  padding: 5px 8px;
+  align-self: flex-start;
+}
+
+.side-note {
+  display: flex;
+  gap: 9px;
+  padding: 12px 13px;
+  border-radius: var(--r-12);
+  background: var(--warn-bg);
+  border: 1px solid color-mix(in srgb, var(--warn) 26%, transparent);
+  font-size: var(--t-nano);
+  color: var(--text-2);
+  line-height: 1.55;
+}
+.side-note b { color: var(--text); display: block; margin-bottom: 2px; font-size: var(--t-micro); }
+.side-note svg { flex: none; color: var(--warn); margin-top: 1px; }
+
+/* ============================================================ save bar */
+
+.savebar {
+  position: sticky;
+  bottom: 0;
+  z-index: 8;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  /* Bleeds to the content edge by reading .content own padding, so the two
+     can never drift apart at a breakpoint one of them does not know about. */
+  margin: 8px calc(-1 * var(--content-pad, 32px)) calc(-1 * var(--content-pad, 32px));
+  padding: 12px var(--content-pad, 32px);
+  background: color-mix(in srgb, var(--panel) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--rule);
+}
+.savebar__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-nano);
+  color: var(--text-3);
+}
+.savebar__chip i {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--ok);
+}
+.savebar__chip[data-dirty] { color: var(--warn); }
+.savebar__chip[data-dirty] i { background: var(--warn); }
+.savebar__end { margin-inline-start: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+
+/* ============================================================ responsive */
+
+@media (max-width: 1180px) {
+  .ed { grid-template-columns: minmax(0, 1fr); }
+  /* Below this the preview cannot sit beside the form, so it leads instead —
+     you see what you are editing before you start editing it. */
+  .ed__side { position: static; order: -1; }
+  .calc { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 760px) {
+  .fgrid, .fgrid--3, .fgrid--4 { grid-template-columns: minmax(0, 1fr); }
+  .savebar__end { width: 100%; }
+  .savebar__end .btn { flex: 1; }
+}

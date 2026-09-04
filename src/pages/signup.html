@@ -1,0 +1,104 @@
+<!--
+title: Create your account — Alf Maskan
+desc: Fourteen days free. No card needed until you publish. Sign up with Google or email and put your first unit online tonight.
+nav: signup
+-->
+<main id="main" class="auth">
+
+  <div class="auth__form">
+    <div class="auth__top">
+      <a class="brand" href="index.html">
+        {{> mark}}
+        <span class="brand__word">Alf Maskan</span>
+      </a>
+      <div class="lang">
+        <a href="signup.html" lang="en" hreflang="en" aria-current="true">EN</a>
+        <a href="ar/signup.html" lang="ar" hreflang="ar">ع</a>
+      </div>
+    </div>
+
+    <h1 class="auth__title">Create your account</h1>
+    <p class="body-sm auth__lede">Fourteen days free. No card needed until you publish.</p>
+
+    <a class="btn btn--secondary btn--block" style="--btn-h:48px;font-size:var(--t-body-sm)" href="#">
+      <span class="google-mark" aria-hidden="true"></span>
+      Continue with Google
+    </a>
+
+    <p class="divider"><span>or sign up with email</span></p>
+
+    <form class="stack" style="gap:16px" action="#" method="post" novalidate>
+      <div class="field">
+        <label for="email">Work email</label>
+        <input class="input" id="email" name="email" type="email" autocomplete="email" placeholder="youssef@kamalestates.com" required>
+      </div>
+
+      <div class="field">
+        <span class="field__label">
+          <label for="phone">Mobile number</label>
+          <span class="info-dot info-dot--sm" aria-hidden="true">i</span>
+        </span>
+        <div style="position:relative">
+          <div class="phone-field">
+            <span class="phone-field__cc">
+              <span class="flag-eg" aria-hidden="true"><i></i><i></i><i></i></span>
+              <span dir="ltr">+20</span>
+            </span>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel-national" dir="ltr" placeholder="100 244 8817" required>
+          </div>
+          <p class="tip">We send your WhatsApp leads here, so use the number you actually answer.</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="password">Password</label>
+        <div class="password-wrap">
+          <input class="input" id="password" name="password" type="password" autocomplete="new-password" minlength="8" required>
+          <button class="password-toggle" type="button" data-password-toggle data-show="Show" data-hide="Hide">Show</button>
+        </div>
+        <p class="strength" data-strength="Weak,Fair,Good,Strong">
+          <i></i><i></i><i></i><i></i><span></span>
+        </p>
+      </div>
+
+      <label class="consent">
+        <input type="checkbox" name="terms" required>
+        <span class="consent__box" aria-hidden="true">
+          <svg width="9" height="7" viewBox="0 0 9 7" fill="none"><path d="M1 3.4L3.3 5.7 8 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        <span>I agree to the <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</span>
+      </label>
+
+      <button class="btn btn--lg btn--primary btn--block" type="submit" style="margin-top:4px">Create account</button>
+    </form>
+
+    <p class="meta mt-auto" style="padding-top:24px" id="signin">Already selling on Alf Maskan? <a href="#" style="font-weight:600">Sign in</a></p>
+  </div>
+
+  <div class="auth__aside">
+    <div class="auth__glow" aria-hidden="true"></div>
+    <div class="auth__preview">
+      <h2>This is what your buyers will see</h2>
+
+      <div class="frame">
+        <div class="frame__bar">
+          <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="frame__url">kamal-estates.alfmaskan.com</span>
+        </div>
+        <div class="ph ph--dark ph--label" style="height:180px"><span>New Cairo compound · 16:9</span></div>
+        <div style="padding:16px">
+          <p style="font-family:var(--font-display);font-size:20px;font-weight:700;color:var(--ink-900)">Kamal Estates</p>
+          <p class="micro" style="margin-top:2px">42 units in New Cairo, Mostakbal City and Sahel</p>
+          <div style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:14px">
+            <div class="unit-mini"><div class="ph ph--fine"></div><b>EGP 12.4M</b></div>
+            <div class="unit-mini"><div class="ph ph--fine"></div><b>EGP 9.7M</b></div>
+            <div class="unit-mini"><div class="ph ph--fine"></div><b>EGP 18.9M</b></div>
+          </div>
+        </div>
+      </div>
+
+      <p class="auth__foot">Your logo, colours and domain are applied after signup.</p>
+    </div>
+  </div>
+
+</main>

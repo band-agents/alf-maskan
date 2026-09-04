@@ -1,0 +1,322 @@
+/* Alf Maskan — the ten storefront templates.
+   Every one is a token layer over store.css, not a separate stylesheet. That
+   is the product's own promise: all ten are built from the same sections, so
+   switching keeps every unit, photo and payment plan and only the look changes.
+   Set data-template on the storefront root and the whole page re-skins.
+
+   Each block overrides the same eight things — paper, ink, line, accent, the
+   display face, the radius, the card treatment and the header weight — because
+   that is what actually makes two storefronts look unrelated. */
+
+/* ---------------------------------------------------------------- 1 Nile
+   Editorial agency classic. This is store.css's own default, restated here so
+   the set reads as ten peers rather than nine exceptions to one. */
+[data-template="nile"] {
+  --nile-paper: #FBF9F5;
+  --nile-paper-2: #F4F1EA;
+  --nile-line: #E4DFD4;
+  --nile-ink: #14181C;
+  --nile-ink-2: #3D444E;
+  --nile-mute: #7A7568;
+  --font-serif: Newsreader, Georgia, serif;
+  --tpl-accent: var(--palm-600);
+  --tpl-radius: 16px;
+}
+
+/* ------------------------------------------------------------- 2 Cascade
+   Luxury minimal. Photography does the work; type gets out of the way. */
+[data-template="cascade"] {
+  --nile-paper: #FFFFFF;
+  --nile-paper-2: #F2F2F1;
+  --nile-line: #E6E6E4;
+  --nile-ink: #0A0A0A;
+  --nile-ink-2: #4A4A48;
+  --nile-mute: #8C8C88;
+  --font-serif: Inter, system-ui, sans-serif;
+  --tpl-accent: #0A0A0A;
+  --tpl-radius: 0px;
+}
+[data-template="cascade"] .st-h1,
+[data-template="cascade"] .hero__title {
+  font-weight: 400;
+  letter-spacing: -.03em;
+  text-transform: none;
+}
+[data-template="cascade"] .st-eyebrow { letter-spacing: .22em; }
+[data-template="cascade"] .st-card { border-width: 0; border-top: 1px solid var(--nile-line); }
+[data-template="cascade"] .st-card__media .ph { aspect-ratio: 3 / 4; }
+
+/* ------------------------------------------------------------ 3 Compound
+   One project, one site. Structured and institutional. */
+[data-template="compound"] {
+  --nile-paper: #F7F8FA;
+  --nile-paper-2: #EDEFF3;
+  --nile-line: #DCE1E8;
+  --nile-ink: #101828;
+  --nile-ink-2: #3F4A5C;
+  --nile-mute: #6E7A8C;
+  --font-serif: Tajawal, sans-serif;
+  --tpl-accent: #1B4F8C;
+  --tpl-radius: 10px;
+}
+[data-template="compound"] .st-h1,
+[data-template="compound"] .hero__title { font-weight: 700; letter-spacing: -.02em; }
+[data-template="compound"] .st-card { box-shadow: var(--sh-xs); }
+
+/* --------------------------------------------------------------- 4 Sahel
+   Coastal and warm. Rounded everything, sand over turquoise. */
+[data-template="sahel"] {
+  --nile-paper: #FEFAF3;
+  --nile-paper-2: #FBF0DE;
+  --nile-line: #EFDFC4;
+  --nile-ink: #1B3A3A;
+  --nile-ink-2: #48605F;
+  --nile-mute: #97846A;
+  --font-serif: Nunito, system-ui, sans-serif;
+  --tpl-accent: #0E7C86;
+  --tpl-radius: 22px;
+}
+[data-template="sahel"] .st-h1,
+[data-template="sahel"] .hero__title { font-weight: 800; letter-spacing: -.02em; }
+[data-template="sahel"] .st-card { border-color: transparent; box-shadow: var(--sh-sm); }
+[data-template="sahel"] .badge--solid-sand { background: #E8A33D; color: var(--nile-ink); }
+
+/* -------------------------------------------------------------- 5 Broker
+   Search-first portal. Dense, cool, built for five hundred units. */
+[data-template="broker"] {
+  --nile-paper: #F4F6F8;
+  --nile-paper-2: #E9EDF2;
+  --nile-line: #D8DEE6;
+  --nile-ink: #0F1720;
+  --nile-ink-2: #3B4654;
+  --nile-mute: #6B7684;
+  --font-serif: Inter, system-ui, sans-serif;
+  --tpl-accent: #C2402F;
+  --tpl-radius: 6px;
+}
+[data-template="broker"] .st-h1,
+[data-template="broker"] .hero__title { font-weight: 700; font-size: clamp(24px, 2.6vw, 34px); }
+[data-template="broker"] .st-card__body { padding: 10px 12px 12px; gap: 4px; }
+[data-template="broker"] .st-card__title { font-size: 14px; }
+[data-template="broker"] .st-grid { gap: 10px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+
+/* ------------------------------------------------------------- 6 Vitrine
+   Dark boutique. Charcoal, gold hairlines, one unit at a time. */
+[data-template="vitrine"] {
+  --nile-paper: #16151A;
+  --nile-paper-2: #1F1E24;
+  --nile-line: #33313B;
+  --nile-ink: #F5F2EC;
+  --nile-ink-2: #C9C4BC;
+  --nile-mute: #8B857C;
+  --font-serif: Fraunces, Georgia, serif;
+  --tpl-accent: #C9A227;
+  --tpl-radius: 2px;
+}
+[data-template="vitrine"] .st-card,
+[data-template="vitrine"] .plan,
+[data-template="vitrine"] .agent { background: var(--nile-paper-2); }
+[data-template="vitrine"] .st-btn--ghost { background: transparent; color: var(--nile-ink); }
+[data-template="vitrine"] .st-h1,
+[data-template="vitrine"] .hero__title { font-weight: 400; }
+[data-template="vitrine"] .st-foot { background: #0E0D11; }
+[data-template="vitrine"] .ph {
+  background: repeating-linear-gradient(135deg, #2A2830 0 10px, #322F39 10px 20px);
+  color: #6E6A74;
+}
+
+/* ---------------------------------------------------------------- 7 Solo
+   One agent, one face. Warm and personal. */
+[data-template="solo"] {
+  --nile-paper: #FDFBF9;
+  --nile-paper-2: #F5EFE9;
+  --nile-line: #E8DED5;
+  --nile-ink: #241C17;
+  --nile-ink-2: #52453C;
+  --nile-mute: #91806F;
+  --font-serif: Newsreader, Georgia, serif;
+  --tpl-accent: #A8551F;
+  --tpl-radius: 20px;
+}
+[data-template="solo"] .st-h1,
+[data-template="solo"] .hero__title { font-style: italic; font-weight: 500; }
+[data-template="solo"] .st-card { border-color: transparent; background: var(--nile-paper-2); }
+
+/* ----------------------------------------------------------- 8 Blueprint
+   Developer corporate. Navy, technical, projects before units. */
+[data-template="blueprint"] {
+  --nile-paper: #FFFFFF;
+  --nile-paper-2: #F1F4F9;
+  --nile-line: #D5DCE8;
+  --nile-ink: #0B2545;
+  --nile-ink-2: #33445E;
+  --nile-mute: #6D7C93;
+  --font-serif: Tajawal, sans-serif;
+  --tpl-accent: #0B2545;
+  --tpl-radius: 4px;
+}
+[data-template="blueprint"] .st-eyebrow { color: var(--tpl-accent); letter-spacing: .16em; }
+[data-template="blueprint"] .st-card { border-width: 1px; box-shadow: none; }
+[data-template="blueprint"] .st-card__price { font-family: var(--font-mono); font-size: 16px; }
+
+/* -------------------------------------------------------------- 9 Rental
+   Long and short lets. Availability first, calm and clear. */
+[data-template="rental"] {
+  --nile-paper: #FAFCFB;
+  --nile-paper-2: #EEF5F1;
+  --nile-line: #D9E5DE;
+  --nile-ink: #10241B;
+  --nile-ink-2: #3A4E44;
+  --nile-mute: #6F8378;
+  --font-serif: Nunito, system-ui, sans-serif;
+  --tpl-accent: #127A4B;
+  --tpl-radius: 14px;
+}
+[data-template="rental"] .st-h1,
+[data-template="rental"] .hero__title { font-weight: 700; }
+[data-template="rental"] .st-card__price::after {
+  content: " / month";
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--nile-mute);
+}
+
+/* --------------------------------------------------------------- 10 Souq
+   Multi-agent marketplace. High volume, high energy. */
+[data-template="souq"] {
+  --nile-paper: #FFFDF8;
+  --nile-paper-2: #FFF3E0;
+  --nile-line: #F0E0C8;
+  --nile-ink: #1A1206;
+  --nile-ink-2: #4C3E2C;
+  --nile-mute: #8C7A60;
+  --font-serif: Tajawal, sans-serif;
+  --tpl-accent: #D2691E;
+  --tpl-radius: 12px;
+}
+[data-template="souq"] .st-h1,
+[data-template="souq"] .hero__title { font-weight: 700; }
+[data-template="souq"] .st-grid { grid-template-columns: repeat(auto-fill, minmax(206px, 1fr)); gap: 12px; }
+[data-template="souq"] .st-card__title { font-size: 15px; }
+
+/* ================================================================ wiring
+   Every template drives the same handful of properties, so nothing below
+   needs to know which one is active. */
+
+[data-template] .st-btn--primary,
+[data-template] .st-wa,
+[data-template] .hero-search__go,
+[data-template] .sfhero__btn { background: var(--tpl-accent); }
+[data-template] .st-btn--primary:hover,
+[data-template] .st-wa:hover { background: color-mix(in srgb, var(--tpl-accent) 84%, #fff); color: #fff; }
+[data-template] .st-announce { background: color-mix(in srgb, var(--tpl-accent) 84%, #000); }
+[data-template] .st-brand span,
+[data-template] .st-card__plan,
+[data-template] .st-nav a:hover,
+[data-template] .st-crumb a:hover { color: var(--tpl-accent); }
+[data-template] .plan__out { background: var(--tpl-accent); }
+[data-template] .st-card,
+[data-template] .gallery__stage,
+[data-template] .plan,
+[data-template] .agent,
+[data-template] .specs,
+[data-template] .zone-tile { border-radius: var(--tpl-radius); }
+[data-template] .st-btn,
+[data-template] .fpill select,
+[data-template] .fsearch-lg { border-radius: calc(var(--tpl-radius) + 8px); }
+[data-template] .gallery__thumb[aria-current="true"] { border-color: var(--tpl-accent); }
+[data-template] .st-lang a[aria-current="true"] { background: var(--nile-ink); }
+
+/* ============================================================== gallery
+   All ten at once, so the variety is provable at a glance. */
+
+.tplgallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(288px, 1fr)); gap: 22px; }
+
+/* Each tile is a live storefront in miniature, painted by its own template
+   block — not a screenshot of one. */
+.tplframe {
+  border: 1px solid var(--nile-line);
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--nile-paper);
+  color: var(--nile-ink-2);
+}
+.tplframe__bar {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  height: 26px;
+  padding-inline: 10px;
+  background: var(--nile-paper-2);
+  border-bottom: 1px solid var(--nile-line);
+}
+.tplframe__bar i { width: 5px; height: 5px; border-radius: 999px; background: var(--nile-line); }
+.tplframe__bar span { font-family: var(--font-mono); font-size: 9px; color: var(--nile-mute); }
+
+.mini { padding: 0 0 12px; }
+.mini__announce {
+  background: color-mix(in srgb, var(--tpl-accent) 84%, #000);
+  color: #fff;
+  font-size: 8.5px;
+  text-align: center;
+  padding: 5px 8px;
+}
+.mini__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--nile-line);
+}
+.mini__brand { font-family: var(--font-serif); font-size: 13px; font-weight: 600; color: var(--nile-ink); }
+.mini__nav { margin-inline-start: auto; display: flex; gap: 7px; font-size: 8px; color: var(--nile-mute); }
+.mini__cta {
+  height: 17px;
+  padding-inline: 8px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: var(--tpl-accent);
+  color: #fff;
+  font-size: 8px;
+  font-weight: 600;
+}
+.mini__hero { padding: 11px 12px 9px; display: flex; flex-direction: column; gap: 7px; }
+.mini__hero .ph { aspect-ratio: 16 / 7; border-radius: var(--tpl-radius); font-size: 8px; }
+.mini__title {
+  font-family: var(--font-serif);
+  font-size: 15px;
+  line-height: 1.15;
+  color: var(--nile-ink);
+  letter-spacing: -.01em;
+}
+.mini__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; padding-inline: 12px; }
+.mini__card {
+  border: 1px solid var(--nile-line);
+  border-radius: var(--tpl-radius);
+  overflow: hidden;
+  background: var(--nile-paper);
+}
+.mini__card .ph { aspect-ratio: 4 / 3; font-size: 0; }
+.mini__card b { display: block; padding: 5px 6px 1px; font-size: 8px; color: var(--nile-ink); }
+.mini__card span { display: block; padding: 0 6px 6px; font-size: 7.5px; color: var(--tpl-accent); font-family: var(--font-mono); }
+
+.tplmeta { padding: 12px 14px 14px; border-top: 1px solid var(--nile-line); }
+.tplmeta b { font-family: var(--font-serif); font-size: 16px; color: var(--nile-ink); display: block; }
+.tplmeta span { font-size: 11.5px; color: var(--nile-mute); line-height: 1.5; display: block; margin-top: 3px; }
+.tplmeta__tags { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 9px; }
+.tplmeta__tags i {
+  font-style: normal;
+  font-size: 9px;
+  font-family: var(--font-mono);
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  color: var(--nile-mute);
+  border: 1px solid var(--nile-line);
+  border-radius: 999px;
+  padding: 2px 7px;
+}
+
+/* Same unit, three templates — the proof the theming system is real. */
+.threeup { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+.threeup > * { border-radius: 14px; overflow: hidden; border: 1px solid var(--nile-line); }

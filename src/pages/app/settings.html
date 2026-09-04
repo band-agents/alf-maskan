@@ -1,0 +1,295 @@
+<!--
+title: Settings — Alf Maskan
+desc: Store profile, domains, language and region, integrations and the danger zone.
+nav: settings
+bodyClass: app
+css: dashboard, app, editor, admin
+js: dashboard, forms, settings
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <h1>Settings</h1>
+          <p>Kamal Estates · kamal-estates.alfmaskan.com · Africa/Cairo</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="{{base}}app/billing.html">Billing</a>
+        </div>
+      </div>
+
+      <div class="setwrap">
+        <nav class="setnav" aria-label="Settings sections">
+          <span class="setnav__label">Store</span>
+          <a href="#profile" aria-current="page">Store profile</a>
+          <a href="#domains">Domains</a>
+          <a href="#region">Language &amp; region</a>
+          <span class="setnav__label">Connected</span>
+          <a href="#integrations">Integrations</a>
+          <a href="#data">Import &amp; export</a>
+          <span class="setnav__label">Account</span>
+          <a href="{{base}}app/team.html">Team</a>
+          <a href="{{base}}app/billing.html">Billing</a>
+          <a href="#danger">Danger zone</a>
+        </nav>
+
+        <form class="ed__form" onsubmit="return false">
+
+          <!-- ---------------------------------------- profile -->
+          <details class="fset" id="profile" open>
+            <summary>
+              <span class="fset__n" aria-hidden="true">1</span>
+              <span class="fset__title">Store profile</span>
+              <span class="fset__meta"><svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            </summary>
+            <div class="fset__body">
+              <div class="lang-field" data-lang-field>
+                <div class="lang-field__top">
+                  <span class="f__label">Store name</span>
+                  <span class="lang-tabs">
+                    <button type="button" aria-pressed="true" data-lang-tab="en">EN</button>
+                    <button type="button" aria-pressed="false" data-lang-tab="ar">ع</button>
+                  </span>
+                </div>
+                <div class="lang-pane" data-lang-pane="en">
+                  <label class="visually-hidden" for="s-name-en">Store name in English</label>
+                  <input class="inp" id="s-name-en" value="Kamal Estates">
+                </div>
+                <div class="lang-pane" data-lang-pane="ar" dir="rtl" hidden>
+                  <label class="visually-hidden" for="s-name-ar">Store name in Arabic</label>
+                  <input class="inp" id="s-name-ar" lang="ar" value="كمال العقارية" style="font-family:var(--font-arabic)">
+                </div>
+              </div>
+
+              <div class="fgrid">
+                <div class="f">
+                  <label class="f__label" for="s-wa">WhatsApp number</label>
+                  <span class="inp-unit inp-unit--lead"><input class="inp" id="s-wa" type="tel" dir="ltr" value="100 244 8817"><span class="inp-unit__u">+20</span></span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="s-email">Contact email</label>
+                  <input class="inp" id="s-email" type="email" dir="ltr" value="hello@kamalestates.com">
+                </div>
+              </div>
+
+              <div class="f">
+                <label class="f__label" for="s-address">Office address</label>
+                <input class="inp" id="s-address" value="90th Street, New Cairo">
+              </div>
+
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="s-transfer">
+                <span class="sw-row__txt">
+                  <b><label for="s-transfer">Allow ownership transfer</label></b>
+                  <span>Off by default. Turning it on lets you hand the store to another admin — the only way to move billing off your name.</span>
+                </span>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- domains -->
+          <details class="fset" id="domains">
+            <summary>
+              <span class="fset__n" aria-hidden="true">2</span>
+              <span class="fset__title">Domains</span>
+              <span class="fset__meta">
+                <span class="st st--live">SSL active</span>
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="f">
+                <label class="f__label" for="s-sub">Your free address</label>
+                <div class="domainbox">
+                  <input id="s-sub" value="kamal-estates" dir="ltr" data-domain>
+                  <span class="domainbox__suffix" dir="ltr">.alfmaskan.com</span>
+                </div>
+                <span class="f__hint">This keeps working forever, even after you connect your own domain — old WhatsApp links do not break.</span>
+              </div>
+
+              <div class="f">
+                <span class="f__label">Your own domain</span>
+                <div style="display:flex;align-items:center;gap:11px;padding:12px 13px;border:1px solid var(--rule);border-radius:var(--r-10);background:var(--panel-2);flex-wrap:wrap">
+                  <span class="st st--live">Connected</span>
+                  <span style="font-family:var(--font-mono);font-size:var(--t-micro);color:var(--text)" dir="ltr">kamalestates.com</span>
+                  <span class="f__hint" style="margin-inline-start:auto">Certificate renews 12 November 2026</span>
+                </div>
+              </div>
+
+              <div class="f">
+                <span class="f__label">The two lines your registrar needs</span>
+                <div class="tablescroll">
+                  <table class="dtable" style="min-width:0">
+                    <thead><tr><th scope="col">Type</th><th scope="col">Name</th><th scope="col">Value</th></tr></thead>
+                    <tbody>
+                      <tr><td><span class="ref">A</span></td><td><span class="ref">@</span></td><td><span class="ref">76.76.21.21</span></td></tr>
+                      <tr><td><span class="ref">CNAME</span></td><td><span class="ref">www</span></td><td><span class="ref">cname.alfmaskan.com</span></td></tr>
+                    </tbody>
+                  </table>
+                </div>
+                <span class="f__hint">Paste these where you bought the domain. If the panel is in Arabic and you cannot find the field, send us a screenshot on WhatsApp.</span>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- region -->
+          <details class="fset" id="region">
+            <summary>
+              <span class="fset__n" aria-hidden="true">3</span>
+              <span class="fset__title">Language &amp; region</span>
+              <span class="fset__meta">
+                EN + AR · EGP · m²
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="fgrid">
+                <div class="f">
+                  <label class="f__label" for="s-dash-lang">Dashboard language</label>
+                  <span class="selwrap">
+                    <select class="sel" id="s-dash-lang"><option>English</option><option>العربية</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                  <span class="f__hint">Yours only. Everyone on the team picks their own.</span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="s-store-lang">Storefront languages</label>
+                  <span class="selwrap">
+                    <select class="sel" id="s-store-lang"><option>Arabic and English</option><option>Arabic only</option><option>English only</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="fgrid fgrid--3">
+                <div class="f">
+                  <label class="f__label" for="s-currency">Currency</label>
+                  <span class="selwrap">
+                    <select class="sel" id="s-currency"><option>EGP — Egyptian pound</option><option>USD — US dollar</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="s-area">Area unit</label>
+                  <span class="selwrap">
+                    <select class="sel" id="s-area"><option>m² — square metres</option><option>ft² — square feet</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+                <div class="f">
+                  <label class="f__label" for="s-tz">Time zone</label>
+                  <span class="selwrap">
+                    <select class="sel" id="s-tz"><option>Africa/Cairo</option><option>Asia/Riyadh</option><option>Asia/Dubai</option></select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="s-digits" checked disabled>
+                <span class="sw-row__txt">
+                  <b><label for="s-digits">Western digits everywhere</label></b>
+                  <span>Locked on. Egyptian buyers read prices in 0–9 even in Arabic copy, and Eastern Arabic numerals in a price have cost sellers deals.</span>
+                </span>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- integrations -->
+          <details class="fset" id="integrations">
+            <summary>
+              <span class="fset__n" aria-hidden="true">4</span>
+              <span class="fset__title">Integrations</span>
+              <span class="fset__meta">
+                3 connected
+                <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+            </summary>
+            <div class="fset__body">
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="i-wa" checked>
+                <span class="sw-row__txt"><b><label for="i-wa">WhatsApp Business</label></b><span>Connected as +20 100 244 8817. Carries every lead reply and broadcast.</span></span>
+              </div>
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="i-meta" checked>
+                <span class="sw-row__txt"><b><label for="i-meta">Facebook &amp; Instagram lead ads</label></b><span>Connected to Kamal Estates. New lead-ad submissions land in your inbox within a minute.</span></span>
+              </div>
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="i-ga" checked>
+                <span class="sw-row__txt"><b><label for="i-ga">Google Analytics</label></b><span>G-4KM2QX8P1L. Storefront only — nothing from the dashboard is sent.</span></span>
+              </div>
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="i-pixel">
+                <span class="sw-row__txt"><b><label for="i-pixel">Meta Pixel</label></b><span>Not connected. Needed if you want to retarget people who viewed a unit.</span></span>
+              </div>
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="i-pf">
+                <span class="sw-row__txt"><b><label for="i-pf">Property Finder sync</label></b><span>Not connected. Pushes your live units to your Property Finder listings once a night.</span></span>
+              </div>
+              <div class="sw-row">
+                <input class="sw" type="checkbox" id="i-olx">
+                <span class="sw-row__txt"><b><label for="i-olx">OLX sync</label></b><span>Not connected.</span></span>
+              </div>
+
+              <div class="f">
+                <label class="f__label" for="s-api">API key</label>
+                <div style="display:flex;gap:8px;flex-wrap:wrap">
+                  <input class="inp inp--computed" id="s-api" readonly value="am_live_••••••••••••••••••••3f71" dir="ltr" style="flex:1;min-width:220px">
+                  <button class="btn btn--app" type="button">Reveal</button>
+                  <button class="btn btn--app" type="button">Rotate</button>
+                </div>
+                <span class="f__hint">Rotating invalidates the old key immediately. Anything using it stops working until you paste the new one.</span>
+              </div>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- data -->
+          <details class="fset" id="data">
+            <summary>
+              <span class="fset__n" aria-hidden="true">5</span>
+              <span class="fset__title">Import &amp; export</span>
+              <span class="fset__meta"><svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+            </summary>
+            <div class="fset__body">
+              <div style="display:flex;gap:9px;flex-wrap:wrap">
+                <button class="btn btn--app" type="button">Export all listings (CSV)</button>
+                <button class="btn btn--app" type="button">Export leads &amp; deals (CSV)</button>
+                <button class="btn btn--app" type="button">Import a spreadsheet</button>
+              </div>
+              <p class="f__hint">Your data is yours. Exports are the full record, not a summary, and there is no charge for taking it.</p>
+            </div>
+          </details>
+
+          <!-- ---------------------------------------- danger -->
+          <section id="danger" style="margin-top:6px">
+            <h2 class="panel__title" style="margin-bottom:10px">Danger zone</h2>
+            <div class="danger-zone">
+              <div>
+                <b>Delete this store</b>
+                <p>Removes every unit, lead, deal and the storefront itself. The address <span style="font-family:var(--font-mono)" dir="ltr">kamal-estates.alfmaskan.com</span> is released and someone else can claim it. Export first — this cannot be undone and we do not keep a copy.</p>
+              </div>
+              <button class="btn btn--danger" type="button">Delete store</button>
+            </div>
+          </section>
+
+          <div class="savebar">
+            <span class="savebar__chip" data-savechip><i aria-hidden="true"></i><span data-savetext>Saved · 2s ago</span></span>
+            <span class="savebar__end">
+              <button class="btn btn--go" type="button" data-publish>Save settings</button>
+            </span>
+          </div>
+
+        </form>
+      </div>
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

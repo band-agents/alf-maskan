@@ -1,0 +1,297 @@
+<!--
+title: Dashboard — Alf Maskan
+desc: Your listings, views, leads and team activity at a glance.
+nav: home
+bodyClass: app
+css: dashboard
+js: dashboard
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <!-- ============================================ greeting -->
+      <div class="page-head">
+        <div>
+          <h1>Good morning, Youssef</h1>
+          <p>7 new leads since yesterday, and 5 units still need photos.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="#">Import units</a>
+          <a class="btn btn--go" href="#">
+            <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Add listing
+          </a>
+        </div>
+      </div>
+
+      <!-- ============================================ KPI tiles -->
+      <section class="kpis" aria-label="Key numbers">
+        <article class="panel kpi">
+          <div class="kpi__label">
+            <h2>Active listings</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About active listings</span></button>
+              <span class="hint__body" hidden>Units currently visible on your storefront. Drafts and sold units are not counted.</span>
+            </span>
+          </div>
+          <div class="kpi__body">
+            <div>
+              <p class="kpi__value">37</p>
+              <p class="delta delta--up"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>+4</p>
+            </div>
+            <svg class="kpi__spark" width="72" height="34" viewBox="0 0 72 34" fill="none" aria-hidden="true">
+              <polyline points="2,26 12,24 22,25 32,19 42,20 52,13 62,10 70,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </article>
+
+        <article class="panel kpi">
+          <div class="kpi__label">
+            <h2>Views this week</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About views</span></button>
+              <span class="hint__body" hidden>A view is one buyer opening a unit page. Repeat visits from the same phone within an hour count once.</span>
+            </span>
+          </div>
+          <div class="kpi__body">
+            <div>
+              <p class="kpi__value">8,412</p>
+              <p class="delta delta--up"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>+18%</p>
+            </div>
+            <svg class="kpi__spark" width="72" height="34" viewBox="0 0 72 34" fill="none" aria-hidden="true">
+              <polyline points="2,28 12,22 22,24 32,16 42,18 52,11 62,8 70,4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </article>
+
+        <article class="panel kpi">
+          <div class="kpi__label">
+            <h2>New leads</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About new leads</span></button>
+              <span class="hint__body" hidden>Enquiries from WhatsApp, your contact form and unit pages, before any reply.</span>
+            </span>
+          </div>
+          <div class="kpi__body">
+            <div>
+              <p class="kpi__value">23</p>
+              <p class="delta delta--up"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>+9</p>
+            </div>
+            <svg class="kpi__spark" width="72" height="34" viewBox="0 0 72 34" fill="none" aria-hidden="true">
+              <polyline points="2,24 12,26 22,20 32,22 42,14 52,16 62,9 70,7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </article>
+
+        <article class="panel kpi">
+          <div class="kpi__label">
+            <h2>Deals in progress</h2>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About deals in progress</span></button>
+              <span class="hint__body" hidden>Leads your team has moved past a first viewing and not yet closed or lost.</span>
+            </span>
+          </div>
+          <div class="kpi__body">
+            <div>
+              <p class="kpi__value">6</p>
+              <p class="delta delta--down"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 6l4-6H0z" fill="currentColor"/></svg>−1</p>
+            </div>
+            <svg class="kpi__spark kpi__spark--flat" width="72" height="34" viewBox="0 0 72 34" fill="none" aria-hidden="true">
+              <polyline points="2,12 12,10 22,15 32,13 42,18 52,16 62,21 70,20" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+        </article>
+      </section>
+
+      <!-- ============================================ chart + top units -->
+      <div class="split">
+        <section class="panel panel--pad" aria-labelledby="chart-h">
+          <div class="panel__head">
+            <div>
+              <h2 class="panel__title" id="chart-h">Views &amp; leads</h2>
+              <p class="legend">
+                <span><i class="s1"></i>Views</span>
+                <span><i class="s2"></i>Leads</span>
+              </p>
+            </div>
+            <div class="range" role="tablist" aria-label="Date range" data-range>
+              <button type="button" role="tab" data-days="7" aria-selected="false">7d</button>
+              <button type="button" role="tab" data-days="30" aria-selected="true">30d</button>
+              <button type="button" role="tab" data-days="90" aria-selected="false">90d</button>
+              <button type="button" role="tab" data-days="365" aria-selected="false">Year</button>
+            </div>
+          </div>
+
+          <div class="chart" data-chart>
+            <svg viewBox="0 0 700 220" preserveAspectRatio="none" role="img" aria-labelledby="chart-h chart-desc">
+              <desc id="chart-desc">Daily views and leads over the selected range. The same figures are available in the table below.</desc>
+              <defs>
+                <linearGradient id="gradViews" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--accent)" stop-opacity=".22"/>
+                  <stop offset="100%" stop-color="var(--accent)" stop-opacity="0"/>
+                </linearGradient>
+                <linearGradient id="gradLeads" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="var(--accent-2)" stop-opacity=".2"/>
+                  <stop offset="100%" stop-color="var(--accent-2)" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+              <line class="chart__grid" x1="0" y1="20" x2="700" y2="20"/>
+              <line class="chart__grid" x1="0" y1="70" x2="700" y2="70"/>
+              <line class="chart__grid" x1="0" y1="120" x2="700" y2="120"/>
+              <line class="chart__grid" x1="0" y1="170" x2="700" y2="170"/>
+              <path class="chart__area-1" data-area="1"></path>
+              <path class="chart__line-1" data-line="1"></path>
+              <path class="chart__area-2" data-area="2"></path>
+              <path class="chart__line-2" data-line="2"></path>
+              <line class="chart__crosshair" data-crosshair y1="20" y2="190"></line>
+              <circle class="chart__dot-1" data-dot="1" r="5"></circle>
+              <circle class="chart__dot-2" data-dot="2" r="5"></circle>
+              <rect class="chart__hit" data-hit x="0" y="0" width="700" height="220"></rect>
+            </svg>
+            <div class="chart__axis" data-axis></div>
+          </div>
+
+          <div class="readout" data-readout>
+            <span class="readout__date" data-readout-date>Tue 26 Aug</span>
+            <i aria-hidden="true"></i>
+            <b class="v1"><span data-readout-views>612</span> views</b>
+            <b class="v2"><span data-readout-leads>9</span> leads</b>
+            <button class="table-toggle" type="button" data-table-toggle aria-expanded="false" aria-controls="chart-table">View as table</button>
+          </div>
+
+          <table class="chart-table" id="chart-table" data-table hidden>
+            <caption>Views and leads for the selected range</caption>
+            <thead><tr><th scope="col">Date</th><th scope="col">Views</th><th scope="col">Leads</th></tr></thead>
+            <tbody data-table-body></tbody>
+          </table>
+        </section>
+
+        <section class="panel panel--pad" style="display:flex;flex-direction:column" aria-labelledby="top-h">
+          <div class="panel__head" style="margin-bottom:16px">
+            <h2 class="panel__title" id="top-h">Top performing units</h2>
+            <a class="panel__link" href="#">All</a>
+          </div>
+          <ul class="stack" style="gap:12px">
+            <li class="unit-row">
+              <span class="ph ph--fine unit-row__thumb"></span>
+              <span class="unit-row__meta"><b>Penthouse · Mivida</b><span>EGP 12,400,000</span></span>
+              <span class="unit-row__stat"><b>1,204</b><span>7 leads</span></span>
+            </li>
+            <li class="unit-row">
+              <span class="ph ph--fine unit-row__thumb"><span class="dot-featured" aria-hidden="true"></span></span>
+              <span class="unit-row__meta"><b>Chalet · Marassi</b><span>EGP 9,750,000</span></span>
+              <span class="unit-row__stat"><b>986</b><span>5 leads</span></span>
+            </li>
+            <li class="unit-row">
+              <span class="ph ph--fine unit-row__thumb"></span>
+              <span class="unit-row__meta"><b>Villa · Hyde Park</b><span>EGP 18,900,000</span></span>
+              <span class="unit-row__stat"><b>742</b><span>3 leads</span></span>
+            </li>
+            <li class="unit-row">
+              <span class="ph ph--fine unit-row__thumb"></span>
+              <span class="unit-row__meta"><b>Twin house · Sodic East</b><span>EGP 15,200,000</span></span>
+              <span class="unit-row__stat"><b>655</b><span>4 leads</span></span>
+            </li>
+          </ul>
+          <p class="callout-warn">
+            <span class="callout-warn__mark" aria-hidden="true">!</span>
+            <span>Il Monte Galala chalet has 340 views and no leads. Its price may be above the zone average.</span>
+          </p>
+        </section>
+      </div>
+
+      <!-- ============================================ leads + activity -->
+      <div class="split">
+        <section class="panel panel--pad" aria-labelledby="leads-h">
+          <div class="panel__head">
+            <h2 class="panel__title" id="leads-h">Recent leads</h2>
+            <div class="row row-gap-12">
+              <span class="chan" style="height:26px;padding-inline:10px;background:var(--bad-bg);color:var(--bad);font-size:var(--t-nano)">7 unanswered</span>
+              <a class="panel__link" href="#">Open inbox</a>
+            </div>
+          </div>
+          <ul class="stack" style="gap:10px">
+            <li class="lead">
+              <span class="avatar" style="width:40px;height:40px" aria-hidden="true"></span>
+              <span class="lead__meta">
+                <span class="lead__top">
+                  <b>Mai Farouk</b>
+                  <span class="chan chan--wa">WhatsApp</span>
+                  <time class="lead__time" datetime="2026-09-02T08:59">1 min ago</time>
+                </span>
+                <span class="lead__msg">Asked about the Marassi chalet — is the payment plan still 8 years?</span>
+              </span>
+              <span class="lead__actions">
+                <button class="btn--reply is-primary" type="button">Quick reply</button>
+                <button class="btn--more" type="button"><svg width="4" height="14" viewBox="0 0 4 14" aria-hidden="true"><circle cx="2" cy="2" r="1.5" fill="currentColor"/><circle cx="2" cy="7" r="1.5" fill="currentColor"/><circle cx="2" cy="12" r="1.5" fill="currentColor"/></svg><span class="visually-hidden">More actions for Mai Farouk</span></button>
+              </span>
+            </li>
+            <li class="lead">
+              <span class="avatar avatar--alt" style="width:40px;height:40px" aria-hidden="true"></span>
+              <span class="lead__meta">
+                <span class="lead__top">
+                  <b>Karim ElSayed</b>
+                  <span class="chan chan--form">Form</span>
+                  <time class="lead__time" datetime="2026-09-02T08:34">26 min ago</time>
+                </span>
+                <span class="lead__msg">Wants a viewing for the Mivida penthouse this Friday afternoon.</span>
+              </span>
+              <span class="lead__actions">
+                <button class="btn--reply" type="button">Quick reply</button>
+                <button class="btn--more" type="button"><svg width="4" height="14" viewBox="0 0 4 14" aria-hidden="true"><circle cx="2" cy="2" r="1.5" fill="currentColor"/><circle cx="2" cy="7" r="1.5" fill="currentColor"/><circle cx="2" cy="12" r="1.5" fill="currentColor"/></svg><span class="visually-hidden">More actions for Karim ElSayed</span></button>
+              </span>
+            </li>
+            <li class="lead">
+              <span class="avatar" style="width:40px;height:40px" aria-hidden="true"></span>
+              <span class="lead__meta">
+                <span class="lead__top">
+                  <b>Nourhan Adel</b>
+                  <span class="chan chan--wa">WhatsApp</span>
+                  <time class="lead__time" datetime="2026-09-02T07:00">2 hours ago</time>
+                </span>
+                <span class="lead__msg">Looking for a twin house in Sodic East under EGP 16M, delivery before 2028.</span>
+              </span>
+              <span class="lead__actions">
+                <button class="btn--reply" type="button">Quick reply</button>
+                <button class="btn--more" type="button"><svg width="4" height="14" viewBox="0 0 4 14" aria-hidden="true"><circle cx="2" cy="2" r="1.5" fill="currentColor"/><circle cx="2" cy="7" r="1.5" fill="currentColor"/><circle cx="2" cy="12" r="1.5" fill="currentColor"/></svg><span class="visually-hidden">More actions for Nourhan Adel</span></button>
+              </span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="panel panel--pad" aria-labelledby="activity-h">
+          <h2 class="panel__title" id="activity-h" style="margin-bottom:18px">Activity</h2>
+          <ul class="feed">
+            <li>
+              <span class="feed__spine" aria-hidden="true"><span class="feed__dot feed__dot--accent"></span><span class="feed__line"></span></span>
+              <div class="feed__body"><p><strong>Nourhan</strong> published <strong>Chalet · Marassi</strong></p><time datetime="2026-09-02T09:14">today · 09:14</time></div>
+            </li>
+            <li>
+              <span class="feed__spine" aria-hidden="true"><span class="feed__dot feed__dot--sand"></span><span class="feed__line"></span></span>
+              <div class="feed__body"><p>Villa · Hyde Park marked <strong>Featured</strong></p><time datetime="2026-09-02T08:40">today · 08:40</time></div>
+            </li>
+            <li>
+              <span class="feed__spine" aria-hidden="true"><span class="feed__dot"></span><span class="feed__line"></span></span>
+              <div class="feed__body"><p><strong>Karim</strong> dropped the price of Studio · Zed East by 6%</p><time datetime="2026-09-01T17:02">yesterday · 17:02</time></div>
+            </li>
+            <li>
+              <span class="feed__spine" aria-hidden="true"><span class="feed__dot"></span><span class="feed__line"></span></span>
+              <div class="feed__body"><p>42 units imported from <strong>kamal-inventory-sept.xlsx</strong></p><time datetime="2026-09-01T11:38">yesterday · 11:38</time></div>
+            </li>
+            <li>
+              <span class="feed__spine" aria-hidden="true"><span class="feed__dot"></span></span>
+              <div class="feed__body"><p>Storefront published on <strong>kamal-estates.alfmaskan.com</strong></p><time datetime="2026-08-30T15:20">30 Aug · 15:20</time></div>
+            </li>
+          </ul>
+        </section>
+      </div>
+
+    </main>
+  </div>
+
+  {{> setup-checklist}}
+  {{> app-tabbar}}
+</div>

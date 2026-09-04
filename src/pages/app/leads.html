@@ -1,0 +1,378 @@
+<!--
+title: Leads — Alf Maskan
+desc: Every enquiry, the unit it was about, and the whole conversation in one place.
+nav: leads
+bodyClass: app
+css: dashboard, app, crm
+js: dashboard, leads
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <h1>Leads</h1>
+          <p><b>7 unanswered</b> · 23 new this week · average first reply 41 minutes.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="{{base}}app/deals.html">Pipeline board</a>
+          <a class="btn btn--app" href="#">Export</a>
+          <a class="btn btn--go" href="#">
+            <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Add lead
+          </a>
+        </div>
+      </div>
+
+      <div class="inbox">
+
+        <!-- ============================================ segments -->
+        <nav class="segs" aria-label="Lead segments">
+          <span class="segs__label">Inbox</span>
+          <button class="seg-item" type="button" aria-current="true" data-seg="all">
+            <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M1 3.5h13v9H1z" stroke="currentColor" stroke-width="1.3"/><path d="M1 3.5l6.5 5 6.5-5" stroke="currentColor" stroke-width="1.3"/></svg>
+            All leads <span class="seg-item__n">8</span>
+          </button>
+          <button class="seg-item" type="button" aria-current="false" data-seg="unread">
+            <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="5" stroke="currentColor" stroke-width="1.3"/><circle cx="7.5" cy="7.5" r="2" fill="currentColor"/></svg>
+            Unanswered <span class="seg-item__n">3</span>
+          </button>
+          <button class="seg-item" type="button" aria-current="false" data-seg="mine">
+            <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><circle cx="7.5" cy="5" r="2.75" stroke="currentColor" stroke-width="1.3"/><path d="M2.5 13a5 5 0 0110 0" stroke="currentColor" stroke-width="1.3"/></svg>
+            Assigned to me <span class="seg-item__n">4</span>
+          </button>
+          <button class="seg-item" type="button" aria-current="false" data-seg="unassigned">
+            <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.3" stroke-dasharray="2.5 2.5"/></svg>
+            Unassigned <span class="seg-item__n">1</span>
+          </button>
+
+          <span class="segs__label">Source</span>
+          <button class="seg-item" type="button" aria-current="false" data-seg="wa">
+            <span class="src src--wa" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 0 0-6.8 12.2L0 16l3.9-1.1A8 8 0 1 0 8 0Zm0 14.6a6.6 6.6 0 0 1-3.4-.9l-.24-.15-2.5.7.7-2.4-.16-.25A6.6 6.6 0 1 1 8 14.6Z"/></svg></span>
+            WhatsApp <span class="seg-item__n">4</span>
+          </button>
+          <button class="seg-item" type="button" aria-current="false" data-seg="form">
+            <span class="src src--form" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 4.5h5M3.5 7.5h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+            Website form <span class="seg-item__n">2</span>
+          </button>
+          <button class="seg-item" type="button" aria-current="false" data-seg="call">
+            <span class="src src--call" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1 1 3c0 4 4 8 8 8l2-2-2.5-1.5L7 9C5.5 8 4 6.5 3 5l1.5-1.5z"/></svg></span>
+            Phone call <span class="seg-item__n">1</span>
+          </button>
+          <button class="seg-item" type="button" aria-current="false" data-seg="fb">
+            <span class="src src--fb" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 12 12" fill="currentColor"><path d="M7 4V3c0-.5.2-.8.8-.8H9V.2H7.4C5.6.2 5 1.3 5 2.8V4H3.5v2H5v6h2V6h1.6L9 4H7z"/></svg></span>
+            Facebook <span class="seg-item__n">1</span>
+          </button>
+        </nav>
+
+        <!-- ============================================ the list -->
+        <div class="leadlist">
+          <div class="leadlist__top">
+            <label class="fsearch" style="height:32px">
+              <svg width="13" height="13" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span class="visually-hidden">Search leads</span>
+              <input type="search" placeholder="Name, unit or phone…" data-lead-q>
+            </label>
+          </div>
+
+          <div class="leadlist__scroll" role="tablist" aria-label="Leads" data-leadlist>
+
+            <button class="leaditem" type="button" role="tab" aria-current="true" data-unread data-lead="mai" data-src="wa" data-agent="mine" data-status="new">
+              <span class="avatar avatar--sm" aria-hidden="true"></span>
+              <span class="leaditem__body">
+                <span class="leaditem__top">
+                  <span class="leaditem__name">Mai Farouk<span class="visually-hidden">, unanswered</span></span>
+                  <span class="leaditem__time">1 min</span>
+                </span>
+                <span class="leaditem__unit">Chalet · Marassi, AM-1038</span>
+                <span class="leaditem__meta">
+                  <span class="src src--wa" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 0 0-6.8 12.2L0 16l3.9-1.1A8 8 0 1 0 8 0Zm0 14.6a6.6 6.6 0 0 1-3.4-.9l-.24-.15-2.5.7.7-2.4-.16-.25A6.6 6.6 0 1 1 8 14.6Z"/></svg></span>
+                  <span class="visually-hidden">from WhatsApp</span>
+                  <span class="st st--live">New</span>
+                  <span class="leaditem__budget">up to 14M</span>
+                </span>
+              </span>
+            </button>
+
+            <button class="leaditem" type="button" role="tab" aria-current="false" data-unread data-lead="hala" data-src="wa" data-agent="mine" data-status="contacted">
+              <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+              <span class="leaditem__body">
+                <span class="leaditem__top">
+                  <span class="leaditem__name">Hala Mansour<span class="visually-hidden">, unanswered</span></span>
+                  <span class="leaditem__time">22 min</span>
+                </span>
+                <span class="leaditem__unit">Penthouse · Mivida, AM-1042</span>
+                <span class="leaditem__meta">
+                  <span class="src src--wa" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 0 0-6.8 12.2L0 16l3.9-1.1A8 8 0 1 0 8 0Zm0 14.6a6.6 6.6 0 0 1-3.4-.9l-.24-.15-2.5.7.7-2.4-.16-.25A6.6 6.6 0 1 1 8 14.6Z"/></svg></span>
+                  <span class="visually-hidden">from WhatsApp</span>
+                  <span class="st st--reserved">Contacted</span>
+                  <span class="leaditem__budget">8 – 10M</span>
+                </span>
+              </span>
+            </button>
+
+            <button class="leaditem" type="button" role="tab" aria-current="false" data-lead="tarek" data-src="form" data-agent="mine" data-status="viewing">
+              <span class="avatar avatar--sm" aria-hidden="true"></span>
+              <span class="leaditem__body">
+                <span class="leaditem__top">
+                  <span class="leaditem__name">Tarek Abdelrahman</span>
+                  <span class="leaditem__time">2 h</span>
+                </span>
+                <span class="leaditem__unit">Twin house · Sodic East, AM-1044</span>
+                <span class="leaditem__meta">
+                  <span class="src src--form" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 4.5h5M3.5 7.5h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+                  <span class="visually-hidden">from the website form</span>
+                  <span class="st st--live">Viewing booked</span>
+                  <span class="leaditem__budget">14 – 18M</span>
+                </span>
+              </span>
+            </button>
+
+            <button class="leaditem" type="button" role="tab" aria-current="false" data-unread data-lead="dina" data-src="fb" data-agent="other" data-status="new">
+              <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+              <span class="leaditem__body">
+                <span class="leaditem__top">
+                  <span class="leaditem__name">Dina Sherif<span class="visually-hidden">, unanswered</span></span>
+                  <span class="leaditem__time">4 h</span>
+                </span>
+                <span class="leaditem__unit">Studio · Zed East, AM-1035</span>
+                <span class="leaditem__meta">
+                  <span class="src src--fb" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 12 12" fill="currentColor"><path d="M7 4V3c0-.5.2-.8.8-.8H9V.2H7.4C5.6.2 5 1.3 5 2.8V4H3.5v2H5v6h2V6h1.6L9 4H7z"/></svg></span>
+                  <span class="visually-hidden">from Facebook</span>
+                  <span class="st st--live">New</span>
+                  <span class="leaditem__budget">up to 5M</span>
+                </span>
+              </span>
+            </button>
+
+            <button class="leaditem" type="button" role="tab" aria-current="false" data-lead="omar" data-src="call" data-agent="unassigned" data-status="negotiating">
+              <span class="avatar avatar--sm" aria-hidden="true"></span>
+              <span class="leaditem__body">
+                <span class="leaditem__top">
+                  <span class="leaditem__name">Omar Hegazy</span>
+                  <span class="leaditem__time">Yesterday</span>
+                </span>
+                <span class="leaditem__unit">Villa · Palm Hills, AM-1021</span>
+                <span class="leaditem__meta">
+                  <span class="src src--call" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 12 12" fill="currentColor"><path d="M3 1 1 3c0 4 4 8 8 8l2-2-2.5-1.5L7 9C5.5 8 4 6.5 3 5l1.5-1.5z"/></svg></span>
+                  <span class="visually-hidden">from a phone call</span>
+                  <span class="st st--reserved">Negotiating</span>
+                  <span class="leaditem__budget">30 – 36M</span>
+                </span>
+              </span>
+            </button>
+
+            <button class="leaditem" type="button" role="tab" aria-current="false" data-lead="nourhan" data-src="wa" data-agent="other" data-status="viewing">
+              <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+              <span class="leaditem__body">
+                <span class="leaditem__top">
+                  <span class="leaditem__name">Nourhan Adel</span>
+                  <span class="leaditem__time">2 days</span>
+                </span>
+                <span class="leaditem__unit">Apartment · Hyde Park, AM-1027</span>
+                <span class="leaditem__meta">
+                  <span class="src src--wa" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 0 0-6.8 12.2L0 16l3.9-1.1A8 8 0 1 0 8 0Zm0 14.6a6.6 6.6 0 0 1-3.4-.9l-.24-.15-2.5.7.7-2.4-.16-.25A6.6 6.6 0 1 1 8 14.6Z"/></svg></span>
+                  <span class="visually-hidden">from WhatsApp</span>
+                  <span class="st st--live">Viewing booked</span>
+                  <span class="leaditem__budget">6 – 8M</span>
+                </span>
+              </span>
+            </button>
+
+            <button class="leaditem" type="button" role="tab" aria-current="false" data-lead="karim" data-src="form" data-agent="mine" data-status="won">
+              <span class="avatar avatar--sm" aria-hidden="true"></span>
+              <span class="leaditem__body">
+                <span class="leaditem__top">
+                  <span class="leaditem__name">Karim ElSayed</span>
+                  <span class="leaditem__time">1 week</span>
+                </span>
+                <span class="leaditem__unit">Townhouse · Mostakbal City, AM-0996</span>
+                <span class="leaditem__meta">
+                  <span class="src src--form" aria-hidden="true"><svg width="9" height="9" viewBox="0 0 12 12" fill="none"><rect x="1" y="1" width="10" height="10" rx="1.5" stroke="currentColor" stroke-width="1.4"/><path d="M3.5 4.5h5M3.5 7.5h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg></span>
+                  <span class="visually-hidden">from the website form</span>
+                  <span class="st st--sold">Won</span>
+                  <span class="leaditem__budget">8.9M closed</span>
+                </span>
+              </span>
+            </button>
+
+            <button class="leaditem" type="button" role="tab" aria-current="false" data-lead="mohamed" data-src="wa" data-agent="other" data-status="lost">
+              <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+              <span class="leaditem__body">
+                <span class="leaditem__top">
+                  <span class="leaditem__name">Mohamed Sabry</span>
+                  <span class="leaditem__time">2 weeks</span>
+                </span>
+                <span class="leaditem__unit">Chalet · Il Monte Galala, AM-1030</span>
+                <span class="leaditem__meta">
+                  <span class="src src--wa" aria-hidden="true"><svg width="10" height="10" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0a8 8 0 0 0-6.8 12.2L0 16l3.9-1.1A8 8 0 1 0 8 0Zm0 14.6a6.6 6.6 0 0 1-3.4-.9l-.24-.15-2.5.7.7-2.4-.16-.25A6.6 6.6 0 1 1 8 14.6Z"/></svg></span>
+                  <span class="visually-hidden">from WhatsApp</span>
+                  <span class="st st--paused">Lost</span>
+                  <span class="leaditem__budget">bought elsewhere</span>
+                </span>
+              </span>
+            </button>
+
+          </div>
+
+          <div class="empty" data-lead-empty hidden style="border:0;border-radius:0;padding:36px 18px">
+            <h3>No leads here</h3>
+            <p>Nothing in this segment right now.</p>
+          </div>
+        </div>
+
+        <!-- ============================================ the lead -->
+        <div class="leadview">
+          <div class="leadview__head">
+            <div class="leadview__who">
+              <span class="avatar" aria-hidden="true"></span>
+              <div>
+                <h2 data-lead-name>Mai Farouk</h2>
+                <p><span dir="ltr">+20 101 337 9042</span> · WhatsApp · first touch 1 minute ago</p>
+              </div>
+            </div>
+            <div class="leadview__acts">
+              <button class="btn btn--app" type="button">Assign</button>
+              <button class="btn btn--app" type="button">Add task</button>
+              <a class="btn btn--go" href="https://wa.me/201013379042">Reply on WhatsApp</a>
+            </div>
+          </div>
+
+          <div class="leadview__scroll">
+
+            <!-- ---- status stepper ---- -->
+            <section aria-labelledby="stage-h">
+              <div class="titlerow">
+            <h3 class="panel__title" id="stage-h" style="margin-bottom:9px">Stage</h3>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About stages</span></button>
+                  <span class="hint__body" hidden>Moving a lead to Viewing booked or further creates a deal on the pipeline board, so the two screens never disagree.</span>
+                </span>
+          </div>
+              <div class="stepper" role="group" aria-label="Lead stage">
+                <button class="step-pill" type="button" aria-current="step" data-stage="new">New</button>
+                <button class="step-pill" type="button" data-stage="contacted">Contacted</button>
+                <button class="step-pill" type="button" data-stage="viewing">Viewing booked</button>
+                <button class="step-pill" type="button" data-stage="negotiating">Negotiating</button>
+                <button class="step-pill step-pill--won" type="button" data-stage="won">Won</button>
+                <button class="step-pill step-pill--lost" type="button" data-stage="lost">Lost</button>
+              </div>
+            </section>
+
+            <!-- ---- the unit ---- -->
+            <section aria-labelledby="asked-h">
+              <h3 class="panel__title" id="asked-h" style="margin-bottom:9px">Asked about</h3>
+              <div class="askedabout">
+                <div class="ph" aria-hidden="true"></div>
+                <div class="askedabout__txt">
+                  <b>Sea-view chalet, first row</b>
+                  <span>North Coast · Marassi · 122 m² · 2 bed</span>
+                </div>
+                <div class="askedabout__price">
+                  <b>EGP 12,200,000</b>
+                  <span>15% down · 6 yrs</span>
+                </div>
+              </div>
+            </section>
+
+            <!-- ---- conversation ---- -->
+            <section aria-labelledby="convo-h">
+              <h3 class="panel__title" id="convo-h" style="margin-bottom:12px">Conversation</h3>
+              <div class="convo">
+                <span class="convo-event">Saw the Marassi chalet on your storefront</span>
+
+                <div class="msg">
+                  <span class="avatar avatar--sm msg__avatar" aria-hidden="true"></span>
+                  <div class="msg__bubble" lang="ar" dir="rtl">
+                    مساء الخير، الشاليه في مراسي لسه متاح؟ وممكن أعرف المقدم كام؟
+                    <span class="msg__when" dir="ltr">Today, 14:02</span>
+                  </div>
+                </div>
+
+                <div class="msg msg--out">
+                  <span class="avatar avatar--sm msg__avatar" aria-hidden="true"></span>
+                  <div class="msg__bubble">
+                    Good evening Mai — yes, still available. The down payment is EGP 1,830,000 and the plan runs six years at EGP 144,028 a month.
+                    <span class="msg__when">Today, 14:04</span>
+                  </div>
+                </div>
+
+                <div class="msg">
+                  <span class="avatar avatar--sm msg__avatar" aria-hidden="true"></span>
+                  <div class="msg__bubble" lang="ar" dir="rtl">
+                    ممكن نشوفه الجمعة الجاية؟ وهل في وحدة تانية في نفس المرحلة أرخص شوية؟
+                    <span class="msg__when" dir="ltr">Today, 14:21</span>
+                  </div>
+                </div>
+
+                <span class="convo-event">Waiting on your reply · 1 minute</span>
+              </div>
+            </section>
+
+            <!-- ---- quick replies ---- -->
+            <section class="replies" aria-labelledby="reply-h">
+              <div class="titlerow">
+            <h3 class="panel__title" id="reply-h">Quick replies</h3>
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About quick replies</span></button>
+                  <span class="hint__body" hidden>Templates drop into the box so you can edit before sending. They answer in whichever script the buyer wrote in.</span>
+                </span>
+          </div>
+              <div class="replies__row">
+                <button class="reply-chip" type="button" data-reply="Friday works. Shall we say 11:30 at the Marassi sales office? I will send the location.">Offer a viewing time</button>
+                <button class="reply-chip" type="button" data-reply="Here is the full payment plan for AM-1038: 15% down (EGP 1,830,000), then EGP 144,028 a month for six years. Maintenance is EGP 610,000 on handover.">Send the payment plan</button>
+                <button class="reply-chip" type="button" data-reply="There are two other units in the same phase, one at EGP 10.4M and one at EGP 11.1M. Want me to send both?">Suggest cheaper units</button>
+              </div>
+              <div class="replies__row">
+                <button class="reply-chip" type="button" lang="ar" dir="rtl" data-reply="الجمعة تمام. نقول ١١:٣٠ في مكتب مبيعات مراسي؟ هبعتلك اللوكيشن.">اقتراح ميعاد معاينة</button>
+                <button class="reply-chip" type="button" lang="ar" dir="rtl" data-reply="خطة السداد للوحدة AM-1038: مقدم 15% يعني 1,830,000 ج.م، وبعدها 144,028 ج.م شهريًا لمدة ست سنوات. الصيانة 610,000 ج.م عند الاستلام.">إرسال خطة السداد</button>
+              </div>
+            </section>
+
+            <!-- ---- tasks ---- -->
+            <section aria-labelledby="tasks-h">
+              <h3 class="panel__title" id="tasks-h" style="margin-bottom:6px">Tasks</h3>
+              <div class="tasklist">
+                <label class="task" data-overdue>
+                  <input class="chk" type="checkbox">
+                  <span>Send the Marassi phase 3 price list</span>
+                  <span class="task__when">Overdue 1 d</span>
+                </label>
+                <label class="task">
+                  <input class="chk" type="checkbox">
+                  <span>Confirm Friday viewing with the sales office</span>
+                  <span class="task__when">Today</span>
+                </label>
+                <label class="task">
+                  <input class="chk" type="checkbox" checked>
+                  <span>Log the budget range</span>
+                  <span class="task__when">Done</span>
+                </label>
+              </div>
+            </section>
+
+            <!-- ---- notes ---- -->
+            <section aria-labelledby="notes-h">
+              <h3 class="panel__title" id="notes-h" style="margin-bottom:9px">Internal notes</h3>
+              <textarea class="ta" style="width:100%;min-height:70px;padding:10px 12px;border:1px solid var(--rule);border-radius:var(--r-10);background:var(--panel-2);font:inherit;font-size:var(--t-micro);color:var(--text)">Second enquiry from Mai this month — the first was for Sokhna. Cash-heavy, prefers a short plan. Her brother bought in Marassi last year.</textarea>
+            </section>
+
+          </div>
+
+          <div class="composer">
+            <label class="visually-hidden" for="reply-box">Your reply</label>
+            <textarea id="reply-box" placeholder="Write a reply, or pick a template above…" data-composer></textarea>
+            <button class="btn btn--go" type="button" data-send>Send</button>
+          </div>
+        </div>
+
+      </div>
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

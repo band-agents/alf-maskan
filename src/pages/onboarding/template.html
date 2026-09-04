@@ -1,0 +1,113 @@
+<!--
+title: Pick your storefront — Alf Maskan
+desc: Ten templates, all built from the same sections. Swap any time without losing a unit.
+bodyClass: app
+css: dashboard, app, editor, onboard
+js: onboard
+theme: yes
+step: 5
+-->
+<div class="ob">
+  {{> onboard-rail}}
+  <div class="obody" style="max-width:940px">
+
+    <div class="ohead">
+      <span class="ohead__eyebrow">Step 5 of 8</span>
+      <h1>Pick your storefront</h1>
+      <p>All ten are built from the same sections, so switching later keeps every unit, photo and payment plan. Only the look changes.</p>
+    </div>
+
+    <div class="toolbar" style="margin-bottom:4px">
+      <span class="fselect">
+        <label class="visually-hidden" for="t-filter">Style</label>
+        <select id="t-filter" data-tfilter>
+          <option value="">All styles</option>
+          <option>Luxury</option>
+          <option>Portal</option>
+          <option>Single-project</option>
+          <option>Coastal</option>
+          <option>Agent</option>
+        </select>
+        <span class="fselect__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </span>
+      <span class="f__hint" style="margin-inline-start:auto"><b data-tcount>10</b> templates · recommended for agencies in New Cairo first</span>
+    </div>
+
+    <div class="tgrid" role="radiogroup" aria-label="Storefront template" data-tgrid>
+      <label class="tcard" data-style="Portal">
+        <input type="radio" name="tpl" value="nile" checked>
+        <span class="tcard__tag">Recommended</span>
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Nile · editorial home · 4:3</span>
+        <span class="tcard__body"><b>Nile</b><span>Editorial agency classic. Serif headlines, wide margins, warm paper.</span></span>
+      </label>
+      <label class="tcard" data-style="Luxury">
+        <input type="radio" name="tpl" value="cascade">
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Cascade · full-bleed photo · 4:3</span>
+        <span class="tcard__body"><b>Cascade</b><span>Luxury minimal. Near-full-bleed photography, very small type.</span></span>
+      </label>
+      <label class="tcard" data-style="Single-project">
+        <input type="radio" name="tpl" value="compound">
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Compound · masterplan hero · 4:3</span>
+        <span class="tcard__body"><b>Compound</b><span>One project, one site. Masterplan, phases, brochure download.</span></span>
+      </label>
+      <label class="tcard" data-style="Coastal">
+        <input type="radio" name="tpl" value="sahel">
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Sahel · chalet grid · 4:3</span>
+        <span class="tcard__body"><b>Sahel</b><span>Coastal and warm. Season badges and delivery countdowns.</span></span>
+      </label>
+      <label class="tcard" data-style="Portal">
+        <input type="radio" name="tpl" value="broker">
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Broker · map and results · 4:3</span>
+        <span class="tcard__body"><b>Broker</b><span>Search-first portal. Dense filter rail, map split. For 500+ units.</span></span>
+      </label>
+      <label class="tcard" data-style="Luxury">
+        <input type="radio" name="tpl" value="vitrine">
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Vitrine · dark boutique · 4:3</span>
+        <span class="tcard__body"><b>Vitrine</b><span>Charcoal and gold hairlines. One hero unit at a time.</span></span>
+      </label>
+      <label class="tcard" data-style="Agent">
+        <input type="radio" name="tpl" value="solo">
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Solo · agent portrait · 4:3</span>
+        <span class="tcard__body"><b>Solo</b><span>Personal brand. Big portrait, WhatsApp-forward, small portfolio.</span></span>
+      </label>
+      <label class="tcard" data-style="Single-project">
+        <input type="radio" name="tpl" value="blueprint">
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Blueprint · projects grid · 4:3</span>
+        <span class="tcard__body"><b>Blueprint</b><span>Developer corporate. Projects, timeline, investor stats.</span></span>
+      </label>
+      <label class="tcard" data-style="Portal">
+        <input type="radio" name="tpl" value="rental">
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Rental · availability calendar · 4:3</span>
+        <span class="tcard__body"><b>Rental</b><span>Long and short lets. Calendars, monthly pricing, quick enquiry.</span></span>
+      </label>
+      <label class="tcard" data-style="Agent">
+        <input type="radio" name="tpl" value="souq">
+        <span class="tcard__pick" aria-hidden="true">{{> tick}}</span>
+        <span class="ph">Souq · agent directory · 4:3</span>
+        <span class="tcard__body"><b>Souq</b><span>Multi-agent marketplace. Directory, verified badges, high volume.</span></span>
+      </label>
+    </div>
+
+    <div data-tempty hidden class="empty" style="padding:40px 20px">
+      <h3>No template in that style yet</h3>
+      <p>Clear the filter to see all ten, or start blank and build your own from sections.</p>
+    </div>
+
+    <div class="ofoot">
+      <a class="ofoot__skip" href="{{base}}onboarding/branding.html">Back</a>
+      <span class="ofoot__end">
+        <a class="ofoot__skip" href="{{base}}onboarding/domain.html">Not sure? Start blank</a>
+        <a class="btn btn--go" href="{{base}}onboarding/domain.html">Use this one</a>
+      </span>
+    </div>
+  </div>
+</div>

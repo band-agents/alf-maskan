@@ -1,0 +1,132 @@
+<!--
+title: Make it yours — Alf Maskan
+desc: Your logo, your colour and a font pair that works in both scripts.
+bodyClass: app
+css: dashboard, app, editor, onboard
+js: onboard
+theme: yes
+step: 4
+-->
+<div class="ob ob--preview">
+  {{> onboard-rail}}
+  <div class="obody">
+
+    <div class="ohead">
+      <span class="ohead__eyebrow">Step 4 of 8</span>
+      <h1>Make it yours</h1>
+      <p>Upload a logo and we will pull the colours out of it. Everything here is one click to change later.</p>
+    </div>
+
+    <div class="f">
+      <span class="f__label">Logo</span>
+      <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+        <span class="ph" style="width:96px;height:96px;border-radius:var(--r-12);flex:none">logo · 1:1</span>
+        <div style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-size:var(--t-micro);color:var(--text)"><b>kamal-estates-logo.png</b></span>
+          <span class="f__hint">PNG · 512 × 512 · transparent background</span>
+          <span style="display:flex;gap:8px">
+            <button class="btn btn--app" type="button">Replace</button>
+            <button class="btn btn--app" type="button">Remove</button>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="f">
+      <span class="f__label">
+        Colours we found in your logo
+        <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About extracted colours</span></button>
+          <span class="hint__body" hidden>We read the four most-used colours out of the image. Pick the one you want for buttons and links — the rest of the palette is built around it.</span>
+        </span>
+      </span>
+      <div class="swatches" data-swatches role="group" aria-label="Brand colour">
+        <span style="text-align:center">
+          <button class="swatch" type="button" aria-pressed="true" data-hex="#0F5E4E" style="background:#0F5E4E"><span class="visually-hidden">Deep green</span></button>
+          <span class="swatch__hex">0F5E4E</span>
+        </span>
+        <span style="text-align:center">
+          <button class="swatch" type="button" aria-pressed="false" data-hex="#1B4F8C" style="background:#1B4F8C"><span class="visually-hidden">Navy</span></button>
+          <span class="swatch__hex">1B4F8C</span>
+        </span>
+        <span style="text-align:center">
+          <button class="swatch" type="button" aria-pressed="false" data-hex="#A8371F" style="background:#A8371F"><span class="visually-hidden">Brick</span></button>
+          <span class="swatch__hex">A8371F</span>
+        </span>
+        <span style="text-align:center">
+          <button class="swatch" type="button" aria-pressed="false" data-hex="#D9B45A" style="background:#D9B45A"><span class="visually-hidden">Sand</span></button>
+          <span class="swatch__hex">D9B45A</span>
+        </span>
+        <span style="text-align:center">
+          <label class="swatch" style="display:grid;place-items:center;border:1.5px dashed var(--rule-strong);background:var(--panel-2)">
+            <input type="color" value="#0F5E4E" style="opacity:0;position:absolute;width:1px;height:1px" data-custom-colour>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true" style="color:var(--text-4)"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span class="visually-hidden">Pick another colour</span>
+          </label>
+          <span class="swatch__hex">Custom</span>
+        </span>
+      </div>
+
+      <!-- Contrast is checked, not assumed: a brand colour that fails on white
+           makes every button on the storefront unreadable. -->
+      <div class="contrast-note contrast-note--ok" data-contrast role="status" aria-live="polite">
+        <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true" style="color:var(--ok)"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M5 8l2 2 4-4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-contrast-text><b>White text on this colour passes.</b> Contrast 8.4:1 — comfortable at any size.</span>
+      </div>
+    </div>
+
+    <div class="f">
+      <span class="f__label">Font pair</span>
+      <div class="choices" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))" role="radiogroup" aria-label="Font pair">
+        <label class="choice" style="padding:14px">
+          <input type="radio" name="font" value="tajawal" checked data-font>
+          <span class="choice__tick" aria-hidden="true">{{> tick}}</span>
+          <b style="font-family:Tajawal,sans-serif;font-size:19px">Tajawal</b>
+          <span lang="ar" dir="rtl" style="font-family:Tajawal,sans-serif;font-size:16px;color:var(--text-2)">شقة بحديقة خاصة</span>
+          <span>Geometric, modern. Carries both scripts in one family.</span>
+        </label>
+        <label class="choice" style="padding:14px">
+          <input type="radio" name="font" value="plex" data-font>
+          <span class="choice__tick" aria-hidden="true">{{> tick}}</span>
+          <b style="font-family:'IBM Plex Sans Arabic',sans-serif;font-size:19px">IBM Plex</b>
+          <span lang="ar" dir="rtl" style="font-family:'IBM Plex Sans Arabic',sans-serif;font-size:16px;color:var(--text-2)">شقة بحديقة خاصة</span>
+          <span>More neutral, slightly wider. Better for dense listing pages.</span>
+        </label>
+      </div>
+    </div>
+
+    <div class="ofoot">
+      <a class="ofoot__skip" href="{{base}}onboarding/business.html">Back</a>
+      <span class="ofoot__end">
+        <a class="btn btn--go" href="{{base}}onboarding/template.html">Continue</a>
+      </span>
+    </div>
+  </div>
+
+  <aside class="opreview" aria-label="Storefront preview">
+    <span class="opreview__label">Live preview</span>
+    <div class="device">
+      <div class="device__bar"><span class="device__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="device__url">kamal-estates.alfmaskan.com</span></div>
+      <div class="sfhead">
+        <span class="sfhead__logo" data-sf-logo style="background:#0F5E4E">KE</span>
+        <span class="sfhead__name" data-sf-name>Kamal Estates</span>
+        <span class="sfhead__nav"><span>Units</span><span>About</span><span>Contact</span></span>
+      </div>
+      <div class="sfhero">
+        <div class="ph">hero · New Cairo compound · 16:9</div>
+        <span class="sfhero__title" data-sf-hero>Find your unit in New Cairo</span>
+        <span class="sfhero__btn" data-sf-btn style="background:#0F5E4E">Browse units</span>
+      </div>
+    </div>
+    <div class="device">
+      <div class="sfhead" style="border-bottom:0">
+        <span class="sfhead__logo" data-sf-logo style="background:#0F5E4E">KE</span>
+        <span class="sfhead__name" data-sf-name lang="ar" dir="rtl" style="font-family:var(--font-arabic)">كمال العقارية</span>
+      </div>
+      <div class="sfhero" dir="rtl" style="padding-top:0">
+        <span class="sfhero__title" lang="ar" style="font-family:var(--font-arabic)">دور على وحدتك في القاهرة الجديدة</span>
+        <span class="sfhero__btn" data-sf-btn lang="ar" style="background:#0F5E4E;font-family:var(--font-arabic)">تصفح الوحدات</span>
+      </div>
+    </div>
+    <p class="f__hint">Both scripts, same colour. If a colour fails contrast we tell you before it reaches a buyer.</p>
+  </aside>
+</div>

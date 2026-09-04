@@ -1,0 +1,204 @@
+<!--
+title: Billing — Alf Maskan
+desc: Your plan, what you are using, how you pay and every invoice.
+nav: settings
+bodyClass: app
+css: dashboard, app, editor, admin
+js: dashboard, billing
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <nav class="crumb" aria-label="Breadcrumb">
+        <a href="{{base}}app/settings.html">Settings</a>
+        <svg width="5" height="8" viewBox="0 0 6 10" fill="none" aria-hidden="true"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Billing</span>
+      </nav>
+
+      <div class="page-head">
+        <div>
+          <h1>Billing</h1>
+          <p>Next payment <b>3 October 2026</b> · no contract, cancel whenever.</p>
+        </div>
+      </div>
+
+      <!-- ============================================ plan -->
+      <section class="plancard" aria-labelledby="plan-h">
+        <div style="display:flex;flex-direction:column;gap:6px;min-width:210px">
+          <span class="st st--live" style="align-self:flex-start">Active</span>
+          <h2 class="panel__title" id="plan-h" style="font-size:var(--t-body-sm)">Pro — everything included</h2>
+          <span class="plancard__price">EGP 990<span style="font-size:var(--t-micro);font-weight:400;color:var(--text-3)"> / month</span></span>
+          <span style="font-size:var(--t-nano);color:var(--text-3)">Billed monthly. Annual saves two months.</span>
+        </div>
+
+        <div style="flex:1;min-width:240px;display:flex;flex-direction:column;gap:9px">
+          <div class="seg" data-cycle style="align-self:flex-start">
+            <button type="button" aria-pressed="true" data-cycle-btn="monthly">Monthly</button>
+            <button type="button" aria-pressed="false" data-cycle-btn="annual">Annual · 2 months free</button>
+          </div>
+          <p style="font-size:var(--t-nano);color:var(--text-3);line-height:1.6" data-cycle-note>
+            <b style="color:var(--text)">EGP 990</b> charged on the 3rd of each month. Switching to annual would cost <b style="color:var(--text)">EGP 9,900</b> once and save you <b style="color:var(--text)">EGP 1,980</b> a year.
+          </p>
+        </div>
+
+        <div class="plancard__end">
+          <button class="btn btn--go" type="button" data-switch-cycle>Switch to annual</button>
+          <a class="btn btn--app" href="{{base}}pricing.html">See what is included</a>
+        </div>
+      </section>
+
+      <!-- ============================================ usage -->
+      <div class="split">
+        <section class="panel panel--pad" aria-labelledby="usage-h">
+          <h2 class="panel__title" id="usage-h" style="margin-bottom:14px">
+            What you are using
+            <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About usage limits</span></button>
+              <span class="hint__body" hidden>Nothing switches off when you reach a ceiling — we tell you and you decide. Storefronts and seats are the only two that cost extra.</span>
+            </span>
+          </h2>
+          <div class="meters">
+            <div class="meter">
+              <span class="meter__top"><span>Storefronts</span><b>1 of 1</b></span>
+              <span class="meter__track"><span class="meter__fill" style="width:100%"></span></span>
+            </div>
+            <div class="meter">
+              <span class="meter__top"><span>Listings</span><b>42 of unlimited</b></span>
+              <span class="meter__track"><span class="meter__fill" style="width:14%"></span></span>
+            </div>
+            <div class="meter" data-warn>
+              <span class="meter__top"><span>Team seats</span><b>6 of 10 — 4 left</b></span>
+              <span class="meter__track"><span class="meter__fill" style="width:60%"></span></span>
+            </div>
+            <div class="meter">
+              <span class="meter__top"><span>Photo storage</span><b>1.8 GB of 20 GB</b></span>
+              <span class="meter__track"><span class="meter__fill" style="width:9%"></span></span>
+            </div>
+          </div>
+          <p class="f__hint" style="margin-top:14px;border-top:1px solid var(--rule);padding-top:12px">
+            A second storefront is EGP 390 a month. Seats past ten are EGP 90 each.
+          </p>
+        </section>
+
+        <section class="panel panel--pad" aria-labelledby="pay-h">
+          <h2 class="panel__title" id="pay-h" style="margin-bottom:6px">How you pay</h2>
+          <p style="font-size:var(--t-nano);color:var(--text-3);margin-bottom:12px">Every method below is settled in EGP. No card is required — plenty of agencies pay by Fawry or InstaPay.</p>
+
+          <div class="rails" role="radiogroup" aria-label="Payment method">
+            <label class="rail-opt">
+              <input type="radio" name="pay" value="card" checked>
+              <span class="ph">Visa</span>
+              <b>Visa ending 4417</b>
+              <span>Expires 09/28 · auto-renews</span>
+            </label>
+            <label class="rail-opt">
+              <input type="radio" name="pay" value="fawry">
+              <span class="ph">Fawry</span>
+              <b>Fawry</b>
+              <span>We send a code, you pay at any outlet</span>
+            </label>
+            <label class="rail-opt">
+              <input type="radio" name="pay" value="paymob">
+              <span class="ph">Paymob</span>
+              <b>Paymob wallet</b>
+              <span>Vodafone Cash, Etisalat, Orange</span>
+            </label>
+            <label class="rail-opt">
+              <input type="radio" name="pay" value="instapay">
+              <span class="ph">InstaPay</span>
+              <b>InstaPay</b>
+              <span>Bank transfer from your phone</span>
+            </label>
+          </div>
+
+          <p class="f__hint" style="margin-top:12px" data-pay-note>
+            Charged automatically on the 3rd. If a card fails we retry twice over five days and email you before anything switches off.
+          </p>
+        </section>
+      </div>
+
+      <!-- ============================================ invoices -->
+      <section class="panel panel--pad" aria-labelledby="inv-h">
+        <h2 class="panel__title" id="inv-h" style="margin-bottom:12px">Invoices</h2>
+        <div class="tablescroll">
+          <table class="dtable" style="min-width:640px">
+            <caption class="visually-hidden">Every invoice on this store, newest first.</caption>
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Invoice</th>
+                <th scope="col">Method</th>
+                <th class="col-num" scope="col">Amount</th>
+                <th scope="col">Status</th>
+                <th scope="col"><span class="visually-hidden">Download</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>3 Sep 2026</td><td><span class="ref">AM-INV-0914</span></td><td>Visa 4417</td>
+                <td class="col-num"><span class="money">EGP 990</span></td>
+                <td><span class="st st--live">Paid</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 1v9m0 0L4 6.5m3.5 3.5L11 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M1.5 11v2a1 1 0 001 1h10a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="visually-hidden">Download AM-INV-0914</span></button></div></td>
+              </tr>
+              <tr>
+                <td>3 Aug 2026</td><td><span class="ref">AM-INV-0831</span></td><td>Visa 4417</td>
+                <td class="col-num"><span class="money">EGP 990</span></td>
+                <td><span class="st st--live">Paid</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 1v9m0 0L4 6.5m3.5 3.5L11 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M1.5 11v2a1 1 0 001 1h10a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="visually-hidden">Download AM-INV-0831</span></button></div></td>
+              </tr>
+              <tr>
+                <td>3 Jul 2026</td><td><span class="ref">AM-INV-0742</span></td><td>Fawry</td>
+                <td class="col-num"><span class="money">EGP 990</span></td>
+                <td><span class="st st--live">Paid</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 1v9m0 0L4 6.5m3.5 3.5L11 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M1.5 11v2a1 1 0 001 1h10a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="visually-hidden">Download AM-INV-0742</span></button></div></td>
+              </tr>
+              <tr>
+                <td>3 Jun 2026</td><td><span class="ref">AM-INV-0655</span></td><td>Visa 4417</td>
+                <td class="col-num"><span class="money">EGP 990</span></td>
+                <td><span class="st st--reserved">Retried once</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 1v9m0 0L4 6.5m3.5 3.5L11 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M1.5 11v2a1 1 0 001 1h10a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="visually-hidden">Download AM-INV-0655</span></button></div></td>
+              </tr>
+              <tr>
+                <td>3 May 2026</td><td><span class="ref">AM-INV-0571</span></td><td>Visa 4417</td>
+                <td class="col-num"><span class="money">EGP 990</span></td>
+                <td><span class="st st--live">Paid</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><path d="M7.5 1v9m0 0L4 6.5m3.5 3.5L11 6.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/><path d="M1.5 11v2a1 1 0 001 1h10a1 1 0 001-1v-2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg><span class="visually-hidden">Download AM-INV-0571</span></button></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="f__hint" style="margin-top:12px">Invoices carry your tax registration number. Add it in Store profile if it is missing.</p>
+      </section>
+
+      <!-- ============================================ cancel -->
+      <section class="danger-zone" style="margin-top:4px">
+        <div>
+          <b>Cancel the subscription</b>
+          <p>Your storefront goes offline at the end of the period you have paid for — 3 October 2026. Your units, leads and deals are kept for ninety days, so coming back is one payment and nothing else. Export first if you want a copy regardless.</p>
+        </div>
+        <button class="btn btn--danger" type="button" data-cancel>Cancel subscription</button>
+      </section>
+
+      <!-- The retention offer is shown once, honestly, and takes no for an answer. -->
+      <section class="panel panel--pad" data-retain hidden style="border-color:var(--accent)">
+        <h2 class="panel__title" style="margin-bottom:8px">Before you go</h2>
+        <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.7;max-width:60ch">
+          If it is the money, we can pause the store for two months at no charge instead. Everything stays exactly as it is and the storefront keeps working — most agencies who pause do it over Ramadan or August and come back.
+        </p>
+        <p style="font-size:var(--t-nano);color:var(--text-3);margin-top:8px">If it is something else, tell us what and we will fix it or help you export cleanly. Either way this is the only time we will ask.</p>
+        <div style="display:flex;gap:9px;margin-top:14px;flex-wrap:wrap">
+          <button class="btn btn--go" type="button" data-pause>Pause for two months instead</button>
+          <button class="btn btn--app" type="button" data-confirm-cancel>No, cancel anyway</button>
+        </div>
+      </section>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

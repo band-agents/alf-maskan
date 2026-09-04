@@ -1,0 +1,72 @@
+<!-- Setup checklist — artboard "Setup checklist widget".
+     Bottom-right at 24px inset, four states, collapsed to a pill after the
+     first session. State and dismissal persist per browser. -->
+<div class="setupchk" data-setupchk hidden>
+
+  <!-- EXPANDED · DEFAULT -->
+  <section class="setupchk__state setupchk__card" data-setupchk-state="open" aria-labelledby="chk-h">
+    <div class="setupchk__head">
+      <span class="setupchk__ring" style="--pct:180deg" role="img" aria-label="2 of 4 steps done"><b>2/4</b></span>
+      <span>
+        <b id="chk-h">Finish your setup</b>
+        <span>Two steps left, about 4 minutes</span>
+      </span>
+      <button class="setupchk__close" type="button" data-setupchk-collapse>
+        <svg width="11" height="7" viewBox="0 0 12 8" aria-hidden="true"><path d="M1 1l5 5 5-5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span class="visually-hidden">Collapse the setup checklist</span>
+      </button>
+    </div>
+
+    <ul class="setupchk__list">
+      <li class="setupchk__item setupchk__item--done">
+        <span class="setupchk__box" aria-hidden="true">{{> tick}}</span>
+        <span><b>Publish your storefront</b></span>
+      </li>
+      <li class="setupchk__item setupchk__item--done">
+        <span class="setupchk__box" aria-hidden="true">{{> tick}}</span>
+        <span><b>Add your first unit</b></span>
+      </li>
+      <li class="setupchk__item">
+        <span class="setupchk__box" aria-hidden="true"></span>
+        <span><b>Add photos to 5 units</b><span>Units with photos get 3× the enquiries</span></span>
+        <a class="btn--reply is-primary" href="{{base}}app/listings.html">Add</a>
+      </li>
+      <li class="setupchk__item">
+        <span class="setupchk__box" aria-hidden="true"></span>
+        <span><b>Invite your team</b><span>Agents get their own leads</span></span>
+        <a class="btn--reply" href="#">Invite</a>
+      </li>
+    </ul>
+
+    <p class="setupchk__foot">
+      <button type="button" data-setupchk-ask-dismiss>Hide this checklist</button>
+      <span>saved automatically</span>
+    </p>
+  </section>
+
+  <!-- COLLAPSED · PILL -->
+  <button class="setupchk__state setupchk__pill" type="button" data-setupchk-state="pill" data-setupchk-expand hidden>
+    <span class="setupchk__ring setupchk__ring--sm" style="--pct:180deg" aria-hidden="true"><b>2/4</b></span>
+    <span>
+      <b>Finish your setup</b>
+      <span>2 steps left</span>
+    </span>
+  </button>
+
+  <!-- DISMISS CONFIRMATION -->
+  <section class="setupchk__state setupchk__card" data-setupchk-state="confirm" hidden aria-labelledby="chk-confirm-h">
+    <b id="chk-confirm-h" style="display:block;font-size:var(--t-body-sm);font-weight:600;color:var(--text)">Hide the checklist?</b>
+    <p style="font-size:var(--t-micro);line-height:1.54;color:var(--text-3);margin:6px 0 16px">You can bring it back any time from Settings → Setup. The two remaining steps stay on your account.</p>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button class="btn btn--app" type="button" data-setupchk-keep style="--btn-h:34px;font-size:var(--t-micro)">Keep it</button>
+      <button class="btn btn--go" type="button" data-setupchk-hide style="--btn-h:34px;font-size:var(--t-micro)">Hide it</button>
+    </div>
+  </section>
+
+  <!-- COMPLETE · celebrates, then takes itself away -->
+  <section class="setupchk__state setupchk__card setupchk__card--done" data-setupchk-state="done" hidden aria-live="polite">
+    <b>Setup complete</b>
+    <p>All four steps done. Nicely handled.</p>
+    <a class="btn" href="{{base}}app/leads.html" style="--btn-h:38px;font-size:var(--t-micro)">See this week's leads</a>
+  </section>
+</div>

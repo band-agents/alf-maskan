@@ -1,0 +1,718 @@
+<!--
+title: Design system — Alf Maskan
+desc: Sheets 03–08 of the design system, rendered live from the product's own stylesheets.
+bodyClass: sg
+css: dashboard, app, editor, crm, reports, onboard, styleguide
+js: styleguide
+theme: yes
+-->
+<div class="sg-wrap">
+
+  <header class="sg-head">
+    <p class="tok" style="margin-bottom:10px">ALF MASKAN · DESIGN SYSTEM · SHEETS 03–08</p>
+    <h1>Every component, from the real stylesheets</h1>
+    <p>Sheets 01 Brand and 02 Colour live in the canvas. These six are rendered from <span class="mono">alf-maskan.css</span>, <span class="mono">app.css</span>, <span class="mono">editor.css</span>, <span class="mono">crm.css</span>, <span class="mono">reports.css</span> and <span class="mono">onboard.css</span> — the same files the 32 pages load. Nothing here is redrawn, so a component that drifts here has drifted in the product.</p>
+    <div class="sg-gap" style="margin-top:16px">
+      <button class="tool-btn" type="button" data-theme-toggle aria-pressed="false">
+        <span class="theme-swatch" aria-hidden="true"></span>
+        <span data-theme-label>Dark</span>
+      </button>
+      <button class="tool-btn" type="button" data-dir-toggle aria-pressed="false">Mirror to RTL</button>
+      <a class="tool-btn tool-btn--quiet" href="{{base}}app/index.html">Back to dashboard</a>
+    </div>
+  </header>
+
+  <nav class="sg-nav" aria-label="Sheets">
+    <a href="#s03">03 · TYPE</a>
+    <a href="#s04">04 · COMPONENTS I</a>
+    <a href="#s05">05 · COMPONENTS II</a>
+    <a href="#s06">06 · DATA</a>
+    <a href="#s07">07 · RTL MIRROR</a>
+    <a href="#s08">08 · ELEVATION &amp; MOTION</a>
+  </nav>
+
+  <!-- ============================================================ 03 TYPE -->
+  <section class="sheet" id="s03">
+    <div class="sheet__head"><span class="sheet__n">03</span><h2>Type</h2></div>
+    <p class="sheet__note">The scale rendered twice at identical sizes so the optical match is visible. Latin sets in Inter with Tajawal for display; Arabic sets in IBM Plex Sans Arabic. Arabic carries +8% line-height, never letter-spacing, never all-caps. Digits stay Western in both.</p>
+
+    <div class="grp">
+      <div class="typehead"><span>Token · size / line</span><span>Latin</span><span>Arabic</span></div>
+
+      <div class="typerow">
+        <p class="typerow__spec">--t-hero<br>60 / 66 · 700</p>
+        <p style="font-family:var(--font-display);font-size:38px;line-height:1.1;font-weight:700;color:var(--text);letter-spacing:-.02em">Your own website</p>
+        <p class="typerow__ar" style="font-family:var(--font-arabic);font-size:38px;line-height:1.18;font-weight:700;color:var(--text)">موقعك الخاص</p>
+      </div>
+
+      <div class="typerow">
+        <p class="typerow__spec">--t-section<br>36 / 46 · 700</p>
+        <p style="font-family:var(--font-display);font-size:28px;line-height:1.28;font-weight:700;color:var(--text)">Questions brokers ask</p>
+        <p class="typerow__ar" style="font-family:var(--font-arabic);font-size:28px;line-height:1.36;font-weight:700;color:var(--text)">أسئلة بيسألها السماسرة</p>
+      </div>
+
+      <div class="typerow">
+        <p class="typerow__spec">--t-card-lg<br>26 / 34 · 600</p>
+        <p style="font-family:var(--font-display);font-size:22px;line-height:1.31;font-weight:600;color:var(--text)">Featured units</p>
+        <p class="typerow__ar" style="font-family:var(--font-arabic);font-size:22px;line-height:1.4;font-weight:600;color:var(--text)">وحدات مختارة</p>
+      </div>
+
+      <div class="typerow">
+        <p class="typerow__spec">--t-body<br>16 / 26 · 400</p>
+        <p style="font-size:16px;line-height:1.62;color:var(--text-2)">Penthouse with roof garden, Mivida</p>
+        <p class="typerow__ar" style="font-size:16px;line-height:1.75;color:var(--text-2)">بنتهاوس بحديقة على السطح، ميفيدا</p>
+      </div>
+
+      <div class="typerow">
+        <p class="typerow__spec">--t-meta<br>14 / 22 · 400</p>
+        <p style="font-size:14px;line-height:1.57;color:var(--text-3)">240 m² · 4 beds · Fully finished</p>
+        <p class="typerow__ar" style="font-size:14px;line-height:1.7;color:var(--text-3)">240 م² · 4 غرف · تشطيب كامل</p>
+      </div>
+
+      <div class="typerow">
+        <p class="typerow__spec">--t-pico · mono<br>11 / 16 · +.04em<br><b style="color:var(--danger)">Latin only</b></p>
+        <p class="tok" style="text-transform:uppercase;letter-spacing:.06em;font-size:11px">DELIVERY Q4 2027</p>
+        <p class="typerow__ar" style="font-family:var(--font-arabic);font-size:11px;color:var(--text-4)">الاستلام الربع الأخير 2027</p>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Paragraph specimen · 65ch measure</p>
+      <div class="specs specs--2">
+        <div class="spec">
+          <div class="spec__stage spec__stage--tall" style="display:block">
+            <p style="font-size:15px;line-height:1.73;color:var(--text-2)">Add a unit once with photos, payment plan and finishing, and it appears on your site, your WhatsApp replies and your team's phones. Delivery Q4 2027, EGP 12,400,000, 10% down over eight years.</p>
+          </div>
+          <p class="tok"><b>Inter 15/26</b> · --t-body-sm</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage spec__stage--tall" style="display:block" dir="rtl">
+            <p style="font-family:var(--font-arabic);font-size:15px;line-height:1.9;color:var(--text-2)">أضف الوحدة مرة واحدة بالصور وخطة السداد والتشطيب، وتظهر على موقعك وفي ردودك على واتساب وعلى موبايلات فريقك. الاستلام الربع الأخير 2027، 12,400,000 ج.م، 10% مقدم على ثماني سنوات.</p>
+          </div>
+          <p class="tok"><b>IBM Plex Sans Arabic 15/28</b> · +8% line-height</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 04 COMPONENTS I -->
+  <section class="sheet" id="s04">
+    <div class="sheet__head"><span class="sheet__n">04</span><h2>Components I · input</h2></div>
+    <p class="sheet__note">Everything a form is built from. Every control here is a real element — native selects, native checkboxes and radios, restyled — so keyboard, screen reader and mobile behaviour come for free.</p>
+
+    <div class="grp">
+      <p class="grp__label">Buttons · variant</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage">
+            <button class="btn btn--primary" type="button">Publish</button>
+            <button class="btn btn--secondary" type="button">Preview</button>
+            <button class="btn btn--ghost" type="button">Cancel</button>
+            <button class="btn btn--danger" type="button">Delete</button>
+          </div>
+          <p class="tok"><b>.btn--primary / --secondary / --ghost / --danger</b></p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage">
+            <button class="btn btn--primary btn--sm" type="button">Small 40</button>
+            <button class="btn btn--primary" type="button">Base 44</button>
+            <button class="btn btn--primary btn--lg" type="button">Large 56</button>
+          </div>
+          <p class="tok"><b>.btn--sm / base / .btn--lg</b> · 40 · 44 · 56</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage">
+            <button class="btn btn--primary" type="button">Rest</button>
+            <button class="btn btn--primary is-loading" type="button">Saving</button>
+            <button class="btn btn--primary" type="button" disabled>Disabled</button>
+            <button class="btn btn--secondary is-loading" type="button">Loading</button>
+          </div>
+          <p class="tok"><b>.is-loading</b> keeps the label's width so the button does not jump · <b>:disabled</b></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Text entry</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage spec__stage--tall" style="display:block">
+            <div class="f"><label class="f__label" for="sg-t">Unit title <span class="f__req" aria-hidden="true">*</span></label>
+              <input class="inp" id="sg-t" value="Penthouse with roof garden"></div>
+          </div>
+          <p class="tok"><b>.inp</b> · label .f__label · required .f__req</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage spec__stage--tall" style="display:block">
+            <div class="f"><label class="f__label" for="sg-p">Price</label>
+              <span class="inp-unit inp-unit--lead"><input class="inp" id="sg-p" type="number" value="8450000"><span class="inp-unit__u">EGP</span></span></div>
+          </div>
+          <p class="tok"><b>.inp-unit</b> · suffix, or <b>--lead</b> for a leading unit</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage spec__stage--tall" style="display:block">
+            <div class="f"><label class="f__label" for="sg-s">Compound</label>
+              <span class="selwrap"><select class="sel" id="sg-s"><option>Mivida</option><option>Marassi</option><option>Hyde Park</option></select><span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span></span></div>
+          </div>
+          <p class="tok"><b>.selwrap &gt; .sel</b> · native select</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage spec__stage--tall" style="display:block">
+            <div class="f"><label class="f__label" for="sg-ta">Description</label>
+              <textarea class="ta" id="sg-ta" rows="3">Two floors, four bedrooms, a 40 m² terrace and parking for two cars.</textarea></div>
+          </div>
+          <p class="tok"><b>.ta</b></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Choice</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage">
+            <label class="sw-row" style="gap:10px"><span class="sw-row__txt" style="font-size:var(--t-micro)">Show price</span><span class="sw"><input type="checkbox" checked><i></i></span></label>
+            <label class="sw-row" style="gap:10px"><span class="sw-row__txt" style="font-size:var(--t-micro)">Featured</span><span class="sw sw--sand"><input type="checkbox"><i></i></span></label>
+          </div>
+          <p class="tok"><b>.sw</b> · <b>.sw--sand</b> marks a premium switch</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage">
+            <label class="sg-gap" style="gap:8px"><input class="chk" type="checkbox" checked><span style="font-size:var(--t-micro)">Selected</span></label>
+            <label class="sg-gap" style="gap:8px"><input class="chk" type="checkbox"><span style="font-size:var(--t-micro)">Unselected</span></label>
+          </div>
+          <p class="tok"><b>.chk</b> · native checkbox, appearance:none</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage">
+            <span class="seg">
+              <button type="button" aria-pressed="true">Table</button>
+              <button type="button" aria-pressed="false">Grid</button>
+              <button type="button" aria-pressed="false">Map</button>
+            </span>
+          </div>
+          <p class="tok"><b>.seg</b> · aria-pressed carries the state</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage spec__stage--tall" style="display:block">
+            <div class="choices" role="radiogroup" aria-label="Profile" style="gap:8px">
+              <label class="choice"><input type="radio" name="sg-r" checked><span class="choice__tick" aria-hidden="true">{{> tick}}</span><b>Brokerage</b><span>Team, roles, shared inbox</span></label>
+              <label class="choice"><input type="radio" name="sg-r"><span class="choice__tick" aria-hidden="true">{{> tick}}</span><b>Individual agent</b><span>Your name on every unit</span></label>
+            </div>
+          </div>
+          <p class="tok"><b>.choice</b> · a radio card, native input inside</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Compound controls</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="range-row">
+              <div class="range-row__top"><span style="font-size:var(--t-micro);color:var(--text-2)">Down payment</span><b class="mono" style="font-size:var(--t-micro);color:var(--text)">10%</b></div>
+              <input type="range" min="0" max="50" value="10" aria-label="Down payment percent">
+            </div>
+          </div>
+          <p class="tok"><b>.range-row</b> · native range</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="chipset">
+              <button class="chipset__tick" type="button" aria-pressed="true">Pool</button>
+              <button class="chipset__tick" type="button" aria-pressed="true">Garden</button>
+              <button class="chipset__tick" type="button" aria-pressed="false">Gym</button>
+              <button class="chipset__tick" type="button" aria-pressed="false">Security</button>
+            </div>
+          </div>
+          <p class="tok"><b>.chipset</b> · multi-select, the combobox stand-in</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <label class="fsearch">
+              <svg width="14" height="14" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"/><path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <input type="search" placeholder="Search by title, reference or compound…">
+            </label>
+            <div class="sg-gap" style="margin-top:10px">
+              <span class="fchip">New Cairo <button type="button" aria-label="Remove">×</button></span>
+              <span class="fchip">Under 10M <button type="button" aria-label="Remove">×</button></span>
+            </div>
+          </div>
+          <p class="tok"><b>.fsearch</b> + <b>.fchip</b> · a narrowed list always says why</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="dropzone" tabindex="0" role="button">
+              <svg width="20" height="18" viewBox="0 0 20 18" fill="none" aria-hidden="true"><path d="M10 12V1m0 0L6 5m4-4l4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 12v3a2 2 0 002 2h14a2 2 0 002-2v-3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <b>Drop photos here</b>
+              <span>Units with fewer than three photos get a fifth of the views.</span>
+            </div>
+          </div>
+          <p class="tok"><b>.dropzone</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 05 COMPONENTS II -->
+  <section class="sheet" id="s05">
+    <div class="sheet__head"><span class="sheet__n">05</span><h2>Components II · feedback &amp; navigation</h2></div>
+    <p class="sheet__note">State, guidance and wayfinding. Status colour is reserved — good, warning, serious, critical — and never doubles as a chart series or a brand accent.</p>
+
+    <div class="grp">
+      <p class="grp__label">Badges &amp; status</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage">
+            <span class="st st--live">Live</span>
+            <span class="st st--draft">Draft</span>
+            <span class="st st--reserved">Reserved</span>
+            <span class="st st--sold">Sold</span>
+            <span class="st st--rented">Rented</span>
+            <span class="st st--paused">Paused</span>
+            <span class="st st--warn">Needs a decision</span>
+          </div>
+          <p class="tok"><b>.st--*</b> · listing lifecycle, plus <b>--warn</b> for "you must choose"</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage">
+            <span class="badge badge--palm">Portal</span>
+            <span class="badge badge--sand">PREMIUM</span>
+            <span class="badge badge--info">Coastal</span>
+            <span class="badge badge--neutral">Single-project</span>
+            <span class="badge badge--solid-sand">FEATURED</span>
+          </div>
+          <p class="tok"><b>.badge--*</b> · sand is premium and featured only, never a general highlight</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">People</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage">
+            <span class="avatar avatar--sm" aria-hidden="true"></span>
+            <span class="avatar avatar--md" aria-hidden="true"></span>
+            <span class="avatar" aria-hidden="true"></span>
+            <span class="avatar avatar--lg" aria-hidden="true"></span>
+            <span class="workspace__avatar">KE</span>
+          </div>
+          <p class="tok"><b>.avatar</b> 28 · 36 · 44 · 64 · initials <b>.workspace__avatar</b></p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage">
+            <span class="avatar-stack avatar-stack--md" aria-hidden="true">
+              <span class="avatar avatar--md"></span><span class="avatar avatar--md avatar--alt"></span><span class="avatar avatar--md"></span>
+              <span class="avatar avatar--md avatar-count">+9</span>
+            </span>
+          </div>
+          <p class="tok"><b>.avatar-stack</b> · overlap is margin-inline-start, so it mirrors</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Guidance</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage spec__stage--tall" style="display:block;overflow:visible">
+            <span class="hint" style="position:relative;display:inline-flex">
+              <button class="hint__dot" type="button" data-hint aria-expanded="true">i<span class="visually-hidden">About views</span></button>
+              <span class="hint__body">A view is one buyer opening a unit page. Repeat visits from the same phone within an hour count once.</span>
+            </span>
+          </div>
+          <p class="tok"><b>.hint</b> shown open · "[What it is]. [Why it matters]."</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <p class="callout"><span class="callout__i" aria-hidden="true">i</span><span>Changes go live only when you press Publish, so you can rebuild during working hours.</span></p>
+          </div>
+          <p class="tok"><b>.callout</b> · informational, never for errors</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <p class="callout-warn"><span class="callout-warn__mark" aria-hidden="true">!</span><span>Il Monte Galala has 340 views and no leads. Its price may be above the zone average.</span></p>
+          </div>
+          <p class="tok"><b>.callout-warn</b> · says what to do, not just what is wrong</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="toast"><span class="toast__mark toast__mark--ok" aria-hidden="true">✓</span><span><b>Published</b>42 units are live on kamal-estates.alfmaskan.com</span><button class="toast__undo" type="button">Undo</button></div>
+          </div>
+          <p class="tok"><b>.toast</b> · the control says "Publish", the toast says "Published"</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Overlays</p>
+      <div class="specs specs--2">
+        <div class="spec">
+          <div class="spec__stage" style="display:block;background:var(--panel-2)">
+            <div class="modal" style="box-shadow:var(--sh-sm)">
+              <h3>Delete four units?</h3>
+              <p>They come off your storefront straight away. Leads already attached to them stay in your inbox.</p>
+              <div class="modal__acts">
+                <button class="btn btn--secondary btn--sm" type="button">Keep them</button>
+                <button class="btn btn--danger btn--sm" type="button">Delete four</button>
+              </div>
+            </div>
+          </div>
+          <p class="tok"><b>.modal</b> in <b>.modal-scrim</b> · the destructive verb names the count</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block;background:var(--panel-2)">
+            <div class="menu" style="box-shadow:var(--sh-sm)">
+              <button type="button">Duplicate<span class="menu__key">⌘D</span></button>
+              <button type="button">Rename</button>
+              <button type="button">Hide on this page</button>
+              <hr>
+              <button class="is-danger" type="button">Remove section</button>
+            </div>
+          </div>
+          <p class="tok"><b>.menu</b> · destructive last, after a rule</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Loading &amp; empty</p>
+      <div class="specs specs--2">
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="sg-gap" style="gap:12px;flex-wrap:nowrap;align-items:flex-start">
+              <span class="skel skel--circle" aria-hidden="true"></span>
+              <span class="sg-col" style="flex:1;gap:8px">
+                <span class="skel skel--title"></span>
+                <span class="skel skel--line"></span>
+                <span class="skel skel--line" style="width:70%"></span>
+              </span>
+            </div>
+          </div>
+          <p class="tok"><b>.skel</b> · the shape of the content, never a spinner over a panel</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="empty">
+              <span class="empty__mark" aria-hidden="true">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="2.5" width="15" height="15" rx="3" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 10h7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </span>
+              <b>No units match that</b>
+              <span>Clear the compound filter, or widen the price range.</span>
+              <span class="empty__acts"><button class="btn btn--secondary btn--sm" type="button">Clear filters</button></span>
+            </div>
+          </div>
+          <p class="tok"><b>.empty</b> · names the way out, not just the absence</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Navigation</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage">
+            <nav class="crumb" aria-label="Breadcrumb">
+              <a href="#s05">Listings</a>
+              <svg width="8" height="8" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <a href="#s05">Mivida</a>
+              <svg width="8" height="8" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Penthouse</span>
+            </nav>
+          </div>
+          <p class="tok"><b>.crumb</b> · the chevron flips in RTL, the text does not reorder</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="views" style="margin:0;border:0">
+              <button class="view" aria-selected="true">All units <span class="view__n">42</span></button>
+              <button class="view" aria-selected="false">Drafts <span class="view__n">5</span></button>
+              <button class="view" aria-selected="false">Sold <span class="view__n">11</span></button>
+            </div>
+          </div>
+          <p class="tok"><b>.views &gt; .view</b> · saved views, counts inline</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage">
+            <nav class="pager" aria-label="Pagination">
+              <button class="tool-btn" type="button" aria-label="Previous">‹</button>
+              <span class="pager__pages"><b>1</b><span>2</span><span>3</span><span>…</span><span>9</span></span>
+              <button class="tool-btn" type="button" aria-label="Next">›</button>
+            </nav>
+          </div>
+          <p class="tok"><b>.pager</b></p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <nav class="osteps" data-step="3" aria-label="Setup progress" style="flex-direction:row;gap:6px;flex-wrap:wrap">
+              <span class="ostep"><span class="ostep__dot" aria-hidden="true"><span class="ostep__tick">{{> tick}}</span></span><span class="ostep__label">Language</span></span>
+              <span class="ostep"><span class="ostep__dot" aria-hidden="true"><span class="ostep__tick">{{> tick}}</span></span><span class="ostep__label">Who you are</span></span>
+              <span class="ostep"><span class="ostep__dot" aria-hidden="true"><span class="ostep__n">3</span></span><span class="ostep__label">Your business</span></span>
+            </nav>
+          </div>
+          <p class="tok"><b>.osteps &gt; .ostep</b> · done · current · to come</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 06 DATA -->
+  <section class="sheet" id="s06">
+    <div class="sheet__head"><span class="sheet__n">06</span><h2>Data</h2></div>
+    <p class="sheet__note">Numbers line up on <span class="mono">tabular-nums</span> everywhere. Chart series come from <span class="mono">--series-1..4</span> in fixed order — palm, sand, blue, terracotta — validated colour-blind-safe in both themes, and never the status colours.</p>
+
+    <div class="grp">
+      <p class="grp__label">Table · sortable header, hover, selection, bulk bar</p>
+      <div class="spec">
+        <div class="spec__stage" style="display:block;padding:0;overflow:hidden">
+          <div class="bulkbar"><b class="bulkbar__n">2 selected</b><span class="bulkbar__rule" aria-hidden="true"></span><button class="tool-btn" type="button">Change status</button><button class="tool-btn" type="button">Add to collection</button><button class="tool-btn tool-btn--quiet bulkbar__close" type="button">Clear</button></div>
+          <div class="tablescroll">
+            <table class="dtable">
+              <thead>
+                <tr>
+                  <th style="width:38px"><input class="chk" type="checkbox" aria-label="Select all"></th>
+                  <th><button class="sortbtn" type="button">Unit <span class="sortbtn__arrow">▲</span></button></th>
+                  <th><button class="sortbtn" type="button">Price</button></th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><input class="chk" type="checkbox" checked aria-label="Select"></td><td><b class="cell-unit__title">Penthouse · Mivida</b><span class="cell-sub">240 m² · 4 beds</span></td><td class="money">EGP 12,400,000<span class="money__sub">10% down</span></td><td><span class="st st--live">Live</span></td></tr>
+                <tr><td><input class="chk" type="checkbox" checked aria-label="Select"></td><td><b class="cell-unit__title">Chalet · Marassi</b><span class="cell-sub">160 m² · 3 beds</span></td><td class="money">EGP 9,750,000<span class="money__sub">8 years</span></td><td><span class="st st--reserved">Reserved</span></td></tr>
+                <tr><td><input class="chk" type="checkbox" aria-label="Select"></td><td><b class="cell-unit__title">Villa · Hyde Park</b><span class="cell-sub">420 m² · 5 beds</span></td><td class="money">EGP 18,900,000<span class="money__sub">Q4 2027</span></td><td><span class="st st--draft">Draft</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <p class="tok"><b>.dtable</b> in <b>.tablescroll</b> · <b>.bulkbar</b> appears on selection · <b>.sortbtn</b> · <b>.money</b></p>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Figures</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage" style="display:block;padding:0">
+            <article class="panel kpi">
+              <div class="kpi__label"><h3 style="font:inherit;color:inherit;margin:0">Views this week</h3></div>
+              <div class="kpi__body">
+                <div>
+                  <p class="kpi__value">8,412</p>
+                  <p class="delta delta--up"><svg width="8" height="6" viewBox="0 0 8 6" aria-hidden="true"><path d="M4 0l4 6H0z" fill="currentColor"/></svg>+18%</p>
+                </div>
+                <svg class="kpi__spark" width="72" height="34" viewBox="0 0 72 34" fill="none" aria-hidden="true"><polyline points="2,28 12,22 22,24 32,16 42,18 52,11 62,8 70,4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </div>
+            </article>
+          </div>
+          <p class="tok"><b>.kpi</b> · value, <b>.delta--up/--down</b>, <b>.kpi__spark</b></p>
+        </div>
+
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="donut-wrap">
+              <svg class="donut" width="120" height="120" viewBox="0 0 132 132" role="img" aria-label="WhatsApp 61, form 34, call 18, Facebook 12">
+                <g transform="rotate(-90 66 66)">
+                  <circle cx="66" cy="66" r="52" stroke="var(--series-1)" stroke-dasharray="159.4 167.3" stroke-dashoffset="0"/>
+                  <circle cx="66" cy="66" r="52" stroke="var(--series-2)" stroke-dasharray="88.9 237.8" stroke-dashoffset="-159.4"/>
+                  <circle cx="66" cy="66" r="52" stroke="var(--series-3)" stroke-dasharray="47 279.7" stroke-dashoffset="-248.3"/>
+                  <circle cx="66" cy="66" r="52" stroke="var(--series-4)" stroke-dasharray="31.4 295.3" stroke-dashoffset="-295.3"/>
+                </g>
+                <text x="66" y="62" text-anchor="middle" font-size="22" font-weight="700" fill="var(--text)" font-family="var(--font-display)">125</text>
+                <text x="66" y="79" text-anchor="middle" font-size="10" fill="var(--text-4)" font-family="var(--font-mono)">LEADS</text>
+              </svg>
+              <div class="legend-list">
+                <div class="legend-row"><i style="background:var(--series-1)"></i>WhatsApp <b>61</b><span>49%</span></div>
+                <div class="legend-row"><i style="background:var(--series-2)"></i>Form <b>34</b><span>27%</span></div>
+                <div class="legend-row"><i style="background:var(--series-3)"></i>Call <b>18</b><span>14%</span></div>
+                <div class="legend-row"><i style="background:var(--series-4)"></i>Facebook <b>12</b><span>10%</span></div>
+              </div>
+            </div>
+          </div>
+          <p class="tok"><b>.donut</b> · every slice named beside its own number, so it reads without colour</p>
+        </div>
+
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="funnel">
+              <div class="funnel__row"><div class="funnel__top"><span>Views</span><b>8,412</b></div><div class="funnel__bar" style="width:100%"></div></div>
+              <div class="funnel__row"><div class="funnel__top"><span>Enquiries</span><b>125</b></div><div class="funnel__bar" style="width:38%"></div></div>
+              <div class="funnel__row"><div class="funnel__top"><span>Viewings</span><b>44</b></div><div class="funnel__bar" style="width:22%"></div></div>
+              <div class="funnel__row"><div class="funnel__top"><span>Closed</span><b>6</b></div><div class="funnel__bar" style="width:9%"></div></div>
+            </div>
+          </div>
+          <p class="tok"><b>.funnel</b> · bar width is the rate, the number is the count</p>
+        </div>
+
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <div class="hbars">
+              <div class="hbar"><span class="hbar__label">New Cairo</span><span class="hbar__track"><i class="hbar__fill" style="width:88%"></i></span><b class="hbar__val">2,140</b></div>
+              <div class="hbar"><span class="hbar__label">Sahel</span><span class="hbar__track"><i class="hbar__fill" style="width:61%"></i></span><b class="hbar__val">1,480</b></div>
+              <div class="hbar"><span class="hbar__label">Sheikh Zayed</span><span class="hbar__track"><i class="hbar__fill" style="width:34%"></i></span><b class="hbar__val">820</b></div>
+            </div>
+          </div>
+          <p class="tok"><b>.hbar</b> · ranked magnitude, one hue</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Listing card · three densities</p>
+      <div class="specs">
+        <div class="spec">
+          <div class="spec__stage" style="display:block;padding:12px">
+            <article class="ucard">
+              <div class="ucard__media"><div class="ph ph--fine" style="height:104px"></div><span class="ucard__flags"><span class="badge badge--solid-sand">FEATURED</span></span></div>
+              <div class="ucard__body">
+                <b class="ucard__title">Penthouse with roof garden</b>
+                <span class="ucard__where">Mivida, New Cairo</span>
+                <span class="ucard__specs">240 m² · 4 beds · Fully finished</span>
+                <span class="ucard__price">EGP 12,400,000</span>
+                <span class="ucard__plan">10% down · 8 years</span>
+              </div>
+            </article>
+          </div>
+          <p class="tok"><b>.ucard</b> · grid density, image-first</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block;padding:12px">
+            <div class="cell-unit" style="display:flex;gap:11px;align-items:center">
+              <span class="cell-unit__ph ph ph--fine" style="width:56px;height:44px;border-radius:8px;flex:none"></span>
+              <span class="cell-unit__txt">
+                <b class="cell-unit__title">Penthouse with roof garden</b>
+                <span class="cell-sub">Mivida · 240 m² · EGP 12,400,000</span>
+              </span>
+            </div>
+          </div>
+          <p class="tok"><b>.cell-unit</b> · list density, inside a table row</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block;padding:12px">
+            <div class="unit-row">
+              <span class="ph ph--fine unit-row__thumb"></span>
+              <span class="unit-row__meta"><b>Penthouse · Mivida</b><span>EGP 12,400,000</span></span>
+              <span class="unit-row__stat"><b>1,204</b><span>7 leads</span></span>
+            </div>
+          </div>
+          <p class="tok"><b>.unit-row</b> · compact density, for panels and sidebars</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 07 RTL MIRROR -->
+  <section class="sheet" id="s07">
+    <div class="sheet__head"><span class="sheet__n">07</span><h2>RTL mirror</h2></div>
+    <p class="sheet__note">Six components, LTR above and RTL below, from the same markup with only <span class="mono">dir</span> changed. The layout mirrors because every rule uses logical properties — there is no RTL stylesheet. What must never mirror is called out in red.</p>
+
+    <div class="grp">
+      <div class="mirror">
+
+        <div class="mirror__pair">
+          <div class="mirror__row"><span class="mirror__tag">LTR</span><button class="btn btn--primary btn--sm" type="button">Add listing</button><span class="st st--live">Live</span></div>
+          <div class="mirror__row" dir="rtl"><span class="mirror__tag">RTL</span><button class="btn btn--primary btn--sm" type="button">أضف وحدة</button><span class="st st--live">منشورة</span></div>
+          <p class="mirror__note"><b>Mirrored:</b> icon side, padding. <b>Not mirrored:</b> nothing here.</p>
+        </div>
+
+        <div class="mirror__pair">
+          <div class="mirror__row"><span class="mirror__tag">LTR</span><span class="avatar-stack avatar-stack--md" aria-hidden="true"><span class="avatar avatar--md"></span><span class="avatar avatar--md avatar--alt"></span><span class="avatar avatar--md avatar-count">+9</span></span></div>
+          <div class="mirror__row" dir="rtl"><span class="mirror__tag">RTL</span><span class="avatar-stack avatar-stack--md" aria-hidden="true"><span class="avatar avatar--md"></span><span class="avatar avatar--md avatar--alt"></span><span class="avatar avatar--md avatar-count">+9</span></span></div>
+          <p class="mirror__note"><b>Mirrored:</b> the overlap direction, via margin-inline-start.</p>
+        </div>
+
+        <div class="mirror__pair">
+          <div class="mirror__row"><span class="mirror__tag">LTR</span><nav class="crumb" style="margin:0"><a href="#s07">Listings</a><svg width="8" height="8" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>Mivida</span></nav></div>
+          <div class="mirror__row" dir="rtl"><span class="mirror__tag">RTL</span><nav class="crumb" style="margin:0"><a href="#s07">الوحدات</a><svg width="8" height="8" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg><span>ميفيدا</span></nav></div>
+          <p class="mirror__note"><b>Mirrored:</b> order and the chevron, which is flipped with scaleX(-1) so it still points forward.</p>
+        </div>
+
+        <div class="mirror__pair">
+          <div class="mirror__row"><span class="mirror__tag">LTR</span><span class="phone-field" style="max-width:230px"><span class="phone-field__cc"><span class="flag-eg" aria-hidden="true"><i></i><i></i><i></i></span><span dir="ltr">+20</span></span><input dir="ltr" value="100 244 8817" aria-label="Phone"></span></div>
+          <div class="mirror__row" dir="rtl"><span class="mirror__tag">RTL</span><span class="phone-field" style="max-width:230px"><span class="phone-field__cc"><span class="flag-eg" aria-hidden="true"><i></i><i></i><i></i></span><span dir="ltr">+20</span></span><input dir="ltr" value="100 244 8817" aria-label="رقم الموبايل"></span></div>
+          <p class="mirror__note"><b>Mirrored:</b> the prefix leads on the right. <b>Not mirrored:</b> the number itself — it is <span class="mono">dir="ltr"</span>, so digits keep their order.</p>
+        </div>
+
+        <div class="mirror__pair">
+          <div class="mirror__row"><span class="mirror__tag">LTR</span><span class="money" style="display:block">EGP 12,400,000<span class="money__sub">10% down</span></span></div>
+          <div class="mirror__row" dir="rtl"><span class="mirror__tag">RTL</span><span class="money" style="display:block">12,400,000 ج.م<span class="money__sub">10% مقدم</span></span></div>
+          <p class="mirror__note"><b>Not mirrored:</b> Western digits and the thousands separators, in either language. Only the currency word moves.</p>
+        </div>
+
+        <div class="mirror__pair">
+          <div class="mirror__row"><span class="mirror__tag">LTR</span><span class="seg"><button type="button" aria-pressed="true">Table</button><button type="button" aria-pressed="false">Grid</button></span></div>
+          <div class="mirror__row" dir="rtl"><span class="mirror__tag">RTL</span><span class="seg"><button type="button" aria-pressed="true">جدول</button><button type="button" aria-pressed="false">شبكة</button></span></div>
+          <p class="mirror__note"><b>Mirrored:</b> option order follows the reading direction, so the first option stays first.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ 08 ELEVATION & MOTION -->
+  <section class="sheet" id="s08">
+    <div class="sheet__head"><span class="sheet__n">08</span><h2>Elevation, radius, spacing &amp; motion</h2></div>
+    <p class="sheet__note">Four ladders. Elevation says how far off the page something sits; radius says how soft it is; spacing runs on a 4pt base with a 24 / 32 / 48 / 64 rhythm; motion is fast enough to feel immediate and slow enough to follow.</p>
+
+    <div class="grp">
+      <p class="grp__label">Elevation</p>
+      <div class="ladder">
+        <div class="ladder__item"><span class="ladder__swatch ladder__swatch--noline" style="border-radius:var(--r-12);box-shadow:var(--sh-xs)"></span><span class="tok">--sh-xs<br>resting card</span></div>
+        <div class="ladder__item"><span class="ladder__swatch ladder__swatch--noline" style="border-radius:var(--r-12);box-shadow:var(--sh-sm)"></span><span class="tok">--sh-sm<br>hover, raised</span></div>
+        <div class="ladder__item"><span class="ladder__swatch ladder__swatch--noline" style="border-radius:var(--r-12);box-shadow:var(--sh-md)"></span><span class="tok">--sh-md<br>popover, widget</span></div>
+        <div class="ladder__item"><span class="ladder__swatch ladder__swatch--noline" style="border-radius:var(--r-12);box-shadow:var(--sh-lg)"></span><span class="tok">--sh-lg<br>modal, drawer</span></div>
+        <div class="ladder__item"><span class="ladder__swatch ladder__swatch--noline" style="border-radius:var(--r-12);box-shadow:var(--sh-palm);background:var(--accent)"></span><span class="tok">--sh-palm<br>primary CTA only</span></div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Radius</p>
+      <div class="ladder">
+        <div class="ladder__item"><span class="ladder__swatch" style="border-radius:var(--r-6)"></span><span class="tok">--r-6</span></div>
+        <div class="ladder__item"><span class="ladder__swatch" style="border-radius:var(--r-8)"></span><span class="tok">--r-8 · chip</span></div>
+        <div class="ladder__item"><span class="ladder__swatch" style="border-radius:var(--r-12)"></span><span class="tok">--r-12 · input</span></div>
+        <div class="ladder__item"><span class="ladder__swatch" style="border-radius:var(--r-16)"></span><span class="tok">--r-16 · panel</span></div>
+        <div class="ladder__item"><span class="ladder__swatch" style="border-radius:var(--r-24)"></span><span class="tok">--r-24 · band</span></div>
+        <div class="ladder__item"><span class="ladder__swatch" style="border-radius:var(--r-pill)"></span><span class="tok">--r-pill · badge</span></div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Spacing · 4pt base</p>
+      <div class="ruler">
+        <div class="ruler__row"><span class="tok" style="width:64px">4 · 8</span><span class="ruler__bar" style="width:8px"></span><span class="tok">inside a chip</span></div>
+        <div class="ruler__row"><span class="tok" style="width:64px">12 · 16</span><span class="ruler__bar" style="width:16px"></span><span class="tok">between controls</span></div>
+        <div class="ruler__row"><span class="tok" style="width:64px">24</span><span class="ruler__bar" style="width:24px"></span><span class="tok">between panels</span></div>
+        <div class="ruler__row"><span class="tok" style="width:64px">32</span><span class="ruler__bar" style="width:32px"></span><span class="tok">page padding</span></div>
+        <div class="ruler__row"><span class="tok" style="width:64px">48</span><span class="ruler__bar" style="width:48px"></span><span class="tok">marketing gutter</span></div>
+        <div class="ruler__row"><span class="tok" style="width:64px">64</span><span class="ruler__bar" style="width:64px"></span><span class="tok">section rhythm</span></div>
+      </div>
+    </div>
+
+    <div class="grp">
+      <p class="grp__label">Motion · hover a frame to run it</p>
+      <div class="motion">
+        <div class="spec">
+          <div class="motion__demo motion__demo--fast"><span class="motion__dot"></span></div>
+          <p class="tok"><b>--dur-fast 120ms</b> · hover, press, colour change</p>
+        </div>
+        <div class="spec">
+          <div class="motion__demo"><span class="motion__dot"></span></div>
+          <p class="tok"><b>--dur 200ms</b> · panels, drawers, toggles</p>
+        </div>
+        <div class="spec">
+          <div class="motion__demo motion__demo--slow"><span class="motion__dot"></span></div>
+          <p class="tok"><b>--dur-slow 320ms</b> · a full-screen change</p>
+        </div>
+        <div class="spec">
+          <div class="spec__stage" style="display:block">
+            <p class="tok" style="line-height:1.7"><b>--ease</b><br>cubic-bezier(.2, .7, .3, 1)<br><br>Leaves quickly, settles gently. Every transition in the product uses it; nothing uses linear except the loading spinner.</p>
+          </div>
+          <p class="tok">All of it collapses under <b>prefers-reduced-motion</b>.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

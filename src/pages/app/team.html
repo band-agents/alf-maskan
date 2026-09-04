@@ -1,0 +1,260 @@
+<!--
+title: Team — Alf Maskan
+desc: Who is on your store, what they can reach, and how to invite the next one.
+nav: team
+bodyClass: app
+css: dashboard, app, editor, admin
+js: dashboard, team
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <h1>Team</h1>
+          <p><b>6 people</b> · 1 invite waiting · seats are included up to 10 on your plan.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="{{base}}app/roles.html">Roles &amp; permissions</a>
+          <button class="btn btn--go" type="button" data-open-invite>
+            <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true"><path d="M7 1v12M1 7h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+            Invite member
+          </button>
+        </div>
+      </div>
+
+      <div class="tablewrap">
+        <div class="tablescroll">
+          <table class="dtable" style="min-width:880px">
+            <caption class="visually-hidden">Everyone on Kamal Estates, with their role, scope and last activity.</caption>
+            <thead>
+              <tr>
+                <th class="col-pin" scope="col">Person</th>
+                <th scope="col">Role</th>
+                <th scope="col">Scope</th>
+                <th class="col-num" scope="col">Listings</th>
+                <th class="col-num" scope="col">Leads</th>
+                <th scope="col">Last active</th>
+                <th scope="col">Status</th>
+                <th scope="col"><span class="visually-hidden">Actions</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <span class="avatar avatar--sm" aria-hidden="true"></span>
+                    <div class="cell-unit__txt">
+                      <span class="cell-unit__title">Youssef Kamal</span>
+                      <span class="cell-sub">youssef@kamalestates.com</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="rolepill rolepill--owner">Owner</span></td>
+                <td><span class="cell-sub">Everything</span></td>
+                <td class="col-num">18</td>
+                <td class="col-num">42</td>
+                <td><span class="cell-sub">Now</span></td>
+                <td><span class="st st--live">Active</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">Actions for Youssef Kamal</span></button></div></td>
+              </tr>
+
+              <tr>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+                    <div class="cell-unit__txt">
+                      <span class="cell-unit__title">Nourhan Adel</span>
+                      <span class="cell-sub">nourhan@kamalestates.com</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="rolepill rolepill--admin">Admin</span></td>
+                <td><span class="cell-sub">Everything except billing</span></td>
+                <td class="col-num">11</td>
+                <td class="col-num">24</td>
+                <td><span class="cell-sub">12 minutes ago</span></td>
+                <td><span class="st st--live">Active</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">Actions for Nourhan Adel</span></button></div></td>
+              </tr>
+
+              <tr>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+                    <div class="cell-unit__txt">
+                      <span class="cell-unit__title">Mai Farouk</span>
+                      <span class="cell-sub">mai@kamalestates.com</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="rolepill">Sales manager</span></td>
+                <td><span class="cell-sub">North Coast · Ain Sokhna</span></td>
+                <td class="col-num">9</td>
+                <td class="col-num">31</td>
+                <td><span class="cell-sub">2 hours ago</span></td>
+                <td><span class="st st--live">Active</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">Actions for Mai Farouk</span></button></div></td>
+              </tr>
+
+              <tr>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <span class="avatar avatar--sm" aria-hidden="true"></span>
+                    <div class="cell-unit__txt">
+                      <span class="cell-unit__title">Karim ElSayed</span>
+                      <span class="cell-sub">karim@kamalestates.com</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="rolepill">Agent</span></td>
+                <td><span class="cell-sub">6th of October · Badya</span></td>
+                <td class="col-num">4</td>
+                <td class="col-num">17</td>
+                <td><span class="cell-sub">Yesterday</span></td>
+                <td><span class="st st--live">Active</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">Actions for Karim ElSayed</span></button></div></td>
+              </tr>
+
+              <tr>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <span class="avatar avatar--sm" aria-hidden="true"></span>
+                    <div class="cell-unit__txt">
+                      <span class="cell-unit__title">Omar Hegazy</span>
+                      <span class="cell-sub">omar@kamalestates.com</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="rolepill">Agent</span></td>
+                <td><span class="cell-sub">Mostakbal City</span></td>
+                <td class="col-num">6</td>
+                <td class="col-num">11</td>
+                <td><span class="cell-sub">3 days ago</span></td>
+                <td><span class="st st--live">Active</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">Actions for Omar Hegazy</span></button></div></td>
+              </tr>
+
+              <tr>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <span class="avatar avatar--sm avatar--alt" aria-hidden="true"></span>
+                    <div class="cell-unit__txt">
+                      <span class="cell-unit__title">Rania Wagdy</span>
+                      <span class="cell-sub">rania@kamalestates.com</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="rolepill">Accountant</span></td>
+                <td><span class="cell-sub">Billing &amp; commissions</span></td>
+                <td class="col-num">—</td>
+                <td class="col-num">—</td>
+                <td><span class="cell-sub">1 week ago</span></td>
+                <td><span class="st st--live">Active</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">Actions for Rania Wagdy</span></button></div></td>
+              </tr>
+
+              <tr>
+                <td class="col-pin">
+                  <div class="cell-unit">
+                    <span class="avatar avatar--sm" aria-hidden="true"></span>
+                    <div class="cell-unit__txt">
+                      <span class="cell-unit__title">sherif@kamalestates.com</span>
+                      <span class="cell-sub">Invited 2 days ago by Youssef</span>
+                    </div>
+                  </div>
+                </td>
+                <td><span class="rolepill">Agent</span></td>
+                <td><span class="cell-sub">New Cairo</span></td>
+                <td class="col-num">—</td>
+                <td class="col-num">—</td>
+                <td><span class="cell-sub">Never</span></td>
+                <td><span class="st st--draft">Invite pending</span></td>
+                <td><div class="rowacts"><button class="rowact" type="button"><svg width="14" height="4" viewBox="0 0 14 4" aria-hidden="true"><circle cx="2" cy="2" r="1.4" fill="currentColor"/><circle cx="7" cy="2" r="1.4" fill="currentColor"/><circle cx="12" cy="2" r="1.4" fill="currentColor"/></svg><span class="visually-hidden">Actions for the pending invite</span></button></div></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <p class="f__hint" style="margin-top:12px">
+        An agent sees only their own listings and leads. If someone says a unit has vanished, check their scope before you check the unit.
+      </p>
+    </main>
+  </div>
+</div>
+
+<!-- ============================================ invite -->
+<dialog class="sheet" data-invite>
+  <form method="dialog">
+    <div class="sheet__head">
+      <h2>Invite someone</h2>
+      <button class="sheet__x" type="button" data-close-invite>
+        <svg width="12" height="12" viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <span class="visually-hidden">Close</span>
+      </button>
+    </div>
+
+    <div class="sheet__body">
+      <div class="f">
+        <label class="f__label" for="i-who">Email or mobile</label>
+        <input class="inp" id="i-who" placeholder="sherif@kamalestates.com" autocomplete="off">
+        <span class="f__hint">A mobile number gets the invite on WhatsApp instead, which most agents open faster.</span>
+      </div>
+
+      <div class="f">
+        <label class="f__label" for="i-role">Role</label>
+        <span class="selwrap">
+          <select class="sel" id="i-role" data-invite-role>
+            <option value="admin">Admin</option>
+            <option value="manager">Sales manager</option>
+            <option value="agent" selected>Agent</option>
+            <option value="editor">Content editor</option>
+            <option value="accountant">Accountant</option>
+            <option value="viewer">Viewer</option>
+          </select>
+          <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+      </div>
+
+      <!-- What the role can do, at the moment you pick it, not on a help page. -->
+      <div class="rolenote" data-role-note role="status" aria-live="polite">
+        <b>Agent</b>
+        Sees only their own listings and their own leads. Can create drafts but not publish them, and cannot see another agent's pipeline or touch the storefront design.
+      </div>
+
+      <div class="f" data-scope-field>
+        <label class="f__label" for="i-scope">
+          Limit them to
+          <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About scope</span></button>
+            <span class="hint__body" hidden>Scope narrows what a role can already do. It never widens it — an agent limited to New Cairo still cannot publish.</span>
+          </span>
+        </label>
+        <span class="selwrap">
+          <select class="sel" id="i-scope">
+            <option>Everywhere we operate</option>
+            <option>New Cairo</option>
+            <option>Sheikh Zayed</option>
+            <option>North Coast</option>
+            <option>Ain Sokhna</option>
+            <option>Mostakbal City</option>
+          </select>
+          <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="sheet__foot">
+      <button class="btn btn--app" type="button" data-close-invite>Cancel</button>
+      <button class="btn btn--go" type="submit">Send invite</button>
+      {{> app-tabbar}}
+</div>
+  </form>
+</dialog>

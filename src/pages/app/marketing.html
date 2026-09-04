@@ -1,0 +1,418 @@
+<!--
+title: Marketing — Alf Maskan
+desc: Limited offers, WhatsApp broadcasts and the forms that catch your leads.
+nav: marketing
+bodyClass: app
+css: dashboard, app, editor, reports
+js: dashboard, forms, marketing
+theme: yes
+-->
+<div class="shell" id="shell">
+  {{> app-rail}}
+  <div class="rail-scrim" data-rail-close></div>
+
+  <div class="main">
+    {{> app-topbar}}
+
+    <main class="content" id="main">
+
+      <div class="page-head">
+        <div>
+          <h1>Marketing</h1>
+          <p>One live offer · last broadcast 6 days ago to 412 contacts · 2 lead forms.</p>
+        </div>
+        <div class="page-head__actions">
+          <a class="btn btn--app" href="{{base}}app/analytics.html">See what worked</a>
+        </div>
+      </div>
+
+      <div class="views" role="tablist" aria-label="Marketing tools">
+        <button class="view" type="button" role="tab" aria-selected="true" data-mtab="offers">Deals &amp; offers <span class="view__n">1</span></button>
+        <button class="view" type="button" role="tab" aria-selected="false" data-mtab="broadcasts">Broadcasts <span class="view__n">3</span></button>
+        <button class="view" type="button" role="tab" aria-selected="false" data-mtab="forms">Lead forms <span class="view__n">2</span></button>
+      </div>
+
+      <!-- ============================================ offers -->
+      <div class="pane" data-mpane="offers">
+        <form class="two-col" onsubmit="return false">
+          <div class="ed__form">
+
+            <details class="fset" open>
+              <summary>
+                <span class="fset__n" aria-hidden="true">1</span>
+                <span class="fset__title">What the offer is</span>
+                <span class="fset__meta">
+                  <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About offers</span></button>
+                    <span class="hint__body" hidden>An offer puts a gold badge and a countdown on every unit you attach it to, and ends itself on the date you set — nobody has to remember to switch it off.</span>
+                  </span>
+                  <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <div class="fset__body">
+                <div class="lang-field" data-lang-field>
+                  <div class="lang-field__top">
+                    <span class="f__label">Offer name</span>
+                    <span class="lang-tabs">
+                      <button type="button" aria-pressed="true" data-lang-tab="en">EN</button>
+                      <button type="button" aria-pressed="false" data-lang-tab="ar">ع</button>
+                    </span>
+                  </div>
+                  <div class="lang-pane" data-lang-pane="en">
+                    <label class="visually-hidden" for="o-name-en">Offer name in English</label>
+                    <input class="inp" id="o-name-en" value="Autumn launch — 5% off the down payment" data-offer-name>
+                  </div>
+                  <div class="lang-pane" data-lang-pane="ar" dir="rtl" hidden>
+                    <label class="visually-hidden" for="o-name-ar">اسم العرض بالعربية</label>
+                    <input class="inp" id="o-name-ar" lang="ar" value="عرض الخريف — خصم 5% على المقدم">
+                  </div>
+                </div>
+
+                <div class="fgrid fgrid--3">
+                  <div class="f">
+                    <label class="f__label" for="o-kind">Kind of offer</label>
+                    <span class="selwrap">
+                      <select class="sel" id="o-kind" data-offer-kind>
+                        <option value="down">Discount on the down payment</option>
+                        <option value="price">Discount on the price</option>
+                        <option value="years">Extra instalment years</option>
+                        <option value="finish">Free finishing</option>
+                      </select>
+                      <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                    </span>
+                  </div>
+                  <div class="f">
+                    <label class="f__label" for="o-amount">Amount</label>
+                    <span class="inp-unit"><input class="inp" id="o-amount" type="number" value="5" data-offer-amount><span class="inp-unit__u" data-offer-unit>%</span></span>
+                  </div>
+                  <div class="f">
+                    <label class="f__label" for="o-badge">Badge style</label>
+                    <span class="selwrap">
+                      <select class="sel" id="o-badge" data-offer-badge>
+                        <option value="sand">Solid gold pill</option>
+                        <option value="outline">Gold outline</option>
+                        <option value="corner">Gold corner flag</option>
+                      </select>
+                      <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="f">
+                  <label class="f__label" for="o-badge-text">Badge text</label>
+                  <input class="inp" id="o-badge-text" value="5% OFF DOWN PAYMENT" maxlength="28" data-offer-text>
+                  <span class="f__hint">Short enough to read at card size. Twenty-eight characters is the ceiling.</span>
+                </div>
+              </div>
+            </details>
+
+            <details class="fset" open>
+              <summary>
+                <span class="fset__n" aria-hidden="true">2</span>
+                <span class="fset__title">When it runs</span>
+                <span class="fset__meta">
+                  <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <div class="fset__body">
+                <div class="fgrid">
+                  <div class="f">
+                    <label class="f__label" for="o-start">Starts</label>
+                    <input class="inp" id="o-start" type="date" value="2026-09-03">
+                  </div>
+                  <div class="f">
+                    <label class="f__label" for="o-end">Ends</label>
+                    <input class="inp" id="o-end" type="date" value="2026-09-30" data-offer-end>
+                  </div>
+                </div>
+                <div class="sw-row">
+                  <input class="sw" type="checkbox" id="o-countdown" checked data-offer-countdown>
+                  <span class="sw-row__txt">
+                    <b><label for="o-countdown">Show a countdown on the card</label></b>
+                    <span>Counts down to the end date. It disappears on its own when the offer closes.</span>
+                  </span>
+                </div>
+              </div>
+            </details>
+
+            <details class="fset" open>
+              <summary>
+                <span class="fset__n" aria-hidden="true">3</span>
+                <span class="fset__title">Which units</span>
+                <span class="fset__meta">
+                  <span data-offer-units>4</span> selected
+                  <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <div class="fset__body">
+                <div class="chipset" data-offer-picker>
+                  <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Penthouse · Mivida</label>
+                  <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Corner penthouse · Mivida</label>
+                  <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Twin house · Sodic East</label>
+                  <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Chalet · Il Monte Galala</label>
+                  <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Villa · Palm Hills</label>
+                  <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Studio · Zed East</label>
+                </div>
+                <p class="f__hint">Sold and rented units are left out automatically — an offer on a unit nobody can buy just costs you trust.</p>
+              </div>
+            </details>
+
+            <div class="savebar">
+              <span class="savebar__chip" data-savechip><i aria-hidden="true"></i><span data-savetext>Draft · not live yet</span></span>
+              <span class="savebar__end">
+                <button class="btn btn--app" type="button">Save draft</button>
+                <button class="btn btn--go" type="button" data-publish data-publish-word="Offer live">Start the offer</button>
+              </span>
+            </div>
+          </div>
+
+          <aside class="two-col__side" aria-label="Offer preview">
+            <section class="panel panel--pad">
+              <h2 class="panel__title" style="margin-bottom:12px">On the storefront card</h2>
+              <div class="badge-preview">
+                <span class="offer-badge offer-badge--sand" data-badge>5% OFF DOWN PAYMENT</span>
+                <div class="ph">penthouse · Mivida · 4:3</div>
+                <div class="countdown" data-countdown>
+                  <svg width="12" height="12" viewBox="0 0 13 13" fill="none" aria-hidden="true"><circle cx="6.5" cy="6.5" r="5.5" stroke="currentColor" stroke-width="1.3"/><path d="M6.5 3.5v3.2l2 1.2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round"/></svg>
+                  Offer ends in <b data-countdown-days>27 days</b>
+                </div>
+                <div class="badge-preview__body">
+                  <b>Penthouse with roof garden</b>
+                  <span>New Cairo · Mivida · 168 m²</span>
+                  <span class="badge-preview__price">EGP 8,450,000</span>
+                  <span class="badge-preview__was" data-was>Down payment EGP 845,000 → <b style="color:var(--accent-2-ink);text-decoration:none">EGP 802,750</b></span>
+                </div>
+              </div>
+              <p class="f__hint" style="margin-top:12px">This is the real card component, not a picture of one — change the badge style above and it changes here.</p>
+            </section>
+          </aside>
+        </form>
+      </div>
+
+      <!-- ============================================ broadcasts -->
+      <div class="pane" data-mpane="broadcasts" hidden>
+        <form class="two-col" onsubmit="return false">
+          <div class="ed__form">
+
+            <details class="fset" open>
+              <summary>
+                <span class="fset__n" aria-hidden="true">1</span>
+                <span class="fset__title">Who gets it</span>
+                <span class="fset__meta">
+                  <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <div class="fset__body">
+                <div class="fgrid">
+                  <div class="f">
+                    <label class="f__label" for="b-channel">Channel</label>
+                    <span class="selwrap">
+                      <select class="sel" id="b-channel"><option>WhatsApp</option><option>SMS</option><option>Email</option></select>
+                      <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                    </span>
+                  </div>
+                  <div class="f">
+                    <label class="f__label" for="b-segment">Segment</label>
+                    <span class="selwrap">
+                      <select class="sel" id="b-segment" data-bc-segment>
+                        <option value="412">Everyone who enquired (412)</option>
+                        <option value="96">Interested in the North Coast (96)</option>
+                        <option value="148">Budget under EGP 10M (148)</option>
+                        <option value="57">Went quiet after one reply (57)</option>
+                      </select>
+                      <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                    </span>
+                  </div>
+                </div>
+
+                <div class="audience">
+                  <span class="audience__n" data-bc-count>412</span>
+                  <span class="audience__txt">
+                    <b>contacts will get this</b>
+                    <span data-bc-note>Everyone who has ever enquired, minus 34 who opted out.</span>
+                  </span>
+                </div>
+              </div>
+            </details>
+
+            <details class="fset" open>
+              <summary>
+                <span class="fset__n" aria-hidden="true">2</span>
+                <span class="fset__title">The message</span>
+                <span class="fset__meta">
+                  <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About message length</span></button>
+                    <span class="hint__body" hidden>WhatsApp shows about 300 characters before a "read more". Anything past that is only seen by people who tap.</span>
+                  </span>
+                  <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <div class="fset__body">
+                <div class="lang-field" data-lang-field>
+                  <div class="lang-field__top">
+                    <span class="f__label">Text</span>
+                    <span class="lang-tabs">
+                      <button type="button" aria-pressed="true" data-lang-tab="en">EN</button>
+                      <button type="button" aria-pressed="false" data-lang-tab="ar">ع</button>
+                    </span>
+                  </div>
+                  <div class="lang-pane" data-lang-pane="en">
+                    <label class="visually-hidden" for="b-msg-en">Message in English</label>
+                    <textarea class="ta" id="b-msg-en" data-bc-msg>Autumn launch at Mivida: 5% off the down payment on four units until 30 September. The roof-garden penthouse is EGP 8,450,000 with the plan over eight years. Reply here and I will send the full plan.</textarea>
+                  </div>
+                  <div class="lang-pane" data-lang-pane="ar" dir="rtl" hidden>
+                    <label class="visually-hidden" for="b-msg-ar">الرسالة بالعربية</label>
+                    <textarea class="ta" id="b-msg-ar" lang="ar" data-bc-msg>عرض الخريف في ميفيدا: خصم 5% على المقدم لأربع وحدات حتى 30 سبتمبر. البنتهاوس بحديقة السطح بـ 8,450,000 ج.م وخطة سداد حتى ثماني سنوات. ابعتلي هنا وهبعتلك الخطة كاملة.</textarea>
+                  </div>
+                </div>
+                <span class="charcount"><b data-bc-chars>201</b>/300 before WhatsApp folds it</span>
+              </div>
+            </details>
+
+            <details class="fset" open>
+              <summary>
+                <span class="fset__n" aria-hidden="true">3</span>
+                <span class="fset__title">Attach a unit</span>
+                <span class="fset__meta">
+                  <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <div class="fset__body">
+                <div class="f">
+                  <label class="f__label" for="b-unit">Unit card</label>
+                  <span class="selwrap">
+                    <select class="sel" id="b-unit" data-bc-unit>
+                      <option>Penthouse with roof garden — Mivida</option>
+                      <option>Sea-view chalet, first row — Marassi</option>
+                      <option>Twin house, semi-finished — Sodic East</option>
+                      <option value="">No unit, text only</option>
+                    </select>
+                    <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                  </span>
+                </div>
+              </div>
+            </details>
+
+            <div class="savebar">
+              <span class="savebar__chip" data-savechip><i aria-hidden="true"></i><span data-savetext>Not sent</span></span>
+              <span class="savebar__end">
+                <button class="btn btn--app" type="button">Send a test to me</button>
+                <button class="btn btn--go" type="button" data-publish data-publish-word="Queued">Send to <span data-bc-count>412</span></button>
+              </span>
+            </div>
+          </div>
+
+          <aside class="two-col__side" aria-label="Message preview">
+            <section class="panel panel--pad">
+              <h2 class="panel__title" style="margin-bottom:12px">How it arrives</h2>
+              <div class="wa-preview">
+                <div class="wa-card" data-bc-card>
+                  <div class="ph" data-bc-card-ph>penthouse · Mivida · 16:9</div>
+                  <div class="wa-card__body">
+                    <b data-bc-card-title>Penthouse with roof garden</b>
+                    <span>EGP 8,450,000 · Mivida</span>
+                  </div>
+                </div>
+                <div class="wa-bubble" data-bc-bubble>Autumn launch at Mivida: 5% off the down payment on four units until 30 September. The roof-garden penthouse is EGP 8,450,000 with the plan over eight years. Reply here and I will send the full plan.</div>
+              </div>
+              <p class="f__hint" style="margin-top:12px">Type in the box and this updates, in whichever script you are writing.</p>
+            </section>
+          </aside>
+        </form>
+      </div>
+
+      <!-- ============================================ lead forms -->
+      <div class="pane" data-mpane="forms" hidden>
+        <div class="two-col">
+          <div class="ed__form">
+            <details class="fset" open>
+              <summary>
+                <span class="fset__n" aria-hidden="true">1</span>
+                <span class="fset__title">Fields on the form</span>
+                <span class="fset__meta">
+                  Drag to reorder
+                  <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <div class="fset__body">
+                <div data-fieldlist>
+                  <div class="fieldrow" draggable="true">
+                    <span class="fieldrow__grip" aria-hidden="true"><svg width="9" height="12" viewBox="0 0 9 12"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="6" r="1" fill="currentColor"/><circle cx="7" cy="6" r="1" fill="currentColor"/><circle cx="2" cy="10" r="1" fill="currentColor"/><circle cx="7" cy="10" r="1" fill="currentColor"/></svg></span>
+                    <span class="fieldrow__txt"><b>Name</b><span>text</span></span>
+                    <span class="fieldrow__req">Required</span>
+                  </div>
+                  <div class="fieldrow" draggable="true">
+                    <span class="fieldrow__grip" aria-hidden="true"><svg width="9" height="12" viewBox="0 0 9 12"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="6" r="1" fill="currentColor"/><circle cx="7" cy="6" r="1" fill="currentColor"/><circle cx="2" cy="10" r="1" fill="currentColor"/><circle cx="7" cy="10" r="1" fill="currentColor"/></svg></span>
+                    <span class="fieldrow__txt"><b>Mobile</b><span>phone · +20</span></span>
+                    <span class="fieldrow__req">Required</span>
+                  </div>
+                  <div class="fieldrow" draggable="true">
+                    <span class="fieldrow__grip" aria-hidden="true"><svg width="9" height="12" viewBox="0 0 9 12"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="6" r="1" fill="currentColor"/><circle cx="7" cy="6" r="1" fill="currentColor"/><circle cx="2" cy="10" r="1" fill="currentColor"/><circle cx="7" cy="10" r="1" fill="currentColor"/></svg></span>
+                    <span class="fieldrow__txt"><b>Budget</b><span>select · 4 options</span></span>
+                  </div>
+                  <div class="fieldrow" draggable="true">
+                    <span class="fieldrow__grip" aria-hidden="true"><svg width="9" height="12" viewBox="0 0 9 12"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="6" r="1" fill="currentColor"/><circle cx="7" cy="6" r="1" fill="currentColor"/><circle cx="2" cy="10" r="1" fill="currentColor"/><circle cx="7" cy="10" r="1" fill="currentColor"/></svg></span>
+                    <span class="fieldrow__txt"><b>When are you moving</b><span>select · 3 options</span></span>
+                  </div>
+                  <div class="fieldrow" draggable="true">
+                    <span class="fieldrow__grip" aria-hidden="true"><svg width="9" height="12" viewBox="0 0 9 12"><circle cx="2" cy="2" r="1" fill="currentColor"/><circle cx="7" cy="2" r="1" fill="currentColor"/><circle cx="2" cy="6" r="1" fill="currentColor"/><circle cx="7" cy="6" r="1" fill="currentColor"/><circle cx="2" cy="10" r="1" fill="currentColor"/><circle cx="7" cy="10" r="1" fill="currentColor"/></svg></span>
+                    <span class="fieldrow__txt"><b>Message</b><span>long text</span></span>
+                  </div>
+                </div>
+                <button class="views__add" type="button" style="height:34px;margin-top:10px">+ Add a field</button>
+                <p class="f__hint">Every extra field costs you replies. Five is already more than most agencies need.</p>
+              </div>
+            </details>
+
+            <details class="fset" open>
+              <summary>
+                <span class="fset__n" aria-hidden="true">2</span>
+                <span class="fset__title">Where the lead goes</span>
+                <span class="fset__meta">
+                  <svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </span>
+              </summary>
+              <div class="fset__body">
+                <div class="fgrid">
+                  <div class="f">
+                    <label class="f__label" for="f-route">Assign to</label>
+                    <span class="selwrap">
+                      <select class="sel" id="f-route">
+                        <option>The agent who owns the unit</option>
+                        <option>Round robin across the team</option>
+                        <option>Youssef Kamal</option>
+                        <option>Nobody — leave unassigned</option>
+                      </select>
+                      <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                    </span>
+                  </div>
+                  <div class="f">
+                    <label class="f__label" for="f-notify">Tell them by</label>
+                    <span class="selwrap">
+                      <select class="sel" id="f-notify"><option>WhatsApp and in-app</option><option>In-app only</option><option>Email</option></select>
+                      <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </details>
+          </div>
+
+          <aside class="two-col__side" aria-label="Form preview">
+            <section class="panel panel--pad">
+              <h2 class="panel__title" style="margin-bottom:12px">On your storefront</h2>
+              <div style="display:flex;flex-direction:column;gap:11px" data-formpreview>
+                <div class="f"><span class="f__label">Name <span class="f__req">*</span></span><input class="inp" placeholder="Hala Mansour" disabled></div>
+                <div class="f"><span class="f__label">Mobile <span class="f__req">*</span></span><input class="inp" placeholder="+20 100 000 0000" dir="ltr" disabled></div>
+                <div class="f"><span class="f__label">Budget</span><input class="inp" placeholder="EGP 6M – 10M" disabled></div>
+                <div class="f"><span class="f__label">When are you moving</span><input class="inp" placeholder="Within 6 months" disabled></div>
+                <div class="f"><span class="f__label">Message</span><textarea class="ta" style="min-height:60px" disabled></textarea></div>
+                <button class="btn btn--go" type="button" disabled style="width:100%;justify-content:center">Send enquiry</button>
+              </div>
+            </section>
+          </aside>
+        </div>
+      </div>
+
+    </main>
+  </div>
+  {{> app-tabbar}}
+</div>

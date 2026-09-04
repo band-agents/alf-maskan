@@ -1,0 +1,101 @@
+<!--
+title: Choose your address — Alf Maskan
+desc: A free alfmaskan.com address now, your own domain whenever you are ready.
+bodyClass: app
+css: dashboard, app, editor, onboard
+js: onboard
+theme: yes
+step: 6
+-->
+<div class="ob ob--preview">
+  {{> onboard-rail}}
+  <div class="obody">
+
+    <div class="ohead">
+      <span class="ohead__eyebrow">Step 6 of 8</span>
+      <h1>Choose your address</h1>
+      <p>Start on a free one. Connecting your own domain later does not break links — the old address keeps redirecting.</p>
+    </div>
+
+    <div class="f">
+      <label class="f__label" for="d-sub">Your free address</label>
+      <div class="domainbox">
+        <input id="d-sub" value="kamal-estates" data-domain autocomplete="off" spellcheck="false" dir="ltr">
+        <span class="domainbox__suffix" dir="ltr">.alfmaskan.com</span>
+      </div>
+      <span class="availability availability--free" data-avail role="status" aria-live="polite">
+        <svg width="14" height="14" viewBox="0 0 15 15" fill="none" aria-hidden="true"><circle cx="7.5" cy="7.5" r="6" stroke="currentColor" stroke-width="1.4"/><path d="M5 7.5l2 2 3.5-3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span data-avail-text>kamal-estates.alfmaskan.com is free</span>
+      </span>
+      <span class="f__hint">Letters, numbers and hyphens. Short is better — people type it into WhatsApp.</span>
+    </div>
+
+    <hr style="border:0;border-top:1px solid var(--rule);margin-block:6px">
+
+    <div class="f">
+      <span class="f__label">
+        Already own a domain?
+        <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">About connecting a domain</span></button>
+          <span class="hint__body" hidden>You keep the domain wherever you bought it. We only ask your registrar to point it at us, which takes one form and a few hours.</span>
+        </span>
+      </span>
+      <div style="display:flex;gap:9px;flex-wrap:wrap">
+        <input class="inp" style="flex:1;min-width:200px" placeholder="kamalestates.com" dir="ltr" aria-label="Your own domain">
+        <button class="btn btn--app" type="button">Connect</button>
+      </div>
+    </div>
+
+    <details class="fset" style="background:var(--panel-2)">
+      <summary>
+        <span class="fset__n" aria-hidden="true">?</span>
+        <span class="fset__title">What is DNS, in plain words</span>
+        <span class="fset__meta"><svg class="fset__caret" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+      </summary>
+      <div class="fset__body">
+        <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.7">
+          A domain is an address, not a place. Buying <b>kamalestates.com</b> from a registrar is like registering an address at the post office — it does not yet say which building to deliver to.
+        </p>
+        <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.7">
+          DNS is the forwarding instruction. You log in where you bought the domain, paste two lines we give you, and from then on anyone typing your address arrives at your storefront. It usually takes an hour or two, sometimes a day.
+        </p>
+        <p style="font-size:var(--t-micro);color:var(--text-2);line-height:1.7">
+          You do not need to move the domain to us, and you do not need to buy anything else. If your registrar is Egyptian and the panel is in Arabic, send us a screenshot on WhatsApp and we will point at the field.
+        </p>
+        <div style="display:flex;gap:9px;flex-wrap:wrap;margin-top:4px">
+          <button class="btn btn--app" type="button">Show me the two lines</button>
+          <a class="btn btn--app" href="https://wa.me/201002448817">Send a screenshot instead</a>
+        </div>
+      </div>
+    </details>
+
+    <div class="ofoot">
+      <a class="ofoot__skip" href="{{base}}onboarding/template.html">Back</a>
+      <span class="ofoot__end">
+        <a class="btn btn--go" href="{{base}}onboarding/first-unit.html">Claim this address</a>
+      </span>
+    </div>
+  </div>
+
+  <aside class="opreview" aria-label="Address preview">
+    <span class="opreview__label">How it will look on WhatsApp</span>
+    <div class="device">
+      <div class="device__bar"><span class="device__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="device__url" data-sf-url dir="ltr">kamal-estates.alfmaskan.com</span></div>
+      <div class="sfhead">
+        <span class="sfhead__logo" style="background:#0F5E4E">KE</span>
+        <span class="sfhead__name">Kamal Estates</span>
+      </div>
+      <div class="sfhero">
+        <div class="ph">hero · New Cairo compound · 16:9</div>
+        <span class="sfhero__title">Find your unit in New Cairo</span>
+      </div>
+    </div>
+
+    <div class="wa-preview" style="background:var(--panel);border:1px solid var(--rule);border-radius:var(--r-12);padding:13px;display:flex;flex-direction:column;gap:8px">
+      <div style="background:var(--accent-soft);border-radius:var(--r-12) var(--r-12) var(--r-12) 3px;padding:10px 12px;font-size:var(--t-nano);line-height:1.6;color:var(--accent-ink)">
+        Here are the New Cairo units —<br>
+        <span dir="ltr" style="font-family:var(--font-mono);font-size:10.5px" data-wa-url>kamal-estates.alfmaskan.com</span>
+      </div>
+      <span class="f__hint">Short addresses survive being retyped. Long ones get mistyped and lost.</span>
+    </div>
+  </aside>
+</div>

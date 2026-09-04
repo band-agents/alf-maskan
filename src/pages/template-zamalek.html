@@ -1,0 +1,273 @@
+<!--
+title: Zamalek template — single-unit editorial layout | Alf Maskan
+desc: A single-unit, editorial storefront for high-value city apartments. Quiet type, large photography, payment plan in full view.
+nav: templates
+bodyClass: page-detail
+-->
+<header class="site-nav site-nav--plain" id="siteNav">
+  <div class="wrap site-nav__inner" style="gap:16px">
+    <a class="brand" href="index.html">
+      {{> mark}}
+      <span class="brand__word">Alf Maskan</span>
+    </a>
+
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <a href="templates.html">Templates</a>
+      <svg width="8" height="8" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <a href="templates.html?tag=Luxury">Luxury</a>
+      <svg width="8" height="8" viewBox="0 0 10 10" aria-hidden="true"><path d="M3 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      <span aria-current="page">Zamalek</span>
+    </nav>
+
+    <div class="nav-end">
+      <a class="nav-signin" href="signup.html#signin">Sign in</a>
+      <a class="btn btn--sm btn--primary" href="signup.html">Start free trial</a>
+    </div>
+
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="siteNav" data-nav-toggle>
+      <i></i><span class="visually-hidden">Menu</span>
+    </button>
+  </div>
+</header>
+
+<main id="main" style="background:var(--paper)">
+  <div class="wrap detail">
+
+    <!-- ============================================ preview column -->
+    <div class="detail__main">
+      <div class="detail__toolbar">
+        <div class="seg seg--sm" role="tablist" aria-label="Preview mode" data-tabs>
+          <button type="button" role="tab" data-tab="desktop" aria-selected="true">Desktop</button>
+          <button type="button" role="tab" data-tab="mobile" aria-selected="false">Mobile</button>
+          <button type="button" role="tab" data-tab="arabic" aria-selected="false">Arabic</button>
+        </div>
+        <p class="mono micro" style="color:var(--slate-400)">scrolling preview · real content, your data replaces it</p>
+      </div>
+
+      <div class="preview">
+        <div class="frame__bar">
+          <span class="frame__dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="frame__url">zamalek-demo.alfmaskan.com</span>
+        </div>
+
+        <!-- desktop -->
+        <div class="preview__scroll preview__pane" data-pane="desktop">
+          <div class="store">
+            <div class="store__nav">
+              <span class="store__word">NILE &amp; CO.</span>
+              <div class="store__links">
+                <span>Portfolio</span><span>Zones</span><span>About</span><span>Contact</span>
+                <span class="store__wa">WhatsApp</span>
+              </div>
+            </div>
+
+            <div class="store__hero">
+              <div class="ph ph--dark ph--label"><span>hero · Zamalek apartment interior · 16:9</span></div>
+              <div class="store__hero-copy">
+                <span class="badge badge--solid-sand badge--upper store__badge">EXCLUSIVE LISTING</span>
+                <p class="store__hero-title">A 320 m² duplex on Abu El Feda</p>
+              </div>
+            </div>
+
+            <div style="padding:36px 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:48px;border-bottom:1px solid var(--line)">
+              <div>
+                <h2 class="card-title" style="margin-bottom:12px">Nile views from every room</h2>
+                <p class="body-sm">Two floors, four bedrooms, a 40 m² terrace and parking for two cars. Fully finished with AC, ready to move in. Building from 1972, fully renovated in 2024.</p>
+                <dl class="store__facts">
+                  <div class="store__fact"><dt>AREA</dt><dd>320 m²</dd></div>
+                  <div class="store__fact"><dt>BEDROOMS</dt><dd>4</dd></div>
+                  <div class="store__fact"><dt>FINISHING</dt><dd>Fully finished</dd></div>
+                  <div class="store__fact"><dt>DELIVERY</dt><dd>Immediate</dd></div>
+                </dl>
+              </div>
+              <div class="card" style="border-radius:var(--r-14);padding:20px">
+                <p class="store__price">EGP 24,500,000</p>
+                <p class="micro" style="margin:4px 0 16px">Cash, or 10% down over 5 years</p>
+                <p class="btn btn--dark btn--block" style="margin-bottom:10px">Request a viewing</p>
+                <p class="btn btn--secondary btn--block">Chat on WhatsApp</p>
+              </div>
+            </div>
+
+            <div style="padding:36px 48px;border-bottom:1px solid var(--line)">
+              <div class="store__mosaic">
+                <div class="ph">living room</div>
+                <div><div class="ph">terrace</div><div class="ph">kitchen</div></div>
+                <div><div class="ph">bedroom</div><div class="ph">+12 photos</div></div>
+              </div>
+            </div>
+
+            <div style="padding:36px 48px;background:var(--paper);border-bottom:1px solid var(--line)">
+              <h2 class="card-title" style="font-size:22px;margin-bottom:18px">Payment plan</h2>
+              <dl class="store__plan">
+                <div><dt>Down payment</dt><dd>EGP 2,450,000</dd></div>
+                <div><dt>Instalments</dt><dd>5 years</dd></div>
+                <div><dt>Monthly</dt><dd>EGP 367,500</dd></div>
+                <div><dt>Maintenance</dt><dd>8% one-off</dd></div>
+              </dl>
+            </div>
+
+            <div style="padding:36px 48px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+              <span class="avatar avatar--lg" aria-hidden="true"></span>
+              <div style="flex:1;min-width:200px">
+                <b style="display:block;font-size:var(--t-body);color:var(--ink-900)">Mai Farouk</b>
+                <span class="meta">Zamalek and Garden City · 9 years · speaks Arabic, English, French</span>
+              </div>
+              <span class="btn btn--dark">Call <span dir="ltr">+20 100 244 8817</span></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- mobile -->
+        <div class="preview__scroll preview__pane" data-pane="mobile" hidden style="display:grid;place-items:center;padding:32px;background:var(--paper)">
+          <div class="phone">
+            <div class="phone__screen">
+              <div class="phone__status"><span>9:41</span><span aria-hidden="true">◦◦◦</span></div>
+              <div class="ph ph--dark" style="height:150px;position:relative">
+                <span class="badge badge--solid-sand" style="position:absolute;inset-inline-start:12px;bottom:12px;height:22px;padding-inline:10px">EXCLUSIVE</span>
+              </div>
+              <div style="padding:14px">
+                <p style="font-family:var(--font-display);font-size:19px;line-height:26px;font-weight:700;color:var(--ink-900)">A 320 m² duplex on Abu El Feda</p>
+                <p class="micro" style="margin-top:4px">Zamalek · 4 bed · Fully finished</p>
+                <p class="store__price" style="font-size:20px;margin-top:12px">EGP 24,500,000</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+                  <div class="ph ph--fine" style="height:64px;border-radius:var(--r-10)"></div>
+                  <div class="ph ph--fine" style="height:64px;border-radius:var(--r-10)"></div>
+                </div>
+                <p class="btn btn--dark btn--block" style="margin-top:14px;border-radius:var(--r-14);--btn-h:48px">Chat on WhatsApp</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- arabic -->
+        <div class="preview__scroll preview__pane" data-pane="arabic" hidden dir="rtl" lang="ar" style="font-family:var(--font-arabic)">
+          <div class="store">
+            <div class="store__nav">
+              <span class="store__word" style="font-family:var(--font-arabic);letter-spacing:0">نايل آند كو.</span>
+              <div class="store__links">
+                <span>الوحدات</span><span>المناطق</span><span>من نحن</span><span>اتصل بنا</span>
+                <span class="store__wa">واتساب</span>
+              </div>
+            </div>
+
+            <div class="store__hero">
+              <div class="ph ph--dark ph--label"><span dir="ltr">hero · Zamalek apartment interior · 16:9</span></div>
+              <div class="store__hero-copy">
+                <span class="badge badge--solid-sand badge--upper store__badge">عرض حصري</span>
+                <p class="store__hero-title" style="font-family:var(--font-arabic)">دوبلكس 320 م² في أبو الفدا</p>
+              </div>
+            </div>
+
+            <div style="padding:36px 48px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,320px);gap:48px;border-bottom:1px solid var(--line)">
+              <div>
+                <h2 class="card-title" style="margin-bottom:12px;font-family:var(--font-arabic)">إطلالة على النيل من كل غرفة</h2>
+                <p class="body-sm">دورين، أربع غرف نوم، تراس 40 م² وجراج لسيارتين. تشطيب كامل مع تكييف، جاهز للسكن. المبنى من 1972 وتم تجديده بالكامل في 2024.</p>
+                <dl class="store__facts">
+                  <div class="store__fact"><dt>المساحة</dt><dd>320 م²</dd></div>
+                  <div class="store__fact"><dt>غرف النوم</dt><dd>4</dd></div>
+                  <div class="store__fact"><dt>التشطيب</dt><dd>تشطيب كامل</dd></div>
+                  <div class="store__fact"><dt>الاستلام</dt><dd>فوري</dd></div>
+                </dl>
+              </div>
+              <div class="card" style="border-radius:var(--r-14);padding:20px">
+                <p class="store__price">24,500,000 ج.م</p>
+                <p class="micro" style="margin:4px 0 16px">كاش، أو 10% مقدم على 5 سنوات</p>
+                <p class="btn btn--dark btn--block" style="margin-bottom:10px">اطلب معاينة</p>
+                <p class="btn btn--secondary btn--block">تواصل على واتساب</p>
+              </div>
+            </div>
+
+            <div style="padding:36px 48px;background:var(--paper)">
+              <h2 class="card-title" style="font-size:22px;margin-bottom:18px;font-family:var(--font-arabic)">خطة السداد</h2>
+              <dl class="store__plan">
+                <div><dt>المقدم</dt><dd>2,450,000 ج.م</dd></div>
+                <div><dt>الأقساط</dt><dd>5 سنوات</dd></div>
+                <div><dt>الشهري</dt><dd>367,500 ج.م</dd></div>
+                <div><dt>الصيانة</dt><dd>8% مرة واحدة</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- mobile frame + why-this-template, below the preview -->
+      <div class="detail__aside">
+        <div style="width:280px;flex:none">
+          <p class="mono micro" style="color:var(--slate-400);margin-bottom:10px">MOBILE · 390 × 844</p>
+          <div class="phone">
+            <div class="phone__screen">
+              <div class="phone__status"><span>9:41</span><span aria-hidden="true">◦◦◦</span></div>
+              <div class="ph ph--dark" style="height:150px;position:relative">
+                <span class="badge badge--solid-sand" style="position:absolute;inset-inline-start:12px;bottom:12px;height:22px;padding-inline:10px">EXCLUSIVE</span>
+              </div>
+              <div style="padding:14px">
+                <p style="font-family:var(--font-display);font-size:19px;line-height:26px;font-weight:700;color:var(--ink-900)">A 320 m² duplex on Abu El Feda</p>
+                <p class="micro" style="margin-top:4px">Zamalek · 4 bed · Fully finished</p>
+                <p class="store__price" style="font-size:20px;margin-top:12px">EGP 24,500,000</p>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px">
+                  <div class="ph ph--fine" style="height:64px;border-radius:var(--r-10)"></div>
+                  <div class="ph ph--fine" style="height:64px;border-radius:var(--r-10)"></div>
+                </div>
+                <p class="btn btn--dark btn--block" style="margin-top:14px;border-radius:var(--r-14);--btn-h:48px">Chat on WhatsApp</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="card-title" style="font-size:22px;margin-bottom:14px">Why brokers pick Zamalek</h2>
+          <p class="body-sm" style="margin-bottom:18px">It gives one unit the whole page. Buyers scroll through the story, the plan and the agent without ever seeing a competing listing. Best when your average ticket is above EGP 15M and you sell a handful of units at a time.</p>
+          <div class="row" style="flex-wrap:wrap;gap:8px">
+            <span class="chip">Exclusive listings</span>
+            <span class="chip">Zamalek · Maadi · Garden City</span>
+            <span class="chip">Low inventory</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ============================================ sticky sidebar -->
+    <aside class="detail__side">
+      <div class="card card--lift">
+        <div class="row row-gap-10" style="margin-bottom:10px;flex-wrap:wrap">
+          <h1 style="font-size:28px;line-height:36px">Zamalek</h1>
+          <span class="badge badge--sand" style="font-weight:700">PREMIUM</span>
+        </div>
+        <p class="body-sm" style="margin-bottom:20px">A single-unit, editorial layout for high-value city apartments. Quiet type, large photography, payment plan in full view.</p>
+        <a class="btn btn--primary btn--block" style="--btn-h:52px;border-radius:var(--r-14);box-shadow:var(--sh-palm-sm);margin-bottom:10px;font-size:var(--t-body-sm)" href="signup.html?template=zamalek">Start with this template</a>
+        <a class="btn btn--secondary btn--block" style="--btn-h:52px;border-radius:var(--r-14);font-size:var(--t-body-sm)" href="#main">Open live preview</a>
+        <p class="row row-gap-10" style="margin-top:14px;justify-content:center">
+          <span class="info-dot info-dot--sm">i</span>
+          <span class="micro">Switching template never deletes your units.</span>
+        </p>
+      </div>
+
+      <div class="card">
+        <h2 class="kicker" style="margin-bottom:16px">Sections included</h2>
+        <ul class="stack" style="gap:12px">
+          <li class="check" style="align-items:center"><span class="check__mark" style="margin-top:0">{{> tick}}</span><span style="font-size:var(--t-meta)">Full-bleed hero with badge</span></li>
+          <li class="check" style="align-items:center"><span class="check__mark" style="margin-top:0">{{> tick}}</span><span style="font-size:var(--t-meta)">Key facts strip</span></li>
+          <li class="check" style="align-items:center"><span class="check__mark" style="margin-top:0">{{> tick}}</span><span style="font-size:var(--t-meta)">Photo mosaic, up to 20</span></li>
+          <li class="check" style="align-items:center"><span class="check__mark" style="margin-top:0">{{> tick}}</span><span style="font-size:var(--t-meta)">Payment plan cards</span></li>
+          <li class="check" style="align-items:center"><span class="check__mark" style="margin-top:0">{{> tick}}</span><span style="font-size:var(--t-meta)">Agent card with call button</span></li>
+          <li class="check" style="align-items:center"><span class="check__mark" style="margin-top:0">{{> tick}}</span><span style="font-size:var(--t-meta)">Neighbourhood map</span></li>
+          <li class="check check--off" style="align-items:center">
+            <span class="check__mark check__mark--off" style="margin-top:0"><svg width="8" height="2" viewBox="0 0 8 2" aria-hidden="true"><rect width="8" height="1.5" rx=".75" fill="currentColor"/></svg></span>
+            <span style="font-size:var(--t-meta)">Multi-unit grid — not in this one</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2 class="kicker" style="margin-bottom:14px">Also good for you</h2>
+        <ul class="stack" style="gap:12px">
+          <li><a class="mini-tpl" href="templates.html"><span class="ph"></span><span><b style="display:block;font-size:var(--t-meta);color:var(--ink-900)">Zed</b><span class="micro">Dark, video-led luxury</span></span></a></li>
+          <li><a class="mini-tpl" href="templates.html"><span class="ph"></span><span><b style="display:block;font-size:var(--t-meta);color:var(--ink-900)">Maadi</b><span class="micro">Calm, text-led rentals</span></span></a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</main>
+
+{{> footer}}

@@ -1,0 +1,106 @@
+<!--
+title: Tell us about your business — Alf Maskan
+desc: Your name in both scripts, your WhatsApp number and the areas you cover.
+bodyClass: app
+css: dashboard, app, editor, onboard
+js: onboard
+theme: yes
+step: 3
+-->
+<div class="ob ob--preview">
+  {{> onboard-rail}}
+  <div class="obody">
+
+    <div class="ohead">
+      <span class="ohead__eyebrow">Step 3 of 8</span>
+      <h1>Tell us about your business</h1>
+      <p>This is what buyers see at the top of your storefront and on every WhatsApp reply.</p>
+    </div>
+
+    <div class="fgrid">
+      <div class="f">
+        <label class="f__label" for="b-name-en">Business name <span class="f__req" aria-hidden="true">*</span></label>
+        <input class="inp" id="b-name-en" value="Kamal Estates" data-biz-name>
+      </div>
+      <div class="f">
+        <label class="f__label" for="b-name-ar">
+          Name in Arabic
+          <span class="hint"><button class="hint__dot" type="button" data-hint aria-expanded="false">i<span class="visually-hidden">Why the Arabic name too</span></button>
+            <span class="hint__body" hidden>Most Egyptian buyers search in Arabic. A storefront with only a Latin name is close to invisible to them on Google.</span>
+          </span>
+        </label>
+        <input class="inp" id="b-name-ar" lang="ar" dir="rtl" value="كمال العقارية" style="font-family:var(--font-arabic)">
+      </div>
+    </div>
+
+    <div class="fgrid">
+      <div class="f">
+        <label class="f__label" for="b-wa">WhatsApp number <span class="f__req" aria-hidden="true">*</span></label>
+        <span class="inp-unit inp-unit--lead"><input class="inp" id="b-wa" type="tel" dir="ltr" value="100 244 8817"><span class="inp-unit__u">+20</span></span>
+        <span class="f__hint">Every enquiry lands here. Buyers never see the raw number until they tap.</span>
+      </div>
+      <div class="f">
+        <label class="f__label" for="b-phone">Office phone</label>
+        <span class="inp-unit inp-unit--lead"><input class="inp" id="b-phone" type="tel" dir="ltr" value="2 2537 1180"><span class="inp-unit__u">+20</span></span>
+      </div>
+    </div>
+
+    <div class="fgrid">
+      <div class="f">
+        <label class="f__label" for="b-gov">Governorate</label>
+        <span class="selwrap">
+          <select class="sel" id="b-gov"><option>Cairo</option><option>Giza</option><option>Alexandria</option><option>Matrouh</option><option>Red Sea</option><option>Suez</option></select>
+          <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+      </div>
+      <div class="f">
+        <label class="f__label" for="b-team">Team size</label>
+        <span class="selwrap">
+          <select class="sel" id="b-team"><option>Just me</option><option selected>2 – 5</option><option>6 – 20</option><option>More than 20</option></select>
+          <span class="selwrap__caret"><svg width="9" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></span>
+        </span>
+      </div>
+    </div>
+
+    <div class="f">
+      <span class="f__label">Areas you operate in</span>
+      <div class="chipset" data-areas>
+        <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>New Cairo</label>
+        <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Sheikh Zayed</label>
+        <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>6th of October</label>
+        <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>North Coast</label>
+        <label><input type="checkbox" checked><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Ain Sokhna</label>
+        <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>New Administrative Capital</label>
+        <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Mostakbal City</label>
+        <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Zamalek</label>
+        <label><input type="checkbox"><span class="chipset__tick" aria-hidden="true">{{> tick}}</span>Maadi</label>
+      </div>
+      <span class="f__hint"><b data-area-count>4</b> selected — these become your storefront's zone filter and its first zone pages.</span>
+    </div>
+
+    <div class="ofoot">
+      <a class="ofoot__skip" href="{{base}}onboarding/profile.html">Back</a>
+      <span class="ofoot__end">
+        <a class="btn btn--go" href="{{base}}onboarding/branding.html">Continue</a>
+      </span>
+    </div>
+  </div>
+
+  <aside class="opreview" aria-label="Storefront preview">
+    <span class="opreview__label">Your storefront, so far</span>
+    <div class="device">
+      <div class="device__bar"><span class="device__dots" aria-hidden="true"><i></i><i></i><i></i></span><span class="device__url" data-sf-url>yourname.alfmaskan.com</span></div>
+      <div class="sfhead">
+        <span class="sfhead__logo" data-sf-logo style="background:var(--palm-600)">KE</span>
+        <span class="sfhead__name" data-sf-name>Kamal Estates</span>
+        <span class="sfhead__nav"><span>Units</span><span>About</span><span>Contact</span></span>
+      </div>
+      <div class="sfhero">
+        <div class="ph">hero · New Cairo compound · 16:9</div>
+        <span class="sfhero__title" data-sf-hero>Find your unit in New Cairo</span>
+        <span class="sfhero__btn" data-sf-btn style="background:var(--palm-600)">Browse units</span>
+      </div>
+    </div>
+    <p class="f__hint">It updates as you type. Nothing is published until step 8.</p>
+  </aside>
+</div>

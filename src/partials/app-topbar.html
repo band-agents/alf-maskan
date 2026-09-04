@@ -1,0 +1,42 @@
+<header class="topbar">
+  <button class="icon-btn rail-open" type="button" data-rail-open aria-controls="rail" aria-expanded="false">
+    <svg width="16" height="12" viewBox="0 0 16 12" aria-hidden="true"><path d="M0 1h16M0 6h16M0 11h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <span class="visually-hidden">Open sidebar</span>
+  </button>
+
+  <label class="omnibox">
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+      <circle cx="7" cy="7" r="5.25" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M11 11l3.5 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <span class="visually-hidden">Search</span>
+    <input type="search" placeholder="Search units, leads, agents…" data-omnibox>
+    <span class="kbd" aria-hidden="true"><span>⌘</span><span>K</span></span>
+  </label>
+
+  <div class="topbar__end">
+    <div class="lang">
+      <a href="{{base}}app/index.html" lang="en" hreflang="en" aria-current="true">EN</a>
+      <a href="{{base}}ar/signup.html" lang="ar" hreflang="ar">ع</a>
+    </div>
+
+    <button class="icon-btn" type="button" data-theme-toggle aria-pressed="false">
+      <span class="theme-swatch" aria-hidden="true"></span>
+      <span class="visually-hidden">Switch to dark mode</span>
+    </button>
+
+    <a class="icon-btn" href="{{base}}app/notifications.html">
+      <svg width="14" height="15" viewBox="0 0 14 15" fill="none" aria-hidden="true"><path d="M2 6a5 5 0 0110 0v4l1.25 2H.75L2 10V6z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+      <span class="icon-btn__dot" aria-hidden="true"></span>
+      <span class="visually-hidden">Notifications</span>
+    </a>
+
+    <a class="topbar__link" href="{{base}}index.html">View storefront <span aria-hidden="true">↗</span></a>
+
+    <button class="account" type="button">
+      <span class="avatar" aria-hidden="true"></span>
+      <svg width="8" height="8" viewBox="0 0 10 10" aria-hidden="true"><path d="M1 3l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity=".6"/></svg>
+      <span class="visually-hidden">Your account</span>
+    </button>
+  </div>
+</header>

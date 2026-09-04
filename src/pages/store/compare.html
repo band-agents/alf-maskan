@@ -1,0 +1,179 @@
+<!--
+title: Compare three units — Kamal Estates
+desc: Penthouse in Mivida, chalet in Marassi and twin house in Sodic East, side by side.
+bodyClass: storefront
+css: store
+js: store, store-compare
+fonts: family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600
+-->
+{{> store-head}}
+
+<main id="main">
+  <div class="store-wrap" style="padding-block:26px 64px;display:flex;flex-direction:column;gap:18px">
+
+    <nav class="st-crumb" aria-label="Breadcrumb">
+      <a href="{{base}}store/index.html">Home</a>
+      <svg width="5" height="8" viewBox="0 0 6 10" fill="none" aria-hidden="true"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Compare</span>
+    </nav>
+
+    <div class="st-sec__head">
+      <div>
+        <span class="st-eyebrow">3 units</span>
+        <h1 class="st-h1" style="margin-top:6px">Side by side</h1>
+      </div>
+      <a class="st-btn st-btn--ghost" href="{{base}}store/search.html" style="height:38px;font-size:var(--t-micro)">Add another unit</a>
+    </div>
+
+    <p class="cmp-legend">
+      <span><i aria-hidden="true"></i>Greyed rows are the same for all three units</span>
+      <span>Everything else is where they differ</span>
+    </p>
+
+    <div class="cmp-scroll">
+      <table class="cmp" data-compare-table>
+        <caption class="visually-hidden">Three units compared across price, size, terms and finishing.</caption>
+
+        <thead>
+          <tr>
+            <td class="cmp__row-label"><span class="visually-hidden">Unit</span></td>
+            <th scope="col">
+              <span class="cmp__head">
+                <span class="ph">penthouse · Mivida · 4:3</span>
+                <b>Penthouse with roof garden</b>
+                <span>New Cairo · Mivida</span>
+                <button class="cmp__drop" type="button" data-drop>Remove</button>
+              </span>
+            </th>
+            <th scope="col">
+              <span class="cmp__head">
+                <span class="ph">chalet · Marassi · 4:3</span>
+                <b>Sea-view chalet, first row</b>
+                <span>North Coast · Marassi</span>
+                <button class="cmp__drop" type="button" data-drop>Remove</button>
+              </span>
+            </th>
+            <th scope="col">
+              <span class="cmp__head">
+                <span class="ph">twin house · Sodic East · 4:3</span>
+                <b>Twin house, semi-finished</b>
+                <span>New Cairo · Sodic East</span>
+                <button class="cmp__drop" type="button" data-drop>Remove</button>
+              </span>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr data-row="price" data-best="low">
+            <th class="cmp__row-label" scope="row">Price</th>
+            <td data-v="8450000"><b>EGP 8,450,000</b></td>
+            <td data-v="12200000"><b>EGP 12,200,000</b></td>
+            <td data-v="15800000"><b>EGP 15,800,000</b></td>
+          </tr>
+          <tr data-row="ppm" data-best="low">
+            <th class="cmp__row-label" scope="row">Price per m²</th>
+            <td data-v="50298">EGP 50,298</td>
+            <td data-v="100000">EGP 100,000</td>
+            <td data-v="65833">EGP 65,833</td>
+          </tr>
+          <tr data-row="monthly" data-best="low">
+            <th class="cmp__row-label" scope="row">Monthly instalment</th>
+            <td data-v="79219"><b>EGP 79,219</b><br><span style="font-size:var(--t-nano);color:var(--nile-mute)">10% down · 8 years</span></td>
+            <td data-v="144028"><b>EGP 144,028</b><br><span style="font-size:var(--t-nano);color:var(--nile-mute)">15% down · 6 years</span></td>
+            <td data-v="144833"><b>EGP 144,833</b><br><span style="font-size:var(--t-nano);color:var(--nile-mute)">12% down · 8 years</span></td>
+          </tr>
+          <tr data-row="down" data-best="low">
+            <th class="cmp__row-label" scope="row">Down payment</th>
+            <td data-v="845000">EGP 845,000</td>
+            <td data-v="1830000">EGP 1,830,000</td>
+            <td data-v="1896000">EGP 1,896,000</td>
+          </tr>
+          <tr data-row="type">
+            <th class="cmp__row-label" scope="row">Type</th>
+            <td data-v="Penthouse">Penthouse</td>
+            <td data-v="Chalet">Chalet</td>
+            <td data-v="Twin house">Twin house</td>
+          </tr>
+          <tr data-row="purpose">
+            <th class="cmp__row-label" scope="row">Purpose</th>
+            <td data-v="Primary">Primary</td>
+            <td data-v="Primary">Primary</td>
+            <td data-v="Primary">Primary</td>
+          </tr>
+          <tr data-row="area" data-best="high">
+            <th class="cmp__row-label" scope="row">Area</th>
+            <td data-v="168"><b>168 m²</b></td>
+            <td data-v="122"><b>122 m²</b></td>
+            <td data-v="240"><b>240 m²</b></td>
+          </tr>
+          <tr data-row="beds" data-best="high">
+            <th class="cmp__row-label" scope="row">Bedrooms</th>
+            <td data-v="3">3</td>
+            <td data-v="2">2</td>
+            <td data-v="4">4</td>
+          </tr>
+          <tr data-row="baths">
+            <th class="cmp__row-label" scope="row">Bathrooms</th>
+            <td data-v="3">3</td>
+            <td data-v="2">2</td>
+            <td data-v="3">3</td>
+          </tr>
+          <tr data-row="finish">
+            <th class="cmp__row-label" scope="row">Finishing</th>
+            <td data-v="Fully finished">Fully finished</td>
+            <td data-v="Semi-finished">Semi-finished</td>
+            <td data-v="Semi-finished">Semi-finished</td>
+          </tr>
+          <tr data-row="delivery">
+            <th class="cmp__row-label" scope="row">Delivery</th>
+            <td data-v="Q2 2027">Q2 2027</td>
+            <td data-v="Q3 2027">Q3 2027</td>
+            <td data-v="Q4 2027">Q4 2027</td>
+          </tr>
+          <tr data-row="view">
+            <th class="cmp__row-label" scope="row">View</th>
+            <td data-v="Garden">Central park</td>
+            <td data-v="Sea">Sea, first row</td>
+            <td data-v="Garden">Garden</td>
+          </tr>
+          <tr data-row="parking">
+            <th class="cmp__row-label" scope="row">Parking</th>
+            <td data-v="2">2 spots</td>
+            <td data-v="1">1 spot</td>
+            <td data-v="2">2 spots</td>
+          </tr>
+          <tr data-row="maint" data-best="low">
+            <th class="cmp__row-label" scope="row">Maintenance</th>
+            <td data-v="380000">EGP 380,000</td>
+            <td data-v="610000">EGP 610,000</td>
+            <td data-v="474000">EGP 474,000</td>
+          </tr>
+          <tr data-row="pool">
+            <th class="cmp__row-label" scope="row">Pool</th>
+            <td data-v="yes">{{> tick}} Yes</td>
+            <td data-v="yes">{{> tick}} Yes</td>
+            <td data-v="yes">{{> tick}} Yes</td>
+          </tr>
+          <tr data-row="agent">
+            <th class="cmp__row-label" scope="row">Your agent</th>
+            <td data-v="Youssef Kamal">Youssef Kamal</td>
+            <td data-v="Mai Farouk">Mai Farouk</td>
+            <td data-v="Youssef Kamal">Youssef Kamal</td>
+          </tr>
+          <tr data-row="cta">
+            <th class="cmp__row-label" scope="row"><span class="visually-hidden">Actions</span></th>
+            <td><a class="st-btn st-btn--primary" href="{{base}}store/unit.html" style="height:38px;font-size:var(--t-micro);padding-inline:16px">See unit</a></td>
+            <td><a class="st-btn st-btn--primary" href="{{base}}store/unit.html" style="height:38px;font-size:var(--t-micro);padding-inline:16px">See unit</a></td>
+            <td><a class="st-btn st-btn--primary" href="{{base}}store/unit.html" style="height:38px;font-size:var(--t-micro);padding-inline:16px">See unit</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="st-field__hint" data-summary role="status" aria-live="polite"></p>
+
+  </div>
+</main>
+
+{{> store-foot}}

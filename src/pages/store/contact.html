@@ -1,0 +1,126 @@
+<!--
+title: Book a viewing — Kamal Estates
+desc: Pick a day and a time and we will meet you at the unit. Office on 90th Street, New Cairo.
+bodyClass: storefront
+css: store
+js: store, store-contact
+fonts: family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600
+-->
+{{> store-head}}
+
+<main id="main">
+  <div class="store-wrap">
+
+    <nav class="st-crumb" style="padding-block:20px 0" aria-label="Breadcrumb">
+      <a href="{{base}}store/index.html">Home</a>
+      <svg width="5" height="8" viewBox="0 0 6 10" fill="none" aria-hidden="true"><path d="M1 1l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Book a viewing</span>
+    </nav>
+
+    <div class="book">
+
+      <!-- ============================================ the form -->
+      <form class="book__form" action="#" data-booking>
+
+        <div>
+          <span class="st-eyebrow">Usually confirmed within the hour</span>
+          <h1 class="st-h1" style="margin-top:8px">Book a viewing</h1>
+          <p class="st-lede" style="margin-top:10px">Pick a day and a time. We will meet you at the unit, or send a video walkthrough if you are abroad.</p>
+        </div>
+
+        <!-- ---- which unit ---- -->
+        <div class="st-field">
+          <label for="b-unit">Which unit</label>
+          <select id="b-unit" name="unit">
+            <option>Penthouse with roof garden — Mivida, AM-1042</option>
+            <option>Sea-view chalet, first row — Marassi, AM-1038</option>
+            <option>Studio, fully finished with AC — Zed East, AM-1035</option>
+            <option>Twin house, semi-finished — Sodic East, AM-1044</option>
+            <option>Not sure yet — help me choose</option>
+          </select>
+        </div>
+
+        <!-- ---- day ---- -->
+        <fieldset style="border:0;padding:0;display:flex;flex-direction:column;gap:9px">
+          <legend class="st-field" style="padding:0"><span style="font-size:var(--t-micro);font-weight:500;color:var(--nile-ink-2)">Pick a day</span></legend>
+          <div class="slot-days" role="group" aria-label="Available days">
+            <button class="slot-day" type="button" aria-pressed="true" data-day="Thu 4 Sep"><span>Thu</span><b>4</b></button>
+            <button class="slot-day" type="button" aria-pressed="false" data-day="Fri 5 Sep" disabled><span>Fri</span><b>5</b></button>
+            <button class="slot-day" type="button" aria-pressed="false" data-day="Sat 6 Sep"><span>Sat</span><b>6</b></button>
+            <button class="slot-day" type="button" aria-pressed="false" data-day="Sun 7 Sep"><span>Sun</span><b>7</b></button>
+            <button class="slot-day" type="button" aria-pressed="false" data-day="Mon 8 Sep"><span>Mon</span><b>8</b></button>
+            <button class="slot-day" type="button" aria-pressed="false" data-day="Tue 9 Sep"><span>Tue</span><b>9</b></button>
+            <button class="slot-day" type="button" aria-pressed="false" data-day="Wed 10 Sep"><span>Wed</span><b>10</b></button>
+          </div>
+          <p class="st-field__hint">Friday is our day off. Everything is Cairo time.</p>
+        </fieldset>
+
+        <!-- ---- time ---- -->
+        <fieldset style="border:0;padding:0;display:flex;flex-direction:column;gap:9px">
+          <legend class="st-field" style="padding:0"><span style="font-size:var(--t-micro);font-weight:500;color:var(--nile-ink-2)">Pick a time</span></legend>
+          <div class="slot-times" role="group" aria-label="Available times" data-times>
+            <button class="slot-time" type="button" aria-pressed="false" data-time="10:00">10:00</button>
+            <button class="slot-time" type="button" aria-pressed="false" data-time="11:30">11:30</button>
+            <button class="slot-time" type="button" aria-pressed="false" data-time="13:00" disabled>13:00</button>
+            <button class="slot-time" type="button" aria-pressed="false" data-time="15:00">15:00</button>
+            <button class="slot-time" type="button" aria-pressed="false" data-time="16:30">16:30</button>
+            <button class="slot-time" type="button" aria-pressed="false" data-time="18:00">18:00</button>
+          </div>
+        </fieldset>
+
+        <!-- ---- you ---- -->
+        <div class="st-field__row">
+          <div class="st-field">
+            <label for="b-name">Your name</label>
+            <input id="b-name" name="name" type="text" autocomplete="name" placeholder="Hala Mansour" required>
+          </div>
+          <div class="st-field">
+            <label for="b-phone">Mobile</label>
+            <input id="b-phone" name="phone" type="tel" dir="ltr" autocomplete="tel" placeholder="+20 100 000 0000" required>
+            <span class="st-field__hint">We send the confirmation on WhatsApp.</span>
+          </div>
+        </div>
+
+        <div class="st-field">
+          <label for="b-note">Anything we should know</label>
+          <textarea id="b-note" name="note" placeholder="Budget, how soon you want to move, whether you need a mortgage."></textarea>
+        </div>
+
+        <div class="booked" data-booked hidden role="status" aria-live="polite">
+          <svg width="17" height="17" viewBox="0 0 18 18" fill="none" aria-hidden="true" style="flex:none;color:var(--success)"><circle cx="9" cy="9" r="7.5" stroke="currentColor" stroke-width="1.5"/><path d="M5.5 9l2.4 2.4L12.5 6.8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <span data-booked-text></span>
+        </div>
+
+        <button class="st-btn st-btn--primary" type="submit" style="align-self:flex-start" data-book-submit>Request this viewing</button>
+        <p class="st-field__hint">No payment, no commitment. You can move or cancel it on WhatsApp.</p>
+      </form>
+
+      <!-- ============================================ office -->
+      <aside class="book__side" aria-label="Our office">
+        <div class="gallery__stage"><div class="ph ph--dark" style="aspect-ratio:4/3">map · 90th Street, New Cairo</div></div>
+
+        <div class="agent">
+          <div class="agent__who">
+            <span class="avatar" aria-hidden="true"></span>
+            <span>
+              <b>Kamal Estates</b>
+              <span>90th Street, New Cairo</span>
+            </span>
+          </div>
+          <ul style="display:flex;flex-direction:column;gap:9px;font-size:var(--t-micro);color:var(--nile-ink-2)">
+            <li><b style="color:var(--nile-ink)">Saturday to Thursday</b><br>10:00 – 19:00</li>
+            <li><b style="color:var(--nile-ink)">Friday</b><br>Closed</li>
+          </ul>
+          <div class="agent__acts">
+            <a class="st-btn st-btn--primary st-btn--block" href="https://wa.me/201002448817">WhatsApp instead</a>
+            <a class="st-btn st-btn--ghost st-btn--block" href="tel:+201002448817">Call the office</a>
+          </div>
+          <span class="agent__tel" dir="ltr">+20 100 244 8817</span>
+        </div>
+      </aside>
+
+    </div>
+  </div>
+</main>
+
+{{> store-foot}}
