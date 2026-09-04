@@ -1,0 +1,20 @@
+/* Bridges next/font's generated variables onto the design system's own names.
+   tokens.css names the families literally (Tajawal, Inter…) because the static
+   build loads them from Google. Here they are self-hosted with hashed family
+   names, so the tokens point at the generated variable instead and every
+   component that reads --font-display keeps working untouched. */
+
+:root {
+  --font-display: var(--f-display), "Segoe UI", system-ui, sans-serif;
+  --font-ui: var(--f-ui), "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: var(--f-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-arabic: var(--f-arabic), var(--f-display), "Segoe UI", sans-serif;
+}
+
+/* create-next-app ships a starter body font and a page.module.css we do not
+   use. The design system owns typography from here. */
+body {
+  margin: 0;
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}

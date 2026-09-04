@@ -1,0 +1,193 @@
+/* Alf Maskan design tokens.
+   Names and values transcribed from "Alf Maskan Design System.dc.html" board 02 COLOR.
+   Rule from the brief: palm is the primary, sand is accent for premium only. */
+
+:root {
+  /* ---- palm (primary) ---- */
+  --palm-700: #0B4A3E;  /* pressed */
+  --palm-600: #0F5E4E;  /* primary buttons, active nav */
+  --palm-500: #127A64;
+  --palm-100: #E7F3F0;  /* tints, selected rows */
+  --palm-on-dark: #3EA98F; /* palm as it reads on ink-900 */
+
+  /* ---- sand (accent — premium / featured only) ---- */
+  --sand-600: #A87A1E;  /* sand text on light */
+  --sand-500: #C9962B;  /* accent, featured mark */
+  --sand-100: #FBF3E2;  /* deal badge ground */
+  --sand-line: #F0E0BC;
+  --sand-on-dark: #E2B457;
+
+  /* ---- neutrals ---- */
+  --ink-900: #0C1017;   /* primary text, dark surfaces */
+  --ink-700: #1A212D;   /* headings on light */
+  --slate-500: #6B7484; /* secondary text, helper copy */
+  --slate-400: #9AA1AE; /* placeholder, disabled */
+  --line: #E6E9EF;      /* borders, dividers */
+  --paper: #F6F7F9;     /* app background */
+  --surface: #FFFFFF;   /* cards, panels, modals */
+
+  /* dark-surface ramp */
+  --ink-850: #141A24;
+  --ink-800: #1B2331;
+  --ink-750: #232B38;   /* borders on dark */
+  --on-dark: #ECEFF4;   /* text on dark */
+  --on-dark-dim: #9BA5B4;
+
+  /* ---- status ---- */
+  --success: #127A4B;   --success-bg: #E6F4EC;
+  --warning: #B4740E;   --warning-bg: #FCF3E3;
+  --danger:  #C2402F;   --danger-bg:  #FBECEA;
+  --info:    #2563A8;   --info-bg:    #E9F0FA;
+  --info-ink: #1B4B85;
+
+  /* placeholder hatch — every one of these is where a real photo goes */
+  --hatch-a: #DCE0E6;
+  --hatch-b: #E7EAF0;
+  --hatch-dark-a: #D3D8DF;
+  --hatch-dark-b: #DFE3E9;
+  --hatch-avatar-a: #DDE1E7;
+  --hatch-avatar-b: #E9ECF1;
+
+  /* ---- type ---- */
+  --font-display: Tajawal, "Segoe UI", system-ui, sans-serif;
+  --font-ui: Inter, "Segoe UI", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-arabic: "IBM Plex Sans Arabic", Tajawal, "Segoe UI", sans-serif;
+
+  /* Fluid where the design's fixed size would overflow a small viewport.
+     The max of each clamp is the artboard value. */
+  --t-hero: clamp(34px, 4.4vw, 60px);
+  --t-page: clamp(32px, 3.8vw, 52px);
+  --t-title: clamp(30px, 3.2vw, 44px);
+  --t-section: clamp(26px, 2.7vw, 36px);
+  --t-sub: clamp(24px, 2.4vw, 32px);
+  --t-card-lg: clamp(22px, 1.9vw, 26px);
+  --t-card: 22px;
+  --t-lede: clamp(16px, 1.3vw, 18px);
+  --t-body: 16px;
+  --t-body-sm: 15px;
+  --t-meta: 14px;
+  --t-micro: 13px;
+  --t-nano: 12px;
+  --t-pico: 11px;
+
+  /* ---- radii ---- */
+  --r-6: 6px;   --r-8: 8px;   --r-10: 10px; --r-12: 12px;
+  --r-14: 14px; --r-16: 16px; --r-18: 18px; --r-20: 20px;
+  --r-24: 24px; --r-28: 28px; --r-pill: 999px;
+
+  /* ---- elevation ---- */
+  --sh-xs: 0 1px 2px rgba(12, 16, 23, .06);
+  --sh-sm: 0 4px 12px rgba(12, 16, 23, .08);
+  --sh-md: 0 12px 32px rgba(12, 16, 23, .12);
+  --sh-lg: 0 12px 32px rgba(12, 16, 23, .18);
+  --sh-palm: 0 12px 32px rgba(15, 94, 78, .24);
+  --sh-palm-sm: 0 4px 12px rgba(15, 94, 78, .2);
+  --sh-dark: 0 12px 32px rgba(0, 0, 0, .28);
+
+  /* ---- layout ---- */
+  --gutter: clamp(20px, 3.4vw, 48px);
+  --page-max: 1440px;
+  --nav-h: 72px;
+
+  /* ---- motion ---- */
+  --ease: cubic-bezier(.2, .7, .3, 1);
+  --dur-fast: 120ms;
+  --dur: 200ms;
+  --dur-slow: 320ms;
+
+  /* ---- semantic surface roles ----
+     The dashboard paints from these, never from a raw ramp step, so the dark
+     theme below is a token swap rather than a second stylesheet. */
+  --bg: var(--paper);          /* page ground */
+  --panel: var(--surface);     /* sidebar, top bar, cards */
+  --panel-2: var(--paper);     /* inset wells inside a panel */
+  --rule: var(--line);         /* borders and dividers */
+  --rule-strong: #DCE0E6;
+  --text: var(--ink-900);      /* primary */
+  --text-2: var(--ink-700);    /* body */
+  --text-3: var(--slate-500);  /* secondary */
+  --text-4: var(--slate-400);  /* muted, placeholder */
+  --accent: var(--palm-600);   /* primary action, series 1 */
+  --accent-soft: var(--palm-100);
+  --accent-ink: var(--palm-700);
+  --accent-2: var(--sand-500); /* series 2, featured */
+  --accent-2-ink: var(--sand-600);
+  --accent-2-soft: var(--sand-100);
+  --ok: var(--success);        --ok-bg: var(--success-bg);
+  --warn: var(--warning);      --warn-bg: var(--warning-bg);
+  --bad: #A5341F;              --bad-bg: var(--danger-bg);
+  --bad-solid: var(--danger);
+  --tip-bg: var(--ink-900);
+  --tip-text: var(--on-dark);
+
+  /* ---- categorical chart series ----
+     Deliberately NOT the status colours. Reusing --info and --warn as series 2
+     and 3 put palm against blue at ΔE 14.9, under the 15 floor where readers
+     with normal colour vision stop telling a pair apart. This order is
+     validated in both themes: worst adjacent pair ΔE 25.1 normal / 19.2 protan
+     (light), 19.3 / 12.0 (dark). Assign in order; never cycle. */
+  --series-1: #0F5E4E;
+  --series-2: #C9962B;
+  --series-3: #2563A8;
+  --series-4: #A8442B;
+
+  /* editor-only surfaces (storefront builder) */
+  --stage: #EDEFF3;      /* the ground the device frame sits on */
+  --rule-mid: #C6CCD6;   /* handles and icon strokes on the stage */
+  --chrome: var(--ink-900);   /* editor top bar */
+  --chrome-2: #1B2331;        /* controls inside it */
+  --chrome-rule: #232B38;
+}
+
+/* ============================================================ dark theme
+   Values read off artboard "02 Home dark". A deliberate second palette, not an
+   inversion: palm and sand both step lighter so they hold up on ink. */
+:root[data-theme="dark"] {
+  --bg: #0C1017;
+  --panel: #141A24;
+  --panel-2: #1B2331;
+  --rule: #232B38;
+  --rule-strong: #2B3441;
+  --text: #ECEFF4;
+  --text-2: #ECEFF4;
+  --text-3: #9BA5B4;
+  /* The artboard's muted grey on dark is #6B7484, which lands at 3.70:1 against
+     the panel — under AA for the 11px timestamps that use it. Lifted just far
+     enough to pass while staying the same hue. */
+  --text-4: #838D9C;
+  --accent: #3EA98F;
+  --accent-soft: rgba(62, 169, 143, .14);
+  --accent-ink: #3EA98F;
+  --accent-2: #E2B457;
+  --accent-2-ink: #E2B457;
+  --accent-2-soft: rgba(226, 180, 87, .14);
+  --ok: #3EA98F;               --ok-bg: rgba(62, 169, 143, .16);
+  --warn: #E2B457;             --warn-bg: rgba(180, 116, 14, .16);
+  --bad: #E88B7B;              --bad-bg: rgba(194, 64, 47, .18);
+  --bad-solid: #C2402F;
+  --info: #7FAEE0;             --info-bg: rgba(37, 99, 168, .2);
+  --info-ink: #7FAEE0;
+  --tip-bg: #1B2331;
+  --tip-text: #ECEFF4;
+  --sh-xs: 0 1px 2px rgba(0, 0, 0, .4);
+  --sh-sm: 0 4px 12px rgba(0, 0, 0, .45);
+  --sh-md: 0 12px 32px rgba(0, 0, 0, .5);
+  --hatch-a: #1B2331;
+  --hatch-b: #232B38;
+  --hatch-avatar-a: #1B2331;
+  --hatch-avatar-b: #262F3D;
+  /* Series step lighter on ink, same order, revalidated against the dark panel. */
+  --series-1: #3EA98F;
+  --series-2: #E2B457;
+  --series-3: #7FAEE0;
+  --series-4: #E88B7B;
+  color-scheme: dark;
+}
+
+/* The editor stage keeps its own dark values so the builder chrome reads the
+   same in either theme; only the panels around it follow the theme. */
+:root[data-theme="dark"] {
+  --stage: #0C1017;
+  --rule-mid: #2B3441;
+}

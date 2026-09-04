@@ -1,0 +1,429 @@
+/* Alf Maskan — leads inbox and deals pipeline.
+   Loaded after dashboard.css and app.css. Paints from the semantic roles only,
+   so dark mode is a token swap; logical properties throughout, so RTL mirrors. */
+
+/* ============================================================ three panes
+   Segments, the list, and the one lead you are working on. The list keeps its
+   own scroll so moving between leads never loses your place in it. */
+
+.inbox {
+  display: grid;
+  grid-template-columns: 208px 340px minmax(0, 1fr);
+  gap: 0;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-14);
+  overflow: hidden;
+  min-height: 0;
+  height: calc(100vh - 168px);
+}
+
+.segs {
+  border-inline-end: 1px solid var(--rule);
+  background: var(--panel-2);
+  overflow-y: auto;
+  padding: 12px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.segs__label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-4);
+  padding: 12px 8px 6px;
+}
+.seg-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 9px;
+  border: 0;
+  border-radius: var(--r-8);
+  background: none;
+  font: inherit;
+  font-size: var(--t-micro);
+  color: var(--text-2);
+  cursor: pointer;
+  text-align: start;
+  width: 100%;
+}
+.seg-item:hover { background: var(--panel); }
+.seg-item[aria-current="true"] { background: var(--accent-soft); color: var(--accent-ink); font-weight: 600; }
+.seg-item__n {
+  margin-inline-start: auto;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-4);
+}
+.seg-item[aria-current="true"] .seg-item__n { color: var(--accent-ink); }
+.seg-item svg { flex: none; opacity: .75; }
+
+/* ---- the list ---- */
+
+.leadlist { border-inline-end: 1px solid var(--rule); display: flex; flex-direction: column; min-width: 0; }
+.leadlist__top {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.leadlist__scroll { overflow-y: auto; flex: 1; }
+
+.leaditem {
+  display: grid;
+  grid-template-columns: 32px minmax(0, 1fr);
+  gap: 10px;
+  padding: 12px;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  background: none;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+  width: 100%;
+  position: relative;
+}
+.leaditem:hover { background: var(--panel-2); }
+.leaditem[aria-current="true"] { background: var(--accent-soft); }
+.leaditem[aria-current="true"]::before {
+  content: "";
+  position: absolute;
+  inset-inline-start: 0;
+  inset-block: 0;
+  width: 3px;
+  background: var(--accent);
+}
+/* An unanswered lead is the only thing in this list that is urgent. */
+.leaditem[data-unread] .leaditem__name::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--bad-solid);
+  flex: none;
+}
+
+.leaditem__body { min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.leaditem__top { display: flex; align-items: baseline; gap: 8px; }
+.leaditem__name {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--t-micro);
+  font-weight: 600;
+  color: var(--text);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.leaditem__time { margin-inline-start: auto; font-size: 10.5px; color: var(--text-4); flex: none; }
+.leaditem__unit {
+  font-size: var(--t-nano);
+  color: var(--text-3);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.leaditem__meta { display: flex; align-items: center; gap: 7px; margin-top: 3px; flex-wrap: wrap; }
+.leaditem__budget { font-family: var(--font-mono); font-size: 10px; color: var(--text-3); }
+
+/* Source is a shape as well as a colour — WhatsApp and Facebook must not be
+   told apart by hue alone. */
+.src {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: var(--r-6);
+  flex: none;
+  color: #fff;
+}
+.src--wa { background: #1FA855; }
+.src--form { background: var(--accent); }
+.src--call { background: var(--info); }
+.src--fb { background: #2f5aa8; }
+
+/* ---- the detail pane ---- */
+
+.leadview { display: flex; flex-direction: column; min-width: 0; overflow: hidden; }
+.leadview__head {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--rule);
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+.leadview__who { display: flex; gap: 12px; min-width: 0; }
+.leadview__who h2 { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text); }
+.leadview__who p { font-size: var(--t-nano); color: var(--text-3); margin-top: 2px; }
+.leadview__acts { margin-inline-start: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.leadview__scroll { flex: 1; overflow-y: auto; padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 20px; }
+
+/* ---- status stepper ---- */
+
+.stepper { display: flex; gap: 4px; flex-wrap: wrap; }
+.step-pill {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding-inline: 13px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-pill);
+  background: var(--panel);
+  font: inherit;
+  font-size: var(--t-nano);
+  color: var(--text-3);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.step-pill:hover { border-color: var(--rule-strong); color: var(--text); }
+.step-pill[data-done] { background: var(--accent-soft); border-color: transparent; color: var(--accent-ink); }
+.step-pill[aria-current="step"] { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.step-pill--won[aria-current="step"] { background: var(--ok); border-color: var(--ok); }
+.step-pill--lost[aria-current="step"] { background: var(--bad-solid); border-color: var(--bad-solid); }
+
+/* ---- the unit they asked about ---- */
+
+.askedabout {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-12);
+  background: var(--panel-2);
+}
+.askedabout .ph { width: 68px; height: 52px; border-radius: var(--r-8); font-size: 0; flex: none; }
+.askedabout__txt { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.askedabout__txt b { font-size: var(--t-micro); font-weight: 600; color: var(--text); }
+.askedabout__txt span { font-size: var(--t-nano); color: var(--text-3); }
+.askedabout__price { margin-inline-start: auto; text-align: end; flex: none; }
+.askedabout__price b { font-size: var(--t-micro); font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.askedabout__price span { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--text-4); }
+
+/* ---- conversation ---- */
+
+.convo { display: flex; flex-direction: column; gap: 12px; }
+.msg { display: flex; gap: 10px; max-width: 78%; }
+.msg--out { margin-inline-start: auto; flex-direction: row-reverse; }
+.msg__bubble {
+  padding: 10px 13px;
+  border-radius: var(--r-12);
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  font-size: var(--t-micro);
+  line-height: 1.6;
+  color: var(--text-2);
+  min-width: 0;
+}
+.msg--out .msg__bubble { background: var(--accent-soft); border-color: transparent; color: var(--accent-ink); }
+.msg__bubble[lang="ar"] { font-family: var(--font-arabic); line-height: 1.85; }
+.msg__when { font-size: 10px; color: var(--text-4); margin-top: 5px; display: block; }
+.msg__avatar { flex: none; }
+
+.convo-event {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: var(--t-nano);
+  color: var(--text-4);
+  padding-block: 2px;
+}
+.convo-event::before,
+.convo-event::after { content: ""; height: 1px; background: var(--rule); flex: 1; }
+
+/* ---- quick replies ---- */
+
+.replies { display: flex; flex-direction: column; gap: 8px; }
+.replies__row { display: flex; gap: 7px; flex-wrap: wrap; }
+.reply-chip {
+  height: 30px;
+  padding-inline: 12px;
+  border: 1px dashed var(--rule-strong);
+  border-radius: var(--r-pill);
+  background: none;
+  font: inherit;
+  font-size: var(--t-nano);
+  color: var(--text-2);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.reply-chip:hover { border-style: solid; border-color: var(--accent); color: var(--accent); }
+.reply-chip[lang="ar"] { font-family: var(--font-arabic); }
+
+.composer {
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  padding: 12px 20px 16px;
+  border-top: 1px solid var(--rule);
+  background: var(--panel);
+}
+.composer textarea {
+  flex: 1;
+  min-height: 40px;
+  max-height: 130px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule);
+  border-radius: var(--r-10);
+  background: var(--panel-2);
+  font: inherit;
+  font-size: var(--t-micro);
+  color: var(--text);
+  resize: vertical;
+}
+.composer textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+
+/* ---- notes and tasks ---- */
+
+.tasklist { display: flex; flex-direction: column; gap: 2px; }
+.task {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 9px 2px;
+  font-size: var(--t-micro);
+  color: var(--text-2);
+}
+.task + .task { border-top: 1px solid var(--rule); }
+.task__when { margin-inline-start: auto; font-family: var(--font-mono); font-size: 10px; color: var(--text-4); flex: none; }
+.task[data-overdue] .task__when { color: var(--bad); }
+.task input:checked + span { text-decoration: line-through; color: var(--text-4); }
+
+/* ============================================================ pipeline */
+
+.pipe { display: grid; grid-template-columns: minmax(0, 1fr) 292px; gap: 20px; align-items: start; }
+
+.board {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 268px;
+  gap: 14px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+  align-items: start;
+}
+.col {
+  background: var(--panel-2);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-12);
+  display: flex;
+  flex-direction: column;
+  min-height: 180px;
+}
+.col__head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 12px;
+  border-bottom: 1px solid var(--rule);
+}
+.col__head b { font-size: var(--t-micro); font-weight: 600; color: var(--text); }
+.col__n {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+  color: var(--text-4);
+  background: var(--panel);
+  border-radius: var(--r-pill);
+  padding: 2px 7px;
+}
+.col__sum { margin-inline-start: auto; font-family: var(--font-mono); font-size: 10.5px; color: var(--text-3); font-variant-numeric: tabular-nums; }
+.col__body { padding: 10px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+.col.is-target { outline: 2px dashed var(--accent); outline-offset: -3px; background: var(--accent-soft); }
+
+.deal {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-10);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  cursor: grab;
+  box-shadow: var(--sh-xs);
+}
+.deal:active { cursor: grabbing; }
+.deal[data-dragging] {
+  opacity: .5;
+  transform: rotate(1.5deg);
+  box-shadow: var(--sh-md);
+}
+.deal__top { display: flex; gap: 9px; min-width: 0; }
+.deal__top .ph { width: 42px; height: 34px; border-radius: var(--r-6); font-size: 0; flex: none; }
+.deal__txt { min-width: 0; display: flex; flex-direction: column; gap: 1px; }
+.deal__txt b {
+  font-size: var(--t-nano);
+  font-weight: 600;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.deal__txt span { font-size: 10.5px; color: var(--text-3); }
+.deal__money { display: flex; align-items: baseline; gap: 8px; }
+.deal__money b { font-size: var(--t-micro); font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+.deal__money span { font-family: var(--font-mono); font-size: 10px; color: var(--accent-ink); }
+.deal__foot {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding-top: 8px;
+  border-top: 1px solid var(--rule);
+  font-size: 10px;
+  color: var(--text-4);
+}
+.deal__age { margin-inline-start: auto; font-family: var(--font-mono); }
+/* A deal that has sat too long says so in words, not just in colour. */
+.deal[data-stale] .deal__age { color: var(--warn); font-weight: 600; }
+.deal[data-stale] { border-color: color-mix(in srgb, var(--warn) 40%, var(--rule)); }
+
+/* ---- forecast rail ---- */
+
+.forecast { display: flex; flex-direction: column; gap: 14px; }
+.funnel { display: flex; flex-direction: column; gap: 6px; }
+.funnel__row { display: flex; flex-direction: column; gap: 4px; }
+.funnel__top { display: flex; justify-content: space-between; gap: 10px; font-size: var(--t-nano); color: var(--text-3); }
+.funnel__top b { color: var(--text); font-variant-numeric: tabular-nums; }
+.funnel__bar { height: 22px; border-radius: var(--r-6); background: var(--accent); opacity: .9; }
+.funnel__row:nth-child(2) .funnel__bar { opacity: .74; }
+.funnel__row:nth-child(3) .funnel__bar { opacity: .58; }
+.funnel__row:nth-child(4) .funnel__bar { opacity: .42; }
+.funnel__row:nth-child(5) .funnel__bar { background: var(--ok); opacity: 1; }
+
+/* ============================================================ responsive */
+
+@media (max-width: 1180px) {
+  .pipe { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 1080px) {
+  /* Three panes do not fit, so the list and the lead stack and the segments
+     become a scrolling strip above them. */
+  .inbox { grid-template-columns: minmax(0, 1fr); height: auto; }
+  .segs {
+    flex-direction: row;
+    overflow-x: auto;
+    border-inline-end: 0;
+    border-bottom: 1px solid var(--rule);
+    padding: 10px;
+  }
+  .segs__label { display: none; }
+  .seg-item { width: auto; flex: none; }
+  .leadlist { border-inline-end: 0; border-bottom: 1px solid var(--rule); max-height: 320px; }
+  .leadview__scroll { max-height: none; }
+}
+
+@media (max-width: 640px) {
+  .msg { max-width: 92%; }
+  .leadview__acts { width: 100%; }
+}
