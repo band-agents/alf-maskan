@@ -8,16 +8,32 @@ import type { Store, Unit } from '@prisma/client';
  * Delete this file the moment DATABASE_URL points at something real.
  */
 
-export const mockStore: Pick<
+/**
+ * What a storefront route may read off its tenant. Narrower than `Store` on
+ * purpose: a page that only needs a name and a phone number should not be
+ * typed against every billing column, and keeping this list short is what lets
+ * the mock stand in for the row at all.
+ */
+export type TenantStore = Pick<
   Store,
-  'id' | 'slug' | 'nameEn' | 'nameAr' | 'brandHex' | 'template'
-> = {
+  | 'id' | 'slug' | 'nameEn' | 'nameAr' | 'brandHex' | 'template' | 'storeLangs'
+  | 'whatsapp' | 'phone' | 'email' | 'address'
+>;
+
+export const mockStore: TenantStore = {
   id: 'store_kamal',
   slug: 'kamal-estates',
   nameEn: 'Kamal Estates',
   nameAr: 'كمال العقارية',
   brandHex: '#0F5E4E',
   template: 'nile',
+  storeLangs: 'BOTH',
+  // The static build's number, kept identical so the two halves agree on
+  // screen. dir="ltr" wherever it renders — a phone number must not mirror.
+  whatsapp: '+201002448817',
+  phone: '+201002448817',
+  email: 'hello@kamalestates.com',
+  address: '90th Street, New Cairo',
 };
 
 export type MockUnit = Pick<

@@ -193,6 +193,19 @@ export async function getUnit(id: string): Promise<UnitRow | null> {
   return UNITS.find((u) => u.id === id) ?? null;
 }
 
+/**
+ * The storefront addresses a unit by its reference, not its id: AM-1042 is what
+ * an agent writes in a WhatsApp message and what a buyer reads back down the
+ * phone. Matching is case-insensitive so a link typed by hand still resolves.
+ * Scoped by store once the database is real — references are unique per store,
+ * not globally (`@@unique([storeId, reference])`).
+ */
+export async function getUnitByRef(reference: string, storeId?: string): Promise<UnitRow | null> {
+  void storeId;
+  const want = reference.trim().toUpperCase();
+  return UNITS.find((u) => u.reference.toUpperCase() === want) ?? null;
+}
+
 /** Terms line for a card, computed rather than stored. */
 export function unitTerms(u: UnitRow): string {
   if (u.downPct == null || u.years == null) return u.purpose === 'RENT' ? 'Rental terms' : 'Cash';

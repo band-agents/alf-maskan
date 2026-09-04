@@ -40,19 +40,25 @@ Four commits. `git log --oneline` is the honest record.
 | **Design system** | All 12 stylesheets copied across unchanged into `app/styles/`. Fonts self-hosted via `next/font`. |
 | **Shell** | `components/AppRail.tsx`, `components/AppTopbar.tsx`. Dark mode works and persists. |
 | **Screens** | `/dash`, `/dash/listings`, `/dash/listings/[id]` — all on typed mock data. |
+| **Storefront** | The buyer's unit page, `<slug>.localhost:3000/units/<ref>`, ported from `src/pages/store/unit.html`. Gallery, both-scripts description, key specs, amenities, location, compound, similar units, agent card, sticky phone bar — and the payment calculator, which imports the same `computePlan` the listing editor uses. |
 
 ## What is not
 
 - **No database.** `DATABASE_URL` in `.env` points at a localhost Postgres that
-  does not exist. Nothing has run `prisma db push`. `/s/[host]` will throw,
-  because resolving a tenant is a query.
+  does not exist. Nothing has run `prisma db push`. The storefront no longer
+  throws on that: `orMock` in `lib/db.ts` catches *connection* failures only and
+  serves `lib/mock.ts` instead, warning once per process. A malformed query or a
+  missing column still throws as itself — a fallback that swallowed those would
+  turn every real bug into "the page renders, with the wrong data".
 - **No auth.** Nobody logs in; the dashboard assumes one hard-coded store.
 - **No writes.** The editor's Publish button sets a flag and nothing else.
-- 36 of the static build's 41 pages are not ported yet.
+- 35 of the static build's 41 pages are not ported yet. `/s/[host]` (the
+  storefront home) is a **stand-in**, not a port — a plain card list so the unit
+  page is reachable. The real `store/index.html` is a full editorial home.
 
 ---
 
-## Five decisions you should not undo without a reason
+## Six decisions you should not undo without a reason
 
 1. **Money is `Decimal`, never `Float`.** EGP 34,000,000 in piastres overflows
    Int32, and a float cannot hold a payment plan exactly.
@@ -71,7 +77,15 @@ Four commits. `git log --oneline` is the honest record.
    clause without translation. It also makes a filtered list shareable and the
    back button correct.
 
-5. **Three route groups, three root layouts.** `(marketing)`, `(dashboard)`,
+5. **A unit that is gone keeps its page, and says so.** `DRAFT` 404s — the
+   agency has not decided to sell it. `SOLD`, `RESERVED` and `RENTED` render,
+   because the link is in someone's WhatsApp history and 404ing it is worse
+   than answering, but the status is a badge on the photo rather than a line in
+   the sidebar. The static build never drew this state; its one unit artboard is
+   live. **This one is a judgement call, not an inheritance** — say so if you
+   would rather a sold unit 404'd, or lost its price and its enquiry buttons.
+
+6. **Three route groups, three root layouts.** `(marketing)`, `(dashboard)`,
    `(storefront)`. The design system keys off `body.app` and `body.storefront`,
    and only a root layout can set the body class. Route groups are invisible in
    the URL, so `/dash` is still `/dash`. The theme script runs on the dashboard
@@ -95,6 +109,18 @@ Four commits. `git log --oneline` is the honest record.
 - **`npm i` may fail with `Cannot read properties of null (reading 'edgesOut')`.**
   Declare the dependency in `package.json`, delete `node_modules` and
   `package-lock.json`, then `npm install`.
+- **The browser pane reports `clientWidth: 0` until you set a viewport.** Every
+  `scrollWidth - clientWidth` reading is then a fake overflow — the unit page
+  "overflowed" by 318px until `resize_window` ran. Measure `clientWidth` first
+  and throw the reading away if it is zero.
+- **`.st-head` and `.cta-bar` use `backdrop-filter`, which stalls the screenshot
+  tool.** The page is fine; the capture times out at 5s. Inject
+  `*{backdrop-filter:none!important}` before capturing, and remove it after.
+- **A component that renders a `position: fixed` bar can live anywhere in the
+  tree.** The sticky phone bar is rendered *by* `PlanCalculator` precisely so
+  its monthly figure and the sliders share one state. Rendering it from the page
+  instead — the obvious structure — left two different instalments on screen at
+  once, which is the exact failure `lib/pricing.ts` exists to prevent.
 
 ---
 
@@ -106,9 +132,14 @@ Four commits. `git log --oneline` is the honest record.
    already the right shape.
 2. **Auth.** Real decision to make first: phone-OTP matters more than email in
    this market, which rules out some providers' cheap tiers.
-3. **Port the remaining screens.** Leads inbox and collections are the two the
-   dashboard most obviously lacks; the storefront unit page is the first real
-   proof that an agent and a buyer see the same instalment.
+3. **Port the remaining screens.** The leads inbox and collections are the two
+   the dashboard most obviously lacks. On the storefront, `store/search.html`
+   is next — the unit page links to `/units`, `/compounds`, `/team`, `/contact`
+   and `/compare`, and all five 404 today.
+
+   The unit page already proved what it was there to prove: **EGP 79,219** is
+   what the listings table, the listing editor and the buyer's calculator all
+   say for AM-1042, from one `computePlan` and three callers.
 4. **Writes.** Server actions, then the audit log the schema already models.
 
 ---
