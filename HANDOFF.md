@@ -1,5 +1,18 @@
 # Alf Maskan — handoff
 
+> **The project has two halves now.**
+>
+> - **** is the real product: Next 16 + Prisma, multi-tenant. Read
+>   **** for it. That is where active work happens.
+> - **This file** covers the 41-page static build in  and ,
+>   which is now the **specification** the product is ported from. Its CSS is
+>   literally the product's CSS, and its conventions below still bind.
+>
+> If you were asked to continue building, you almost certainly want
+>  first.
+
+---
+
 Read this file first. It is the single source of truth for where the build is,
 how the code works, and what to do next. Keep the **Build status** table at the
 bottom current — it is what makes the next session possible.
