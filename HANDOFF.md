@@ -2,14 +2,15 @@
 
 > **The project has two halves now.**
 >
-> - **** is the real product: Next 16 + Prisma, multi-tenant. Read
->   **** for it. That is where active work happens.
-> - **This file** covers the 41-page static build in  and ,
+> - **`web/`** is the real product: Next 16 + Prisma, multi-tenant. Read
+>   **`web/HANDOFF.md`** for it. That is where active work happens.
+> - **This file** covers the 41-page static build in `src/` and `assets/`,
 >   which is now the **specification** the product is ported from. Its CSS is
 >   literally the product's CSS, and its conventions below still bind.
 >
-> If you were asked to continue building, you almost certainly want
->  first.
+> If you were asked to continue building the application, you want
+> **`web/HANDOFF.md`** first. If you were asked to finish the remaining static
+> pages, the prompt and checklist below are still current.
 
 ---
 
