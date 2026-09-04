@@ -4,7 +4,7 @@ import { notFound } from 'next/navigation';
 
 import { storeForHost } from '@/lib/tenant';
 import { getUnitDetail, headlinePlan, similarUnits } from '@/lib/queries/storefront';
-import { unitTerms, ZONES } from '@/lib/queries/units';
+import { unitTerms, publicZonesFor, compoundsFor } from '@/lib/queries/units';
 import { egp } from '@/lib/pricing';
 import { TYPE_LABEL, PURPOSE_LABEL } from '@/components/ui/atoms';
 
@@ -46,11 +46,12 @@ const STATUS_WORD: Record<string, string> = {
 
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { host, ref } = await params;
-  const [store, unit] = await Promise.all([
-    storeForHost(decodeURIComponent(host)),
-    getUnitDetail(ref),
-  ]);
-  if (!store || !unit) return {};
+  // Sequential, not Promise.all: the unit lookup is tenant-scoped, so it needs
+  // the store id. storeForHost is React-cached, so the page below pays nothing.
+  const store = await storeForHost(decodeURIComponent(host));
+  if (!store) return {};
+  const unit = await getUnitDetail(ref, store.id);
+  if (!unit) return {};
 
   const where = unit.compound ? `${unit.compound}, ${unit.zone}` : unit.zone;
   const { monthly } = headlinePlan(unit);
@@ -69,19 +70,17 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
   const store = await storeForHost(decodeURIComponent(host));
   if (!store) notFound();
 
-  const unit = await getUnitDetail(ref);
+  const unit = await getUnitDetail(ref, store.id);
   // A draft is not published. Reaching one by URL must read as "not here",
   // never as a preview — the agency has not decided to sell it yet.
   if (!unit || unit.status === 'DRAFT') notFound();
 
-  const similar = await similarUnits(unit);
+  const similar = await similarUnits(unit, store.id);
   const plan = headlinePlan(unit);
   const hasPlan = unit.downPct != null && unit.years != null;
   const where = unit.compound ? `${unit.compound}, ${unit.zone}` : unit.zone;
   const wa = waLink(unit.agentPhone);
-  const compounds = Array.from(
-    new Set(similar.map((u) => u.compound).filter((c): c is string => Boolean(c)))
-  );
+  const compounds = compoundsFor(store.id);
 
   return (
     <>
@@ -351,7 +350,7 @@ export default async function UnitPage({ params }: { params: Promise<Params> }) 
         </div>
       </main>
 
-      <StoreFoot store={store} zones={ZONES} compounds={compounds} />
+      <StoreFoot store={store} zones={publicZonesFor(store.id)} compounds={compounds} />
     </>
   );
 }

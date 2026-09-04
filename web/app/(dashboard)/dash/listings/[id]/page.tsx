@@ -1,11 +1,12 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { getUnit } from '@/lib/queries/units';
+import { mockStore } from '@/lib/mock';
 import { Editor } from '@/components/listings/Editor';
 import { Ref } from '@/components/ui/atoms';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
-  const unit = await getUnit((await params).id);
+  const unit = await getUnit((await params).id, mockStore.id);
   return { title: unit ? `${unit.titleEn} — Alf Maskan` : 'Unit not found' };
 }
 
@@ -14,7 +15,7 @@ export default async function ListingEditorPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const unit = await getUnit((await params).id);
+  const unit = await getUnit((await params).id, mockStore.id);
   if (!unit) notFound();
 
   return (

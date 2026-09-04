@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { listUnits, parseUnitFilters, unitTerms, ZONES } from '@/lib/queries/units';
+import { listUnits, parseUnitFilters, unitTerms, zonesFor } from '@/lib/queries/units';
+import { mockStore } from '@/lib/mock';
 import { Money, Placeholder, Ref, StatusPill, TYPE_LABEL } from '@/components/ui/atoms';
 import { Filters } from '@/components/listings/Filters';
 
@@ -16,7 +17,10 @@ export default async function ListingsPage({
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }) {
   const filters = parseUnitFilters(await searchParams);
-  const { units, counts } = await listUnits(filters);
+  // The one line that changes when auth is real: the store comes from the
+  // session, not from a constant.
+  const storeId = mockStore.id;
+  const { units, counts } = await listUnits(filters, storeId);
 
   return (
     <main className="content" id="main">
@@ -39,7 +43,7 @@ export default async function ListingsPage({
         </div>
       </div>
 
-      <Filters filters={filters} zones={ZONES} counts={counts} shown={units.length} />
+      <Filters filters={filters} zones={zonesFor(storeId)} counts={counts} shown={units.length} />
 
       {units.length === 0 ? (
         <div className="empty">

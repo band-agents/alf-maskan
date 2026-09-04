@@ -101,8 +101,8 @@ function genericGallery(u: UnitRow): { label: string; thumb: string }[] {
   ].slice(0, Math.max(1, Math.min(5, u.photos || 1)));
 }
 
-export async function getUnitDetail(reference: string): Promise<UnitDetail | null> {
-  const row = await getUnitByRef(reference);
+export async function getUnitDetail(reference: string, storeId: string): Promise<UnitDetail | null> {
+  const row = await getUnitByRef(reference, storeId);
   if (!row) return null;
 
   const extra = DETAIL[row.reference] ?? {};
@@ -135,11 +135,11 @@ export async function getUnitDetail(reference: string): Promise<UnitDetail | nul
  * never a draft, a sold or a reserved unit. A buyer following a "similar"
  * link into something they cannot buy is worse than a shorter rail.
  */
-export async function similarUnits(to: UnitDetail, take = 3): Promise<UnitRow[]> {
+export async function similarUnits(to: UnitDetail, storeId: string, take = 3): Promise<UnitRow[]> {
   const { units } = await listUnits({
-    q: '', status: null, purpose: null, zone: null, type: null,
-    beds: null, view: 'live', sort: 'views-desc',
-  });
+    q: '', status: null, purpose: null, zone: null, compound: null, type: null,
+    beds: null, max: null, view: 'live', sort: 'views-desc',
+  }, storeId);
 
   const others = units.filter((u) => u.id !== to.id);
   const sameZone = others.filter((u) => u.zone === to.zone);

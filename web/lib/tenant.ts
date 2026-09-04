@@ -1,6 +1,6 @@
 import { cache } from 'react';
 import { db, orMock } from './db';
-import { mockStore, type TenantStore } from './mock';
+import { mockStores, type TenantStore } from './mock';
 
 export type { TenantStore };
 
@@ -35,9 +35,9 @@ export const storeForHost = cache(async (host: string): Promise<TenantStore | nu
   if (slug && slug !== 'app' && slug !== 'www') {
     return orMock(
       () => db.store.findUnique({ where: { slug }, select: TENANT_FIELDS }),
-      // Only the one seeded slug resolves, so an unknown host still 404s rather
-      // than every subdomain silently becoming Kamal Estates.
-      () => (slug === mockStore.slug ? mockStore : null)
+      // Only a seeded slug resolves, so an unknown host still 404s rather than
+      // every subdomain silently becoming whichever store happens to be first.
+      () => mockStores.find((s) => s.slug === slug) ?? null
     );
   }
 

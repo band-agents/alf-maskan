@@ -36,6 +36,32 @@ export const mockStore: TenantStore = {
   address: '90th Street, New Cairo',
 };
 
+/**
+ * A second tenant, and the reason it exists: this product is not "a website",
+ * it is "your website". Until two stores render differently from one codebase,
+ * nothing has proved the thing the EGP 990 buys.
+ *
+ * Deliberately unlike Kamal Estates on every axis a tenant controls — different
+ * template, different brand colour, different zones, different inventory mix,
+ * English-only. If a change makes these two look alike, the change is wrong.
+ */
+export const mockStoreTwo: TenantStore = {
+  id: 'store_masria',
+  slug: 'el-masria',
+  nameEn: 'El Masria Properties',
+  nameAr: 'المصرية للعقارات',
+  // A resale broker who is not going to accept the default palm.
+  brandHex: '#1F4E8C',
+  template: 'broker',
+  storeLangs: 'EN',
+  whatsapp: '+201224419006',
+  phone: '+201224419006',
+  email: 'sales@elmasria.com',
+  address: 'Sheikh Zayed, Giza',
+};
+
+export const mockStores: TenantStore[] = [mockStore, mockStoreTwo];
+
 export type MockUnit = Pick<
   Unit,
   'id' | 'reference' | 'titleEn' | 'titleAr' | 'zone' | 'compound' | 'areaSqm' | 'bedrooms' | 'status'

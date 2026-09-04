@@ -19,7 +19,11 @@ npm run dev
 
 - `localhost:3000` — the marketing site
 - `app.localhost:3000` — the dashboard (also reachable at `localhost:3000/dash`)
-- `<slug>.localhost:3000` — a tenant storefront
+- `kamal-estates.localhost:3000` — a tenant storefront
+- `el-masria.localhost:3000` — **a second tenant, and the thing to look at first.**
+  Open both. Different inventory, template, brand colour, ground, display face
+  and derived stats, from one codebase. That is the product; if a change makes
+  these two look alike, the change is wrong.
 
 No wildcard DNS needed: browsers resolve `*.localhost` themselves.
 
@@ -40,6 +44,8 @@ Four commits. `git log --oneline` is the honest record.
 | **Design system** | All 12 stylesheets copied across unchanged into `app/styles/`. Fonts self-hosted via `next/font`. |
 | **Shell** | `components/AppRail.tsx`, `components/AppTopbar.tsx`. Dark mode works and persists. |
 | **Screens** | `/dash`, `/dash/listings`, `/dash/listings/[id]` — all on typed mock data. |
+| **Multi-tenancy** | Two seeded stores, and every unit query scoped by `storeId`. `kamal-estates.localhost:3000` and `el-masria.localhost:3000` render different inventory, template, brand colour, ground and display face from one codebase. Cross-tenant unit access 404s in both directions. |
+| **Branding** | `brandHex` finally does something: it overrides `--tpl-accent`, the single token every accent rule in `templates.css` reads. `lib/brand.ts` measures white-on-brand and picks the ink, so a light logo cannot ship an unreadable call to action. |
 | **Storefront** | The buyer's unit page, `<slug>.localhost:3000/units/<ref>`, ported from `src/pages/store/unit.html`. Gallery, both-scripts description, key specs, amenities, location, compound, similar units, agent card, sticky phone bar — and the payment calculator, which imports the same `computePlan` the listing editor uses. |
 
 ## What is not
@@ -52,13 +58,20 @@ Four commits. `git log --oneline` is the honest record.
   turn every real bug into "the page renders, with the wrong data".
 - **No auth.** Nobody logs in; the dashboard assumes one hard-coded store.
 - **No writes.** The editor's Publish button sets a flag and nothing else.
-- 35 of the static build's 41 pages are not ported yet. `/s/[host]` (the
-  storefront home) is a **stand-in**, not a port — a plain card list so the unit
-  page is reachable. The real `store/index.html` is a full editorial home.
+- 33 of the static build's 41 pages are not ported yet. The storefront home and
+  the browse page are real ports now; `/contact`, `/compounds`, `/team` and
+  `/compare` still 404 from the header and the CTAs.
+- **`/units` is the list half of `store/search.html`.** The map/list split, the
+  two-up compare bar and the delivery/finishing filters are not ported — left
+  out rather than stubbed, because a fake map is the trap the static HANDOFF
+  spends a paragraph on.
+- **Nunito and Fraunces are not loaded.** Four of the ten templates name them as
+  their display face and currently fall back to system-ui/Georgia. Add them to
+  `lib/fonts.ts` when those templates matter.
 
 ---
 
-## Six decisions you should not undo without a reason
+## Seven decisions you should not undo without a reason
 
 1. **Money is `Decimal`, never `Float`.** EGP 34,000,000 in piastres overflows
    Int32, and a float cannot hold a payment plan exactly.
@@ -85,7 +98,15 @@ Four commits. `git log --oneline` is the honest record.
    live. **This one is a judgement call, not an inheritance** — say so if you
    would rather a sold unit 404'd, or lost its price and its enquiry buttons.
 
-6. **Three route groups, three root layouts.** `(marketing)`, `(dashboard)`,
+6. **The template sets the shape; the agency sets the colour.** A tenant does
+   not get a bespoke design, it gets one of ten templates — ground, ink, rules,
+   radius, display face — with its own `brandHex` overriding a single token,
+   `--tpl-accent`. That is what lets ten stylesheets serve every agency without
+   two of them looking like the same company, and it is why the brand colour is
+   *not* allowed to set the ground: an agency that picks a dark navy would get a
+   navy page, not a navy brand. Ink on the accent is measured, never assumed.
+
+7. **Three route groups, three root layouts.** `(marketing)`, `(dashboard)`,
    `(storefront)`. The design system keys off `body.app` and `body.storefront`,
    and only a root layout can set the body class. Route groups are invisible in
    the URL, so `/dash` is still `/dash`. The theme script runs on the dashboard
@@ -116,6 +137,24 @@ Four commits. `git log --oneline` is the honest record.
 - **`.st-head` and `.cta-bar` use `backdrop-filter`, which stalls the screenshot
   tool.** The page is fine; the capture times out at 5s. Inject
   `*{backdrop-filter:none!important}` before capturing, and remove it after.
+- **`data-template` belongs on `<html>`, not on a div inside `<body>`.**
+  `templates.css` says so in its own header, and the reason is one line in
+  `store.css`: `body.storefront { background: var(--nile-paper) }`. Body
+  resolves that token against `:root`, so a template block on any element
+  *inside* body re-skins the cards and leaves the page behind them painted in
+  the default template's ground. Every tenant got nile's warm cream under
+  broker's cool grey cards — it looks nearly right, which is what makes it
+  expensive to spot. The storefront root layout reads `x-am-host` (which
+  `proxy.ts` sets) so it can resolve the tenant that high up; `storeForHost` is
+  React-cached, so doing it there and again below is still one query.
+- **Do not re-point `--font-serif` at next/font's variable.** It is tempting —
+  it adds the metric-matched fallback — but an inline style on `<body>` outranks
+  every `[data-template]` block, and six of the ten templates choose a different
+  display face on purpose. next/font registers the face under its literal name,
+  so `store.css`'s own `Newsreader, Georgia, serif` already resolves to the
+  self-hosted copy. Check a template's face with
+  `getComputedStyle(el).fontFamily`, not `document.fonts.check()` — that
+  defaults to weight 400 and reports `false` for a page using only 500 and 600.
 - **A component that renders a `position: fixed` bar can live anywhere in the
   tree.** The sticky phone bar is rendered *by* `PlanCalculator` precisely so
   its monthly figure and the sliders share one state. Rendering it from the page
@@ -132,15 +171,23 @@ Four commits. `git log --oneline` is the honest record.
    already the right shape.
 2. **Auth.** Real decision to make first: phone-OTP matters more than email in
    this market, which rules out some providers' cheap tiers.
-3. **Port the remaining screens.** The leads inbox and collections are the two
-   the dashboard most obviously lacks. On the storefront, `store/search.html`
-   is next — the unit page links to `/units`, `/compounds`, `/team`, `/contact`
-   and `/compare`, and all five 404 today.
+3. **`/contact` — the enquiry form.** The highest-value screen left, and the
+   argument is the business model rather than the checklist: at EGP 990/month an
+   agency is not buying a website, it is buying enquiries, and the "New leads"
+   figure is what decides whether they renew in month two. WhatsApp already
+   works from four places on the storefront because a deep link needs no
+   database. A form does — it is the first screen that genuinely cannot ship
+   until Postgres exists, which is another reason to do item 1 first.
+
+4. **Port the remaining screens.** The leads inbox and collections are the two
+   the dashboard most obviously lacks. On the storefront, `/compounds`, `/team`
+   and `/compare` still 404 from the header, and `store/search.html`'s map and
+   compare halves are still missing from `/units`.
 
    The unit page already proved what it was there to prove: **EGP 79,219** is
    what the listings table, the listing editor and the buyer's calculator all
    say for AM-1042, from one `computePlan` and three callers.
-4. **Writes.** Server actions, then the audit log the schema already models.
+5. **Writes.** Server actions, then the audit log the schema already models.
 
 ---
 
