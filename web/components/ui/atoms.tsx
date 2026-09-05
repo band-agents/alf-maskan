@@ -1,6 +1,10 @@
 import type { UnitStatus } from '@prisma/client';
 import { egp } from '@/lib/pricing';
 
+// The ⓘ needs state, so it lives in its own client module. Re-exported here so
+// every existing `import { Hint } from '@/components/ui/atoms'` keeps working.
+export { Hint } from './Hint';
+
 /**
  * The handful of primitives every data screen repeats. Written once here so a
  * status pill or a price never renders two different ways in two places.
@@ -39,19 +43,6 @@ export function Placeholder({ label, className = '' }: { label?: string; classNa
     <div className={`ph ${className}`} aria-hidden={label ? undefined : true}>
       {label}
     </div>
-  );
-}
-
-export function Hint({ children, about }: { children: React.ReactNode; about: string }) {
-  return (
-    <span className="hint">
-      <button className="hint__dot" type="button" aria-expanded="false">
-        i<span className="visually-hidden">About {about}</span>
-      </button>
-      <span className="hint__body" hidden>
-        {children}
-      </span>
-    </span>
   );
 }
 

@@ -46,6 +46,7 @@ Four commits. `git log --oneline` is the honest record.
 | **Screens** | `/dash`, `/dash/listings`, `/dash/listings/[id]` — all on typed mock data. |
 | **Multi-tenancy** | Two seeded stores, and every unit query scoped by `storeId`. `kamal-estates.localhost:3000` and `el-masria.localhost:3000` render different inventory, template, brand colour, ground and display face from one codebase. Cross-tenant unit access 404s in both directions. |
 | **Branding** | `brandHex` finally does something: it overrides `--tpl-accent`, the single token every accent rule in `templates.css` reads. `lib/brand.ts` measures white-on-brand and picks the ink, so a light logo cannot ship an unreadable call to action. |
+| **Leads inbox** | `/dash/leads` — segments, search and the selected lead all URL state, so an agent can paste a colleague a link to one enquiry. Every segment count and the page-head figures derive from the same predicate the list uses. Quick replies are generated from the unit via `computePlan`, not hard-coded. |
 | **Lead capture** | `/contact`, and the first write in the product. A server action validates, re-checks the slot against what was actually offered, and writes a Lead + Task. It reports two outcomes and never a third: **filed** (the row was written) or **handoff** (it was not, so the buyer gets a prepared WhatsApp message and is told plainly). No name or number ever enters a URL. |
 | **Storefront** | The buyer's unit page, `<slug>.localhost:3000/units/<ref>`, ported from `src/pages/store/unit.html`. Gallery, both-scripts description, key specs, amenities, location, compound, similar units, agent card, sticky phone bar — and the payment calculator, which imports the same `computePlan` the listing editor uses. |
 
@@ -60,11 +61,15 @@ Four commits. `git log --oneline` is the honest record.
 - **No auth.** Nobody logs in; the dashboard assumes one hard-coded store.
 - **Almost no writes.** `requestViewing` is the only one. The editor's Publish
   button still sets a flag and nothing else.
-- 32 of the static build's 41 pages are not ported yet. Home, browse and contact
+- 31 of the static build's 41 pages are not ported yet. Home, browse and contact
   are real ports; `/compounds`, `/team` and `/compare` still 404 from the header.
-- **Nobody can read a lead yet.** `/contact` writes one when a database exists,
-  but `app/leads.html` is not ported, so an agency has no inbox. Filed and
-  unreadable is only half the loop — port the leads inbox next to close it.
+- **Sending a reply still leaves the site.** There is no WhatsApp Business
+  integration and no message store, so the inbox composer opens wa.me with the
+  text prefilled rather than pretending to send. The static build appended the
+  message to the DOM, which looks exactly like sending and is not.
+- **Assign, Add task and the task checkboxes do nothing yet.** They are the
+  next writes after the stage change, and each needs the same saved/unsaved
+  treatment.
 - **Which slots are already taken is not modelled.** The picker offers every
   in-hours slot and the office confirms. The static build hard-coded a busy map;
   that was deliberately not carried across, because inventing availability for a
@@ -179,6 +184,12 @@ Four commits. `git log --oneline` is the honest record.
   error therefore wipes everything typed unless the values come back in the
   action's state *and* the form is keyed so it remounts. On a lead-capture
   screen that reset is a lost sale, not a papercut.
+- **The ⓘ was a dead button for two sessions.** `atoms.tsx` rendered the dot and
+  a `hidden` body and nothing toggled them, so every hint in the app — the
+  dashboard KPIs included — looked interactive and did nothing. It is a client
+  component now (`components/ui/Hint.tsx`, re-exported from `atoms`). When you
+  port a control the static build wires up in JavaScript, port the wiring too;
+  the markup alone renders a lie.
 - **`data-template` belongs on `<html>`, not on a div inside `<body>`.**
   `templates.css` says so in its own header, and the reason is one line in
   `store.css`: `body.storefront { background: var(--nile-paper) }`. Body
@@ -213,10 +224,10 @@ Four commits. `git log --oneline` is the honest record.
    already the right shape.
 2. **Auth.** Real decision to make first: phone-OTP matters more than email in
    this market, which rules out some providers' cheap tiers.
-3. **The leads inbox.** `/contact` files a lead; nothing reads one. An agency
-   with a filed lead and no inbox is half a loop, and the half they can see is
-   the half that decides renewal. `app/leads.html` is the spec — three-pane,
-   derived segment counts, the stage stepper.
+3. **Writes, in the order an agent notices them missing.** Stage changes are
+   done; Assign, Add task and the task checkboxes are not, and each needs the
+   same saved/unsaved treatment the stepper has. Then the audit log the schema
+   already models.
 
 4. **Port the remaining screens.** Collections is the other one the dashboard
    obviously lacks. On the storefront, `/compounds`, `/team` and `/compare`
@@ -226,7 +237,6 @@ Four commits. `git log --oneline` is the honest record.
    The unit page already proved what it was there to prove: **EGP 79,219** is
    what the listings table, the listing editor and the buyer's calculator all
    say for AM-1042, from one `computePlan` and three callers.
-5. **Writes.** Server actions, then the audit log the schema already models.
 
 ---
 
