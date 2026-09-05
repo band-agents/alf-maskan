@@ -24,6 +24,22 @@ import type { NextRequest } from 'next/server';
 const ROOT = process.env.NEXT_PUBLIC_ROOT_DOMAIN ?? 'alfmaskan.com';
 const APP_HOST = process.env.NEXT_PUBLIC_APP_HOST ?? `app.${ROOT}`;
 
+/**
+ * The hostnames a platform hands a deployment before a real domain is attached
+ * — on Vercel, `alf-maskan.vercel.app` and the per-deployment preview URL.
+ *
+ * Without this the final `return` below treats them as a tenant's own custom
+ * domain, looks for a Domain row that cannot exist, and 404s every single path
+ * on a brand new deployment. Treating them as the marketing site means the
+ * first deploy shows the marketing site, which is the honest answer: no tenant
+ * lives at that address, and storefronts need wildcard DNS on a real domain.
+ */
+const DEPLOY_HOSTS = new Set(
+  [process.env.VERCEL_PROJECT_PRODUCTION_URL, process.env.VERCEL_URL]
+    .filter((h): h is string => Boolean(h))
+    .map((h) => h.split(':')[0].toLowerCase())
+);
+
 /** Strip the port so localhost:3000 and a preview host behave alike. */
 function hostnameOf(request: NextRequest): string {
   const raw = request.headers.get('host') ?? '';
@@ -36,7 +52,10 @@ type Target =
   | { kind: 'store'; slug: string | null; customDomain: string | null };
 
 export function resolveTarget(hostname: string): Target {
+  // Configured hosts win over the platform's, so pointing NEXT_PUBLIC_APP_HOST
+  // at a vercel.app address still gives you the dashboard there.
   if (hostname === APP_HOST) return { kind: 'app' };
+  if (DEPLOY_HOSTS.has(hostname)) return { kind: 'marketing' };
 
   // Local development: app.localhost is the dashboard, <slug>.localhost is a
   // storefront, bare localhost is the marketing site. Wildcard DNS is not
