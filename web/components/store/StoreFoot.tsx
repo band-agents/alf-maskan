@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { TenantStore } from '@/lib/mock';
+import { isBuilt } from '@/lib/routes';
 import { prettyPhone } from './StoreHead';
 
 /**
@@ -41,7 +42,7 @@ export function StoreFoot({
                   <Link href={`/units?zone=${encodeURIComponent(z)}`}>{z}</Link>
                 </li>
               ))}
-              <li><Link href="/compare">Compare units</Link></li>
+              {isBuilt('/compare') && <li><Link href="/compare">Compare units</Link></li>}
             </ul>
           </div>
 
@@ -74,8 +75,8 @@ export function StoreFoot({
 
         <div className="st-foot__legal">
           <span>© {year} {store.nameEn}</span>
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/terms">Terms</Link>
+          {isBuilt('/privacy') && <Link href="/privacy">Privacy</Link>}
+          {isBuilt('/terms') && <Link href="/terms">Terms</Link>}
           <span className="made">
             Built with <a href="http://localhost:3000">Alf Maskan</a>
           </span>

@@ -63,7 +63,6 @@ export default async function LeadsPage({
           </p>
         </div>
         <div className="page-head__actions">
-          <Link className="btn btn--app" href="/dash/deals">Pipeline board</Link>
           <Link className="btn btn--go" href="/dash/leads">
             <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true">
               <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />

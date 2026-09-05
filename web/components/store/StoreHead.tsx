@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { TenantStore } from '@/lib/mock';
+import { isBuilt } from '@/lib/routes';
 import { StoreBurger } from './StoreBurger';
 import { WhatsAppMark } from './icons';
 
@@ -43,12 +44,21 @@ export function StoreHead({ store }: { store: TenantStore }) {
             {first} {rest.length > 0 && <span>{rest.join(' ')}</span>}
           </Link>
 
+          {/* Only what exists. This nav is on the page an agency shows its own
+              customers; a buyer clicking "Compounds" into a 404 costs the
+              agency the enquiry, not us. */}
           <nav className="st-nav" aria-label="Main">
-            <Link href="/units">Units</Link>
-            <Link href="/compounds">Compounds</Link>
-            <Link href="/units#plans">Payment plans</Link>
-            <Link href="/team">Our team</Link>
-            <Link href="/contact">Contact</Link>
+            {[
+              { href: '/units', label: 'Units' },
+              { href: '/compounds', label: 'Compounds' },
+              { href: '/units#plans', label: 'Payment plans' },
+              { href: '/team', label: 'Our team' },
+              { href: '/contact', label: 'Contact' },
+            ]
+              .filter((l) => isBuilt(l.href))
+              .map((l) => (
+                <Link key={l.href} href={l.href}>{l.label}</Link>
+              ))}
           </nav>
 
           <div className="st-head__end">

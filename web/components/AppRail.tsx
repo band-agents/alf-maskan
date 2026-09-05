@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { isBuilt } from '@/lib/routes';
 import { usePathname } from 'next/navigation';
 
 /**
@@ -108,6 +109,14 @@ const NAV: Item[] = [
   },
 ];
 
+function Soon({ label }: { label: string }) {
+  return (
+    <span aria-disabled="true" style={{ opacity: 0.5, cursor: 'default' }}>
+      {label} <span className="nav-count">Soon</span>
+    </span>
+  );
+}
+
 export function AppRail({ storeName }: { storeName: string }) {
   const pathname = usePathname();
 
@@ -144,13 +153,26 @@ export function AppRail({ storeName }: { storeName: string }) {
                 </svg>
               </summary>
               <div className="nav-sub">
-                {item.sub.map((s) => (
-                  <Link key={s.href} href={s.href}>
-                    {s.label}
-                  </Link>
-                ))}
+                {item.sub.map((s) =>
+                  isBuilt(s.href) ? (
+                    <Link key={s.href} href={s.href}>
+                      {s.label}
+                    </Link>
+                  ) : (
+                    <Soon key={s.href} label={s.label} />
+                  )
+                )}
               </div>
             </details>
+          ) : !isBuilt(item.href) ? (
+            // Not a link. The shape of the product is worth showing — an agency
+             // should see that Analytics is coming — but a dead link that lands
+             // on a 404 reads as broken rather than unfinished.
+            <span className="nav-item" key={item.href} aria-disabled="true" style={{ opacity: 0.5, cursor: 'default' }}>
+              <span className="nav-item__icon">{item.icon}</span>
+              <span className="nav-item__label">{item.label}</span>
+              <span className="nav-count">Soon</span>
+            </span>
           ) : (
             <Link
               className="nav-item"
