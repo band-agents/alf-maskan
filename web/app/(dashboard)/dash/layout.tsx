@@ -1,6 +1,7 @@
 import { AppRail } from '@/components/AppRail';
 import { AppTopbar } from '@/components/AppTopbar';
 import { mockStore } from '@/lib/mock';
+import { storefrontUrl } from '@/lib/tenant';
 
 export default function DashShell({ children }: { children: React.ReactNode }) {
   // The only line that changes when the database is live.
@@ -11,7 +12,7 @@ export default function DashShell({ children }: { children: React.ReactNode }) {
       <AppRail storeName={store.nameEn} />
       <div className="rail-scrim" />
       <div className="main">
-        <AppTopbar storefrontUrl={`http://${store.slug}.localhost:3000`} />
+        <AppTopbar storefrontUrl={storefrontUrl(store.slug)} />
         {children}
       </div>
     </div>

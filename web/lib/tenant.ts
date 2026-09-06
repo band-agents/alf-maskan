@@ -14,6 +14,32 @@ const TENANT_FIELDS = {
 const ROOT = process.env.NEXT_PUBLIC_ROOT_DOMAIN ?? 'alfmaskan.com';
 
 /**
+ * Where this product lives, as a browser can actually reach it.
+ *
+ * Two links were written as literal `http://localhost:3000`. The dashboard's
+ * "View storefront" is the cheap one — an agency sees a dead link. The credit
+ * in the storefront footer is not: it ships on the page an agency shows its own
+ * customers, so in production every buyer got pointed at their own machine.
+ *
+ * The discriminator is NODE_ENV rather than whether a root domain is
+ * configured, because .env sets one locally too — keying off its presence would
+ * have sent `next dev` to https://alfmaskan.com.
+ */
+const DEV = process.env.NODE_ENV !== 'production';
+const DEV_PORT = process.env.PORT ?? '3000';
+
+/** The marketing site — what "Alf Maskan" links to from inside a tenant's page. */
+export function marketingUrl(): string {
+  return DEV ? `http://localhost:${DEV_PORT}` : `https://${ROOT}`;
+}
+
+/** A tenant's free storefront address. Custom domains are not used here: this
+ *  one is always available, where a custom domain may still be unverified. */
+export function storefrontUrl(slug: string): string {
+  return DEV ? `http://${slug}.localhost:${DEV_PORT}` : `https://${slug}.${ROOT}`;
+}
+
+/**
  * Turn a hostname into the store it belongs to.
  *
  * Two ways in, and the free subdomain is checked first because it is the one

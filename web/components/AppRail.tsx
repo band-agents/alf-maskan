@@ -117,6 +117,51 @@ function Soon({ label }: { label: string }) {
   );
 }
 
+/**
+ * A link that refuses to point at a page that does not exist.
+ *
+ * The nav list above already asks `isBuilt`. The plan pill and the help dot did
+ * not, because they were written as one-off markup rather than list items — and
+ * that is exactly how the gate gets bypassed. Both dropped an agency on the 404
+ * the gate exists to prevent. Sending every destination through one component
+ * means linking to an unbuilt screen is no longer something you can do by
+ * accident.
+ *
+ * The dimmed element keeps its class, so the plan an agency is on still reads
+ * as a plan pill. Showing the shape of the product is the point; pretending it
+ * is clickable is not.
+ */
+function NavLink({
+  href,
+  className,
+  children,
+  'aria-label': ariaLabel,
+}: {
+  href: string;
+  className?: string;
+  children: React.ReactNode;
+  'aria-label'?: string;
+}) {
+  if (isBuilt(href)) {
+    return (
+      <Link className={className} href={href} aria-label={ariaLabel}>
+        {children}
+      </Link>
+    );
+  }
+  return (
+    <span
+      className={className}
+      aria-label={ariaLabel}
+      aria-disabled="true"
+      title="Not built yet"
+      style={{ opacity: 0.5, cursor: 'default' }}
+    >
+      {children}
+    </span>
+  );
+}
+
 export function AppRail({ storeName }: { storeName: string }) {
   const pathname = usePathname();
 
@@ -213,12 +258,12 @@ export function AppRail({ storeName }: { storeName: string }) {
           </svg>
         </button>
         <div className="rail__plan">
-          <Link className="plan-pill" href="/dash/billing">
+          <NavLink className="plan-pill" href="/dash/billing">
             Pro · EGP 990/mo
-          </Link>
-          <Link className="help-dot" href="/dash/help" aria-label="Help and support">
+          </NavLink>
+          <NavLink className="help-dot" href="/dash/help" aria-label="Help and support">
             ?
-          </Link>
+          </NavLink>
         </div>
       </div>
     </aside>

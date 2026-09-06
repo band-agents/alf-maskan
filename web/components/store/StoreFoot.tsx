@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import type { TenantStore } from '@/lib/mock';
 import { isBuilt } from '@/lib/routes';
+import { marketingUrl } from '@/lib/tenant';
 import { prettyPhone } from './StoreHead';
 
 /**
@@ -78,7 +79,7 @@ export function StoreFoot({
           {isBuilt('/privacy') && <Link href="/privacy">Privacy</Link>}
           {isBuilt('/terms') && <Link href="/terms">Terms</Link>}
           <span className="made">
-            Built with <a href="http://localhost:3000">Alf Maskan</a>
+            Built with <a href={marketingUrl()}>Alf Maskan</a>
           </span>
         </div>
       </div>

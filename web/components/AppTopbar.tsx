@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
 
 /**
  * The dashboard top bar. The theme toggle is the only piece with real state:
@@ -9,17 +9,14 @@ import { useEffect, useState } from 'react';
  * pair the pre-paint script in the root layout reads back on the next load.
  */
 export function AppTopbar({ storefrontUrl }: { storefrontUrl: string }) {
-  const [dark, setDark] = useState(false);
-
-  // Read the theme the pre-paint script already applied, rather than deciding
-  // again here — deciding twice is how a flash gets reintroduced.
-  useEffect(() => {
-    setDark(document.documentElement.dataset.theme === 'dark');
-  }, []);
+  // The attribute is the theme. Subscribing to it rather than mirroring it into
+  // React state means the button cannot disagree with the page it labels, and
+  // the pre-paint script stays the only thing that decides the first paint —
+  // deciding twice is how a flash gets reintroduced.
+  const dark = useSyncExternalStore(subscribeTheme, themeIsDark, themeIsDarkOnServer);
 
   function toggleTheme() {
     const next = !dark;
-    setDark(next);
     if (next) document.documentElement.dataset.theme = 'dark';
     else delete document.documentElement.dataset.theme;
     try {
@@ -105,3 +102,23 @@ export function AppTopbar({ storefrontUrl }: { storefrontUrl: string }) {
     </header>
   );
 }
+
+/**
+ * <html data-theme> as an external store.
+ *
+ * The observer matters for more than tidiness: anything else that sets the
+ * attribute — a second toggle, a future settings screen, the pre-paint script
+ * re-running after a soft navigation — moves this button with it.
+ */
+function subscribeTheme(onChange: () => void) {
+  const observer = new MutationObserver(onChange);
+  observer.observe(document.documentElement, { attributeFilter: ['data-theme'] });
+  return () => observer.disconnect();
+}
+
+const themeIsDark = () => document.documentElement.dataset.theme === 'dark';
+
+// There is no DOM on the server and the pre-paint script has not run yet, so
+// light is the only answer that cannot be wrong on the first frame. React
+// hydrates with this, then re-renders with the real attribute.
+const themeIsDarkOnServer = () => false;
