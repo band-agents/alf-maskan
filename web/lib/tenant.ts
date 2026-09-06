@@ -28,15 +28,41 @@ const ROOT = process.env.NEXT_PUBLIC_ROOT_DOMAIN ?? 'alfmaskan.com';
 const DEV = process.env.NODE_ENV !== 'production';
 const DEV_PORT = process.env.PORT ?? '3000';
 
+/** Set only once a real domain is pointed at the deployment. Until then the
+ *  `ROOT` default is an aspiration, not an address that resolves. */
+const CONFIGURED_ROOT = process.env.NEXT_PUBLIC_ROOT_DOMAIN;
+
+/** The deployment's own hostname, which is the only thing that certainly
+ *  answers before DNS exists. Server-only, and both callers are server
+ *  components. */
+const DEPLOY_HOST = process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
+
 /** The marketing site — what "Alf Maskan" links to from inside a tenant's page. */
 export function marketingUrl(): string {
-  return DEV ? `http://localhost:${DEV_PORT}` : `https://${ROOT}`;
+  if (DEV) return `http://localhost:${DEV_PORT}`;
+  if (CONFIGURED_ROOT) return `https://${CONFIGURED_ROOT}`;
+  if (DEPLOY_HOST) return `https://${DEPLOY_HOST}`;
+  return `https://${ROOT}`;
 }
 
-/** A tenant's free storefront address. Custom domains are not used here: this
- *  one is always available, where a custom domain may still be unverified. */
+/**
+ * A tenant's storefront, at an address that actually answers today.
+ *
+ * The free subdomain needs a wildcard domain pointed at the deployment, which
+ * a fresh Vercel project does not have — so linking to
+ * `https://<slug>.alfmaskan.com` before that DNS exists is the same class of
+ * dead link as the `localhost:3000` this replaced, just less obvious. Without a
+ * configured root the link goes through the path the proxy rewrites to instead,
+ * on the deployment's own host, which resolves from the first deploy.
+ *
+ * Custom domains are deliberately not used here: this address is always
+ * available, where a tenant's own domain may still be unverified.
+ */
 export function storefrontUrl(slug: string): string {
-  return DEV ? `http://${slug}.localhost:${DEV_PORT}` : `https://${slug}.${ROOT}`;
+  if (DEV) return `http://${slug}.localhost:${DEV_PORT}`;
+  if (CONFIGURED_ROOT) return `https://${slug}.${CONFIGURED_ROOT}`;
+  if (DEPLOY_HOST) return `https://${DEPLOY_HOST}/s/${slug}.${ROOT}`;
+  return `https://${slug}.${ROOT}`;
 }
 
 /**
