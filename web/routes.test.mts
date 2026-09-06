@@ -15,9 +15,12 @@ import { BUILT, PENDING, isBuilt } from './lib/routes.js';
 
 /** Where a link's path lives in the App Router. Storefront paths are relative
  *  to a tenant host, so they resolve under the [host] segment. */
+const MARKETING = new Set(['/templates', '/pricing', '/signup']);
+
 function pageFor(path: string): string {
   if (path === '/') return 'app/(marketing)/page.tsx';
   if (path === '/dash' || path.startsWith('/dash/')) return `app/(dashboard)${path}/page.tsx`;
+  if (MARKETING.has(path)) return `app/(marketing)${path}/page.tsx`;
   return `app/(storefront)/s/[host]${path}/page.tsx`;
 }
 

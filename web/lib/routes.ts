@@ -32,6 +32,10 @@ export const BUILT = new Set([
  *  rather than inferred, so adding a nav item to a page that does not exist is
  *  a deliberate act with a visible consequence. */
 export const PENDING: Record<string, string> = {
+  // marketing — the other four pages of the static build
+  '/templates': 'Templates',
+  '/pricing': 'Pricing',
+  '/signup': 'Sign up',
   '/dash/collections': 'Collections',
   '/dash/deals': 'Pipeline board',
   '/dash/builder': 'Storefront builder',
