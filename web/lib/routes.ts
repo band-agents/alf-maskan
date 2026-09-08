@@ -29,6 +29,8 @@ export const BUILT = new Set([
   '/dash/team/roles',
   '/dash/settings',
   '/dash/billing',
+  '/dash/notifications',
+  '/dash/settings/audit',
   '/dash/listings',
   // storefront, relative to a tenant host
   '/units',
@@ -45,9 +47,7 @@ export const PENDING: Record<string, string> = {
   '/signup': 'Sign up',
   '/dash/builder': 'Storefront builder',
   '/dash/marketing': 'Marketing',
-  '/dash/settings/audit': 'Audit log',
   '/dash/help': 'Help',
-  '/dash/notifications': 'Notifications',
   '/dash/listings/new': 'Add a listing',
   '/compounds': 'Compounds',
   '/team': 'Our team',
