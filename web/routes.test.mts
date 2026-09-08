@@ -53,7 +53,9 @@ const DYNAMIC: [string, boolean, string][] = [
   ['/dash/listings/new', false, 'except "new", which is the pending create screen'],
   ['/units/am-1042', true, "a unit reference is the buyer's page"],
   ['/dash/listings?view=live', true, 'a query string does not change the destination'],
-  ['/dash/analytics', false, 'an unbuilt screen stays unbuilt'],
+  // Deliberately a path no module will ever claim: every real PENDING entry
+  // is on its way to being built, so using one here dates the test.
+  ['/dash/not-a-screen', false, 'an unknown path is never built'],
 ];
 for (const [href, expected, why] of DYNAMIC) {
   check(isBuilt(href) === expected, href, why);
