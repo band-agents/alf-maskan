@@ -19,6 +19,10 @@ const MARKETING = new Set(['/templates', '/pricing', '/signup']);
 
 function pageFor(path: string): string {
   if (path === '/') return 'app/(marketing)/page.tsx';
+  // Checked before the /dash branch, which would otherwise claim it: the
+  // builder opts out of the dashboard shell and lives in its own route group.
+  // Route groups are invisible in the URL; the file path is not.
+  if (path === '/dash/builder') return 'app/(builder)/dash/builder/page.tsx';
   if (path === '/dash' || path.startsWith('/dash/')) return `app/(dashboard)${path}/page.tsx`;
   if (MARKETING.has(path)) return `app/(marketing)${path}/page.tsx`;
   return `app/(storefront)/s/[host]${path}/page.tsx`;
