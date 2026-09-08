@@ -143,6 +143,12 @@ const UNITS: UnitRow[] = [
  * never offer a zone that returns nothing. Tenant-scoped for the same reason
  * everything else is: New Cairo belongs on Kamal Estates' site and nowhere else.
  */
+/** Every unit in one store, unfiltered. Collections and analytics both need
+ *  the whole slice to reason about it, and both must still be scoped. */
+export function unitsForStore(storeId: string): UnitRow[] {
+  return UNITS.filter((u) => u.storeId === storeId);
+}
+
 export function zonesFor(storeId: string): string[] {
   return Array.from(new Set(UNITS.filter((u) => u.storeId === storeId).map((u) => u.zone))).sort();
 }
