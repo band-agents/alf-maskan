@@ -54,7 +54,7 @@ for (const path of Object.keys(PENDING)) {
 console.log('\ndynamic segments');
 const DYNAMIC: [string, boolean, string][] = [
   ['/dash/listings/am-1038', true, 'a listing id is a real page'],
-  ['/dash/listings/new', false, 'except "new", which is the pending create screen'],
+  ['/dash/listings/new', true, 'and "new" is a real screen of its own now'],
   ['/units/am-1042', true, "a unit reference is the buyer's page"],
   ['/dash/listings?view=live', true, 'a query string does not change the destination'],
   // Deliberately a path no module will ever claim: every real PENDING entry

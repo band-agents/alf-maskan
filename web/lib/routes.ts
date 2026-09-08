@@ -35,6 +35,8 @@ export const BUILT = new Set([
   '/dash/builder',
   '/dash/settings/audit',
   '/dash/listings',
+  '/dash/listings/new',
+  '/dash/listings/import',
   // storefront, relative to a tenant host
   '/units',
   '/contact',
@@ -48,7 +50,6 @@ export const PENDING: Record<string, string> = {
   '/templates': 'Templates',
   '/pricing': 'Pricing',
   '/signup': 'Sign up',
-  '/dash/listings/new': 'Add a listing',
   '/compounds': 'Compounds',
   '/team': 'Our team',
   '/compare': 'Compare units',
@@ -60,8 +61,10 @@ export const PENDING: Record<string, string> = {
 export function isBuilt(href: string): boolean {
   const path = href.split('?')[0].split('#')[0];
   if (BUILT.has(path)) return true;
-  // /dash/listings/<id> and /units/<ref> are real pages.
-  if (/^\/dash\/listings\/[^/]+$/.test(path)) return path !== '/dash/listings/new';
+  // /dash/listings/<id> and /units/<ref> are real pages. "new" and "import" are
+  // static siblings listed in BUILT above and already answered for, so this only
+  // has to decide about an id.
+  if (/^\/dash\/listings\/[^/]+$/.test(path)) return true;
   if (/^\/units\/[^/]+$/.test(path)) return true;
   return false;
 }

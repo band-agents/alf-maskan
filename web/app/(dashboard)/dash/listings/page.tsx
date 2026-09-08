@@ -33,8 +33,8 @@ export default async function ListingsPage({
           </p>
         </div>
         <div className="page-head__actions">
-          <button className="btn btn--app" type="button">Import units</button>
-          <Link className="btn btn--go" href="/dash/listings">
+          <Link className="btn btn--app" href="/dash/listings/import">Import units</Link>
+          <Link className="btn btn--go" href="/dash/listings/new">
             <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true">
               <path d="M7 1v12M1 7h12" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
             </svg>
@@ -57,7 +57,7 @@ export default async function ListingsPage({
           <p>Try widening the price range or clearing the zone. Your other {counts.all} units are still there.</p>
           <div className="empty__acts">
             <Link className="btn btn--app" href="/dash/listings">Clear all filters</Link>
-            <Link className="btn btn--go" href="/dash/listings">Add a listing</Link>
+            <Link className="btn btn--go" href="/dash/listings/new">Add a listing</Link>
           </div>
         </div>
       ) : (
