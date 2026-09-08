@@ -59,7 +59,14 @@ Four commits. `git log --oneline` is the honest record.
   missing column still throws as itself — a fallback that swallowed those would
   turn every real bug into "the page renders, with the wrong data".
 - **No auth.** Nobody logs in; the dashboard assumes one hard-coded store.
-- **Almost no writes.** `requestViewing` is the only one. The editor's Publish
+- **Writes are wired but land nowhere.** `saveUnit`, `createUnit` and
+  `importUnits` in `app/(dashboard)/dash/listings/actions.ts` are real Prisma
+  writes behind `orMock`, tenant-scoped in the `where` rather than by id alone.
+  With no database they return `unsaved / no-database` and the screen says so —
+  it never clears the unsaved marker on a failed save. Validation runs before
+  the database is touched, so a missing title reports in a second rather than
+  after a connection timeout.
+- **Almost no other writes.** `requestViewing` is the only one. The editor's Publish
   button still sets a flag and nothing else.
 - 31 of the static build's 41 pages are not ported yet. Home, browse and contact
   are real ports; `/compounds`, `/team` and `/compare` still 404 from the header.
@@ -218,10 +225,29 @@ Four commits. `git log --oneline` is the honest record.
 
 ## Next, in the order that unblocks the most
 
-1. **A Postgres URL.** Neon or Supabase free tier, five minutes. Then
-   `npx prisma db push`, write `prisma/seed.ts` from `lib/queries/units.ts`'s
-   mock array, and swap `listUnits` to a real query. Everything above it is
-   already the right shape.
+1. **A Postgres URL — and nothing else.** Neon or Supabase free tier, five
+   minutes. Everything downstream of it is written and waiting:
+
+   ```
+   DATABASE_URL="postgresql://…"    in web/.env
+   npm run db:push                  creates the tables
+   npm run db:seed                  writes both agencies, 12 units, media, collections, people
+   ```
+
+   `prisma/seed.ts` is idempotent (upsert on store slug, store+reference,
+   store+collection slug), so re-running corrects drift rather than doubling an
+   inventory, and it never deletes — a unit added by hand survives it.
+
+   **The test is that nothing changes.** The screens are built from the same data
+   the seed writes, so if a page looks different after seeding, the mock and the
+   schema disagreed and the seed is where that shows.
+
+   Then convert the reads. `listUnits`, `getUnit` and `getUnitByRef` are already
+   async and `orMock` already exists, so each is a Prisma `where` plus the mapper
+   in `lib/queries/unit-map.ts`. The synchronous helpers — `unitsForStore`,
+   `zonesFor`, `compoundsFor` — have about twenty call sites and have to go async
+   together; do that in the session that first runs `db push`, not before, or it
+   is untested query code that looks finished.
 2. **Auth.** Real decision to make first: phone-OTP matters more than email in
    this market, which rules out some providers' cheap tiers.
 3. **Writes, in the order an agent notices them missing.** Stage changes are

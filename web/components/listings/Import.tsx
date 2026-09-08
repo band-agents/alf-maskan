@@ -1,10 +1,12 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import {
   FIELDS, SAMPLE_CSV, guessMapping, mapRows, parseSheet, summarise,
   type Field, type Sheet,
 } from '@/lib/queries/import';
+import { importUnits, type ImportOutcome } from '@/app/(dashboard)/dash/listings/actions';
+import { toImportedUnits } from '@/lib/queries/import-map';
 import { TYPE_LABEL } from '@/components/ui/atoms';
 
 /**
@@ -20,18 +22,19 @@ import { TYPE_LABEL } from '@/components/ui/atoms';
  * and says so; only a row that cannot become a unit at all — no title, no zone,
  * no area — is held back, and it is still listed so it can be fixed.
  */
-export function Import() {
+export function Import({ storeId }: { storeId: string }) {
   const [text, setText] = useState('');
   const [sheet, setSheet] = useState<Sheet | null>(null);
   const [mapping, setMapping] = useState<Record<Field, number | null> | null>(null);
-  const [done, setDone] = useState(false);
+  const [outcome, setOutcome] = useState<ImportOutcome | null>(null);
+  const [pending, startImport] = useTransition();
 
   function read(raw: string) {
     const parsed = parseSheet(raw);
     setText(raw);
     setSheet(parsed);
     setMapping(parsed.headers.length ? guessMapping(parsed.headers) : null);
-    setDone(false);
+    setOutcome(null);
   }
 
   async function onFile(file: File | undefined) {
@@ -85,7 +88,7 @@ export function Import() {
           {sheet && (
             <button
               className="btn btn--app" type="button"
-              onClick={() => { setText(''); setSheet(null); setMapping(null); setDone(false); }}
+              onClick={() => { setText(''); setSheet(null); setMapping(null); setOutcome(null); }}
             >
               Clear
             </button>
@@ -222,21 +225,33 @@ export function Import() {
             <div style={{ display: 'flex', gap: 9, marginTop: 14, flexWrap: 'wrap', alignItems: 'center' }}>
               <button
                 className="btn btn--go" type="button"
-                disabled={!sum || sum.ready + sum.drafts === 0}
-                onClick={() => setDone(true)}
+                disabled={pending || !sum || sum.ready + sum.drafts === 0}
+                onClick={() =>
+                  startImport(async () => {
+                    setOutcome(await importUnits(toImportedUnits(rows, storeId)));
+                  })
+                }
               >
-                Import {sum ? sum.ready + sum.drafts : 0} units
+                {pending ? 'Importing…' : `Import ${sum ? sum.ready + sum.drafts : 0} units`}
               </button>
               <span className="f__hint">Photos are not part of an import — add them per unit afterwards.</span>
             </div>
 
-            {done && (
+            {outcome && (
               <p className="rolenote" role="status" style={{ marginTop: 14 }}>
-                <b>Nothing was imported</b>
-                There is no database connected yet, so these rows were parsed and checked but not
-                written. Everything above is exactly what would have been created — the mapping,
-                the drafts and the held-back rows are all real work, and they will be applied the
-                moment the store is live.
+                {outcome.state === 'imported' ? (
+                  <>
+                    <b>{outcome.created} units imported</b>
+                    {outcome.drafts > 0
+                      ? `${outcome.drafts} came in as drafts because they had no price. They are in your listings now — add a price to publish them.`
+                      : 'All of them are in your listings now.'}
+                  </>
+                ) : (
+                  <>
+                    <b>Nothing was imported</b>
+                    {outcome.message} Everything above is exactly what would have been created.
+                  </>
+                )}
               </p>
             )}
           </section>

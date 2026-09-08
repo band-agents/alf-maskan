@@ -219,6 +219,10 @@ model Collection {
   storeId String
   store   Store  @relation(fields: [storeId], references: [id], onDelete: Cascade)
 
+  // Addressed by slug, not id: the collections screen keeps the open collection
+  // in the URL so an agent can send a colleague a link to one, and a cuid in
+  // that link is unreadable and unguessable when someone re-seeds.
+  slug   String
   nameEn String
   nameAr String
   descEn String?
@@ -235,6 +239,7 @@ model Collection {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
+  @@unique([storeId, slug])
   @@index([storeId])
 }
 

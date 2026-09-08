@@ -57,8 +57,10 @@ behaviour is `/contact` — a viewing request cannot be filed, so it takes the
 promising a reply nobody recorded. That is the honest outcome, and it still
 delivers the lead.
 
-When Postgres arrives: set `DATABASE_URL`, run `npx prisma db push`, write
-`prisma/seed.ts` from the arrays in `lib/queries/`, and delete `lib/mock.ts`.
+When Postgres arrives: set `DATABASE_URL`, then `npm run db:push` and
+`npm run db:seed`. The seed is written and idempotent — it writes both agencies,
+their people, twelve units with media, and their collections. The screens should
+not change, because they are built from the same data.
 
 ---
 

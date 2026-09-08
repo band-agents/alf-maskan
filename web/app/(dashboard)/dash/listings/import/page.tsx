@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { mockStore } from '@/lib/mock';
 import { Import } from '@/components/listings/Import';
 
 export const metadata = {
@@ -30,7 +31,8 @@ export default function ImportPage() {
         </div>
       </div>
 
-      <Import />
+      {/* The one line that changes when auth is real. */}
+      <Import storeId={mockStore.id} />
     </main>
   );
 }

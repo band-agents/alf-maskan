@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useTransition } from 'react';
 import { computePlan, egp } from '@/lib/pricing';
 import type { UnitRow } from '@/lib/queries/units';
 import {
@@ -8,6 +8,7 @@ import {
   checks, completeness, type MediaItem, type Positioning, type UnitDetail,
 } from '@/lib/queries/unit-detail';
 import { Hint, Placeholder, TYPE_LABEL } from '@/components/ui/atoms';
+import { createUnit, saveUnit, type SaveOutcome } from '@/app/(dashboard)/dash/listings/actions';
 import { Gallery } from './Gallery';
 import { ChecklistPanel, PlanBar, PricePositioning, Serp } from './visuals';
 
@@ -56,15 +57,16 @@ export function Editor({
   const [d, setD] = useState<UnitDetail>(detail);
   const [lang, setLang] = useState<'en' | 'ar'>('en');
   const [dirty, setDirty] = useState(isNew);
-  const [saved, setSaved] = useState(false);
+  const [outcome, setOutcome] = useState<SaveOutcome | null>(null);
+  const [pending, startSaving] = useTransition();
 
   const setUnit = <K extends keyof UnitRow>(k: K, v: UnitRow[K]) => {
     setU((p) => ({ ...p, [k]: v }));
-    setDirty(true); setSaved(false);
+    setDirty(true); setOutcome(null);
   };
   const setDet = <K extends keyof UnitDetail>(k: K, v: UnitDetail[K]) => {
     setD((p) => ({ ...p, [k]: v }));
-    setDirty(true); setSaved(false);
+    setDirty(true); setOutcome(null);
   };
 
   const plan = computePlan(
@@ -421,18 +423,38 @@ export function Editor({
           </span>
           <span className="savebar__end">
             <button className="btn btn--app" type="button">Preview</button>
-            <button className="btn btn--go" type="button" onClick={() => { setDirty(false); setSaved(true); }}>
-              {isNew ? 'Create listing' : 'Publish changes'}
+            <button
+              className="btn btn--go"
+              type="button"
+              disabled={pending}
+              onClick={() =>
+                startSaving(async () => {
+                  const result = await (isNew ? createUnit(u, d) : saveUnit(u, d));
+                  setOutcome(result);
+                  // Only a real write clears the unsaved marker. Clearing it on
+                  // a failed save is the lie this whole path exists to avoid.
+                  if (result.state === 'saved') setDirty(false);
+                })
+              }
+            >
+              {pending ? 'Saving…' : isNew ? 'Create listing' : 'Publish changes'}
             </button>
           </span>
         </div>
 
-        {saved && (
+        {outcome && (
           <p className="rolenote" role="status" style={{ gridColumn: '1 / -1' }}>
-            <b>Not saved</b>
-            There is no database connected yet, so this listing lives in the page only and a
-            refresh restores it. Everything above — the plan, the score, the positioning — is what
-            would have been written.
+            {outcome.state === 'saved' ? (
+              <>
+                <b>Saved</b>
+                {u.reference} is written and live on your storefront.
+              </>
+            ) : (
+              <>
+                <b>{outcome.reason === 'invalid' ? 'Not saved yet' : 'Not saved'}</b>
+                {outcome.message}
+              </>
+            )}
           </p>
         )}
       </div>
